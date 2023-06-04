@@ -1,0 +1,300 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='100 103 1095 866' xmlns:xlink='http://www.w3.org/1999/xlink' width='1095.0px' font-size='13' font-family='Arial, LiberationSans' version='1.1' height='866.0px'>
+  <defs>
+<style type='text/css'><![CDATA[svg text {text-rendering: geometricPrecision;}]]></style>    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='67ab5b4f-a68e-4e2f-a0a9-3890970d0b06' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(239, 233, 222)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='d02da80c-b4ab-4233-8a55-8c08cc4aaff3' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='c5b76845-1164-445e-93dc-45832d18dadc' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='cf3c9f77-a579-4ca0-85c7-42029790e24c' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='cd52f794-af3a-4bd1-9c6a-13e10ef0b956' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='bcf7b917-ed61-4540-a65f-3ac7d171e151' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='c6399b03-f234-420b-a10d-aa35935f89fb' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='c54ed36a-4bc0-4bf1-9fce-6f0a72ef84ce' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='a3c8f9e8-9acd-4918-9501-8bbcefb3775a' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='2e9be7ae-43ca-4362-9c58-2fb7d3747828' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='f4581a7f-a2f0-4235-baf7-62e37d05028a' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='4e0d764b-e799-44e7-b92f-638765729f83' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='37cdbd54-a7ae-4af3-8932-e53dbf33402a' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='e9a8ef0a-86ce-41b6-b5e1-1cce455d6525' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='780a9540-d106-4c56-bd1a-685fefa74598' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='3f9d2a14-3f0d-4798-a4ba-00fef396d430' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='e3eb9e12-2dcd-4087-ac34-80c09ba0e301' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='6f21a314-72e5-4c03-bf6c-5a6bc401d5f8' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='f3cfe503-2118-49f6-aade-1e4993f0ce09' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='5ca640bb-0783-477b-9324-b34d0a3fe6fe' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='48822051-1a6b-4b67-b8d1-fa3eecf9008e' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='304c7b63-0578-4a46-a248-87ed1acd8aff' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+    <linearGradient y1='0.0%' x1='0.0%' y2='100.0%' x2='0.0%' id='5582c165-0205-4afe-8f34-6d61e07be7a0' spreadMethod='pad'>
+      <stop stop-opacity='1' offset='0' stop-color='rgb(255, 255, 255)'/>
+      <stop stop-opacity='1' offset='100' stop-color='rgb(238, 238, 238)'/>
+    </linearGradient>
+  </defs>
+  <desc>UsecaseDiagram</desc>
+  <g transform='translate(130.0,210.0)' id='_76aaQOUxEDuRY7jq84X9mA'>
+    <circle r='6.5' cx='20.0' cy='8.5' stroke-width='1.5' fill='rgb(255, 255, 255)' stroke='rgb(136, 136, 136)' look='allInOne'/>
+    <line y1='15.0' x1='20.0' y2='45.5' x2='20.0' stroke-width='1.5' fill='rgb(255, 255, 255)' stroke='rgb(136, 136, 136)' look='allInOne'/>
+    <line y1='26.0' x1='6.0' y2='26.0' x2='34.0' stroke-width='1.5' fill='rgb(255, 255, 255)' stroke='rgb(136, 136, 136)' look='allInOne'/>
+    <line y1='45.5' x1='20.0' y2='63.0' x2='9.2' stroke-width='1.5' fill='rgb(255, 255, 255)' stroke='rgb(136, 136, 136)' look='allInOne'/>
+    <line y1='45.5' x1='20.0' y2='63.0' x2='30.799999999999997' fill='rgb(255, 255, 255)' stroke='rgb(136, 136, 136)' look='allInOne'/>
+    <text text-anchor='middle' x='20.0' y='78.0' font-size='13' font-style='normal' fill='rgb(0, 0, 0)'>Student</text>
+  </g>
+  <g transform='translate(130.0,391.0)' id='_8rza8OUxEDuRY7jq84X9mA'>
+    <circle r='7.5' cx='20.0' cy='9.5' stroke-width='1.5' fill='rgb(255, 255, 255)' stroke='rgb(136, 136, 136)' look='allInOne'/>
+    <line y1='17.0' x1='20.0' y2='52.5' x2='20.0' stroke-width='1.5' fill='rgb(255, 255, 255)' stroke='rgb(136, 136, 136)' look='allInOne'/>
+    <line y1='30.0' x1='4.0' y2='30.0' x2='36.0' stroke-width='1.5' fill='rgb(255, 255, 255)' stroke='rgb(136, 136, 136)' look='allInOne'/>
+    <line y1='52.5' x1='20.0' y2='73.0' x2='7.6' stroke-width='1.5' fill='rgb(255, 255, 255)' stroke='rgb(136, 136, 136)' look='allInOne'/>
+    <line y1='52.5' x1='20.0' y2='73.0' x2='32.4' fill='rgb(255, 255, 255)' stroke='rgb(136, 136, 136)' look='allInOne'/>
+    <text text-anchor='middle' x='20.0' y='88.0' font-size='13' font-style='normal' fill='rgb(0, 0, 0)'>Lecturer</text>
+  </g>
+  <g transform='translate(1020.0,260.0)' id='_-vKZ0OUxEDuRY7jq84X9mA'>
+    <circle r='6.5' cx='20.0' cy='8.5' stroke-width='1.5' fill='rgb(255, 255, 255)' stroke='rgb(136, 136, 136)' look='allInOne'/>
+    <line y1='15.0' x1='20.0' y2='45.5' x2='20.0' stroke-width='1.5' fill='rgb(255, 255, 255)' stroke='rgb(136, 136, 136)' look='allInOne'/>
+    <line y1='26.0' x1='6.0' y2='26.0' x2='34.0' stroke-width='1.5' fill='rgb(255, 255, 255)' stroke='rgb(136, 136, 136)' look='allInOne'/>
+    <line y1='45.5' x1='20.0' y2='63.0' x2='9.2' stroke-width='1.5' fill='rgb(255, 255, 255)' stroke='rgb(136, 136, 136)' look='allInOne'/>
+    <line y1='45.5' x1='20.0' y2='63.0' x2='30.799999999999997' fill='rgb(255, 255, 255)' stroke='rgb(136, 136, 136)' look='allInOne'/>
+    <text text-anchor='middle' x='20.0' y='78.0' font-size='13' font-style='normal' fill='rgb(0, 0, 0)'>Server</text>
+  </g>
+  <g transform='translate(915.0,549.0)' id='_U48pgOU0EDuRY7jq84X9mA'>
+    <polygon stroke-width='0.5' fill='rgb(255, 255, 255)' stroke='rgb(107, 107, 107)' look='allInOne' points='0.0,0.0 0.0,250.0 250.0,250.0 250.0,15.0 235.0,0.0'/>
+    <polygon stroke-width='1.0' fill='rgb(107, 107, 107)' look='border' stroke='rgb(107, 107, 107)' points='235.0,1.0 235.0,15.0 249.0,15.0'/>
+    <clipPath id='clip_U48pgOU0EDuRY7jq84X9mA'>
+      <rect x='5.0' width='225.0px' y='5.0' height='240.0px'/>
+    </clipPath>
+    <g transform='translate(0.0,0.0)'>
+      <text clip-path='url(#clip_U48pgOU0EDuRY7jq84X9mA)' x='5.0' y='18.0' font-size='13' fill='rgb(45, 45, 45)'>  Coursework information: 1. Weights</text>
+      <text clip-path='url(#clip_U48pgOU0EDuRY7jq84X9mA)' x='5.0' y='31.0' font-size='13' fill='rgb(45, 45, 45)'>of each coursework  2.Marking</text>
+      <text clip-path='url(#clip_U48pgOU0EDuRY7jq84X9mA)' x='5.0' y='44.0' font-size='13' fill='rgb(45, 45, 45)'>Criteria 3. Due date for submission 4.</text>
+      <text clip-path='url(#clip_U48pgOU0EDuRY7jq84X9mA)' x='5.0' y='57.0' font-size='13' fill='rgb(45, 45, 45)'>Estimate due date for mark release </text>
+    </g>
+  </g>
+  <g transform='translate(1001.0,362.0)' id='_-vbYMOU0EDuRY7jq84X9mA'>
+    <polygon stroke-width='0.5' fill='rgb(255, 255, 255)' stroke='rgb(107, 107, 107)' look='allInOne' points='0.0,0.0 0.0,60.0 150.0,60.0 150.0,15.0 135.0,0.0'/>
+    <polygon stroke-width='1.0' fill='rgb(107, 107, 107)' look='border' stroke='rgb(107, 107, 107)' points='135.0,1.0 135.0,15.0 149.0,15.0'/>
+    <clipPath id='clip_-vbYMOU0EDuRY7jq84X9mA'>
+      <rect x='5.0' width='125.0px' y='5.0' height='50.0px'/>
+    </clipPath>
+    <g transform='translate(0.0,0.0)'>
+      <text clip-path='url(#clip_-vbYMOU0EDuRY7jq84X9mA)' x='5.0' y='18.0' font-size='13' fill='rgb(45, 45, 45)'>All data will be saved</text>
+      <text clip-path='url(#clip_-vbYMOU0EDuRY7jq84X9mA)' x='5.0' y='31.0' font-size='13' fill='rgb(45, 45, 45)'>on server</text>
+    </g>
+  </g>
+  <g transform='translate(237.0,133.0)' id='_1znbIOUxEDuRY7jq84X9mA'>
+    <rect x='0.0' width='169.0px' y='0.0' stroke-width='1.0' fill='url(#67ab5b4f-a68e-4e2f-a0a9-3890970d0b06)' stroke='rgb(194, 183, 159)' look='allInOne' height='24.0px'/>
+    <rect x='0.0' width='660.0px' y='24.0' stroke-width='1.0' fill='url(#67ab5b4f-a68e-4e2f-a0a9-3890970d0b06)' stroke='rgb(194, 183, 159)' look='allInOne' height='782.0px'/>
+    <text font-weight='bold' text-anchor='middle' x='84.5' y='18.0' font-size='13' fill='rgb(128, 98, 33)'>Coursework Management</text>
+  </g>
+  <g transform='translate(370.0,686.0)' id='__tJFAOUxEDuRY7jq84X9mA'>
+    <ellipse cx='50.0' cy='27.5' rx='50.0' ry='27.5' stroke-width='1.0' fill='url(#d02da80c-b4ab-4233-8a55-8c08cc4aaff3)' stroke='rgb(187, 187, 187)' look='allInOne'/>
+    <g transform='translate(0.0,14.5)'>
+      <g transform='translate(0.0,0.0)'>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='13.0' font-size='13' fill='rgb(3, 54, 86)'>Upload</text>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='26.0' font-size='13' fill='rgb(3, 54, 86)'>Coursework</text>
+      </g>
+    </g>
+  </g>
+  <g transform='translate(377.0,178.0)' id='_E-nlsOUyEDuRY7jq84X9mA'>
+    <ellipse cx='50.0' cy='27.5' rx='50.0' ry='27.5' stroke-width='1.0' fill='url(#c5b76845-1164-445e-93dc-45832d18dadc)' stroke='rgb(187, 187, 187)' look='allInOne'/>
+    <g transform='translate(0.0,8.0)'>
+      <g transform='translate(0.0,0.0)'>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='13.0' font-size='13' fill='rgb(3, 54, 86)'>View</text>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='26.0' font-size='13' fill='rgb(3, 54, 86)'>Coursework</text>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='39.0' font-size='13' fill='rgb(3, 54, 86)'>Information</text>
+      </g>
+    </g>
+  </g>
+  <g transform='translate(377.0,244.0)' id='_RX6doOUyEDuRY7jq84X9mA'>
+    <ellipse cx='50.0' cy='36.5' rx='50.0' ry='36.5' stroke-width='1.0' fill='url(#cf3c9f77-a579-4ca0-85c7-42029790e24c)' stroke='rgb(187, 187, 187)' look='allInOne'/>
+    <g transform='translate(0.0,15.5)'>
+      <g transform='translate(0.0,0.0)'>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='13.0' font-size='13' fill='rgb(3, 54, 86)'>Submit</text>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='26.0' font-size='13' fill='rgb(3, 54, 86)'>Coursework</text>
+      </g>
+      <line y1='34.0' x1='15.0' y2='34.0' x2='85.0' stroke-width='1.0' stroke='rgb(187, 187, 187)' look='border'/>
+      <g transform='translate(0.0,0.0)'>
+        <text text-anchor='middle' x='50.0' y='55.0' font-size='13' fill='rgb(0, 0, 0)'>extension</text>
+      </g>
+    </g>
+  </g>
+  <g transform='translate(377.0,330.0)' id='_W2RjwOUyEDuRY7jq84X9mA'>
+    <ellipse cx='50.0' cy='27.5' rx='50.0' ry='27.5' stroke-width='1.0' fill='url(#cd52f794-af3a-4bd1-9c6a-13e10ef0b956)' stroke='rgb(187, 187, 187)' look='allInOne'/>
+    <g transform='translate(0.0,14.5)'>
+      <g transform='translate(0.0,0.0)'>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='13.0' font-size='13' fill='rgb(3, 54, 86)'>View Submitted</text>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='26.0' font-size='13' fill='rgb(3, 54, 86)'>Coursework</text>
+      </g>
+    </g>
+  </g>
+  <g transform='translate(370.0,761.0)' id='_sXozcOUyEDuRY7jq84X9mA'>
+    <ellipse cx='50.0' cy='27.5' rx='50.0' ry='27.5' stroke-width='1.0' fill='url(#bcf7b917-ed61-4540-a65f-3ac7d171e151)' stroke='rgb(187, 187, 187)' look='allInOne'/>
+    <g transform='translate(0.0,8.0)'>
+      <g transform='translate(0.0,0.0)'>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='13.0' font-size='13' fill='rgb(3, 54, 86)'>Marking &amp;</text>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='26.0' font-size='13' fill='rgb(3, 54, 86)'>Provide</text>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='39.0' font-size='13' fill='rgb(3, 54, 86)'>Feedbacks</text>
+      </g>
+    </g>
+  </g>
+  <g transform='translate(370.0,618.0)' id='_zU5ggOUyEDuRY7jq84X9mA'>
+    <ellipse cx='50.0' cy='27.5' rx='50.0' ry='27.5' stroke-width='1.0' fill='url(#c6399b03-f234-420b-a10d-aa35935f89fb)' stroke='rgb(187, 187, 187)' look='allInOne'/>
+    <g transform='translate(0.0,14.5)'>
+      <g transform='translate(0.0,0.0)'>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='13.0' font-size='13' fill='rgb(3, 54, 86)'>View mark and</text>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='26.0' font-size='13' fill='rgb(3, 54, 86)'>feedback</text>
+      </g>
+    </g>
+  </g>
+  <g transform='translate(588.0,254.0)' id='_AmCmcOUzEDuRY7jq84X9mA'>
+    <ellipse cx='50.0' cy='27.5' rx='50.0' ry='27.5' stroke-width='1.0' fill='url(#c54ed36a-4bc0-4bf1-9fce-6f0a72ef84ce)' stroke='rgb(187, 187, 187)' look='allInOne'/>
+    <g transform='translate(0.0,14.5)'>
+      <g transform='translate(0.0,0.0)'>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='13.0' font-size='13' fill='rgb(3, 54, 86)'>Request For</text>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='26.0' font-size='13' fill='rgb(3, 54, 86)'>Extention</text>
+      </g>
+    </g>
+  </g>
+  <g transform='translate(377.0,403.0)' id='_PWm3wOUzEDuRY7jq84X9mA'>
+    <ellipse cx='50.0' cy='27.5' rx='50.0' ry='27.5' stroke-width='1.0' fill='url(#a3c8f9e8-9acd-4918-9501-8bbcefb3775a)' stroke='rgb(187, 187, 187)' look='allInOne'/>
+    <g transform='translate(0.0,21.0)'>
+      <g transform='translate(0.0,0.0)'>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='13.0' font-size='13' fill='rgb(3, 54, 86)'>Post Questions</text>
+      </g>
+    </g>
+  </g>
+  <g transform='translate(375.0,549.0)' id='_T8BjsOUzEDuRY7jq84X9mA'>
+    <ellipse cx='50.0' cy='27.5' rx='50.0' ry='27.5' stroke-width='1.0' fill='url(#2e9be7ae-43ca-4362-9c58-2fb7d3747828)' stroke='rgb(187, 187, 187)' look='allInOne'/>
+    <g transform='translate(0.0,14.5)'>
+      <g transform='translate(0.0,0.0)'>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='13.0' font-size='13' fill='rgb(3, 54, 86)'>Answer</text>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='26.0' font-size='13' fill='rgb(3, 54, 86)'>Questions</text>
+      </g>
+    </g>
+  </g>
+  <g transform='translate(387.0,475.0)' id='_ZBOi8OUzEDuRY7jq84X9mA'>
+    <ellipse cx='50.0' cy='27.5' rx='50.0' ry='27.5' stroke-width='1.0' fill='url(#f4581a7f-a2f0-4235-baf7-62e37d05028a)' stroke='rgb(187, 187, 187)' look='allInOne'/>
+    <g transform='translate(0.0,14.5)'>
+      <g transform='translate(0.0,0.0)'>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='13.0' font-size='13' fill='rgb(3, 54, 86)'>plagiarism</text>
+        <text font-weight='bold' text-anchor='middle' x='50.0' y='26.0' font-size='13' fill='rgb(3, 54, 86)'>checker</text>
+      </g>
+    </g>
+  </g>
+  <g transform='translate(203.0,586.0)' id='_DnEj8OUyEDuRY7jq84X9mA'/>
+  <g transform='translate(169.0,245.0)' id='_IxuD4OUyEDuRY7jq84X9mA'/>
+  <g transform='translate(174.0,341.0)' id='_ONuZkOUyEDuRY7jq84X9mA'/>
+  <g transform='translate(199.0,279.0)' id='_VO0dwOUyEDuRY7jq84X9mA'/>
+  <g transform='translate(175.0,313.0)' id='_lmSbcOUyEDuRY7jq84X9mA'/>
+  <g transform='translate(172.0,416.0)' id='_ncV-IOUyEDuRY7jq84X9mA'/>
+  <g transform='translate(176.0,627.0)' id='_wPGNMOUyEDuRY7jq84X9mA'/>
+  <g transform='translate(184.0,550.0)' id='_5FpXIOUyEDuRY7jq84X9mA'/>
+  <g transform='translate(195.0,464.0)' id='_68SIoOUyEDuRY7jq84X9mA'/>
+  <text text-anchor='middle' x='561.0' y='292.0' fill='rgb(0, 0, 0)'>« extend »</text>
+  <g transform='translate(211.0,348.0)' id='_TOqucOUzEDuRY7jq84X9mA'/>
+  <g transform='translate(198.0,514.0)' id='_WotzcOUzEDuRY7jq84X9mA'/>
+  <g transform='translate(210.0,386.0)' id='_fMMQYOUzEDuRY7jq84X9mA'/>
+  <g id='_Dm16cOUyEDuRY7jq84X9mA'>
+    <line y1='456.0' x1='170.0' y2='686.0' x2='392.0' id='_Dm7aAeUyEDuRY7jq84X9mA' stroke-width='1.0' fill='none' stroke='rgb(0, 0, 0)'/>
+  </g>
+  <g id='_IxidsOUyEDuRY7jq84X9mA'>
+    <line y1='246.0' x1='170.0' y2='213.0' x2='377.0' id='_IxnWMeUyEDuRY7jq84X9mA' stroke-width='1.0' fill='none' stroke='rgb(0, 0, 0)'/>
+  </g>
+  <g id='_ONkokOUyEDuRY7jq84X9mA'>
+    <line y1='419.0' x1='170.0' y2='233.0' x2='394.0' id='_ONo6AOUyEDuRY7jq84X9mA' stroke-width='1.0' fill='none' stroke='rgb(0, 0, 0)'/>
+  </g>
+  <g id='_VOpeoOUyEDuRY7jq84X9mA'>
+    <line y1='252.0' x1='170.0' y2='275.0' x2='377.0' id='_VOtwEuUyEDuRY7jq84X9mA' stroke-width='1.0' fill='none' stroke='rgb(0, 0, 0)'/>
+  </g>
+  <g id='_lmIqcOUyEDuRY7jq84X9mA'>
+    <line y1='257.0' x1='170.0' y2='338.0' x2='377.0' id='_lmM74OUyEDuRY7jq84X9mA' stroke-width='1.0' fill='none' stroke='rgb(0, 0, 0)'/>
+  </g>
+  <g id='_ncPQcOUyEDuRY7jq84X9mA'>
+    <line y1='430.0' x1='170.0' y2='372.0' x2='377.0' id='_ncRssuUyEDuRY7jq84X9mA' stroke-width='1.0' fill='none' stroke='rgb(0, 0, 0)'/>
+  </g>
+  <g id='_wO71IOUyEDuRY7jq84X9mA'>
+    <line y1='462.0' x1='170.0' y2='761.0' x2='398.0' id='_wPAGkOUyEDuRY7jq84X9mA' stroke-width='1.0' fill='none' stroke='rgb(0, 0, 0)'/>
+  </g>
+  <g id='_5FeYAOUyEDuRY7jq84X9mA'>
+    <line y1='618.0' x1='384.0' y2='451.0' x2='170.0' id='_5Fj3kOUyEDuRY7jq84X9mA' stroke-width='1.0' fill='none' stroke='rgb(0, 0, 0)'/>
+  </g>
+  <g id='_68La8OUyEDuRY7jq84X9mA'>
+    <line y1='279.0' x1='170.0' y2='618.0' x2='400.0' id='_68OeQeUyEDuRY7jq84X9mA' stroke-width='1.0' fill='none' stroke='rgb(0, 0, 0)'/>
+  </g>
+  <g id='_Fej0kOUzEDuRY7jq84X9mA'>
+    <line y1='281.0' x1='588.0' y2='281.0' x2='477.0' stroke-dasharray='7, 3' id='_Fem34eUzEDuRY7jq84X9mA' stroke-width='1.0' fill='none' stroke='rgb(0, 0, 0)'/>
+    <polyline transform='translate(477.0,281.0) rotate(-90.0)' stroke-width='1.0' fill='none' stroke='rgb(0, 0, 0)' points='-5.0,10.0 0.0,0.0 5.0,10.0'/>
+  </g>
+  <g id='_TOfIQOUzEDuRY7jq84X9mA'>
+    <line y1='403.0' x1='384.0' y2='263.0' x2='170.0' id='_TOkn0OUzEDuRY7jq84X9mA' stroke-width='1.0' fill='none' stroke='rgb(0, 0, 0)'/>
+  </g>
+  <g id='_WokpgOUzEDuRY7jq84X9mA'>
+    <line y1='551.0' x1='375.0' y2='446.0' x2='170.0' id='_Woo68OUzEDuRY7jq84X9mA' stroke-width='1.0' fill='none' stroke='rgb(0, 0, 0)'/>
+  </g>
+  <g id='_fMADIOUzEDuRY7jq84X9mA'>
+    <line y1='475.0' x1='405.0' y2='267.0' x2='170.0' id='_fMGJwuUzEDuRY7jq84X9mA' stroke-width='1.0' fill='none' stroke='rgb(0, 0, 0)'/>
+  </g>
+</svg>
