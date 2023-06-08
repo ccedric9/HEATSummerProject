@@ -1,0 +1,23 @@
+My detailed suggestions based on the aspects of front-end, back-end, and database:
+
+1、Back-end (Spring Boot) + Front-end (React)：
+For back-end web development, we propose to use Java and the spring framework.
+Here are some reasons why we take this option:
+	All of team members are more familiar with Java.
+	SpringBoot offer various dependencies could be huge help for developing web application.
+	Is available for us to use regarding licensing (IDE - IntelliJ).
+	Great security.
+
+The front-end framework will consider react among vue and react, because the latter is used more abroad.
+2、Database (JPA or MyBatis)：
+It is not yet clear which one should be chosen between mybatis and jpa.
+
+
+The licensing and commercial use of these technologies:
+Spring Boot: Spring Boot is open-source and can be used for commercial purposes. Its source code is released under the Apache 2.0 License, which allows you to freely use, modify, and distribute the code and also permits its use in commercial projects.
+
+React: React is also open-source and can be used for commercial purposes. It is released under the MIT License, which, similar to the Apache 2.0 License, allows use, modification, and distribution of the code, and also permits its use in commercial projects.
+
+JPA (Java Persistence API): JPA is a part of Java EE standards, is open-source, and can be used for commercial purposes. Specific implementations of JPA (like Hibernate) also have their own open-source licenses, most of which allow commercial use.
+
+MyBatis: MyBatis is open-source and can be used for commercial purposes. Its source code is released under the Apache 2.0 License.
