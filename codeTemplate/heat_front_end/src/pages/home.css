@@ -1,0 +1,28 @@
+.calendar-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .day {
+    flex: 1 0 14%; /* Roughly divide by 7 to have 7 days in a week */
+    border: 1px solid #eee;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .has-event {
+    background-color: #f9c;
+    color: white;
+  }
+  
+  .event {
+    font-size: 0.8em;
+  }
+  
+  .course-bar {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
