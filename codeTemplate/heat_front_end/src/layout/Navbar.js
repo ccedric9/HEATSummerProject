@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import avatarImage from '../photos/messi.png';
 
 export default function Navbar() {
     return (
@@ -11,7 +12,7 @@ export default function Navbar() {
                         Heat Tools
                     </Link>
 
-                    <div className="collapse navbar-collapse">
+                    {/* <div className="collapse navbar-collapse">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item">
                                 <Link className="btn btn-outline-light" to="/adminAccess">
@@ -19,14 +20,15 @@ export default function Navbar() {
                                 </Link>
                             </li>
                         </ul>
-                    </div>
+                    </div> */}
 
 
                     <div className="collapse navbar-collapse">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item">
                                 <Link className="btn btn-outline-light" to="/login">
-                                    Log In
+                                    <img src={avatarImage} alt="avatar" style={{ width: '100px', height: '100px', marginRight: '8px' }} />
+                                    Lionel Messi
                                 </Link>
                             </li>
                         </ul>
@@ -39,22 +41,27 @@ export default function Navbar() {
             {/* Side Navigation */}
             <div className="d-flex flex-column bg-dark" style={{ height: 'calc(100vh - 56px)', position: 'fixed', width: '200px' }}>
                 <Link to="/timetable" className="flex-fill p-3 border-bottom text-white text-decoration-none text-center">
-                    Time Table
+                    Assessment Time Table
                 </Link>
+
+                <Link to="/coursework" className="flex-fill p-3 border-bottom text-white text-decoration-none text-center">
+                    Assessment Information
+                </Link>
+
                 <Link to="/grade" className="flex-fill p-3 border-bottom text-white text-decoration-none text-center">
                     Grade
                 </Link>
-                <Link to="/duealert" className="flex-fill p-3 border-bottom text-white text-decoration-none text-center">
-                    Due Alert
-                </Link>
+                {/* <Link to="/duealert" className="flex-fill p-3 border-bottom text-white text-decoration-none text-center">
+                    Due Alert(Deleted)
+                </Link> */}
+
+
+                {/* <Link to="/exam" className="flex-fill p-3 border-bottom  text-white text-decoration-none text-center">
+                    Exam
+                </Link> */}
+
                 <Link to="/supporting" className="flex-fill p-3 border-bottom text-white text-decoration-none text-center">
                     Supporting
-                </Link>
-                <Link to="/coursework" className="flex-fill p-3 border-bottom text-white text-decoration-none text-center">
-                    Coursework
-                </Link>
-                <Link to="/exam" className="flex-fill p-3 text-white text-decoration-none text-center">
-                    Exam
                 </Link>
             </div>
 
