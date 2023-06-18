@@ -79,3 +79,4 @@ npm install react-big-calendar date-fns
 npm install react-yearly-calendar
 npm install --save @fullcalendar/react @fullcalendar/daygrid @fullcalendar/timegrid @fullcalendar/interaction
 npm install axios
+npm install --save react-native-calendars

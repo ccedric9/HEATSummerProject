@@ -32,6 +32,7 @@ export default function AdminAccess() {
               <th scope="col">title</th>
               <th scope="col">type</th>
               <th scope="col">start</th>
+              <th scope="col">end</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -45,6 +46,7 @@ export default function AdminAccess() {
                 <td>{user.title}</td>
                 <td>{user.type}</td>
                 <td>{user.start}</td>
+                <td>{user.end}</td>
                 <td>
                   <button
                     className="btn btn-danger mx-2"

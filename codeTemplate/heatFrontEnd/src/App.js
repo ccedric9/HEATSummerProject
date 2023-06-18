@@ -6,7 +6,6 @@ import Navbar from "./layout/Navbar";
 import Home from "./pages/Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AdminAccess from "./pages/AdminAccess";
-import React from 'react';
 
 function App() {
   return (

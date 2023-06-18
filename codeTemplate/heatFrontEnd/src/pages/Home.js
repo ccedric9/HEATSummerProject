@@ -1,25 +1,22 @@
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import './custom-calendar-styles.css';
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./Home.css";
 
-export default function Home() {
-  // const [events, setEvents] = useState([
-  //   {
-  //     title: 'Meeting',
-  //     type: 'meeting',
-  //     start: '2023-06-10',
-  //   },
-  //   {
-  //     title: 'Assessment',
-  //     type: 'assessment',
-  //     start: '2023-06-15',
-  //   },
-  // ]);
-
+const Home = () => {
+  const months = [
+    "September",
+    "October",
+    "November",
+    "December",
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+  ];
 
   const [events, setEvents] = useState([]);
 
@@ -31,72 +28,58 @@ export default function Home() {
     const result = await axios.get("http://localhost:8080/calendarEvents");
     setEvents(result.data);
   };
-  console.log(events);
 
-
-
-
-  const handleDateClick = (arg) => {
-    alert('Date clicked: ' + arg.dateStr);
+  const handleEventClick = (event) => {
+    alert(`Event: ${event.title}`);
   };
 
-  const handleEventClick = (info) => {
-    alert('Event clicked: ' + info.event.title);
-  };
+  const getEventStyle = (event) => {
+    const startDate = new Date(event.start);
+    const endDate = new Date(event.end);
+    const timelineStart = new Date(`${startDate.getFullYear() - 1}-09-01`);
 
-  const handleEventDrop = (info) => {
-    alert(`${info.event.title} was dropped on ${info.event.startStr}`);
+    const durationDays =
+      (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1;
+
+    const offsetDays =
+      (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24);
+
+    return {
+      left: `calc(${(offsetDays / 365) * 100}% + 10px)`,
+      width: `calc(${(durationDays / 365) * 100}% - 20px)`,
+      backgroundColor: event.type === "SUMMATIVE" ? "red" : "green",
+    };
   };
 
   return (
-    <div className="container mt-5">
-      <div className="row">
-        {/* Calendar */}
-        <div className="col-md-12 mb-5">
-          <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView="dayGridMonth"
-            headerToolbar={{
-              left: 'prev,next today',
-              center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay,customYearView',
-            }}
-            views={{
-              customYearView: {
-                type: 'dayGrid',
-                duration: { months: 12 },
-                buttonText: 'current year',
-                visibleRange: function(currentDate) {
-                  return {
-                    start: currentDate.clone().startOf('year'),
-                    end: currentDate.clone().endOf('year'),
-                  };
-                },
-                monthMode: true,
-              }
-            }}
-            events={events}
-            eventColor="#378006"
-            dateClick={handleDateClick}
-            eventClick={handleEventClick}
-            editable={true}
-            droppable={true}
-            eventDrop={handleEventDrop}
-          />
-        </div>
+    <div className="timeline-container">
+      {/* Title */}
+      <h1 className="title">Academic Calendar</h1>
+      
+      {/* Months */}
+      <div className="months-container">
+        {months.map((month) => (
+          <div className="month" key={month} style={{ flex: 1 }}>
+            {month}
+          </div>
+        ))}
+      </div>
 
-        {/* Course Bars */}
-        <div className="col-md-6">
-          <div className="course-bar bg-primary text-white p-3 mb-3">
-            Course 1
+      {/* Events */}
+      <div className="events-container">
+        {events.map((event, index) => (
+          <div
+            className="event"
+            key={index}
+            style={{ ...getEventStyle(event), top: `${index * 30}px` }}
+            onClick={() => handleEventClick(event)}
+          >
+            {event.title}
           </div>
-        </div>
-        <div className="col-md-6">
-          <div className="course-bar bg-success text-white p-3 mb-3">
-            Course 2
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
-}
+};
+
+export default Home;

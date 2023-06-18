@@ -12,60 +12,56 @@ export default function Navbar() {
                         Heat Tools
                     </Link>
 
-                    {/* <div className="collapse navbar-collapse">
+                    <div className="collapse navbar-collapse">
                         <ul className="navbar-nav ms-auto">
+                            <li className="nav-item dropdown">
+                                <Link className="nav-link dropdown-toggle" to="#" id="assessTimeTable" role="button" data-bs-toggle="dropdown">
+                                    Assessment Time Table
+                                </Link>
+                                <div className="dropdown-menu" aria-labelledby="assessTimeTable">
+                                    <Link className="dropdown-item" to="/time-table/option1">Option 1</Link>
+                                    <Link className="dropdown-item" to="/time-table/option2">Option 2</Link>
+                                </div>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <Link className="nav-link dropdown-toggle" to="#" id="assessInfo" role="button" data-bs-toggle="dropdown">
+                                    Assessment Information
+                                </Link>
+                                <div className="dropdown-menu" aria-labelledby="assessInfo">
+                                    <Link className="dropdown-item" to="/info/option1">Option 1</Link>
+                                    <Link className="dropdown-item" to="/info/option2">Option 2</Link>
+                                </div>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <Link className="nav-link dropdown-toggle" to="#" id="supporting" role="button" data-bs-toggle="dropdown">
+                                    Supporting
+                                </Link>
+                                <div className="dropdown-menu" aria-labelledby="supporting">
+                                    <Link className="dropdown-item" to="/support/option1">Option 1</Link>
+                                    <Link className="dropdown-item" to="/support/option2">Option 2</Link>
+                                </div>
+                            </li>
                             <li className="nav-item">
                                 <Link className="btn btn-outline-light" to="/adminAccess">
                                     Admin Access Button
                                 </Link>
                             </li>
                         </ul>
-                    </div> */}
-
+                    </div>
 
                     <div className="collapse navbar-collapse">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item">
                                 <Link className="btn btn-outline-light" to="/login">
-                                    <img src={avatarImage} alt="avatar" style={{ width: '100px', height: '100px', marginRight: '8px' }} />
+                                    {/* <img src={avatarImage} alt="avatar" style={{ width: '100px', height: '100px', marginRight: '8px' }} /> */}
                                     Lionel Messi
                                 </Link>
                             </li>
                         </ul>
                     </div>
-
-
                 </div>
             </nav>
-
-            {/* Side Navigation */}
-            <div className="d-flex flex-column bg-dark" style={{ height: 'calc(100vh - 56px)', position: 'fixed', width: '200px' }}>
-                <Link to="/timetable" className="flex-fill p-3 border-bottom text-white text-decoration-none text-center">
-                    Assessment Time Table
-                </Link>
-
-                <Link to="/coursework" className="flex-fill p-3 border-bottom text-white text-decoration-none text-center">
-                    Assessment Information
-                </Link>
-
-                <Link to="/grade" className="flex-fill p-3 border-bottom text-white text-decoration-none text-center">
-                    Grade
-                </Link>
-                {/* <Link to="/duealert" className="flex-fill p-3 border-bottom text-white text-decoration-none text-center">
-                    Due Alert(Deleted)
-                </Link> */}
-
-
-                {/* <Link to="/exam" className="flex-fill p-3 border-bottom  text-white text-decoration-none text-center">
-                    Exam
-                </Link> */}
-
-                <Link to="/supporting" className="flex-fill p-3 border-bottom text-white text-decoration-none text-center">
-                    Supporting
-                </Link>
-            </div>
-
-
+            
             {/* Main Content */}
             <div style={{ marginLeft: '200px', paddingTop: '60px' }}>
                 {/* This is where the main content will be rendered */}

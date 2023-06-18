@@ -5,22 +5,39 @@ import interactionPlugin from '@fullcalendar/interaction';
 import './custom-calendar-styles.css';
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+// import {`[Calendar](#calendar), [CalendarList](#calendarlist), [Agenda](#agenda)`} from 'react-native-calendars';
+import {Calendar, LocaleConfig} from 'react-native-calendars';
 
 export default function Home() {
+  // const [events, setEvents] = useState([
+    // {
+    //   title: 'Meeting',
+    //   type: 'meeting',
+    //   start: '2023-06-10',
+    // },
+  //   {
+  //     title: 'Assessment',
+  //     type: 'assessment',
+  //     start: '2023-06-15',
+  //   },
+  // ]);
+
 
   const [events, setEvents] = useState([]);
-
+  // const [selected, setSelected] = useState('');
 
   useEffect(() => {
-    loadUsers();
+    loadCalendarEvents();
   }, []);
 
-
-  
-  const loadUsers = async () => {
+  const loadCalendarEvents = async () => {
     const result = await axios.get("http://localhost:8080/calendarEvents");
     setEvents(result.data);
   };
+  console.log(events);
+
+
+
 
   const handleDateClick = (arg) => {
     alert('Date clicked: ' + arg.dateStr);
@@ -34,10 +51,20 @@ export default function Home() {
     alert(`${info.event.title} was dropped on ${info.event.startStr}`);
   };
 
+  const getEventClassNames = (eventInfo) => {
+    switch (eventInfo.event._def.extendedProps.type) {
+      case "exam":
+        return "event-exam";
+      case "course":
+        return "event-course";
+      case "meeting":
+        return "event-meeting";
+      default:
+        return "";
+    }
+  };
+
   return (
-    console.log(events),
-
-
     <div className="container mt-5">
       <div className="row">
         {/* Calendar */}
@@ -55,7 +82,7 @@ export default function Home() {
                 type: 'dayGrid',
                 duration: { months: 12 },
                 buttonText: 'current year',
-                visibleRange: function (currentDate) {
+                visibleRange: function(currentDate) {
                   return {
                     start: currentDate.clone().startOf('year'),
                     end: currentDate.clone().endOf('year'),
@@ -71,6 +98,7 @@ export default function Home() {
             editable={true}
             droppable={true}
             eventDrop={handleEventDrop}
+            eventClassNames={getEventClassNames} // 添加这一行
           />
         </div>
 
@@ -86,6 +114,18 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+
+      {/* <Calendar
+        onDayPress={day => {
+          setSelected(day.dateString);
+        }}
+        markedDates={{
+          [selected]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}
+        }}
+        /> */}
+
     </div>
+
   );
 }
