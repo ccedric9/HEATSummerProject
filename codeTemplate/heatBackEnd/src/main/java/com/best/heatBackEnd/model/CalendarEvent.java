@@ -23,6 +23,10 @@ public class CalendarEvent {
     @JsonProperty("start")
     private String startTime;
 
+    @Column(name = "end")
+    @JsonProperty("end")
+    private String endTime;
+
     public Long getId() {
         return id;
     }
@@ -53,5 +57,13 @@ public class CalendarEvent {
 
     public void setStartTime(String startTime) {
         this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

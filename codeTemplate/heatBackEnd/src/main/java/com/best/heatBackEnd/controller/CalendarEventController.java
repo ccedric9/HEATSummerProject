@@ -1,6 +1,7 @@
 package com.best.heatBackEnd.controller;
 
 //import com.best.heatBackEnd.exception.UserNotFoundException;
+import com.best.heatBackEnd.exception.CalendarEventNotFoundException;
 import com.best.heatBackEnd.model.CalendarEvent;
 import com.best.heatBackEnd.repository.CalendarEventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,28 @@ public class CalendarEventController {
     List<CalendarEvent> getAllUsers() {
         return calendarEventRepository.findAll();
     }
+
+    @GetMapping("/calendarEvents/{id}")
+    CalendarEvent getUser(@PathVariable Long id) {
+        return calendarEventRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Could not found the user with id "+ id));
+    }
+    @PutMapping("/calendarEvents/{id}")
+    CalendarEvent updateUser(@RequestBody CalendarEvent newCalendarEvent, @PathVariable Long id){
+        return calendarEventRepository.findById(id)
+                .map(calendarEvent -> {
+                    calendarEvent.setTitle(newCalendarEvent.getTitle());
+                    calendarEvent.setEventType(newCalendarEvent.getEventType());
+                    calendarEvent.setStartTime(newCalendarEvent.getStartTime());
+                    calendarEvent.setEndTime(newCalendarEvent.getEndTime());
+                    return calendarEventRepository.save(calendarEvent);
+                })
+                .orElseThrow(
+                        () -> new CalendarEventNotFoundException(id)
+                );
+
+    }
+
     @DeleteMapping("/calendarEvents/{id}")
     String deleteUser(@PathVariable Long id){
         if(!calendarEventRepository.existsById(id)){
@@ -32,6 +55,10 @@ public class CalendarEventController {
         calendarEventRepository.deleteById(id);
         return  "User with id "+id+" has been deleted success.";
     }
+
+
+
+
 
 
 
