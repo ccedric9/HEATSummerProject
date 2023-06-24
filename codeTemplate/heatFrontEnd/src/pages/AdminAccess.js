@@ -35,6 +35,8 @@ export default function AdminAccess() {
             <tr>
               <th scope="col">NO.</th>
               <th scope="col">id</th>
+              <th scope="col">unit name</th>
+              <th scope="col">weight</th>
               <th scope="col">title</th>
               <th scope="col">type</th>
               <th scope="col">start</th>
@@ -49,6 +51,8 @@ export default function AdminAccess() {
                   {index + 1}
                 </th>
                 <td>{ce.id}</td>
+                <td>{ce.unitName}</td>
+                <td>{ce.weight}</td>
                 <td>{ce.title}</td>
                 <td>{ce.type}</td>
                 <td>{ce.start}</td>

@@ -7,13 +7,15 @@ export default function EditEvent() {
   let { id } = useParams();
 
   const [calendarEvents, setCalendarEvent] = useState({
+    unitName:"",
+    weight:"",
     title: "",
     type: "",
     start: "",
     end: "",
   });
 
-  const { title, type, start, end } = calendarEvents;
+  const { unitName,weight,title, type, start, end } = calendarEvents;
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -38,11 +40,36 @@ export default function EditEvent() {
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
           <h2 className="text-center m-4">Edit Calendar Event</h2>
-
           <form onSubmit={(e) => onSubmit(e)}>
+          <div className="mb-3">
+              <label htmlFor="unitName" className="form-label">
+                Unit Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter unit name"
+                name="unitName"
+                value={unitName}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="weight" className="form-label">
+                Weight (%)
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter weight to total unit 0 ~ 100 "
+                name="weight"
+                value={weight}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
             <div className="mb-3">
               <label htmlFor="Title" className="form-label">
-                Title
+                Assessment Title
               </label>
               <input
                 type="text"
@@ -55,7 +82,7 @@ export default function EditEvent() {
             </div>
             <div className="mb-3">
               <label htmlFor="Type" className="form-label">
-                Type
+                Assessment Type
               </label>
               <input
                 type="text"

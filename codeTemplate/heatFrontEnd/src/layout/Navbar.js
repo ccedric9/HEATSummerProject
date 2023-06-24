@@ -9,9 +9,8 @@ export default function Navbar() {
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/">
-                        Heat Tools
+                        Assessment Tools
                     </Link>
-
                     <div className="collapse navbar-collapse">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item dropdown">
@@ -54,7 +53,10 @@ export default function Navbar() {
                             <li className="nav-item">
                                 <Link className="btn btn-outline-light" to="/login">
                                     {/* <img src={avatarImage} alt="avatar" style={{ width: '100px', height: '100px', marginRight: '8px' }} /> */}
-                                    Lionel Messi
+                                    👤Lionel Messi ⚙️
+                                </Link>
+                                <Link className="btn btn-outline-light" to="/exit">
+                                    Log out
                                 </Link>
                             </li>
                         </ul>
