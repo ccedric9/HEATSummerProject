@@ -14,7 +14,7 @@ public class CalendarEvent {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "unitName")
+    @Column(name = "unit_name")
     @JsonProperty("unitName")
     private String unitName;
 

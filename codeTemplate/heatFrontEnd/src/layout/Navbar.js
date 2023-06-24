@@ -45,6 +45,11 @@ export default function Navbar() {
                                     Admin Access Button
                                 </Link>
                             </li>
+                            <li>
+                                <Link className="btn btn-outline-light" to="termchart">
+                                    TermChart
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
