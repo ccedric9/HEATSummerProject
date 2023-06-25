@@ -1,0 +1,45 @@
+.timeline-title {
+    display: grid;
+    grid-template-areas:
+    'header header header header header header'
+    'left left left right right right'
+    'left left left right right right'
+    'lline lline lline rline rline rline';
+}
+
+.timeline-header {
+    grid-area: header;
+}
+
+.text-subheader-left {
+    grid-area: left;
+}
+
+.text-subheader-right {
+    grid-area: right;
+}
+
+.bottom-part-left {
+    grid-area: lline;
+}
+
+.bottom-part-right {
+    grid-area: rline;
+}
+
+.line {
+    flex-grow: 1;
+    border-bottom: 2px solid black;
+    margin-right: 20px;
+}
+
+.arrow {
+    display: flex;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid black;
+    transform: rotate(90deg);
+    margin-left: auto;
+}
