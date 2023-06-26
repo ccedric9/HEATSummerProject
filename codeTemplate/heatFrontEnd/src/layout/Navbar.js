@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import avatarImage from '../photos/messi.png';
+import './Navbar.css';
 
 export default function Navbar() {
     return (
@@ -13,24 +13,10 @@ export default function Navbar() {
                     </Link>
                     <div className="collapse navbar-collapse">
                         <ul className="navbar-nav ms-auto">
-                            <li className="nav-item dropdown">
-                                <Link className="nav-link dropdown-toggle" to="#" id="assessTimeTable" role="button" data-bs-toggle="dropdown">
-                                    Assessment Time Table
-                                </Link>
-                                <div className="dropdown-menu" aria-labelledby="assessTimeTable">
-                                    <Link className="dropdown-item" to="/time-table/option1">Option 1</Link>
-                                    <Link className="dropdown-item" to="/time-table/option2">Option 2</Link>
-                                </div>
-                            </li>
-                            <li className="nav-item dropdown">
-                                <Link className="nav-link dropdown-toggle" to="#" id="assessInfo" role="button" data-bs-toggle="dropdown">
-                                    Assessment Information
-                                </Link>
-                                <div className="dropdown-menu" aria-labelledby="assessInfo">
-                                    <Link className="dropdown-item" to="/info/option1">Option 1</Link>
-                                    <Link className="dropdown-item" to="/info/option2">Option 2</Link>
-                                </div>
-                            </li>
+                            <Link className="nav-link " to="/" id="assessTimeTable" role="button" data-bs-toggle="dropdown">
+                                Home
+                            </Link>
+
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" to="#" id="supporting" role="button" data-bs-toggle="dropdown">
                                     Supporting
@@ -45,30 +31,34 @@ export default function Navbar() {
                                     Admin Access Button
                                 </Link>
                             </li>
-                            <li>
-                                <Link className="btn btn-outline-light" to="termchart">
-                                    TermChart
-                                </Link>
-                            </li>
+
                         </ul>
                     </div>
 
                     <div className="collapse navbar-collapse">
                         <ul className="navbar-nav ms-auto">
-                            <li className="nav-item">
-                                <Link className="btn btn-outline-light" to="/login">
-                                    {/* <img src={avatarImage} alt="avatar" style={{ width: '100px', height: '100px', marginRight: '8px' }} /> */}
+                            <li className="nav-item dropdown">
+                                <button className="btn btn-outline-light dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                     👤Lionel Messi ⚙️
-                                </Link>
+                                </button>
+                                <ul className="dropdown-menu custom-dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><span className="dropdown-item custom-dropdown-item"><span role="img" aria-label="student">👨‍🎓</span> Student number: 48593</span></li>
+                                    <li><span className="dropdown-item custom-dropdown-item"><span role="img" aria-label="message">📧</span> Unread message: 7</span></li>
+                                    <li><span className="dropdown-item custom-dropdown-item"><span role="img" aria-label="due">📅</span> Dues in the next week: 3</span></li>
+                                </ul>
+                            </li>
+                            <li className="nav-item">
                                 <Link className="btn btn-outline-light" to="/exit">
                                     Log out
                                 </Link>
                             </li>
                         </ul>
                     </div>
+
+
                 </div>
             </nav>
-            
+
             {/* Main Content */}
             <div style={{ marginLeft: '200px', paddingTop: '60px' }}>
                 {/* This is where the main content will be rendered */}
