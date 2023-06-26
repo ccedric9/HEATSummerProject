@@ -37,9 +37,9 @@ const WeeklyCalendar = () => {
     const offsetDays = (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24);
     
     return {
-        left: `calc(${(offsetDays / 365) * 100}% + 10px)`,
+        left: `calc(${(offsetDays / 365) * 100}%UMM + 10px)`,
         width: `calc(${(durationDays / 365) * 100}% - 20px)`,
-        backgroundColor: event.type === "SUMMATIVE" ? "red" : "green",
+        backgroundColor: event.type === "SATIVE" ? "red" : "green",
     };
     };
 
@@ -63,6 +63,16 @@ const WeeklyCalendar = () => {
       };
     };
     
+      // Sort events by unit name
+      const sortedEvents = events.sort((a, b) => {
+        if (a.unitName < b.unitName) {
+          return -1;
+        }
+        if (a.unitName > b.unitName) {
+          return 1;
+        }
+        return 0;
+      });
 
 
   return (
@@ -93,7 +103,8 @@ const WeeklyCalendar = () => {
     <div className="weeks-container">
       {weeks.map((week) => (
         <div className="week" key={week} style={{ flex: 1 }}>
-          {week === 7 ? "AW1" : week === 8 ? "AW2" : week}
+          {/* {week === 7 ? "AW1" : week === 8 ? "AW2" : week} */}
+          {week === 7 ? "AW1" : week === 8 ? "AW2" : week === 12 ? "Reading Week" : week >= 18 && week <= 22 ? "Christmas Week" : week}
           {/* {week} */}
         </div>
       ))}
