@@ -9,6 +9,7 @@ export default function CalendarByModule(){
     useEffect(() => {
         loadCalendarEvents();
     }, []);
+
     const loadCalendarEvents = async () => {
         const result = await axios.get("http://localhost:8080/calendarEvents");
         setEvents(result.data);
@@ -17,6 +18,7 @@ export default function CalendarByModule(){
     const handleEventClick = (event) => {
         alert(`Event: ${event.title}`);
     };
+
     const getEventStyle = (event) => {
         const startDate = new Date(event.start);
         const endDate = new Date(event.end);
@@ -49,7 +51,7 @@ export default function CalendarByModule(){
                 </div>
             </div>
             <div className="timeline-title">
-                <h3 class="timeline-header">Timeline</h3>
+                <h3 class="timeline-header">Year</h3>
                 <div class="bottom-part">
                     <div class="line"></div>
                     <i class="arrow"></i>

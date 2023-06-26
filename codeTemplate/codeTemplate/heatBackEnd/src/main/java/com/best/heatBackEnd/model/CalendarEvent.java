@@ -13,7 +13,19 @@ public class CalendarEvent {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(name = "unit_name")
+    @JsonProperty("unitName")
+    private String unitName;
+
+    @Column(name = "weight")
+    @JsonProperty("weight")
+    private String weight;
+
+    @Column(name = "title")
+    @JsonProperty("title")
     private String title;
+
 
     @Column(name = "type")
     @JsonProperty("type")
@@ -33,6 +45,23 @@ public class CalendarEvent {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
     }
 
     public String getTitle() {
