@@ -50,7 +50,7 @@ const Home = () => {
     return {
       left: `calc(${(offsetDays / 365) * 100}% + 10px)`,
       width: `calc(${(durationDays / 365) * 100}% - 20px)`,
-      backgroundColor: event.type === "SUMMATIVE" ? "red" : "green",
+      backgroundColor: event.type === 'SUMMATIVE' ? 'red' : event.type ==='FORMATIVE' ? 'green' : event.type ==='CapstoneSummative'? 'purple': 'default-color',
     };
   };
 
@@ -61,8 +61,8 @@ const Home = () => {
       <div className="header-container">
         <h1 className="title">Academic Calendar</h1>
         <div className="nav-buttons">
-          <Link to="/" className="nav-button">Yearly</Link>
-          <Link to="/weeklyCalendar" className="nav-button">Weekly</Link>
+          <Link to="/" className="nav-button">By Year</Link>
+          <Link to="/weeklyCalendar" className="nav-button">By Term</Link>
           <Link to="/calendarByModule" className="nav-button">By Module</Link>
         </div>
       </div>
