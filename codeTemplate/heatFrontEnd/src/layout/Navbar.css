@@ -1,25 +1,61 @@
-/* The dropdown menu container */
+/* Navbar.css */
+
+.navbar-custom {
+    background-color: #282c34;
+}
+
+.custom-brand {
+    color: #61dafb;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+
+.custom-link {
+    color: #ffffff;
+    font-weight: bold;
+    margin-left: 20px;  /* add this line */
+    margin-right: 20px;  /* add this line */
+}
+
+
+.custom-link:hover {
+    color: #61dafb;
+}
+
+.custom-button {
+    color: #ffffff;
+    border-color: #61dafb;
+}
+
+.custom-button:hover {
+    color: #282c34;
+    background-color: #61dafb;
+}
+
 .custom-dropdown-menu {
-    background-color: #f8f9fa;  /* a light grey color */
-    border: none; /* Removes the default dropdown border */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); /* Adds a subtle shadow to the dropdown menu */
-  }
-  
-  /* The dropdown menu items */
-  .custom-dropdown-item {
-    color: #333;  /* a dark grey color */
-    font-weight: bold; /* Makes the text bold */
-    padding: 10px; /* Adds some padding around the text */
-  }
-  
-  /* Defines how the dropdown menu items look when the mouse hovers over them */
-  .custom-dropdown-item:hover {
-    background-color: #f1f1f1;  /* a very light grey color */
-    color: #007bff; /* Bootstrap primary color (blue) */
-  }
-  
-  /* Emoji and text in dropdown menu items */
-  .custom-dropdown-item span {
-    margin-right: 10px; /* Adds some space between the emoji and the text */
-  }
-  
+    background-color: #282c34;
+    border: none;
+    min-width: 100%; /* make the width of dropdown menu the same as its parent */
+    width: 250px;
+    text-align: left;
+}
+
+
+
+.dropdown-toggle {
+    min-width: 100%; /* make the width of dropdown menu the same as its parent */
+    width: 250px;
+    text-align: center;
+}
+
+
+
+.custom-dropdown-item {
+    color: #61dafb;
+}
+
+.custom-dropdown-item:hover {
+    color: #282c34;
+    background-color: #61dafb;
+}
