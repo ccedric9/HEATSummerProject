@@ -109,8 +109,13 @@
   border: 1px solid #ccc;
   padding: 2px 5px;
   text-align: center;
-  font-size: 0.9em;
+  /* font-size: 0.9em; */
   font-weight: bold;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-  font-size: 9px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  white-space: normal;
 }
