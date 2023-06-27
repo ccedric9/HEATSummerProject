@@ -5,6 +5,7 @@ import axios from "axios";
 
 export default function CalendarByModule(){
     const [events, setEvents] = useState([]);
+    // const eventsSet = new Set(); // create a new hashSet to store the unitName
 
     useEffect(() => {
         loadCalendarEvents();
@@ -13,28 +14,27 @@ export default function CalendarByModule(){
     const loadCalendarEvents = async () => {
         const result = await axios.get("http://localhost:8080/calendarEvents");
         setEvents(result.data);
+        // if (!eventsSet.has(result.data)){
+        //     eventsSet.add(result.data);
+        // }
+        // console.log(eventsSet.keys());
+
     };
 
     const handleEventClick = (event) => {
-        alert(`Event: ${event.title}`);
+        alert(`Event: ${event.unitName}`);
     };
 
-    const getEventStyle = (event) => {
-        const startDate = new Date(event.start);
-        const endDate = new Date(event.end);
-
-        // Fixed timeline start date
-        const timelineStart = new Date('2022-09-01');
-
-        // Calculate the number of days between the event start and end
-        const durationDays = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1;
-
-        // Calculate the number of days between the start of the timeline and the start of the event
-        const offsetDays = (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24);
+    const getEventStyle = (event, index) => {
+        const term = new Date(event.term);
+        const credit = new Date(event.weight);
+        // const previousPartHeight = index * 30;
 
         return {
-            left: `calc(${(offsetDays / 365) * 100}% + 10px)`,
-            width: `calc(${(durationDays / 365) * 100}% - 20px)`,
+            left: term === "term1" ? '0' : '50%',
+            width: '45%',
+            height: credit === "20"? '40%' : '200%' ,
+            top:`${index*200}px`,
             backgroundColor: event.type === "SUMMATIVE" ? "red" : "green",
         };
     };
@@ -70,14 +70,22 @@ export default function CalendarByModule(){
 
 
             <div className="events-container">
-                {events.map((event, index) => (
+                {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => (
                     <div
                         className="event"
                         key={index}
-                        style={{ ...getEventStyle(event), top: `${index * 30}px` }}
-                        onClick={() => handleEventClick(event)}
+                        style={{ ...getEventStyle(events, index)}}
+                        onClick={() => handleEventClick(events.find(event => event.unitName === unitName))}
                     >
-                        {event.title}
+                        <div className="text-name">{events.find(event => event.unitName === unitName).title}</div>
+                        <div className="unit-name">{unitName}</div>
+                        <div className="test-names">
+                            {events
+                                .filter(event => event.unitName === unitName)
+                                .map((event, subIndex) => (
+                                    <div className="test-name" key={subIndex}>{event.title}</div>
+                                ))}
+                        </div>
                     </div>
                 ))}
             </div>
