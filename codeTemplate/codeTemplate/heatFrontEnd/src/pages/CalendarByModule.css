@@ -48,3 +48,26 @@
     transform: rotate(90deg);
     margin-left: auto;
 }
+
+
+.event {
+    display: flex;
+    flex-direction: column;
+}
+
+.event {
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.unit-name {
+    margin-right: 10px;
+    margin-top: 40px;
+}
+
+.test-names {
+    margin-top:0;
+}

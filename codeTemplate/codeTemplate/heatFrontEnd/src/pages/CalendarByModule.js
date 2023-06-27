@@ -77,8 +77,8 @@ export default function CalendarByModule(){
                         style={{ ...getEventStyle(events, index)}}
                         onClick={() => handleEventClick(events.find(event => event.unitName === unitName))}
                     >
-                        <div className="text-name">{events.find(event => event.unitName === unitName).title}</div>
-                        <div className="unit-name">{unitName}</div>
+                        {/*<div className="text-name">{events.find(event => event.unitName === unitName).title}</div>*/}
+
                         <div className="test-names">
                             {events
                                 .filter(event => event.unitName === unitName)
@@ -86,6 +86,7 @@ export default function CalendarByModule(){
                                     <div className="test-name" key={subIndex}>{event.title}</div>
                                 ))}
                         </div>
+                        <div className="unit-name">{unitName}</div>
                     </div>
                 ))}
             </div>
