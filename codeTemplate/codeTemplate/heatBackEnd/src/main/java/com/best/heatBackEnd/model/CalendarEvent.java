@@ -39,6 +39,10 @@ public class CalendarEvent {
     @JsonProperty("end")
     private String endTime;
 
+    @Column(name = "term")
+    @JsonProperty("term")
+    private String term;
+
     public Long getId() {
         return id;
     }
@@ -94,5 +98,13 @@ public class CalendarEvent {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
     }
 }

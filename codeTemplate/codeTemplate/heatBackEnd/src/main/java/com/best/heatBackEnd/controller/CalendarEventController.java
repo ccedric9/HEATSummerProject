@@ -41,6 +41,7 @@ public class CalendarEventController {
                     calendarEvent.setEventType(newCalendarEvent.getEventType());
                     calendarEvent.setStartTime(newCalendarEvent.getStartTime());
                     calendarEvent.setEndTime(newCalendarEvent.getEndTime());
+                    calendarEvent.setTerm(newCalendarEvent.getTerm());
                     return calendarEventRepository.save(calendarEvent);
                 })
                 .orElseThrow(
