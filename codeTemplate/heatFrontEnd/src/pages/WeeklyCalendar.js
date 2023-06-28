@@ -73,28 +73,23 @@ const WeeklyCalendar = () => {
       };
     };
     
+
     const handleNextButtonClick = () => {
-      const currentTermIndex = ["TB1", "TB2", "TB3"].indexOf(currentTerm);
-      const nextTermIndex = (currentTermIndex + 1) % 3;
-      const isNextYear = nextTermIndex === 0;
-    
-      if (isNextYear) {
+      if (currentTerm === "TB1") {
+        setCurrentTerm("TB2");
+      } else {
+        setCurrentTerm("TB1");
         setCurrentYear((prevYear) => prevYear + 1);
       }
-    
-      setCurrentTerm(["TB1", "TB2", "TB3"][nextTermIndex]);
     };
-    
+  
     const handlePrevButtonClick = () => {
-      const currentTermIndex = ["TB1", "TB2", "TB3"].indexOf(currentTerm);
-      const prevTermIndex = (currentTermIndex - 1 + 3) % 3;
-      const isPrevYear = prevTermIndex === 2;
-    
-      if (isPrevYear) {
+      if (currentTerm === "TB1") {
+        setCurrentTerm("TB2");
         setCurrentYear((prevYear) => prevYear - 1);
+      } else {
+        setCurrentTerm("TB1");
       }
-    
-      setCurrentTerm(["TB1", "TB2", "TB3"][prevTermIndex]);
     };
     
       // Sort events by unit name
