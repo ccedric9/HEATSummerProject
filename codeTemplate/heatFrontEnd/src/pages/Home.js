@@ -69,7 +69,7 @@ const Home = () => {
           ? "red"
           : event.type === "FORMATIVE"
             ? "green"
-            : event.type === "CapstoneSummative"
+            : event.type === "CAPSTONESUMMATIVE"
               ? "purple"
               : "default-color",
     };

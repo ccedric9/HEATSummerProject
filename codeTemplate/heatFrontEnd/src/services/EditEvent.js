@@ -8,6 +8,10 @@ export default function EditEvent() {
 
   const [calendarEvents, setCalendarEvent] = useState({
     unitName:"",
+    unitCode:"",
+    unitCredit:"",
+    term:"",
+    academicYear:"",
     weight:"",
     title: "",
     type: "",
@@ -15,7 +19,7 @@ export default function EditEvent() {
     end: "",
   });
 
-  const { unitName,weight,title, type, start, end } = calendarEvents;
+  const { unitName,unitCode,unitCredit,term,academicYear,weight, title, type, start, end } = calendarEvents;
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -55,6 +59,45 @@ export default function EditEvent() {
               />
             </div>
             <div className="mb-3">
+                <label htmlFor="unitCode" className="form-label">
+                  Unit Code
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter unit code"
+                  name="unitCode"
+                  value={unitCode}
+                  onChange={(e) => onInputChange(e)}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="academicYear" className="form-label">
+                  Academic Year
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="select a year"
+                  name="academicYear"
+                  value={academicYear}
+                  onChange={(e) => onInputChange(e)}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="term" className="form-label">
+                  Term
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter term"
+                  name="term"
+                  value={term}
+                  onChange={(e) => onInputChange(e)}
+                />
+              </div>
+            <div className="mb-3">
               <label htmlFor="weight" className="form-label">
                 Weight (%)
               </label>
@@ -81,18 +124,20 @@ export default function EditEvent() {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="Type" className="form-label">
-                Assessment Type
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter event type"
-                name="type"
-                value={type}
-                onChange={(e) => onInputChange(e)}
-              />
-            </div>
+                <label htmlFor="Type" className="form-label">
+                  Assessment Type
+                </label>
+                <select
+                  className="form-control"
+                  name="type"
+                  value={type}
+                  onChange={(e) => onInputChange(e)}
+                >
+                  <option value="FORMATIVE">FORMATIVE</option>
+                  <option value="SUMMATIVE">SUMMATIVE</option>
+                  <option value="CAPSTONESUMMATIVE">CAPSTONESUMMATIVE</option>
+                </select>
+              </div>
             <div className="mb-3">
               <label htmlFor="Start" className="form-label">
                 Start Time

@@ -23,26 +23,6 @@ const WeeklyCalendar = () => {
     alert(`Event: ${event.title}`);
     };
 
-    // const getEventStyle = (event) => {
-    //   const startDate = new Date(event.start);
-    //   const endDate = new Date(event.end);
-      
-    //   // Fixed timeline start date
-    //   const timelineStart = new Date('2022-09-01');
-      
-    //   // Calculate the number of days between the event start and end
-    //   const durationDays = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1;
-      
-    //   // Calculate the number of days between the start of the timeline and the start of the event
-    //   const offsetDays = (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24);
-    
-    //   return {
-    //       left: `calc(${(offsetDays / 365) * 100}%UMM + 10px)`,
-    //       width: `calc(${(durationDays / 365) * 100}% - 20px)`,
-    //       backgroundColor: event.type === 'SUMMATIVE' ? 'red' : event.type ==='FORMATIVE' ? 'green' : event.type ==='CapstoneSummative'? 'yellow': 'default-color',
-    //   };
-    // };
-
     const getEventWeekStyle = (event) => {
       const startDate = new Date(event.start);
       const endDate = new Date(event.end);
@@ -59,7 +39,7 @@ const WeeklyCalendar = () => {
       return {
         left: `calc(${(offsetWeeks / 20) * 100}% + 10px)`, // 20 does not make sense , just for visual demostration
         width: `calc(${(durationWeeks / 20) * 100}% - 20px)`, // 20 does not make sense , just for visual demostration
-        backgroundColor: event.type === 'SUMMATIVE' ? 'red' : event.type ==='FORMATIVE' ? 'green' : event.type ==='CapstoneSummative'? 'purple': 'default-color',
+        backgroundColor: event.type === 'SUMMATIVE' ? 'red' : event.type ==='FORMATIVE' ? 'green' : event.type ==='CAPSTONESUMMATIVE'? 'purple': 'default-color',
       };
     };
     
