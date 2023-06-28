@@ -49,11 +49,23 @@
     margin-left: auto;
 }
 
+.timeline-title {
+    font-size: 20px;
+    font-family: "Arial Rounded MT Bold", serif;
+}
 
-/*.event {*/
-/*    padding-top: 1%;*/
-/*}*/
+.nav-buttons {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
 
+.year-selector {
+    position: flex;
+
+}
+
+/* below is the event part */
 .unit-name {
     position: absolute;
     left: 0;

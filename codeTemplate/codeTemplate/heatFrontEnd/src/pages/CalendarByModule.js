@@ -7,6 +7,7 @@ import {backgroundColor} from "react-native-calendars/src/style";
 export default function CalendarByModule(){
     const [events, setEvents] = useState([]);
     // const eventsSet = new Set(); // create a new hashSet to store the unitName
+    const [currentYear, setCurrentYear] = useState(2022);
 
     useEffect(() => {
         loadCalendarEvents();
@@ -48,11 +49,22 @@ export default function CalendarByModule(){
         <div className="timeline-container">
             {/* Title and Navigation Buttons */}
             <div className="header-container">
-                <h1 className="title">Academic Calendar</h1>
+                <h1 className="title">Computer Science</h1>
+                <div className="year-selector">
+                    <button onClick={() => setCurrentYear(currentYear - 1)}>{"<"}</button>
+                    <span>{currentYear}~{currentYear + 1}</span>
+                    <button onClick={() => setCurrentYear(currentYear + 1)}>{">"}</button>
+                </div>
                 <div className="nav-buttons">
-                    <Link to="/" className="nav-button">Yearly</Link>
-                    <Link to="/weeklyCalendar" className="nav-button">Weekly</Link>
-                    <Link to="/calendarByModule" className="nav-button">By Module</Link>
+                    <Link to="/" className="nav-button">
+                        By Year
+                    </Link>
+                    <Link to="/weeklyCalendar" className="nav-button">
+                        By Term
+                    </Link>
+                    <Link to="/calendarByModule" className="nav-button">
+                        By Module
+                    </Link>
                 </div>
             </div>
             <div className="timeline-title">
