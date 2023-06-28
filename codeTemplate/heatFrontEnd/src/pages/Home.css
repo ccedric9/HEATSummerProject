@@ -23,6 +23,7 @@
   margin-bottom: 10px;
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
   color: white;
+  font-family: Arial, sans-serif;
 }
 .month {
   text-align: center;
@@ -35,6 +36,9 @@
   border-bottom: 2px solid black;
   padding-bottom: 10px;
   margin-bottom: 10px;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  color: white;
+  font-family: Arial, sans-serif;
 }
 
 .weeks {

@@ -65,11 +65,11 @@ const Home = () => {
       left: `calc(${(offsetDays / 365) * 100}% + 10px)`,
       width: `calc(${(durationDays / 365) * 100}% - 20px)`,
       backgroundColor:
-        event.type === "SUMMATIVE"
+        event.type.toUpperCase() === "SUMMATIVE"
           ? "red"
-          : event.type === "FORMATIVE"
+          : event.type.toUpperCase() === "FORMATIVE"
             ? "green"
-            : event.type === "CAPSTONESUMMATIVE"
+            : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
               ? "purple"
               : "default-color",
     };
