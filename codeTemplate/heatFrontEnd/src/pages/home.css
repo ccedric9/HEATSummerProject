@@ -1,0 +1,161 @@
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 20px;
+    font-family: Arial, sans-serif;
+    padding-left: 160px; /* add this line to move the entire timeline to the right */
+  
+  }
+  
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .months-container {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  .month {
+    text-align: center;
+    padding: 0 5px;
+  }
+  
+  .weeks-container {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  
+  .weeks {
+    text-align: center;
+    padding: 0 5px;
+  }
+  
+  .events-container {
+    position: relative;
+    padding: 10px;
+    min-height: 100px;
+  }
+  
+  .event {
+    position: absolute;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 4px;
+    padding: 0 5px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Additional styles for the new navigation buttons */
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .nav-buttons {
+    display: flex;
+  }
+  
+  .nav-button {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-button:hover {
+    background-color: #45a049;
+  }
+  
+  .unitNames-container {
+    position: absolute;
+    left: -160px; /* add this line to position unitNames on the left */
+    top: 0;
+  }
+  
+  .unitName {
+    position: absolute;
+    width: 150px; /* adjust this value as needed */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 2px 5px;
+    text-align: center;
+    /* font-size: 0.9em; */
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+  
+  
+  .year-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .year-selector span {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .year-selector button {
+    background-color: #ddd;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 50%; /* make the buttons circular */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    transition: background-color 0.3s;
+  }
+  
+  .year-selector button:hover {
+    background-color: #ccc;
+  }
+  
