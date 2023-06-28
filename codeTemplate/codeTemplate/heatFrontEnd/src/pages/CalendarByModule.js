@@ -29,16 +29,14 @@ export default function CalendarByModule(){
     };
 
     const getEventStyle = (event, index) => {
-        // const term = new Date(event.term);
-        // const credit = new Date(event.weight);
 
         const term = event.term;
         const credit = event.unitCredit;
 
         return {
-            left: term === "1"||term==="3"? '0' : '50%',
-            width: '48%',
-            height: credit === "20" ? '40%' : credit === "30" ? '60%' : credit === "40" ? '80%' : '150%',
+            left: term === "1"||term==="3"? '0':'50%',
+            width: term === "3"?'98%':'48%',
+            height: credit === "10" ? '130%' : credit === "20" ? '150%' : credit === "30" ? '180%' : '180%',
             top:`${index*200}px`,
             backgroundColor: "lightcyan",
         };
@@ -91,9 +89,9 @@ export default function CalendarByModule(){
                     <div
                         className="event"
                         key={index}
-                        style={{ ...getEventStyle(events, index)}}
-                        // onClick={() => handleEventClick(events.find(event => event.unitName === unitName))}
-                        onClick={()=>handleEventClick(events)}
+                        // style={{ ...getEventStyle(events, index)}}
+                        style={getEventStyle(events.find(event => event.unitName === unitName),index)}
+                        onClick={() => handleEventClick(events.find(event => event.unitName === unitName))}
                     >
                         <div className="test-names">
                             {events
