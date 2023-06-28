@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 
 export default function AdminAccess() {
-  const [users, setUsers] = useState([]);
+  const [calendarEvent, setEvents] = useState([]);
 
   const { id } = useParams();
 
@@ -13,7 +13,7 @@ export default function AdminAccess() {
 
   const loadEvents = async () => {
     const result = await axios.get("http://localhost:8080/calendarEvents");
-    setUsers(result.data);
+    setEvents(result.data);
   };
 
   const deleteEvents = async (id) => {
@@ -23,12 +23,24 @@ export default function AdminAccess() {
 
   return (
     <div className="container">
+
       <div className="py-4">
+        <h1>Admin Access</h1>
+
+        <Link className="btn btn-outline-primary" to="/addEvent">
+          Add Event
+        </Link>
         <table className="table border shadow">
           <thead>
             <tr>
               <th scope="col">NO.</th>
               <th scope="col">id</th>
+              <th scope="col">year</th>
+              <th scope="col">term</th>
+              <th scope="col">unit name</th>
+              <th scope="col">unit code</th>
+              <th scope="col">unit credit</th>
+              <th scope="col">weight</th>
               <th scope="col">title</th>
               <th scope="col">type</th>
               <th scope="col">start</th>
@@ -37,20 +49,33 @@ export default function AdminAccess() {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
+            {calendarEvent.map((ce, index) => (
               <tr>
                 <th scope="row" key={index}>
                   {index + 1}
                 </th>
-                <td>{user.id}</td>
-                <td>{user.title}</td>
-                <td>{user.type}</td>
-                <td>{user.start}</td>
-                <td>{user.end}</td>
+                <td>{ce.id}</td>
+                <td>{ce.academicYear}</td>
+                <td>{ce.term}</td>
+                <td>{ce.unitName}</td>
+                <td>{ce.unitCode}</td>
+                <td>{ce.unitCredit}</td>
+                <td>{ce.weight}</td>
+                <td>{ce.title}</td>
+                <td>{ce.type}</td>
+                <td>{ce.start}</td>
+                <td>{ce.end}</td>
                 <td>
+                  <Link
+                    className="btn btn-outline-primary mx-2"
+                    to={`/editEvent/${ce.id}`}
+                  >
+                    Edit
+                  </Link>
+
                   <button
                     className="btn btn-danger mx-2"
-                    onClick={() => deleteEvents(user.id)}
+                    onClick={() => deleteEvents(ce.id)}
                   >
                     Delete
                   </button>

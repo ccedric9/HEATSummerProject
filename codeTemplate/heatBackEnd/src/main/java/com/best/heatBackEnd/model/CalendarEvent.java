@@ -13,11 +13,71 @@ public class CalendarEvent {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(name = "unit_name")
+    @JsonProperty("unitName")
+    private String unitName;
+
+    @Column(name = "unit_code")
+    @JsonProperty("unitCode")
+    private String unitCode;
+
+    @Column(name = "unit_credit_points")
+    @JsonProperty("unitCredit")
+    private String unitCredit;
+
+    @Column(name = "term")
+    @JsonProperty("term")
+    private String term;
+
+    @Column(name = "year")
+    @JsonProperty("academicYear")
+    private String academicYear;
+
+    @Column(name = "weight")
+    @JsonProperty("weight")
+    private String weight;
+
+    @Column(name = "title")
+    @JsonProperty("title")
     private String title;
+
 
     @Column(name = "type")
     @JsonProperty("type")
     private String eventType;
+
+    public String getUnitCode() {
+        return unitCode;
+    }
+
+    public void setUnitCode(String unitCode) {
+        this.unitCode = unitCode;
+    }
+
+    public String getUnitCredit() {
+        return unitCredit;
+    }
+
+    public void setUnitCredit(String unitCredit) {
+        this.unitCredit = unitCredit;
+    }
+
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
+    }
+
+    public String getAcademicYear() {
+        return academicYear;
+    }
+
+    public void setAcademicYear(String academicYear) {
+        this.academicYear = academicYear;
+    }
 
     @Column(name = "start")
     @JsonProperty("start")
@@ -33,6 +93,23 @@ public class CalendarEvent {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
     }
 
     public String getTitle() {
