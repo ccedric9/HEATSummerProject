@@ -36,12 +36,15 @@ public class CalendarEventController {
         return calendarEventRepository.findById(id)
                 .map(calendarEvent -> {
                     calendarEvent.setUnitName(newCalendarEvent.getUnitName());
+                    calendarEvent.setUnitCode(newCalendarEvent.getUnitCode());
+                    calendarEvent.setTerm(newCalendarEvent.getTerm());
+                    calendarEvent.setAcademicYear(newCalendarEvent.getAcademicYear());
+                    calendarEvent.setUnitCredit(newCalendarEvent.getUnitCredit());
                     calendarEvent.setWeight(newCalendarEvent.getWeight());
                     calendarEvent.setTitle(newCalendarEvent.getTitle());
                     calendarEvent.setEventType(newCalendarEvent.getEventType());
                     calendarEvent.setStartTime(newCalendarEvent.getStartTime());
                     calendarEvent.setEndTime(newCalendarEvent.getEndTime());
-                    calendarEvent.setTerm(newCalendarEvent.getTerm());
                     return calendarEventRepository.save(calendarEvent);
                 })
                 .orElseThrow(
