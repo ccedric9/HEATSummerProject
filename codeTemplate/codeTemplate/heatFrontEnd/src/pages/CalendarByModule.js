@@ -32,8 +32,8 @@ export default function CalendarByModule(){
 
         return {
             left: term === "term1" ? '0' : '50%',
-            width: '45%',
-            height: credit === "20"? '40%' : '200%' ,
+            width: '48%',
+            height: credit === "20"? '40%' : '150%' ,
             top:`${index*200}px`,
             backgroundColor: event.type === "SUMMATIVE" ? "red" : "green",
         };
@@ -77,8 +77,6 @@ export default function CalendarByModule(){
                         style={{ ...getEventStyle(events, index)}}
                         onClick={() => handleEventClick(events.find(event => event.unitName === unitName))}
                     >
-                        {/*<div className="text-name">{events.find(event => event.unitName === unitName).title}</div>*/}
-
                         <div className="test-names">
                             {events
                                 .filter(event => event.unitName === unitName)

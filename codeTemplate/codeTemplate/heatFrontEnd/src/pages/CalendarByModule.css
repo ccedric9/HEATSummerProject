@@ -51,23 +51,75 @@
 
 
 .event {
-    display: flex;
-    flex-direction: column;
-}
-
-.event {
-    border: 1px solid #ccc;
-    padding: 10px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    padding-top: 1%;
 }
 
 .unit-name {
-    margin-right: 10px;
-    margin-top: 40px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px; /* Adjust the value as needed */
 }
 
+/*.test-names {*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));*/
+/*    grid-gap: 100px;*/
+/*}*/
+
 .test-names {
-    margin-top:0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    color: moccasin;
 }
+
+.test-name {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px; /* Adjust the width as needed */
+    height: 100px; /* Adjust the height as needed */
+    background-color: #8FBC8F; /* Set the desired background color */
+    margin: 10px; /* Adjust the margin as needed */
+    overflow: hidden; /* Ensure the content is not displayed outside the rhombus */
+}
+
+.test-name::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-color: inherit;
+    transform: rotate(-45deg);
+    z-index: -1; /* Ensure the pseudo-element is positioned behind the text */
+}
+
+.test-name span {
+    display: block;
+    transform: rotate(45deg); /* Rotate the text within the container */
+    color: deepskyblue;
+}
+/*.test-name::before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background-color: inherit;*/
+/*    transform: rotate(-45deg);*/
+/*}*/
+
+/*.test-name span {*/
+/*    display: inline-block;*/
+/*    transform: rotate(-45deg); !* Rotate the text back to its original orientation *!*/
+/*    color: #282c34;*/
+/*}*/
+
