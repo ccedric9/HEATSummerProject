@@ -22,6 +22,9 @@ const Home = () => {
   const [events, setEvents] = useState([]);
   const [unitNameCounts, setUnitNameCounts] = useState({});
 
+  const [currentYear, setCurrentYear] = useState(2022);
+
+
   useEffect(() => {
     loadCalendarEvents();
   }, []);
@@ -65,10 +68,10 @@ const Home = () => {
         event.type === "SUMMATIVE"
           ? "red"
           : event.type === "FORMATIVE"
-          ? "green"
-          : event.type === "CapstoneSummative"
-          ? "purple"
-          : "default-color",
+            ? "green"
+            : event.type === "CapstoneSummative"
+              ? "purple"
+              : "default-color",
     };
   };
 
@@ -76,7 +79,12 @@ const Home = () => {
     <div className="timeline-container">
       {/* Title and Navigation Buttons */}
       <div className="header-container">
-        <h1 className="title">Academic Calendar</h1>
+        <h1 className="title">Computer Science</h1>
+        <div className="year-selector">
+          <button onClick={() => setCurrentYear(currentYear - 1)}>{"<"}</button>
+          <span>{currentYear}~{currentYear + 1}</span>
+          <button onClick={() => setCurrentYear(currentYear + 1)}>{">"}</button>
+        </div>
         <div className="nav-buttons">
           <Link to="/" className="nav-button">
             By Year
@@ -117,7 +125,7 @@ const Home = () => {
                 {!isSameUnit && (
                   <div
                     className="unitName"
-                    style={{ height: `${unitHeight}px`, top: `${index * 30}px`,}}
+                    style={{ height: `${unitHeight}px`, top: `${index * 30}px`, }}
                   >
                     {unitName}
                   </div>
