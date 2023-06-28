@@ -9,6 +9,7 @@ import AdminAccess from "./pages/AdminAccess";
 import AddEvent from "./services/AddEvent";
 import EditEvent from "./services/EditEvent";
 import TermChart from "./pages/TermChart";
+import WeeklyCalendar from "./pages/WeeklyCalendar";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/termChart" element={<TermChart />} />
           <Route exact path="/addEvent" element={<AddEvent />} />
           <Route exact path="/editEvent/:id" element={<EditEvent />} />
+          <Route exact path="/weeklyCalendar" element={<WeeklyCalendar />} />
         </Routes>
       </Router>
 
