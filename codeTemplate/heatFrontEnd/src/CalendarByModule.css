@@ -33,7 +33,6 @@
 }
 
 .line {
-    /*flex-grow: 1;*/
     border-bottom: 2px solid black;
     margin-right: 20px;
 }
@@ -49,40 +48,19 @@
     margin-left: auto;
 }
 
-.timeline-title {
-    font-size: 20px;
-    font-family: "Arial Rounded MT Bold", serif;
-}
 
-.nav-buttons {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-}
+/* .event {
+    padding-top: 1%;
+} */
 
-.year-selector {
-    position: flex;
-
-}
-
-/* below is the event part */
 .unit-name {
     position: absolute;
     left: 0;
-    bottom: 2px;
+    bottom: 0;
     margin: 0;
     padding: 0;
     margin-bottom: 10px; /* Adjust the value as needed */
-    color: black;
-}
-
-.unit-code {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    color: black;
-    font-size: 10px;
-}
+} 
 
 /*.test-names {*/
 /*    display: grid;*/
@@ -96,7 +74,6 @@
     justify-content: center;
     align-items: center;
     color: moccasin;
-    overflow-wrap: break-word;
 }
 
 .test-name {
@@ -104,11 +81,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 90px; /* Adjust the width as needed */
-    height: 90px; /* Adjust the height as needed */
+    width: 100px; /* Adjust the width as needed */
+    height: 100px; /* Adjust the height as needed */
+    background-color: #8FBC8F; /* Set the desired background color */
     margin: 10px; /* Adjust the margin as needed */
-    overflow-wrap: break-word;
-    word-wrap: break-word;
+    overflow: hidden; /* Ensure the content is not displayed outside the rhombus */
 }
 
 .test-name::before {
@@ -126,6 +103,22 @@
 .test-name span {
     display: block;
     transform: rotate(45deg); /* Rotate the text within the container */
-    color: black;
+    color: deepskyblue;
 }
+/*.test-name::before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background-color: inherit;*/
+/*    transform: rotate(-45deg);*/
+/*}*/
+
+/*.test-name span {*/
+/*    display: inline-block;*/
+/*    transform: rotate(-45deg); !* Rotate the text back to its original orientation *!*/
+/*    color: #282c34;*/
+/*}*/
 

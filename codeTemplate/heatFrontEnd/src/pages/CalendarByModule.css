@@ -65,7 +65,13 @@
 
 }
 
+
+
 /* below is the event part */
+
+.events-container {
+    display: inline;
+}
 .unit-name {
     position: absolute;
     left: 0;

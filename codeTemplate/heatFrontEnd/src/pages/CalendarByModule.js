@@ -66,11 +66,6 @@ export default function CalendarByModule(){
                 </div>
             </div>
             <div className="timeline-title">
-                <h3 class="timeline-header">Year</h3>
-                <div class="bottom-part">
-                    <div class="line"></div>
-                    <i class="arrow"></i>
-                </div>
                 <h6 class="text-subheader-left">TB1</h6>
                 <div class="bottom-part-left">
                     <div class="line"></div>
