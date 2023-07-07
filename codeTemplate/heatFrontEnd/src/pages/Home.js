@@ -2,8 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Home.css";
 import { Link } from "react-router-dom";
+import { Box,IconButton,Button, ButtonGroup,Typography,Grid} from "@mui/material";
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import shadows from "@mui/material/styles/shadows";
 
 const Home = () => {
+
   const months = [
     "September",
     "October",
@@ -66,40 +71,43 @@ const Home = () => {
       width: `calc(${(durationDays / 365) * 100}% - 20px)`,
       backgroundColor:
         event.type.toUpperCase() === "SUMMATIVE"
-          ? "red"
+          ? '#CC313D'
           : event.type.toUpperCase() === "FORMATIVE"
-            ? "green"
+            ? '#2C5F2D'
             : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-              ? "purple"
-              : "default-color",
+              ? '#8A307F'
+              : "default-color"
     };
   };
 
   return (
     <div className="timeline-container">
       {/* Title and Navigation Buttons */}
-      <div className="header-container">
-        <h1 className="title">Computer Science</h1>
-        <div className="year-selector">
-          <button onClick={() => setCurrentYear(currentYear - 1)}>{"<"}</button>
-          <span>{currentYear}~{currentYear + 1}</span>
-          <button onClick={() => setCurrentYear(currentYear + 1)}>{">"}</button>
-        </div>
-        <div className="nav-buttons">
-          <Link to="/" className="nav-button">
-            By Year
-          </Link>
-          <Link to="/weeklyCalendar" className="nav-button">
-            By Term
-          </Link>
-          <Link to="/calendarByModule" className="nav-button">
-            By Module
-          </Link>
-        </div>
-      </div>
+      <Box display='grid' gridTemplateColumns="repeat(10, 1fr)" gap={2}  >
+        <Typography gridColumn="span 4" variant = 'h6' text='textSecondary' align="left">
+          Computer Science 
+        </Typography>
+        <Box display='flex' gridColumn="span 3" >
+          <Button color="secondary" onClick={() => setCurrentYear(currentYear - 1)}>
+            <NavigateBeforeIcon/>
+          </Button>
+          <Typography fontSize={18} p = {2}>{currentYear}~{currentYear + 1}</Typography>
+          <Button color="secondary" onClick={() => setCurrentYear(currentYear + 1)}>
+            <NavigateNextIcon />
+          </Button>
+        </Box>
+        <Box gridColumn="span 3" align ='right'>
+          <ButtonGroup variant="contained" aria-label="outlined primary button group" color='inherit'>
+            <Button component = {Link} to='/'sx={{ color: 'black', backgroundColor: '#a0332c' }}>Year</Button>
+            <Button component = {Link} to='/weeklyCalendar'sx={{ color: 'black', backgroundColor: '#a0332c' }}>Term</Button>
+            <Button component = {Link} to='/CalendarByModule'sx={{ color: 'black', backgroundColor: '#a0332c'}}>Module</Button>
+          </ButtonGroup>
+        </Box>
+      </Box>
 
       {/* Months */}
-      <div className="months-container">
+
+      <div className="months-container" >
         {months.map((month) => (
           <div className="month" key={month} style={{ flex: 1 }}>
             {month}
