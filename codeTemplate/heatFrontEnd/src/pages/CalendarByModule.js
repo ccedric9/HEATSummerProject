@@ -16,10 +16,6 @@ export default function CalendarByModule(){
     const loadCalendarEvents = async () => {
         const result = await axios.get("http://localhost:8080/calendarEvents");
         setEvents(result.data);
-        // if (!eventsSet.has(result.data)){
-        //     eventsSet.add(result.data);
-        // }
-        // console.log(eventsSet.keys());
 
     };
 
@@ -34,17 +30,26 @@ export default function CalendarByModule(){
         const credit = event.unitCredit;
 
         return {
-            left: term === "1"||term==="3"? '0':'50%',
-            width: term === "3"?'98%':'48%',
-            height: credit === "10" ? '130%' : credit === "20" ? '150%' : credit === "30" ? '180%' : '180%',
-            top:`${index*200}px`,
+            width: term === "3"?'195%':'90%',
+            height: credit === "10" ? '150px' : credit === "20" ? '200px' : '250px',
             backgroundColor: "lightcyan",
         };
 
     };
 
+    function getUnitNameClass(events){
+        const credit = events.unitCredit;
+        if (credit==="10"){
+            return "credit10";
+        } else if (credit==="20"){
+            return "credit20";
+        } else {
+            return "credit30plus";
+        }
+    }
+
     return (
-        <div className="timeline-container">
+        <div className="timeline-container-module">
             {/* Title and Navigation Buttons */}
             <div className="header-container">
                 <h1 className="title">Computer Science</h1>
@@ -78,37 +83,100 @@ export default function CalendarByModule(){
                 </div>
             </div>
 
+            <div className="module-parent">
+                <div className="module-parent-left">
+                    {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
+                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === "1");
+                        if (filteredEvents.length === 0) return null;
 
-            <div className="events-container">
-                {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => (
-                    <div
-                        className="event"
-                        key={index}
-                        // style={{ ...getEventStyle(events, index)}}
-                        style={getEventStyle(events.find(event => event.unitName === unitName),index)}
-                        onClick={() => handleEventClick(events.find(event => event.unitName === unitName))}
-                    >
-                        <div className="test-names">
-                            {events
-                                .filter(event => event.unitName === unitName)
-                                .map((event, subIndex) => (
-                                    <div className="test-name"
-                                         key={subIndex}
-                                         style={{backgroundColor:event.type==="SUMMATIVE"?"red":event.type==="FORMATIVE"?"green":"purple"}}>{event.title}</div>
-                                ))}
-                        </div>
-                        <div className="unit-codes">
-                            {events
-                                .filter(event => event.unitName === unitName)
-                                .map((event, subIndex) => (
-                                    <div className="unit-code">{event.unitCode}</div>
-                                ))}
-                        </div>
-                        <div className="unit-name">{unitName}</div>
+                        return (
+                            <div
+                                className={getUnitNameClass(filteredEvents[0])}
+                                key={index}
+                                style={getEventStyle(filteredEvents[0], index)}
+                                onClick={() => handleEventClick(filteredEvents[0])}
+                            >
+                                <div className="test-names">
+                                    {filteredEvents.map((event, subIndex) => (
+                                        <div
+                                            className="test-name"
+                                            key={subIndex}
+                                            style={{ backgroundColor: event.type === "SUMMATIVE" ? "red" : event.type === "FORMATIVE" ? "green" : "purple" }}
+                                        >
+                                            {event.title}
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="unit-codes">{filteredEvents[0].unitCode}</div>
+                                <div className="unit-name">{unitName}</div>
+                            </div>
+                        );
+                    })}
+                </div>
 
-                    </div>
-                ))}
+                <div className="module-parent-right">
+                    {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
+                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === "2");
+                        if (filteredEvents.length === 0) return null;
+
+                        return (
+                            <div
+                                className={`${getUnitNameClass(filteredEvents[0])}`}
+                                key={index}
+                                style={getEventStyle(filteredEvents[0], index)}
+                                onClick={() => handleEventClick(filteredEvents[0])}
+                            >
+                                <div className="test-names">
+                                    {filteredEvents.map((event, subIndex) => (
+                                        <div
+                                            className="test-name"
+                                            key={subIndex}
+                                            style={{ backgroundColor: event.type === "SUMMATIVE" ? "red" : event.type === "FORMATIVE" ? "green" : "purple" }}
+                                        >
+                                            {event.title}
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="unit-codes">{filteredEvents[0].unitCode}</div>
+                                <div className="unit-name">{unitName}</div>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                <div className="module-parent-bottom">
+                    {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
+                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === "3");
+                        if (filteredEvents.length === 0) return null;
+
+                        return (
+                            <div
+                                className={`${getUnitNameClass(filteredEvents[0])}`}
+                                key={index}
+                                style={getEventStyle(filteredEvents[0], index)}
+                                onClick={() => handleEventClick(filteredEvents[0])}
+                            >
+                                <div className="test-names">
+                                    {filteredEvents.map((event, subIndex) => (
+                                        <div
+                                            className="test-name"
+                                            key={subIndex}
+                                            style={{ backgroundColor: event.type === "SUMMATIVE" ? "red" : event.type === "FORMATIVE" ? "green" : "purple" }}
+                                        >
+                                            {event.title}
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="unit-codes">{filteredEvents[0].unitCode}</div>
+                                <div className="unit-name">{unitName}</div>
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
+
+
+
         </div>
     );
 }
