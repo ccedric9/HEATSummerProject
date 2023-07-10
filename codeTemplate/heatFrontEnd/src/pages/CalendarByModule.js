@@ -3,6 +3,11 @@ import "./CalendarByModule.css";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {backgroundColor} from "react-native-calendars/src/style";
+import {Box, Button, ButtonGroup, Icon, Typography} from "@mui/material";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export default function CalendarByModule(){
     const [events, setEvents] = useState([]);
@@ -51,35 +56,45 @@ export default function CalendarByModule(){
     return (
         <div className="timeline-container-module">
             {/* Title and Navigation Buttons */}
-            <div className="header-container">
-                <h1 className="title">Computer Science</h1>
-                <div className="year-selector">
-                    <button onClick={() => setCurrentYear(currentYear - 1)}>{"<"}</button>
-                    <span>{currentYear}~{currentYear + 1}</span>
-                    <button onClick={() => setCurrentYear(currentYear + 1)}>{">"}</button>
-                </div>
-                <div className="nav-buttons">
-                    <Link to="/" className="nav-button">
-                        By Year
-                    </Link>
-                    <Link to="/weeklyCalendar" className="nav-button">
-                        By Term
-                    </Link>
-                    <Link to="/calendarByModule" className="nav-button">
-                        By Module
-                    </Link>
-                </div>
-            </div>
+            <Box display='grid' gridTemplateColumns="repeat(10, 1fr)" gap={2}  >
+                <Typography gridColumn="span 4" variant = 'h6' text='textSecondary' align="left">
+                    Computer Science
+                </Typography>
+                <Box display='flex' gridColumn="span 3" >
+                    <Button color="secondary" onClick={() => setCurrentYear(currentYear - 1)}>
+                        <NavigateBeforeIcon/>
+                    </Button>
+                    <Typography fontSize={18} p = {2}>{currentYear}~{currentYear + 1}</Typography>
+                    <Button color="secondary" onClick={() => setCurrentYear(currentYear + 1)}>
+                        <NavigateNextIcon />
+                    </Button>
+                </Box>
+                <Box gridColumn="span 3" align ='right'>
+                    <ButtonGroup variant="contained" aria-label="outlined primary button group" color='inherit'>
+                        <Button component = {Link} to='/'sx={{ color: 'black', backgroundColor: '#a0332c' }}>Year</Button>
+                        <Button component = {Link} to='/weeklyCalendar'sx={{ color: 'black', backgroundColor: '#a0332c' }}>Term</Button>
+                        <Button component = {Link} to='/CalendarByModule'sx={{ color: 'black', backgroundColor: '#a0332c'}}>Module</Button>
+                    </ButtonGroup>
+                </Box>
+            </Box>
             <div className="timeline-title">
-                <h6 class="text-subheader-left">TB1</h6>
-                <div class="bottom-part-left">
-                    <div class="line"></div>
-                    <i class="arrow"></i>
+                <div className="timeline-content">
+                    <h6 class="text-subheader">TB1</h6>
+                    <div class="bottom-part">
+                        <div class="line"></div>
+                        <Icon class="arrow">
+                            <ArrowForwardIosIcon />
+                        </Icon>
+                    </div>
                 </div>
-                <h6 class="text-subheader-right">TB2</h6>
-                <div class="bottom-part-right">
-                    <div class="line"></div>
-                    <i class="arrow"></i>
+                <div className="timeline-content">
+                    <h6 class="text-subheader">TB2</h6>
+                    <div class="bottom-part">
+                        <div class="line"></div>
+                        <Icon class="arrow">
+                            <ArrowForwardIosIcon />
+                        </Icon>
+                    </div>
                 </div>
             </div>
 
