@@ -161,3 +161,27 @@
     background-color: #ccc;
   }
   
+  .separator {
+    position: relative;
+    width: 1px;
+    height: 100%;
+    background: black;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+  
+  .separator::before {
+    content: '';
+    position: absolute;
+    top: 0px; /* Set a large negative value to extend the line upwards */
+    left: 50%;
+    width: 1px;
+    height: 500px; /* Set a large positive value to extend the line downwards */
+    border-left: 1px dashed black;
+    transform: translateX(-50%);
+  }
+  
+  
+  
+  
+  

@@ -185,7 +185,18 @@ export default function CalendarByModule(){
                                         <div
                                             className="test-name"
                                             key={subIndex}
-                                            style={{ backgroundColor: event.type === "SUMMATIVE" ? "red" : event.type === "FORMATIVE" ? "green" : "purple" }}
+                                            style={{ 
+                                                backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
+                                            ? '#CC313D'
+                                            : event.type.toUpperCase() === "FORMATIVE"
+                                              ? '#2C5F2D'
+                                              : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                ? '#8A307F'
+                                                : "default-color" ,
+                                                color:'white',
+                                                borderRadius:'5px'
+                
+                                            }}
                                         >
                                             {event.title}
                                         </div>
