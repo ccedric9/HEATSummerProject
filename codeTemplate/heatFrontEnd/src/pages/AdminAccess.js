@@ -45,6 +45,11 @@ export default function AdminAccess() {
               <th scope="col">type</th>
               <th scope="col">start</th>
               <th scope="col">end</th>
+              <th scope="col">summary</th>
+              <th scope="col">feedback</th>
+              <th scope="col">location</th>
+              <th scope="col">exam time</th>
+              <th scope="col">linked ids</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -65,6 +70,11 @@ export default function AdminAccess() {
                 <td>{ce.type}</td>
                 <td>{ce.start}</td>
                 <td>{ce.end}</td>
+                <td>{ce.summary}</td>
+                <td>{ce.feedback}</td>
+                <td>{ce.location}</td>
+                <td>{ce.examTime}</td>
+                <td>{ce.linkedIds}</td>
                 <td>
                   <Link
                     className="btn btn-outline-primary mx-2"

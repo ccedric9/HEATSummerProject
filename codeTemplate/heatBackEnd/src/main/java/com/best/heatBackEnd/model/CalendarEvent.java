@@ -47,6 +47,43 @@ public class CalendarEvent {
     @JsonProperty("type")
     private String eventType;
 
+
+    @Column(name = "start")
+    @JsonProperty("start")
+    private String startTime;
+
+    @Column(name = "end")
+    @JsonProperty("end")
+    private String endTime;
+
+
+
+
+    @Column(name = "summary")
+    @JsonProperty("summary")
+    private String summary;
+
+    @Column(name = "feedback")
+    @JsonProperty("feedback")
+    private String feedback;
+
+    @Column(name = "location")
+    @JsonProperty("location")
+    private String location;
+
+    @Column(name = "examTime")
+    @JsonProperty("examTime")
+    private String examTime;
+
+
+    @Column(name = "linkedIds")
+    @JsonProperty("linkedIds")
+    private String linkedIds;
+
+
+
+
+
     public String getUnitCode() {
         return unitCode;
     }
@@ -79,13 +116,7 @@ public class CalendarEvent {
         this.academicYear = academicYear;
     }
 
-    @Column(name = "start")
-    @JsonProperty("start")
-    private String startTime;
 
-    @Column(name = "end")
-    @JsonProperty("end")
-    private String endTime;
 
     public Long getId() {
         return id;
@@ -142,5 +173,45 @@ public class CalendarEvent {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getExamTime() {
+        return examTime;
+    }
+
+    public void setExamTime(String examTime) {
+        this.examTime = examTime;
+    }
+
+    public String getLinkedIds() {
+        return linkedIds;
+    }
+
+    public void setLinkedIds(String linkedIds) {
+        this.linkedIds = linkedIds;
     }
 }
