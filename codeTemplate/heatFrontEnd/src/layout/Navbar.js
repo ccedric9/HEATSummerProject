@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* Navbar.js */
 
 import React from 'react';
@@ -66,42 +65,3 @@ export default function Navbar() {
         </div>
     );
 }
-=======
-import { Box, IconButton} from "@mui/material";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import SettingsIcon from "@mui/icons-material/Settings";
-import PersonIcon from "@mui/icons-material/Person";
-import Typography from "@mui/material/Typography";
-import LogoutIcon from '@mui/icons-material/Logout';
-
-const Navbar = () => {
-  return (
-    <Box display="flex" justifyContent="space-between" p={2} sx={{
-        backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)',
-        borderRadius : '5px'
-      }}>
-        {/* Software Title */}
-        <Typography variant = 'h6' fontWeight='bold' >
-            Assessment Calendar Tool
-        </Typography>
-      {/* ICONS */}
-      <Box display="flex">
-        <IconButton>
-          <PersonIcon />
-        </IconButton>
-        <IconButton>
-          <NotificationsIcon />
-        </IconButton>
-        <IconButton>
-          <SettingsIcon />
-        </IconButton>
-        <IconButton>
-          < LogoutIcon/>
-        </IconButton>
-      </Box>
-    </Box>
-  );
-};
-
-export default Navbar;
->>>>>>> week

@@ -11,7 +11,6 @@ import WeeklyCalendar from "./pages/WeeklyCalendar";
 import CalendarByModule from "./pages/CalendarByModule";
 
 function App() {
-
   return (
     <div className="App">
       <Router>
@@ -25,6 +24,7 @@ function App() {
           <Route exact path="/calendarByModule" element={<CalendarByModule/>}/>
         </Routes>
       </Router>
+
     </div>
   );
 }
