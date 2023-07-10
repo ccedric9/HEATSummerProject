@@ -36,8 +36,8 @@ export default function CalendarByModule(){
 
         return {
             width: term === "3"?'195%':'90%',
-            height: credit === "10" ? '150px' : credit === "20" ? '200px' : '250px',
-            backgroundColor: "lightcyan",
+            height: credit < "20" ? '130px' : credit < "30" ? '150px' : credit <'40' ? '170px' : '200px',
+            backgroundColor: '#F9F6EE',
         };
 
     };
@@ -80,21 +80,9 @@ export default function CalendarByModule(){
             <div className="timeline-title">
                 <div className="timeline-content">
                     <h6 class="text-subheader">TB1</h6>
-                    <div class="bottom-part">
-                        <div class="line"></div>
-                        <Icon class="arrow">
-                            <ArrowForwardIosIcon />
-                        </Icon>
-                    </div>
                 </div>
                 <div className="timeline-content">
                     <h6 class="text-subheader">TB2</h6>
-                    <div class="bottom-part">
-                        <div class="line"></div>
-                        <Icon class="arrow">
-                            <ArrowForwardIosIcon />
-                        </Icon>
-                    </div>
                 </div>
             </div>
 
@@ -116,7 +104,17 @@ export default function CalendarByModule(){
                                         <div
                                             className="test-name"
                                             key={subIndex}
-                                            style={{ backgroundColor: event.type === "SUMMATIVE" ? "#CC313D" : event.type === "FORMATIVE" ? "#2C5F2D" : "#8A307F" }}
+                                            style={{ backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
+                                            ? '#CC313D'
+                                            : event.type.toUpperCase() === "FORMATIVE"
+                                              ? '#2C5F2D'
+                                              : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                ? '#8A307F'
+                                                : "default-color" ,
+                                                color:'white',
+                                                borderRadius:'5px'
+
+                                            }}
                                         >
                                             {event.title}
                                         </div>
@@ -146,7 +144,18 @@ export default function CalendarByModule(){
                                         <div
                                             className="test-name"
                                             key={subIndex}
-                                            style={{ backgroundColor: event.type === "SUMMATIVE" ? "red" : event.type === "FORMATIVE" ? "green" : "purple" }}
+                                            style={{ 
+                                                backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
+                                            ? '#CC313D'
+                                            : event.type.toUpperCase() === "FORMATIVE"
+                                              ? '#2C5F2D'
+                                              : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                ? '#8A307F'
+                                                : "default-color" ,
+                                                color:'white',
+                                                borderRadius:'5px'
+                
+                                            }}
                                         >
                                             {event.title}
                                         </div>
@@ -176,7 +185,18 @@ export default function CalendarByModule(){
                                         <div
                                             className="test-name"
                                             key={subIndex}
-                                            style={{ backgroundColor: event.type === "SUMMATIVE" ? "red" : event.type === "FORMATIVE" ? "green" : "purple" }}
+                                            style={{ 
+                                                backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
+                                            ? '#CC313D'
+                                            : event.type.toUpperCase() === "FORMATIVE"
+                                              ? '#2C5F2D'
+                                              : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                ? '#8A307F'
+                                                : "default-color" ,
+                                                color:'white',
+                                                borderRadius:'5px'
+                
+                                            }}
                                         >
                                             {event.title}
                                         </div>
