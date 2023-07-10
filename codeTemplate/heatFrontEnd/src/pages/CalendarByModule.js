@@ -116,7 +116,7 @@ export default function CalendarByModule(){
                                         <div
                                             className="test-name"
                                             key={subIndex}
-                                            style={{ backgroundColor: event.type === "SUMMATIVE" ? "red" : event.type === "FORMATIVE" ? "green" : "purple" }}
+                                            style={{ backgroundColor: event.type === "SUMMATIVE" ? "#CC313D" : event.type === "FORMATIVE" ? "#2C5F2D" : "#8A307F" }}
                                         >
                                             {event.title}
                                         </div>

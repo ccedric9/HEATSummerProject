@@ -4,6 +4,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import PersonIcon from "@mui/icons-material/Person";
 import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
+import { Link } from "react-router-dom";
+
 
 const Navbar = () => {
   return (
@@ -12,13 +14,13 @@ const Navbar = () => {
         borderRadius : '5px'
       }}>
         {/* Software Title */}
-        <Typography variant = 'h6' fontWeight='bold' >
+        <Typography variant = 'h6' fontWeight='bold' component={Link} to='/' sx={{color:'black', textDecoration:'None'}} >
             Assessment Calendar Tool
         </Typography>
       {/* ICONS */}
       <Box display="flex">
-        <IconButton>
-          <PersonIcon />
+        <IconButton component = {Link} to='/adminaccess'>
+          <PersonIcon/>
         </IconButton>
         <IconButton>
           <NotificationsIcon />
