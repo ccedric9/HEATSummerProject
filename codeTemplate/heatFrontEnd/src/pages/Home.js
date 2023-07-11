@@ -56,7 +56,7 @@ const Home = () => {
     const endDate = new Date(event.end);
 
     // Fixed timeline start date
-    const timelineStart = new Date("2022-09-01");
+    const timelineStart = new Date("2022-09-15");
 
     // Calculate the number of days between the event start and end
     const durationDays =
@@ -65,6 +65,8 @@ const Home = () => {
     // Calculate the number of days between the start of the timeline and the start of the event
     const offsetDays =
       (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24);
+
+    
 
     return {
       left: `calc(${(offsetDays / 365) * 100}% + 10px)`,

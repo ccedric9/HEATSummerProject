@@ -45,6 +45,11 @@ public class CalendarEventController {
                     calendarEvent.setEventType(newCalendarEvent.getEventType());
                     calendarEvent.setStartTime(newCalendarEvent.getStartTime());
                     calendarEvent.setEndTime(newCalendarEvent.getEndTime());
+                    calendarEvent.setFeedback(newCalendarEvent.getFeedback());
+                    calendarEvent.setLocation(newCalendarEvent.getLocation());
+                    calendarEvent.setLinkedIds(newCalendarEvent.getLinkedIds());
+                    calendarEvent.setExamTime(newCalendarEvent.getExamTime());
+                    calendarEvent.setSummary(newCalendarEvent.getSummary());
                     return calendarEventRepository.save(calendarEvent);
                 })
                 .orElseThrow(

@@ -17,9 +17,14 @@ export default function EditEvent() {
     type: "",
     start: "",
     end: "",
+    summary: "",
+    feedback: "",
+    location: "",
+    examTime: "",
+    linkedIds: "",
   });
 
-  const { unitName,unitCode,unitCredit,term,academicYear,weight, title, type, start, end } = calendarEvents;
+  const { unitName,unitCode,unitCredit,term,academicYear,weight, title, type, start, end, summary, feedback, location, examTime, linkedIds } = calendarEvents;
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -162,6 +167,99 @@ export default function EditEvent() {
                 onChange={(e) => onInputChange(e)}
               />
             </div>
+
+            
+            <div className="mb-3">
+              <label htmlFor="weight" className="form-label">
+                unitCredit
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter weight to total unit 0 ~ 100 "
+                name="unitCredit"
+                value={unitCredit}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+
+
+            <div className="mb-3">
+              <label htmlFor="weight" className="form-label">
+              summary
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter weight to total unit 0 ~ 100 "
+                name="summary"
+                value={summary}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+
+
+            <div className="mb-3">
+              <label htmlFor="weight" className="form-label">
+              feedback
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter weight to total unit 0 ~ 100 "
+                name="feedback"
+                value={feedback}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+
+
+            <div className="mb-3">
+              <label htmlFor="weight" className="form-label">
+              location
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter weight to total unit 0 ~ 100 "
+                name="location"
+                value={location}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+
+
+            <div className="mb-3">
+              <label htmlFor="weight" className="form-label">
+              examTime
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter weight to total unit 0 ~ 100 "
+                name="examTime"
+                value={examTime}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="weight" className="form-label">
+              linkedIds
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter weight to total unit 0 ~ 100 "
+                name="linkedIds"
+                value={linkedIds}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+
+
+
+                  
             <button type="submit" className="btn btn-outline-primary">
               Save Changes
             </button>

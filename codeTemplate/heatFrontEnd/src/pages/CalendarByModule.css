@@ -81,18 +81,21 @@
     border-style: dashed;
     margin: 20px 50px;
     height: 30px;
+    border-radius: 10px;
 }
 
 .credit20{
     display: block;
     border-style: dashed;
     margin: 20px 50px;
+    border-radius: 10px;
 }
 
 .credit30plus{
     display: block;
     border-style: dashed;
     margin: 20px 50px;
+    border-radius: 10px;
 }
 
 
