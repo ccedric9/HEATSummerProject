@@ -7,6 +7,27 @@
     padding-left: 160px; /* add this line to move the entire timeline to the right */
   
   }
+  .vertical-line {
+    position: relative;
+    /* left: 21.5%; */
+    margin-left: 8px;
+    margin-right: 8px;
+    width: 1px;
+    background-color: #ccc;
+    z-index: -1;
+    height: 100%; /* Adjust the height to extend the lines */
+  }
+
+  .vertical-line::before{
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    width: 1px;
+    height: 500px;
+    border-left: 1px dashed #ccc;
+    transform: translateX(-50%);
+  }
   
   .title {
     text-align: center;
@@ -38,7 +59,8 @@
     border-bottom: 2px solid black;
     padding-bottom: 10px;
     margin-bottom: 10px;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); */
+    background-image: linear-gradient(to right, #B20000 , #a0332c); 
     color: white;
     font-family: Arial, sans-serif;
   }
@@ -102,6 +124,7 @@
     position: absolute;
     left: -160px; /* add this line to position unitNames on the left */
     top: 0;
+    margin-bottom: auto;
   }
   
   .unitName {

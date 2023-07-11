@@ -107,11 +107,14 @@ const Home = () => {
 
       {/* Months */}
 
-      <div className="months-container" >
-        {months.map((month) => (
-          <div className="month" key={month} style={{ flex: 1 }}>
-            {month}
-          </div>
+      <div className="months-container">
+        {months.map((month, index) => (
+        
+            <div className="month" key={month} style={{flex: 1}}>
+              {month}
+              {index !== months.length && index !== 0 &&<div className="vertical-line"></div>}
+            </div>
+    
         ))}
       </div>
 
@@ -123,7 +126,7 @@ const Home = () => {
               index > 0 && events[index - 1].unitName === event.unitName;
             const unitName = isSameUnit ? "" : event.unitName;
             const occurrenceCount = unitNameCounts[event.unitName] || 0;
-            const unitHeight = occurrenceCount * 30;
+            const unitHeight = 100;
 
             return (
               <React.Fragment key={index}>

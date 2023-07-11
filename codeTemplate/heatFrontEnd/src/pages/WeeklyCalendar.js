@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import {Box, Button, ButtonGroup, Icon, Typography} from "@mui/material";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 const WeeklyCalendar = () => {
     const weeks = Array.from({ length: 13 }, (_, index) => index + 1);
@@ -119,26 +121,49 @@ const WeeklyCalendar = () => {
 
   return (
     <div className="timeline-container">
-    {/* Title and Navigation Buttons */}
-      <div className="header-container">
-        <h1 className="title">Computer Science</h1>
-        <div className="year-selector">
-          <button onClick={handlePrevButtonClick}>{"<"}</button>
-          <span>{`${currentYear}-${currentYear + 1} ${currentTerm}`}</span>
-          <button onClick={handleNextButtonClick}>{">"}</button>
-        </div>
-        <div className="nav-buttons">
-          <Link to="/" className="nav-button">By Year</Link>
-          <Link to="/weeklyCalendar" className="nav-button">By Term</Link>
-          <Link to="/calendarByModule" className="nav-button">By Module</Link>
-        </div>
-      </div>
+      {/* Title and Navigation Buttons */}
+      <Box display='grid' gridTemplateColumns="repeat(10, 1fr)" gap={2}  >
+        <Typography gridColumn="span 4" variant = 'h6' text='textSecondary' align="left">
+          Computer Science 
+        </Typography>
+        <Box display='flex' gridColumn="span 3" >
+          <Button color="secondary" onClick={() => {
+            setCurrentYear(currentYear - 1)
+            if(currentTerm=== "TB1") {
+              setCurrentTerm("TB2")
+            }else {
+              setCurrentTerm("TB1")
+            }
+            }}>
+            <NavigateBeforeIcon/>
+          </Button>
+          <Typography fontSize={18} p = {2}>{currentYear}~{currentYear + 1} {currentTerm}</Typography>
+          <Button color="secondary" onClick={() => {
+            setCurrentYear(currentYear + 1)
+            if(currentTerm=== "TB1") {
+              setCurrentTerm("TB2")
+            }else {
+              setCurrentTerm("TB1")
+            }
+            }}>
+            <NavigateNextIcon />
+          </Button>
+        </Box>
+        <Box gridColumn="span 3" align ='right'>
+          <ButtonGroup variant="contained" aria-label="outlined primary button group" color='inherit'>
+            <Button component = {Link} to='/'sx={{ color: 'black', backgroundColor: '#a0332c' }}>Year</Button>
+            <Button component = {Link} to='/weeklyCalendar'sx={{ color: 'black', backgroundColor: '#a0332c' }}>Term</Button>
+            <Button component = {Link} to='/CalendarByModule'sx={{ color: 'black', backgroundColor: '#a0332c'}}>Module</Button>
+          </ButtonGroup>
+        </Box>
+      </Box>
   
       {/* <div className="weeks-container" style={{marginLeft:'150px'}}> */}
       <div className="weeks-container" >
-        {weeks.map((week) => (
+        {weeks.map((week, index) => (
           <div className="week" key={week} style={{ flex: 1 }}>
             {week === 7 ? "AW" : week === 6 ? "RW" : week === 10 ? "CW1" :week ===11 ? "CW2" : week ===12 ? "AW":week}
+            {index !== week.length && index !== 0 && <div className="vertical-line"></div>}
           </div>
         ))}
       </div>
@@ -166,6 +191,8 @@ const WeeklyCalendar = () => {
                   >
                     {unitName}
                   </div>
+                  
+  
                 )}
               </React.Fragment>
             );
