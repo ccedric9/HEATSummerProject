@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Home.css";
 import { Link } from "react-router-dom";
-import { Box, Button, ButtonGroup, Typography, Grid, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import { Box, Button, ButtonGroup, Typography, Grid, Dialog, DialogTitle, DialogContent, DialogActions, Tooltip } from "@mui/material";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import shadows from "@mui/material/styles/shadows";
+import EventPopover from "./EventPopover";
+
 
 const Home = () => {
   const months = [
@@ -146,15 +148,31 @@ const Home = () => {
           })}
         </div>
         {events.map((event, index) => (
-          <div
-            className="event"
+          <Tooltip
+            title={
+              <div>
+                <Typography variant="subtitle1">{event.title}</Typography>
+                <Typography variant="body2">Start Date: {event.start}</Typography>
+                <Typography variant="body2">End Date: {event.end}</Typography>
+                {event.location && (
+                  <Typography variant="body2">Location: {event.location}</Typography>
+                )}
+              </div>
+            }
             key={index}
-            style={{ ...getEventStyle(event), top: `${index * 30}px` }}
-            onClick={() => handleEventClick(event)}
           >
-            {event.title}
-          </div>
+            <div
+              className="event"
+              style={{ ...getEventStyle(event), top: `${index * 30}px` }}
+              onClick={() => handleEventClick(event)}
+            >
+              {event.title}
+            </div>
+          </Tooltip>
         ))}
+
+
+
       </div>
 
       {/* Event Popup Dialog */}

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {Box, Button, ButtonGroup, Icon, Typography} from "@mui/material";
+import {Box, Button, ButtonGroup, Icon, Typography, Tooltip} from "@mui/material";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import EventDialog from "./EventDialog";
@@ -212,18 +212,29 @@ const WeeklyCalendar = () => {
           })}
         </div>
         {events.map((event, index) => (
-          <div
-            className="event"
+          <Tooltip
+            title={
+              <div>
+                <Typography variant="subtitle1">{event.title}</Typography>
+                <Typography variant="body2">Start Date: {event.start}</Typography>
+                <Typography variant="body2">End Date: {event.end}</Typography>
+                {event.location && (
+                  <Typography variant="body2">Location: {event.location}</Typography>
+                )}
+              </div>
+            }
             key={index}
-            style={{
-              ...getEventWeekStyle(event),
-              top: `${index * 30}px`,
-            }}
-            onClick={() => handleEventClick(event)}
           >
-            {event.title}
-          </div>
+            <div
+              className="event"
+              style={{ ...getEventWeekStyle(event), top: `${index * 30}px` }}
+              onClick={() => handleEventClick(event)}
+            >
+              {event.title}
+            </div>
+          </Tooltip>
         ))}
+
       </div>
       {/* <div className="events-container">
         {filteredEvents.map((event, index) => (
