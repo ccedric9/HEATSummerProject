@@ -19,13 +19,13 @@ const Navbar = () => {
         </Typography>
       {/* ICONS */}
       <Box display="flex">
-        <IconButton component = {Link} to='/adminaccess'>
+        <IconButton component = {Link} to='/login'>
           <PersonIcon/>
         </IconButton>
         <IconButton>
           <NotificationsIcon />
         </IconButton>
-        <IconButton>
+        <IconButton component = {Link} to='/adminaccess'>
           <SettingsIcon />
         </IconButton>
         <IconButton>

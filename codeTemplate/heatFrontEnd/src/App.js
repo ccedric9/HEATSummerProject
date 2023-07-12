@@ -9,6 +9,8 @@ import AddEvent from "./services/AddEvent";
 import EditEvent from "./services/EditEvent";
 import WeeklyCalendar from "./pages/WeeklyCalendar";
 import CalendarByModule from "./pages/CalendarByModule";
+import Login from "./services/Login";
+
 
 function App() {
 
@@ -23,6 +25,7 @@ function App() {
           <Route exact path="/editEvent/:id" element={<EditEvent />} />
           <Route exact path="/weeklyCalendar" element={<WeeklyCalendar />} />
           <Route exact path="/calendarByModule" element={<CalendarByModule/>}/>
+          <Route exact path="/login" element={<Login/>}/>
         </Routes>
       </Router>
     </div>

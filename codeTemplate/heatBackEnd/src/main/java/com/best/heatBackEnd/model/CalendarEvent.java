@@ -59,11 +59,10 @@ public class CalendarEvent {
 
 
 
-    @Column(name = "summary")
+    @Column(name = "summary", columnDefinition="TEXT")
     @JsonProperty("summary")
     private String summary;
-
-    @Column(name = "feedback")
+    @Column(name = "feedback", columnDefinition="TEXT")
     @JsonProperty("feedback")
     private String feedback;
 
