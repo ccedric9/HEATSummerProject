@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Home.css";
 import { Link } from "react-router-dom";
-import { Box,IconButton,Button, ButtonGroup,Typography,Grid} from "@mui/material";
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { Box, Button, ButtonGroup, Typography, Grid, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import shadows from "@mui/material/styles/shadows";
 
 const Home = () => {
-
   const months = [
     "September",
     "October",
@@ -26,9 +25,8 @@ const Home = () => {
 
   const [events, setEvents] = useState([]);
   const [unitNameCounts, setUnitNameCounts] = useState({});
-
   const [currentYear, setCurrentYear] = useState(2022);
-
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
     loadCalendarEvents();
@@ -48,75 +46,81 @@ const Home = () => {
   };
 
   const handleEventClick = (event) => {
-    alert(`Event: ${event.title}`);
+    setSelectedEvent(event);
+  };
+
+  const handleCloseDialog = () => {
+    setSelectedEvent(null);
   };
 
   const getEventStyle = (event) => {
     const startDate = new Date(event.start);
     const endDate = new Date(event.end);
+    const eventDescription = new Date(event.description);
 
     // Fixed timeline start date
     const timelineStart = new Date("2022-09-15");
 
     // Calculate the number of days between the event start and end
-    const durationDays =
-      (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1;
+    const durationDays = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1;
 
     // Calculate the number of days between the start of the timeline and the start of the event
-    const offsetDays =
-      (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24);
-
-    
+    const offsetDays = (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24);
 
     return {
       left: `calc(${(offsetDays / 365) * 100}% + 10px)`,
       width: `calc(${(durationDays / 365) * 100}% - 20px)`,
       backgroundColor:
         event.type.toUpperCase() === "SUMMATIVE"
-          ? '#CC313D'
+          ? "#CC313D"
           : event.type.toUpperCase() === "FORMATIVE"
-            ? '#2C5F2D'
-            : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-              ? '#8A307F'
-              : "default-color"
+          ? "#2C5F2D"
+          : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+          ? "#8A307F"
+          : "default-color",
     };
   };
 
   return (
     <div className="timeline-container">
       {/* Title and Navigation Buttons */}
-      <Box display='grid' gridTemplateColumns="repeat(10, 1fr)" gap={2}  >
-        <Typography gridColumn="span 4" variant = 'h6' text='textSecondary' align="left">
-          Computer Science 
+      <Box display="grid" gridTemplateColumns="repeat(10, 1fr)" gap={2}>
+        <Typography gridColumn="span 4" variant="h6" text="textSecondary" align="left">
+          Computer Science
         </Typography>
-        <Box display='flex' gridColumn="span 3" >
+        <Box display="flex" gridColumn="span 3">
           <Button color="secondary" onClick={() => setCurrentYear(currentYear - 1)}>
-            <NavigateBeforeIcon/>
+            <NavigateBeforeIcon />
           </Button>
-          <Typography fontSize={18} p = {2}>{currentYear}~{currentYear + 1}</Typography>
+          <Typography fontSize={18} p={2}>
+            {currentYear}~{currentYear + 1}
+          </Typography>
           <Button color="secondary" onClick={() => setCurrentYear(currentYear + 1)}>
             <NavigateNextIcon />
           </Button>
         </Box>
-        <Box gridColumn="span 3" align ='right'>
-          <ButtonGroup variant="contained" aria-label="outlined primary button group" color='inherit'>
-            <Button component = {Link} to='/'sx={{ color: 'black', backgroundColor: '#a0332c' }}>Year</Button>
-            <Button component = {Link} to='/weeklyCalendar'sx={{ color: 'black', backgroundColor: '#a0332c' }}>Term</Button>
-            <Button component = {Link} to='/CalendarByModule'sx={{ color: 'black', backgroundColor: '#a0332c'}}>Module</Button>
+        <Box gridColumn="span 3" align="right">
+          <ButtonGroup variant="contained" aria-label="outlined primary button group" color="inherit">
+            <Button component={Link} to="/" sx={{ color: "black", backgroundColor: "#a0332c" }}>
+              Year
+            </Button>
+            <Button component={Link} to="/weeklyCalendar" sx={{ color: "black", backgroundColor: "#a0332c" }}>
+              Term
+            </Button>
+            <Button component={Link} to="/CalendarByModule" sx={{ color: "black", backgroundColor: "#a0332c" }}>
+              Module
+            </Button>
           </ButtonGroup>
         </Box>
       </Box>
 
       {/* Months */}
-
       <div className="months-container">
         {months.map((month, index) => (
-        
-            <div className="month" key={month} style={{flex: 1}}>
-              {month}
-              {index !== months.length && index !== 0 &&<div className="vertical-line"></div>}
-            </div>
-    
+          <div className="month" key={month} style={{ flex: 1 }}>
+            {month}
+            {index !== months.length && index !== 0 && <div className="vertical-line"></div>}
+          </div>
         ))}
       </div>
 
@@ -124,22 +128,16 @@ const Home = () => {
       <div className="events-container">
         <div className="unitNames-container">
           {events.map((event, index) => {
-            const isSameUnit =
-              index > 0 && events[index - 1].unitName === event.unitName;
+            const isSameUnit = index > 0 && events[index - 1].unitName === event.unitName;
             const unitName = isSameUnit ? "" : event.unitName;
             const occurrenceCount = unitNameCounts[event.unitName] || 0;
             const unitHeight = 100;
 
             return (
               <React.Fragment key={index}>
-                {isSameUnit && (
-                  <div className="unitName-placeholder" style={{ height: "30px" }}></div>
-                )}
+                {isSameUnit && <div className="unitName-placeholder" style={{ height: "30px" }}></div>}
                 {!isSameUnit && (
-                  <div
-                    className="unitName"
-                    style={{ height: `${unitHeight}px`, top: `${index * 30}px`, }}
-                  >
+                  <div className="unitName" style={{ height: `${unitHeight}px`, top: `${index * 30}px` }}>
                     {unitName}
                   </div>
                 )}
@@ -151,16 +149,97 @@ const Home = () => {
           <div
             className="event"
             key={index}
-            style={{
-              ...getEventStyle(event),
-              top: `${index * 30}px`,
-            }}
+            style={{ ...getEventStyle(event), top: `${index * 30}px` }}
             onClick={() => handleEventClick(event)}
           >
             {event.title}
           </div>
         ))}
       </div>
+
+      {/* Event Popup Dialog */}
+      <Dialog open={selectedEvent !== null} onClose={handleCloseDialog}>
+        {selectedEvent && (
+          <>
+            <DialogTitle style={{ textAlign: "center", fontSize: "24px" }}>
+              {selectedEvent.title}
+            </DialogTitle>
+            <DialogContent>
+              {selectedEvent.start && (
+                <Typography variant="body1">
+                  Start Date: {selectedEvent.start}
+                </Typography>
+              )}
+              {selectedEvent.end && (
+                <Typography variant="body1">
+                  End Date: {selectedEvent.end}
+                </Typography>
+              )}
+              {selectedEvent.type && (
+                <Typography variant="body1">
+                  Type: {selectedEvent.type}
+                </Typography>
+              )}
+              {selectedEvent.weight && (
+                <Typography variant="body1">
+                  Weight: {selectedEvent.weight} %
+                </Typography>
+              )}
+              {selectedEvent.summary && (
+                <Typography variant="body1">
+                  Summary:{" "}
+                  {selectedEvent.summary.startsWith("http") ? (
+                    <a href={selectedEvent.summary} target="_blank" rel="noreferrer">
+                      {selectedEvent.summary}
+                    </a>
+                  ) : (
+                    selectedEvent.summary.length > 20 ? (
+                      selectedEvent.summary.split(" ").slice(0, 20).join(" ") + "..."
+                    ) : (
+                      selectedEvent.summary
+                    )
+                  )}
+                </Typography>
+              )}
+              {selectedEvent.location && (
+                <Typography variant="body1">
+                  Location: {selectedEvent.location}
+                </Typography>
+              )}
+              {selectedEvent.feedback && (
+                <Typography variant="body1">
+                  Feedback:{" "}
+                  {selectedEvent.feedback.startsWith("http") ? (
+                    <a href={selectedEvent.feedback} target="_blank" rel="noreferrer">
+                      {selectedEvent.feedback}
+                    </a>
+                  ) : (
+                    selectedEvent.feedback.length > 20 ? (
+                      selectedEvent.feedback.split(" ").slice(0, 20).join(" ") + "..."
+                    ) : (
+                      selectedEvent.feedback
+                    )
+                  )}
+                </Typography>
+              )}
+              {selectedEvent.description && (
+                <Typography variant="body1">
+                  Description: {selectedEvent.description}
+                </Typography>
+              )}
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleCloseDialog}>Close</Button>
+            </DialogActions>
+          </>
+        )}
+      </Dialog>
+
+
+
+
+
+
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import {Box, Button, ButtonGroup, Icon, Typography} from "@mui/material";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import EventDialog from "./EventDialog";
 
 const WeeklyCalendar = () => {
     const weeks = Array.from({ length: 13 }, (_, index) => index + 1);
@@ -12,7 +13,18 @@ const WeeklyCalendar = () => {
     const [currentYear, setCurrentYear] = useState(2022);
     const [currentTerm, setCurrentTerm] = useState("TB1");
     const [events, setEvents] = useState([]);
-
+    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [openDialog, setOpenDialog] = useState(false);
+    
+    const handleEventClick = (event) => {
+      setSelectedEvent(event);
+      setOpenDialog(true);
+    };
+    
+    const handleCloseDialog = () => {
+      setOpenDialog(false);
+    };
+    
     useEffect(() => {
     loadCalendarEvents();
     }, []);
@@ -43,13 +55,14 @@ const WeeklyCalendar = () => {
     };
     
 
-    const handleEventClick = (event) => {
-    alert(`Event: ${event.title}`);
-    };
+    // const handleEventClick = (event) => {
+    // alert(`Event: ${event.title}`);
+    // };
 
     const getEventWeekStyle = (event) => {
       const startDate = new Date(event.start);
       const endDate = new Date(event.end);
+      // const endDated = new Date(ev);
     
       // Fixed timeline start date
       const timelineStart = new Date('2022-09-15');
@@ -224,6 +237,8 @@ const WeeklyCalendar = () => {
           </div>
         ))}
       </div> */}
+
+      <EventDialog open={openDialog} handleCloseDialog={handleCloseDialog} event={selectedEvent} />
   </div>
   );
 };
