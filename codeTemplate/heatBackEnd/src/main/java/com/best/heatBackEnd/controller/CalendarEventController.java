@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://assessmentcalendar.s3-website.eu-west-2.amazonaws.com"})
 public class CalendarEventController {
 
     @Autowired

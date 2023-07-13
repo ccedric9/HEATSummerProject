@@ -2,96 +2,97 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {Box, Button, ButtonGroup, Icon, Typography, Tooltip} from "@mui/material";
+import { Box, Button, ButtonGroup, Icon, Typography, Tooltip } from "@mui/material";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import EventDialog from "./EventDialog";
 
 const WeeklyCalendar = () => {
-    const weeks = Array.from({ length: 13 }, (_, index) => index + 1);
-    const [unitNameCounts, setUnitNameCounts] = useState({});
-    const [currentYear, setCurrentYear] = useState(2022);
-    const [currentTerm, setCurrentTerm] = useState("TB1");
-    const [events, setEvents] = useState([]);
-    const [arrH, setArrH] = useState([]);
+  const weeks = Array.from({ length: 13 }, (_, index) => index + 1);
+  const [unitNameCounts, setUnitNameCounts] = useState({});
+  const [currentYear, setCurrentYear] = useState(2022);
+  const [currentTerm, setCurrentTerm] = useState("TB1");
+  const [events, setEvents] = useState([]);
+  const [arrH, setArrH] = useState([]);
 
-    const [selectedEvent, setSelectedEvent] = useState(null);
-    const [openDialog, setOpenDialog] = useState(false);
-    
-    const handleEventClick = (event) => {
-      setSelectedEvent(event);
-      setOpenDialog(true);
-    };
-    
-    const handleCloseDialog = () => {
-      setOpenDialog(false);
-    };
-    
-    useEffect(() => {
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleEventClick = (event) => {
+    setSelectedEvent(event);
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+  useEffect(() => {
     loadCalendarEvents();
-    }, []);
+  }, []);
 
-    const loadCalendarEvents = async () => {
-      const result = await axios.get("http://localhost:8080/calendarEvents");
-      const filteredEvents = result.data.filter((event) => {
-        const startDate = new Date(event.start);
-        const endDate = new Date(event.end);
-        const startDateRange = new Date("2022-09-15");
-        const endDateRange = new Date("2023-01-30");
-        setEvents(result.data);
-        let arr=result.data.map(e=>e.unitName);
-        arr=[...new Set(arr)];
-         let seq={};
-         arr.forEach(
-          (e,i)=>{
-            seq[e]=i
-          }
-         )
-          setArrH(seq);
-        
-        return (
-          //use this code in the future
-          // event.term === "TB1" &&
-          startDate >= startDateRange &&
-          endDate <= endDateRange
-        );
-      });
-      setEvents(filteredEvents);
-      
-    
-      // Calculate the number of each unit name
-      const counts = {};
-      filteredEvents.forEach((event) => {
-        const { unitName } = event;
-        counts[unitName] = counts[unitName] ? counts[unitName] + 1 : 1;
-      });
-      setUnitNameCounts(counts);
-    };
-    
+  const loadCalendarEvents = async () => {
+    const result = await axios.get(`/calendarEvents`);
 
-    // const handleEventClick = (event) => {
-    // alert(`Event: ${event.title}`);
-    // };
-
-    const getEventWeekStyle = (event) => {
+    const filteredEvents = result.data.filter((event) => {
       const startDate = new Date(event.start);
       const endDate = new Date(event.end);
-      // const endDated = new Date(ev);
-    
-      // Fixed timeline start date
-      const timelineStart = new Date('2022-09-15');
-    
-      // Calculate the number of weeks between the event start and end
-      const durationWeeks = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 *7) + 1;
-    
-      // Calculate the number of weeks between the start of the timeline and the start of the event
-      const offsetWeeks = (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24 *7);
-    
-      return {
-        left: `calc(${(offsetWeeks / 20) * 100}% + 10px)`, // 20 does not make sense , just for visual demostration
-        width: `calc(${(durationWeeks / 20) * 100}% - 20px)`, // 20 does not make sense , just for visual demostration
-        // backgroundColor: event.type === 'SUMMATIVE' ? 'red' : event.type ==='FORMATIVE' ? 'green' : event.type ==='CAPSTONESUMMATIVE'? 'purple': 'default-color',
-        backgroundColor:
+      const startDateRange = new Date("2022-09-15");
+      const endDateRange = new Date("2023-01-30");
+      setEvents(result.data);
+      let arr = result.data.map(e => e.unitName);
+      arr = [...new Set(arr)];
+      let seq = {};
+      arr.forEach(
+        (e, i) => {
+          seq[e] = i
+        }
+      )
+      setArrH(seq);
+
+      return (
+        //use this code in the future
+        // event.term === "TB1" &&
+        startDate >= startDateRange &&
+        endDate <= endDateRange
+      );
+    });
+    setEvents(filteredEvents);
+
+
+    // Calculate the number of each unit name
+    const counts = {};
+    filteredEvents.forEach((event) => {
+      const { unitName } = event;
+      counts[unitName] = counts[unitName] ? counts[unitName] + 1 : 1;
+    });
+    setUnitNameCounts(counts);
+  };
+
+
+  // const handleEventClick = (event) => {
+  // alert(`Event: ${event.title}`);
+  // };
+
+  const getEventWeekStyle = (event) => {
+    const startDate = new Date(event.start);
+    const endDate = new Date(event.end);
+    // const endDated = new Date(ev);
+
+    // Fixed timeline start date
+    const timelineStart = new Date('2022-09-15');
+
+    // Calculate the number of weeks between the event start and end
+    const durationWeeks = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 7) + 1;
+
+    // Calculate the number of weeks between the start of the timeline and the start of the event
+    const offsetWeeks = (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24 * 7);
+
+    return {
+      left: `calc(${(offsetWeeks / 20) * 100}% + 10px)`, // 20 does not make sense , just for visual demostration
+      width: `calc(${(durationWeeks / 20) * 100}% - 20px)`, // 20 does not make sense , just for visual demostration
+      // backgroundColor: event.type === 'SUMMATIVE' ? 'red' : event.type ==='FORMATIVE' ? 'green' : event.type ==='CAPSTONESUMMATIVE'? 'purple': 'default-color',
+      backgroundColor:
         event.type.toUpperCase() === "SUMMATIVE"
           ? "#B20000"
           : event.type.toUpperCase() === "FORMATIVE"
@@ -99,98 +100,98 @@ const WeeklyCalendar = () => {
             : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
               ? "purple"
               : "default-color",
-      };
     };
-    
+  };
 
-    const handleNextButtonClick = () => {
-      if (currentTerm === "TB1") {
-        setCurrentTerm("TB2");
-      } else {
-        setCurrentTerm("TB1");
-        setCurrentYear((prevYear) => prevYear + 1);
-      }
-    };
-  
-    const handlePrevButtonClick = () => {
-      if (currentTerm === "TB1") {
-        setCurrentTerm("TB2");
-        setCurrentYear((prevYear) => prevYear - 1);
-      } else {
-        setCurrentTerm("TB1");
-      }
-    };
-    
-      // Sort events by unit name
-      // const sortedEvents = events.sort((a, b) => {
-      //   if (a.unitName < b.unitName) {
-      //     return -1;
-      //   }
-      //   if (a.unitName > b.unitName) {
-      //     return 1;
-      //   }
-      //   return 0;
-      // });
 
-      // const filteredEvents = events.filter(event =>{
+  const handleNextButtonClick = () => {
+    if (currentTerm === "TB1") {
+      setCurrentTerm("TB2");
+    } else {
+      setCurrentTerm("TB1");
+      setCurrentYear((prevYear) => prevYear + 1);
+    }
+  };
 
-      //   return event.unitName === 'Intro to Computer Science' || event.unitName === 'Computer Architecture'  || event.unitName ==='Programming in C'
-      // });
-    
+  const handlePrevButtonClick = () => {
+    if (currentTerm === "TB1") {
+      setCurrentTerm("TB2");
+      setCurrentYear((prevYear) => prevYear - 1);
+    } else {
+      setCurrentTerm("TB1");
+    }
+  };
 
-      // const groupedEvents = filteredEvents.reduce((acc, event) => {
-      //   if (!acc[event.unitName]) {
-      //     acc[event.unitName] = [];
-      //   }
-      //   acc[event.unitName].push(event);
-      //   return acc;
-      // }, {});
+  // Sort events by unit name
+  // const sortedEvents = events.sort((a, b) => {
+  //   if (a.unitName < b.unitName) {
+  //     return -1;
+  //   }
+  //   if (a.unitName > b.unitName) {
+  //     return 1;
+  //   }
+  //   return 0;
+  // });
+
+  // const filteredEvents = events.filter(event =>{
+
+  //   return event.unitName === 'Intro to Computer Science' || event.unitName === 'Computer Architecture'  || event.unitName ==='Programming in C'
+  // });
+
+
+  // const groupedEvents = filteredEvents.reduce((acc, event) => {
+  //   if (!acc[event.unitName]) {
+  //     acc[event.unitName] = [];
+  //   }
+  //   acc[event.unitName].push(event);
+  //   return acc;
+  // }, {});
 
   return (
     <div className="timeline-container">
       {/* Title and Navigation Buttons */}
       <Box display='grid' gridTemplateColumns="repeat(10, 1fr)" gap={2}  >
-        <Typography gridColumn="span 4" variant = 'h6' text='textSecondary' align="left">
-          Computer Science 
+        <Typography gridColumn="span 4" variant='h6' text='textSecondary' align="left">
+          Computer Science
         </Typography>
         <Box display='flex' gridColumn="span 3" >
           <Button color="secondary" onClick={() => {
             setCurrentYear(currentYear - 1)
-            if(currentTerm=== "TB1") {
+            if (currentTerm === "TB1") {
               setCurrentTerm("TB2")
-            }else {
+            } else {
               setCurrentTerm("TB1")
             }
-            }}>
-            <NavigateBeforeIcon/>
+          }}>
+            <NavigateBeforeIcon />
           </Button>
-          <Typography fontSize={18} p = {2}>{currentYear}~{currentYear + 1} {currentTerm}</Typography>
+          <Typography fontSize={18} p={2}>{currentYear}~{currentYear + 1} {currentTerm}</Typography>
           <Button color="secondary" onClick={() => {
             setCurrentYear(currentYear + 1)
-            if(currentTerm=== "TB1") {
+            if (currentTerm === "TB1") {
               setCurrentTerm("TB2")
-            }else {
+            } else {
               setCurrentTerm("TB1")
             }
-            }}>
+          }}>
             <NavigateNextIcon />
           </Button>
         </Box>
-        <Box gridColumn="span 3" align ='right'>
+        <Box gridColumn="span 3" align='right'>
           <ButtonGroup variant="contained" aria-label="outlined primary button group" color='inherit'>
-            <Button component = {Link} to='/'sx={{ color: 'black', backgroundColor: '#a0332c' }}>Year</Button>
-            <Button component = {Link} to='/weeklyCalendar'sx={{ color: 'black', backgroundColor: '#a0332c' }}>Term</Button>
-            <Button component = {Link} to='/CalendarByModule'sx={{ color: 'black', backgroundColor: '#a0332c'}}>Module</Button>
+            <Button component={Link} to='/' sx={{ color: 'black', backgroundColor: '#a0332c' }}>Year</Button>
+            <Button component={Link} to='/weeklyCalendar' sx={{ color: 'black', backgroundColor: '#a0332c' }}>Term</Button>
+            <Button component={Link} to='/CalendarByModule' sx={{ color: 'black', backgroundColor: '#a0332c' }}>Module</Button>
           </ButtonGroup>
         </Box>
       </Box>
-  
+
       {/* <div className="weeks-container" style={{marginLeft:'150px'}}> */}
       <div className="weeks-container" >
         {weeks.map((week, index) => (
           <div className="week" key={week} style={{ flex: 1 }}>
-            {week === 7 ? "AW" : week === 6 ? "RW" : week === 10 ? "CW1" :week ===11 ? "CW2" : week ===12 ? "AW":week}
-            {index !== week.length && index !== 0 && <div className="vertical-week" style={{ height: `${(Object.values(arrH).length - 1)/2 * 780}%` }}></div>}
+            {week === 7 ? "AW" : week === 6 ? "RW" : week === 10 ? "CW1" : week === 11 ? "CW2" : week === 12 ? "AW" : week}
+            {index !== week.length && index !== 0 && <div className="vertical-week" style={{ height: `${(Object.values(arrH).length - 1) / 2 * 780}%` }}></div>}
           </div>
         ))}
       </div>
@@ -218,8 +219,8 @@ const WeeklyCalendar = () => {
                   >
                     {unitName}
                   </div>
-                  
-  
+
+
                 )}
               </React.Fragment>
             );
@@ -247,8 +248,10 @@ const WeeklyCalendar = () => {
           >
             <div
               className="event"
-              style={{ ...getEventWeekStyle(event), top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`, 
-              height:`${event.weight >= 40 ? 30 : 20}px`, }}
+              style={{
+                ...getEventWeekStyle(event), top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`,
+                height: `${event.weight >= 40 ? 30 : 20}px`,
+              }}
               onClick={() => handleEventClick(event)}
             >
               {event.title}
@@ -271,7 +274,7 @@ const WeeklyCalendar = () => {
       </div> */}
 
       <EventDialog open={openDialog} handleCloseDialog={handleCloseDialog} event={selectedEvent} />
-  </div>
+    </div>
   );
 };
 

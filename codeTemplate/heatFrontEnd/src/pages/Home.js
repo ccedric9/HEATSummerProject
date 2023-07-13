@@ -36,16 +36,16 @@ const Home = () => {
   }, []);
 
   const loadCalendarEvents = async () => {
-    const result = await axios.get("http://localhost:8080/calendarEvents");
+    const result = await axios.get(`/calendarEvents`);
     setEvents(result.data);
-  let arr=result.data.map(e=>e.unitName);
-  arr=[...new Set(arr)];
-   let seq={};
-   arr.forEach(
-    (e,i)=>{
-      seq[e]=i
-    }
-   )
+    let arr = result.data.map(e => e.unitName);
+    arr = [...new Set(arr)];
+    let seq = {};
+    arr.forEach(
+      (e, i) => {
+        seq[e] = i
+      }
+    )
     setArrH(seq);
     //Caculate the number of each unit name
     const counts = {};
@@ -85,10 +85,10 @@ const Home = () => {
         event.type.toUpperCase() === "SUMMATIVE"
           ? "#CC313D"
           : event.type.toUpperCase() === "FORMATIVE"
-          ? "#2C5F2D"
-          : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-          ? "#8A307F"
-          : "default-color",
+            ? "#2C5F2D"
+            : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+              ? "#8A307F"
+              : "default-color",
     };
   };
 
@@ -128,12 +128,12 @@ const Home = () => {
       {/* Months */}
       <div className="months-container">
         {months.map((month, index) => (
-        
-            <div className="month" key={month} style={{flex: 1}}>
-              {month}
-              {index !== months.length && index !== 0 &&<div className="vertical-line" style={{ height: `${(Object.values(arrH).length - 1) * 780}%` }}></div>}
-            </div>
-    
+
+          <div className="month" key={month} style={{ flex: 1 }}>
+            {month}
+            {index !== months.length && index !== 0 && <div className="vertical-line" style={{ height: `${(Object.values(arrH).length - 1) * 780}%` }}></div>}
+          </div>
+
         ))}
       </div>
 
@@ -144,8 +144,8 @@ const Home = () => {
             const isSameUnit = index > 0 && events[index - 1].unitName === event.unitName;
             const unitName = isSameUnit ? "" : event.unitName;
             const occurrenceCount = unitNameCounts[event.unitName] || 0;
-            const unitHeight =150;
-            
+            const unitHeight = 150;
+
 
             const weight = event.weight;
 
@@ -169,11 +169,11 @@ const Home = () => {
         {events.map((event, index) => (
           <div
             className="event"
-            key={index} 
+            key={index}
             style={{
               ...getEventStyle(event),
-              top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`,             
-              height:`${event.weight >= 40 ? 30 : 20}px`,
+              top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`,
+              height: `${event.weight >= 40 ? 30 : 20}px`,
             }}
             onClick={() => handleEventClick(event)}
           >

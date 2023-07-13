@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./CalendarByModule.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import {backgroundColor} from "react-native-calendars/src/style";
-import {Box, Button, ButtonGroup, Icon, Typography} from "@mui/material";
+import { backgroundColor } from "react-native-calendars/src/style";
+import { Box, Button, ButtonGroup, Icon, Typography } from "@mui/material";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-export default function CalendarByModule(){
+export default function CalendarByModule() {
     const [events, setEvents] = useState([]);
     // const eventsSet = new Set(); // create a new hashSet to store the unitName
     const [currentYear, setCurrentYear] = useState(2022);
@@ -19,7 +19,8 @@ export default function CalendarByModule(){
     }, []);
 
     const loadCalendarEvents = async () => {
-        const result = await axios.get("http://localhost:8080/calendarEvents");
+        const result = await axios.get(`/calendarEvents`);
+
         setEvents(result.data);
 
     };
@@ -35,18 +36,18 @@ export default function CalendarByModule(){
         const credit = event.unitCredit;
 
         return {
-            width: term === "3"?'195%':'90%',
-            height: credit < "20" ? '130px' : credit < "30" ? '150px' : credit <'40' ? '170px' : '200px',
+            width: term === "3" ? '195%' : '90%',
+            height: credit < "20" ? '130px' : credit < "30" ? '150px' : credit < '40' ? '170px' : '200px',
             backgroundColor: '#F9F6EE',
         };
 
     };
 
-    function getUnitNameClass(events){
+    function getUnitNameClass(events) {
         const credit = events.unitCredit;
-        if (credit==="10"){
+        if (credit === "10") {
             return "credit10";
-        } else if (credit==="20"){
+        } else if (credit === "20") {
             return "credit20";
         } else {
             return "credit30plus";
@@ -57,23 +58,23 @@ export default function CalendarByModule(){
         <div className="timeline-container-module">
             {/* Title and Navigation Buttons */}
             <Box display='grid' gridTemplateColumns="repeat(10, 1fr)" gap={2}  >
-                <Typography gridColumn="span 4" variant = 'h6' text='textSecondary' align="left">
+                <Typography gridColumn="span 4" variant='h6' text='textSecondary' align="left">
                     Computer Science
                 </Typography>
                 <Box display='flex' gridColumn="span 3" >
                     <Button color="secondary" onClick={() => setCurrentYear(currentYear - 1)}>
-                        <NavigateBeforeIcon/>
+                        <NavigateBeforeIcon />
                     </Button>
-                    <Typography fontSize={18} p = {2}>{currentYear}~{currentYear + 1}</Typography>
+                    <Typography fontSize={18} p={2}>{currentYear}~{currentYear + 1}</Typography>
                     <Button color="secondary" onClick={() => setCurrentYear(currentYear + 1)}>
                         <NavigateNextIcon />
                     </Button>
                 </Box>
-                <Box gridColumn="span 3" align ='right'>
+                <Box gridColumn="span 3" align='right'>
                     <ButtonGroup variant="contained" aria-label="outlined primary button group" color='inherit'>
-                        <Button component = {Link} to='/'sx={{ color: 'black', backgroundColor: '#a0332c' }}>Year</Button>
-                        <Button component = {Link} to='/weeklyCalendar'sx={{ color: 'black', backgroundColor: '#a0332c' }}>Term</Button>
-                        <Button component = {Link} to='/CalendarByModule'sx={{ color: 'black', backgroundColor: '#a0332c'}}>Module</Button>
+                        <Button component={Link} to='/' sx={{ color: 'black', backgroundColor: '#a0332c' }}>Year</Button>
+                        <Button component={Link} to='/weeklyCalendar' sx={{ color: 'black', backgroundColor: '#a0332c' }}>Term</Button>
+                        <Button component={Link} to='/CalendarByModule' sx={{ color: 'black', backgroundColor: '#a0332c' }}>Module</Button>
                     </ButtonGroup>
                 </Box>
             </Box>
@@ -104,15 +105,16 @@ export default function CalendarByModule(){
                                         <div
                                             className="test-name"
                                             key={subIndex}
-                                            style={{ backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
-                                            ? '#CC313D'
-                                            : event.type.toUpperCase() === "FORMATIVE"
-                                              ? '#2C5F2D'
-                                              : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                                                ? '#8A307F'
-                                                : "default-color" ,
-                                                color:'white',
-                                                borderRadius:'5px'
+                                            style={{
+                                                backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
+                                                    ? '#CC313D'
+                                                    : event.type.toUpperCase() === "FORMATIVE"
+                                                        ? '#2C5F2D'
+                                                        : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                            ? '#8A307F'
+                                                            : "default-color",
+                                                color: 'white',
+                                                borderRadius: '5px'
 
                                             }}
                                         >
@@ -144,17 +146,17 @@ export default function CalendarByModule(){
                                         <div
                                             className="test-name"
                                             key={subIndex}
-                                            style={{ 
+                                            style={{
                                                 backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
-                                            ? '#CC313D'
-                                            : event.type.toUpperCase() === "FORMATIVE"
-                                              ? '#2C5F2D'
-                                              : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                                                ? '#8A307F'
-                                                : "default-color" ,
-                                                color:'white',
-                                                borderRadius:'5px'
-                
+                                                    ? '#CC313D'
+                                                    : event.type.toUpperCase() === "FORMATIVE"
+                                                        ? '#2C5F2D'
+                                                        : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                            ? '#8A307F'
+                                                            : "default-color",
+                                                color: 'white',
+                                                borderRadius: '5px'
+
                                             }}
                                         >
                                             {event.title}
@@ -185,17 +187,17 @@ export default function CalendarByModule(){
                                         <div
                                             className="test-name"
                                             key={subIndex}
-                                            style={{ 
+                                            style={{
                                                 backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
-                                            ? '#CC313D'
-                                            : event.type.toUpperCase() === "FORMATIVE"
-                                              ? '#2C5F2D'
-                                              : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                                                ? '#8A307F'
-                                                : "default-color" ,
-                                                color:'white',
-                                                borderRadius:'5px'
-                
+                                                    ? '#CC313D'
+                                                    : event.type.toUpperCase() === "FORMATIVE"
+                                                        ? '#2C5F2D'
+                                                        : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                            ? '#8A307F'
+                                                            : "default-color",
+                                                color: 'white',
+                                                borderRadius: '5px'
+
                                             }}
                                         >
                                             {event.title}
