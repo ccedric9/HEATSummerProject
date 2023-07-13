@@ -167,18 +167,32 @@ const Home = () => {
           })}
         </div>
         {events.map((event, index) => (
-          <div
-            className="event"
+          <Tooltip
+            title={
+              <div>
+                <Typography variant="subtitle1">{event.title}</Typography>
+                <Typography variant="body2">Start Date: {event.start}</Typography>
+                <Typography variant="body2">End Date: {event.end}</Typography>
+                {event.location && (
+                  <Typography variant="body2">Location: {event.location}</Typography>
+                )}
+              </div>
+            }
             key={index}
-            style={{
-              ...getEventStyle(event),
-              top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`,
-              height: `${event.weight >= 40 ? 30 : 20}px`,
-            }}
-            onClick={() => handleEventClick(event)}
           >
-            {event.title}{arrH[event.unitName]}
-          </div>
+            <div
+              className="event"
+              key={index}
+              style={{
+                ...getEventStyle(event),
+                top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`,
+                height: `${event.weight >= 40 ? 30 : 20}px`,
+              }}
+              onClick={() => handleEventClick(event)}
+            >
+              {event.title}{arrH[event.unitName]}
+            </div>
+          </Tooltip>
         ))}
 
 

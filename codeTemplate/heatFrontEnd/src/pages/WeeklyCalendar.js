@@ -190,7 +190,8 @@ const WeeklyCalendar = () => {
       <div className="weeks-container" >
         {weeks.map((week, index) => (
           <div className="week" key={week} style={{ flex: 1 }}>
-            {week === 7 ? "AW" : week === 6 ? "RW" : week === 10 ? "CW1" : week === 11 ? "CW2" : week === 12 ? "AW" : week}
+            {/* {week === 7 ? "AW" : week === 6 ? "RW" : week === 10 ? "CW1" : week === 11 ? "CW2" : week === 12 ? "AW" : week} */}
+            {week}
             {index !== week.length && index !== 0 && <div className="vertical-week" style={{ height: `${(Object.values(arrH).length - 1) / 2 * 780}%` }}></div>}
           </div>
         ))}
