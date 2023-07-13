@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {Box, Button, ButtonGroup, Icon, Typography} from "@mui/material";
+import {Box, Button, ButtonGroup, Icon, Typography, Tooltip} from "@mui/material";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import EventDialog from "./EventDialog";
 
 const WeeklyCalendar = () => {
     const weeks = Array.from({ length: 13 }, (_, index) => index + 1);
@@ -14,6 +15,18 @@ const WeeklyCalendar = () => {
     const [events, setEvents] = useState([]);
     const [arrH, setArrH] = useState([]);
 
+    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [openDialog, setOpenDialog] = useState(false);
+    
+    const handleEventClick = (event) => {
+      setSelectedEvent(event);
+      setOpenDialog(true);
+    };
+    
+    const handleCloseDialog = () => {
+      setOpenDialog(false);
+    };
+    
     useEffect(() => {
     loadCalendarEvents();
     }, []);
@@ -56,13 +69,14 @@ const WeeklyCalendar = () => {
     };
     
 
-    const handleEventClick = (event) => {
-    alert(`Event: ${event.title}`);
-    };
+    // const handleEventClick = (event) => {
+    // alert(`Event: ${event.title}`);
+    // };
 
     const getEventWeekStyle = (event) => {
       const startDate = new Date(event.start);
       const endDate = new Date(event.end);
+      // const endDated = new Date(ev);
     
       // Fixed timeline start date
       const timelineStart = new Date('2022-09-15');
@@ -212,19 +226,36 @@ const WeeklyCalendar = () => {
           })}
         </div>
         {events.map((event, index) => (
-          <div
-            className="event"
+          <Tooltip
+            title={
+              <div>
+                <Typography variant="subtitle1">{event.title}</Typography>
+                <Typography variant="body2">Start Date: {event.start}</Typography>
+                <Typography variant="body2">End Date: {event.end}</Typography>
+                {event.location && (
+                  <Typography variant="body2">Location: {event.location}</Typography>
+                )}
+              </div>
+            }
             key={index}
-            style={{
-              ...getEventWeekStyle(event),
-              top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`, 
-              height:`${event.weight >= 40 ? 30 : 20}px`,
-            }}
+            // style={{
+            //   ...getEventWeekStyle(event),
+            //   top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`, 
+            //   height:`${event.weight >= 40 ? 30 : 20}px`,
+            // }}
             onClick={() => handleEventClick(event)}
           >
-            {event.title}
-          </div>
+            <div
+              className="event"
+              style={{ ...getEventWeekStyle(event), top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`, 
+              height:`${event.weight >= 40 ? 30 : 20}px`, }}
+              onClick={() => handleEventClick(event)}
+            >
+              {event.title}
+            </div>
+          </Tooltip>
         ))}
+
       </div>
       {/* <div className="events-container">
         {filteredEvents.map((event, index) => (
@@ -238,6 +269,8 @@ const WeeklyCalendar = () => {
           </div>
         ))}
       </div> */}
+
+      <EventDialog open={openDialog} handleCloseDialog={handleCloseDialog} event={selectedEvent} />
   </div>
   );
 };
