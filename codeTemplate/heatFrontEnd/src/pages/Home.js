@@ -28,7 +28,7 @@ const Home = () => {
   const [unitNameCounts, setUnitNameCounts] = useState({});
 
   const [currentYear, setCurrentYear] = useState(2022);
-
+  const [arrH, setArrH] = useState([]);
 
   useEffect(() => {
     loadCalendarEvents();
@@ -37,7 +37,15 @@ const Home = () => {
   const loadCalendarEvents = async () => {
     const result = await axios.get("http://localhost:8080/calendarEvents");
     setEvents(result.data);
-
+  let arr=result.data.map(e=>e.unitName);
+  arr=[...new Set(arr)];
+   let seq={};
+   arr.forEach(
+    (e,i)=>{
+      seq[e]=i
+    }
+   )
+    setArrH(seq);
     //Caculate the number of each unit name
     const counts = {};
     result.data.forEach((event) => {
@@ -114,7 +122,7 @@ const Home = () => {
         
             <div className="month" key={month} style={{flex: 1}}>
               {month}
-              {index !== months.length && index !== 0 &&<div className="vertical-line"></div>}
+              {index !== months.length && index !== 0 &&<div className="vertical-line" style={{ height: `${(Object.values(arrH).length - 1) * 780}%` }}></div>}
             </div>
     
         ))}
@@ -128,17 +136,20 @@ const Home = () => {
               index > 0 && events[index - 1].unitName === event.unitName;
             const unitName = isSameUnit ? "" : event.unitName;
             const occurrenceCount = unitNameCounts[event.unitName] || 0;
-            const unitHeight = 100;
+            const unitHeight =150;
+            
+
+            const weight = event.weight;
 
             return (
               <React.Fragment key={index}>
-                {isSameUnit && (
+                {/* {isSameUnit && (
                   <div className="unitName-placeholder" style={{ height: "30px" }}></div>
-                )}
+                )} */}
                 {!isSameUnit && (
                   <div
                     className="unitName"
-                    style={{ height: `${unitHeight}px`, top: `${index * 30}px`, }}
+                    style={{ height: `${unitHeight}px` }}
                   >
                     {unitName}
                   </div>
@@ -150,14 +161,15 @@ const Home = () => {
         {events.map((event, index) => (
           <div
             className="event"
-            key={index}
+            key={index} 
             style={{
               ...getEventStyle(event),
-              top: `${index * 30}px`,
+              top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`,             
+              height:`${event.weight >= 40 ? 30 : 20}px`,
             }}
             onClick={() => handleEventClick(event)}
           >
-            {event.title}
+            {event.title}{arrH[event.unitName]}
           </div>
         ))}
       </div>

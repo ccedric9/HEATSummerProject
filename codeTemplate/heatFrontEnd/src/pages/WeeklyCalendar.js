@@ -12,6 +12,7 @@ const WeeklyCalendar = () => {
     const [currentYear, setCurrentYear] = useState(2022);
     const [currentTerm, setCurrentTerm] = useState("TB1");
     const [events, setEvents] = useState([]);
+    const [arrH, setArrH] = useState([]);
 
     useEffect(() => {
     loadCalendarEvents();
@@ -24,6 +25,17 @@ const WeeklyCalendar = () => {
         const endDate = new Date(event.end);
         const startDateRange = new Date("2022-09-15");
         const endDateRange = new Date("2023-01-30");
+        setEvents(result.data);
+        let arr=result.data.map(e=>e.unitName);
+        arr=[...new Set(arr)];
+         let seq={};
+         arr.forEach(
+          (e,i)=>{
+            seq[e]=i
+          }
+         )
+          setArrH(seq);
+        
         return (
           //use this code in the future
           // event.term === "TB1" &&
@@ -32,6 +44,7 @@ const WeeklyCalendar = () => {
         );
       });
       setEvents(filteredEvents);
+      
     
       // Calculate the number of each unit name
       const counts = {};
@@ -66,7 +79,7 @@ const WeeklyCalendar = () => {
         // backgroundColor: event.type === 'SUMMATIVE' ? 'red' : event.type ==='FORMATIVE' ? 'green' : event.type ==='CAPSTONESUMMATIVE'? 'purple': 'default-color',
         backgroundColor:
         event.type.toUpperCase() === "SUMMATIVE"
-          ? "red"
+          ? "#B20000"
           : event.type.toUpperCase() === "FORMATIVE"
             ? "green"
             : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
@@ -163,7 +176,7 @@ const WeeklyCalendar = () => {
         {weeks.map((week, index) => (
           <div className="week" key={week} style={{ flex: 1 }}>
             {week === 7 ? "AW" : week === 6 ? "RW" : week === 10 ? "CW1" :week ===11 ? "CW2" : week ===12 ? "AW":week}
-            {index !== week.length && index !== 0 && <div className="vertical-line"></div>}
+            {index !== week.length && index !== 0 && <div className="vertical-week" style={{ height: `${(Object.values(arrH).length - 1)/2 * 780}%` }}></div>}
           </div>
         ))}
       </div>
@@ -177,17 +190,17 @@ const WeeklyCalendar = () => {
               index > 0 && events[index - 1].unitName === event.unitName;
             const unitName = isSameUnit ? "" : event.unitName;
             const occurrenceCount = unitNameCounts[event.unitName] || 0;
-            const unitHeight = occurrenceCount * 30;
+            const unitHeight = 150;
 
             return (
               <React.Fragment key={index}>
-                {isSameUnit && (
+                {/* {isSameUnit && (
                   <div className="unitName-placeholder" style={{ height: "30px" }}></div>
-                )}
+                )} */}
                 {!isSameUnit && (
                   <div
                     className="unitName"
-                    style={{ height: `${unitHeight}px`, top: `${index * 30}px`, }}
+                    style={{ height: `${unitHeight}px` }}
                   >
                     {unitName}
                   </div>
@@ -204,7 +217,8 @@ const WeeklyCalendar = () => {
             key={index}
             style={{
               ...getEventWeekStyle(event),
-              top: `${index * 30}px`,
+              top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`, 
+              height:`${event.weight >= 40 ? 30 : 20}px`,
             }}
             onClick={() => handleEventClick(event)}
           >

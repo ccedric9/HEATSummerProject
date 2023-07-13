@@ -13,12 +13,33 @@
     margin-left: 8px;
     margin-right: 8px;
     width: 1px;
-    background-color: #ccc;
+    background-color: #eee;
     z-index: -1;
-    height: 100%; /* Adjust the height to extend the lines */
+    /* height: 700%; Adjust the height to extend the lines */
   }
 
-  .vertical-line::before{
+  /* .vertical-line::before{
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    width: 1px;
+    height: 900px;
+    border-left: 1px dashed #ccc;
+    transform: translateX(-50%);
+  } */
+
+  .vertical-week {
+    position: relative;
+    /* left: 21.5%; */
+    margin-left: 8px;
+    margin-right: 8px;
+    width: 1px;
+    background-color: #eee;
+    z-index: -1;
+  }
+
+  /* .vertical-week::before{
     content: '';
     position: absolute;
     top: 0px;
@@ -27,7 +48,7 @@
     height: 500px;
     border-left: 1px dashed #ccc;
     transform: translateX(-50%);
-  }
+  } */
   
   .title {
     text-align: center;
@@ -124,18 +145,18 @@
     position: absolute;
     left: -160px; /* add this line to position unitNames on the left */
     top: 0;
-    margin-bottom: auto;
+    
   }
   
   .unitName {
-    position: absolute;
+    /* position: absolute; */
     width: 150px; /* adjust this value as needed */
     text-overflow: ellipsis;
-    overflow: hidden;
+    /* overflow: hidden; */
     white-space: nowrap;
-    background-color: #f2f2f2;
+    background-color: rgb(252, 252, 252);
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #eee;
     padding: 2px 5px;
     text-align: center;
     /* font-size: 0.9em; */
@@ -147,8 +168,18 @@
     justify-content: center;
     flex-wrap: wrap;
     white-space: normal;
+    position: relative;
   }
-  
+  .unitName::after{
+    content: "";
+    position: absolute;
+    width: 900%;
+    height: 1px;
+    background-color: #ccc;
+    display: block;
+    left: 100%;
+    bottom: 0;
+  }
   
   .year-selector {
     display: flex;
@@ -183,28 +214,4 @@
   .year-selector button:hover {
     background-color: #ccc;
   }
-  
-  .separator {
-    position: relative;
-    width: 1px;
-    height: 100%;
-    background: black;
-    margin-left: 8px;
-    margin-right: 8px;
-  }
-  
-  .separator::before {
-    content: '';
-    position: absolute;
-    top: 0px; /* Set a large negative value to extend the line upwards */
-    left: 50%;
-    width: 1px;
-    height: 500px; /* Set a large positive value to extend the line downwards */
-    border-left: 1px dashed black;
-    transform: translateX(-50%);
-  }
-  
-  
-  
-  
   
