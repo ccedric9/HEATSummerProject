@@ -133,7 +133,6 @@ const Home = () => {
             {month}
             {index !== months.length && index !== 0 && <div className="vertical-line" style={{ height: `${(Object.values(arrH).length - 1) * 780}%` }}></div>}
           </div>
-
         ))}
       </div>
 
@@ -145,8 +144,6 @@ const Home = () => {
             const unitName = isSameUnit ? "" : event.unitName;
             const occurrenceCount = unitNameCounts[event.unitName] || 0;
             const unitHeight = 150;
-
-
             const weight = event.weight;
 
             return (
@@ -194,9 +191,6 @@ const Home = () => {
             </div>
           </Tooltip>
         ))}
-
-
-
       </div>
 
       {/* Event Popup Dialog */}
@@ -276,12 +270,6 @@ const Home = () => {
           </>
         )}
       </Dialog>
-
-
-
-
-
-
     </div>
   );
 };

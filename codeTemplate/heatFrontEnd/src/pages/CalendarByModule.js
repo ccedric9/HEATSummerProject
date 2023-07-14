@@ -109,13 +109,12 @@ export default function CalendarByModule() {
                                                 backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
                                                     ? '#CC313D'
                                                     : event.type.toUpperCase() === "FORMATIVE"
-                                                        ? '#2C5F2D'
-                                                        : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                                                            ? '#8A307F'
-                                                            : "default-color",
+                                                    ? '#2C5F2D'
+                                                    : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                    ? '#8A307F'
+                                                    : "default-color",
                                                 color: 'white',
                                                 borderRadius: '5px'
-
                                             }}
                                         >
                                             {event.title}
@@ -148,12 +147,12 @@ export default function CalendarByModule() {
                                             key={subIndex}
                                             style={{
                                                 backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
-                                                    ? '#CC313D'
-                                                    : event.type.toUpperCase() === "FORMATIVE"
-                                                        ? '#2C5F2D'
-                                                        : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                                                            ? '#8A307F'
-                                                            : "default-color",
+                                                ? '#CC313D'
+                                                : event.type.toUpperCase() === "FORMATIVE"
+                                                ? '#2C5F2D'
+                                                : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                ? '#8A307F'
+                                                : "default-color",
                                                 color: 'white',
                                                 borderRadius: '5px'
 
@@ -189,12 +188,12 @@ export default function CalendarByModule() {
                                             key={subIndex}
                                             style={{
                                                 backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
-                                                    ? '#CC313D'
-                                                    : event.type.toUpperCase() === "FORMATIVE"
-                                                        ? '#2C5F2D'
-                                                        : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                                                            ? '#8A307F'
-                                                            : "default-color",
+                                                ? '#CC313D'
+                                                : event.type.toUpperCase() === "FORMATIVE"
+                                                ? '#2C5F2D'
+                                                : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                ? '#8A307F'
+                                                : "default-color",
                                                 color: 'white',
                                                 borderRadius: '5px'
 
