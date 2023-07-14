@@ -5,6 +5,7 @@
     margin: 20px;
     font-family: Arial, sans-serif;
     padding-left: 160px; /* add this line to move the entire timeline to the right */
+    height: 150vh;
   
   }
   .vertical-line {

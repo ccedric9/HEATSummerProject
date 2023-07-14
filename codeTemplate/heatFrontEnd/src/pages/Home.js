@@ -147,10 +147,7 @@ const Home = () => {
             const weight = event.weight;
 
             return (
-              <React.Fragment key={index}>
-                {/* {isSameUnit && (
-                  <div className="unitName-placeholder" style={{ height: "30px" }}></div>
-                )} */}
+              <div key={index}>
                 {!isSameUnit && (
                   <div
                     className="unitName"
@@ -159,7 +156,7 @@ const Home = () => {
                     {unitName}
                   </div>
                 )}
-              </React.Fragment>
+              </div>
             );
           })}
         </div>

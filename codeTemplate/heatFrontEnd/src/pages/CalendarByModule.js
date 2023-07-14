@@ -114,7 +114,7 @@ export default function CalendarByModule() {
                                                     ? '#8A307F'
                                                     : "default-color",
                                                 color: 'white',
-                                                borderRadius: '5px'
+                                                borderRadius: '5px',
                                             }}
                                         >
                                             {event.title}
@@ -123,6 +123,7 @@ export default function CalendarByModule() {
                                 </div>
                                 <div className="unit-codes">{filteredEvents[0].unitCode}</div>
                                 <div className="unit-name">{unitName}</div>
+                                <div className="unit-credit">{filteredEvents[0].unitCredit}</div>
                             </div>
                         );
                     })}
@@ -164,6 +165,7 @@ export default function CalendarByModule() {
                                 </div>
                                 <div className="unit-codes">{filteredEvents[0].unitCode}</div>
                                 <div className="unit-name">{unitName}</div>
+                                <div className="unit-credit">{filteredEvents[0].unitCredit}</div>
                             </div>
                         );
                     })}
@@ -205,6 +207,7 @@ export default function CalendarByModule() {
                                 </div>
                                 <div className="unit-codes">{filteredEvents[0].unitCode}</div>
                                 <div className="unit-name">{unitName}</div>
+                                <div className="unit-credit">{filteredEvents[0].unitCredit}</div>
                             </div>
                         );
                     })}

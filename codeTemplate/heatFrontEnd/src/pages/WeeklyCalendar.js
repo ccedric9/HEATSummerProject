@@ -122,31 +122,6 @@ const WeeklyCalendar = () => {
     }
   };
 
-  // Sort events by unit name
-  // const sortedEvents = events.sort((a, b) => {
-  //   if (a.unitName < b.unitName) {
-  //     return -1;
-  //   }
-  //   if (a.unitName > b.unitName) {
-  //     return 1;
-  //   }
-  //   return 0;
-  // });
-
-  // const filteredEvents = events.filter(event =>{
-
-  //   return event.unitName === 'Intro to Computer Science' || event.unitName === 'Computer Architecture'  || event.unitName ==='Programming in C'
-  // });
-
-
-  // const groupedEvents = filteredEvents.reduce((acc, event) => {
-  //   if (!acc[event.unitName]) {
-  //     acc[event.unitName] = [];
-  //   }
-  //   acc[event.unitName].push(event);
-  //   return acc;
-  // }, {});
-
   return (
     <div className="timeline-container">
       {/* Title and Navigation Buttons */}
@@ -190,13 +165,11 @@ const WeeklyCalendar = () => {
       <div className="weeks-container" >
         {weeks.map((week, index) => (
           <div className="week" key={week} style={{ flex: 1 }}>
-            {/* {week === 7 ? "AW" : week === 6 ? "RW" : week === 10 ? "CW1" : week === 11 ? "CW2" : week === 12 ? "AW" : week} */}
             {week}
             {index !== week.length && index !== 0 && <div className="vertical-week" style={{ height: `${(Object.values(arrH).length - 1) / 2 * 780}%` }}></div>}
           </div>
         ))}
       </div>
-
 
       {/* Events */}
       <div className="events-container">
@@ -209,10 +182,7 @@ const WeeklyCalendar = () => {
             const unitHeight = 150;
 
             return (
-              <React.Fragment key={index}>
-                {/* {isSameUnit && (
-                  <div className="unitName-placeholder" style={{ height: "30px" }}></div>
-                )} */}
+              <div key={index}>
                 {!isSameUnit && (
                   <div
                     className="unitName"
@@ -221,9 +191,8 @@ const WeeklyCalendar = () => {
                     {unitName}
                   </div>
 
-
                 )}
-              </React.Fragment>
+              </div>
             );
           })}
         </div>
@@ -240,11 +209,6 @@ const WeeklyCalendar = () => {
               </div>
             }
             key={index}
-            // style={{
-            //   ...getEventWeekStyle(event),
-            //   top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`, 
-            //   height:`${event.weight >= 40 ? 30 : 20}px`,
-            // }}
             onClick={() => handleEventClick(event)}
           >
             <div
@@ -261,19 +225,6 @@ const WeeklyCalendar = () => {
         ))}
 
       </div>
-      {/* <div className="events-container">
-        {filteredEvents.map((event, index) => (
-          <div
-            className="event"
-            key={index}
-            style={{ ...getEventWeekStyle(event), top: `${index * 30}px` }}
-            onClick={() => handleEventClick(event)}
-          >
-            {event.title}
-          </div>
-        ))}
-      </div> */}
-
       <EventDialog open={openDialog} handleCloseDialog={handleCloseDialog} event={selectedEvent} />
     </div>
   );

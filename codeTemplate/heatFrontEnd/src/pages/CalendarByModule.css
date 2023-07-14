@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+*{
+  font-family: 'Open Sans';
+}
 .timeline-container-module {
     display: flex;
     flex-direction: column;
@@ -76,6 +81,13 @@
 
 }
 
+.unit-credit{
+    position: relative;
+    top:-120px;
+    left:10px;
+    font-weight: bolder;
+}
+
 .credit10 {
     display: block;
     border-style: dashed;
@@ -103,10 +115,10 @@
     text-align: justify;
     display: inherit;
     position: absolute;
-
 }
 
-.unit-name {
+.unit-name{
+    text-align: center;
 
 }
 

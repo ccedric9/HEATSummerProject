@@ -1,8 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+*{
+  font-family: 'Open Sans';
+}
+
 .footer{
     background-color: #171717;
-    height: 30vh;
+    height: 27vh;
     width: 100vw;
     border-radius: 5px;
+    flex-shrink: 0;
+    margin-top: auto;
+    position: relative;
+}
+
+.logo{
+    position: absolute;
+    height: 40px;
+    bottom: 100px;
+    left: 40px;
+
 }
 
 .top{
@@ -14,6 +31,7 @@
 
 .item{
     margin-top: 5px;
+    margin-left: 5px;
     font-size: 14px;
     text-decoration: none;
     color: white;

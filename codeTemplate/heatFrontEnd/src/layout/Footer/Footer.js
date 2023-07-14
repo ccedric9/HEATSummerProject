@@ -1,14 +1,16 @@
 import React from 'react'
 import './Footer.css';
 import { Link } from "react-router-dom";
+import Image from '../../photos/uob-logo.png';
 
 const Footer = () => {
   return (
     <div className="footer">
+        <img src={Image} className='logo' alt="logo"/>
         <div className="top">
             <div className="contact">
                 <h5>Contact</h5>
-                <div className="item">Queens Building, Bristol,BS8 1TH, UK</div>
+                <div className="item">Queens Building, Bristol,BS8 1TR, UK</div>
                 <div className="item">Tel: +44 (0)117 928 9000</div>
                 <div className="item">Email: admin@bristol.ac.uk</div>
             </div>

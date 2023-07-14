@@ -4,6 +4,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import PersonIcon from "@mui/icons-material/Person";
 import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
+import HomeIcon from '@mui/icons-material/Home';
 import { Link } from "react-router-dom";
 
 
@@ -19,6 +20,9 @@ const Navbar = () => {
         </Typography>
       {/* ICONS */}
       <Box display="flex">
+        <IconButton component={Link} to='/'>
+          <HomeIcon />
+        </IconButton>
         <IconButton component = {Link} to='/login'>
           <PersonIcon/>
         </IconButton>
