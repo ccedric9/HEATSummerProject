@@ -203,13 +203,16 @@ export default function CalendarByModule() {
                                             {event.title}
                                         </div>
                                     ))}
+
                                 </div>
                                 <div className="unit-codes">{filteredEvents[0].unitCode}</div>
                                 <div className="unit-name">{unitName}</div>
+
                             </div>
                         );
                     })}
                 </div>
+
             </div>
 
 
