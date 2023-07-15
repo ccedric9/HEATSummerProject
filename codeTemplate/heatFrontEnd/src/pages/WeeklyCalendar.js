@@ -215,7 +215,7 @@ const WeeklyCalendar = () => {
               className="event"
               style={{
                 ...getEventWeekStyle(event), top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`,
-                height: `${event.weight >= 40 ? 30 : 20}px`,
+                height: `${event.weight >= 40 ? 40 : 20}px`,
               }}
               onClick={() => handleEventClick(event)}
             >
