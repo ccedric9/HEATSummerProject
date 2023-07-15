@@ -131,7 +131,7 @@ const Home = () => {
 
           <div className="month" key={month} style={{ flex: 1 }}>
             {month}
-            {index !== months.length && index !== 0 && <div className="vertical-line" style={{ height: `${(Object.values(arrH).length - 1) * 780}%` }}></div>}
+            {index !== months.length && index !== 0 && <div className="vertical-line" style={{ height: `${(Object.values(arrH).length - 1) * 765}%` }}></div>}
           </div>
         ))}
       </div>
@@ -180,11 +180,12 @@ const Home = () => {
               style={{
                 ...getEventStyle(event),
                 top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`,
-                height: `${event.weight >= 40 ? 30 : 20}px`,
+                height: `${event.weight >= 40 ? 40 : 20}px`,
               }}
               onClick={() => handleEventClick(event)}
             >
-              {event.title}{arrH[event.unitName]}
+              {event.title}
+              {/* {arrH[event.unitName]} */}
             </div>
           </Tooltip>
         ))}
