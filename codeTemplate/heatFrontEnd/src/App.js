@@ -11,6 +11,7 @@ import WeeklyCalendar from "./pages/WeeklyCalendar";
 import CalendarByModule from "./pages/CalendarByModule";
 import Login from "./services/Login";
 import Footer from "./layout/Footer/Footer";
+import SignUp from "./services/SignUp";
 
 const Layout = ()=>{
   return (
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
       {path:'/weeklyCalendar', element: <WeeklyCalendar /> },
       {path:'/calendarByModule', element: <CalendarByModule /> },
       {path:'/login', element: <Login /> },
+      {path:'/signup', element: <SignUp /> },
     ]
   }
 ])

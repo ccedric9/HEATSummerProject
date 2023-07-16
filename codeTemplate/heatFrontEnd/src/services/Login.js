@@ -1,51 +1,93 @@
-import React, { useEffect } from 'react';
-import jwt_decode from "jwt-decode";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { Button, TextField, Typography, Container, Link as MuiLink } from "@mui/material";
+import { Link as RouterLink } from 'react-router-dom';
 
-export default function Login() {
+function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-    const [user, setUser] = React.useState({});
+  const navigate = useNavigate();
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  const handleCallbackResponse = (response) => {
-    console.log("response :" + response.credential);
-    var decoded = jwt_decode(response.credential);
-    console.log("decode :" , decoded);
-    setUser(decoded);
-    document.getElementById("signinDiv").hidden = true;
-  }
+    try {
+      const response = await axios.post('/login', `username=${username}&password=${password}`, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
 
-  const handleSignout = () => {
-    setUser({});
-    document.getElementById("signinDiv").hidden = false;
+      const status = response.status;
+
+      // check the first digit of the status code
+      switch (Math.floor(status / 100)) {
+        case 2:
+          // if login is successful, show a success message
+          alert("Login Success");
+          break;
+        case 3:
+          // if the status code starts with 3, navigate to another page
+          navigate('/');
+          break;
+        case 4:
+          // if the status code starts with 4, show an error message
+          alert("Login Error");
+          break;
+        default:
+          // handle other cases
+          break;
+      }
+    } catch (error) {
+      // handle error here
+      if (error.response && error.response.status === 401) {
+        // handle login failed case
+        alert("Login Failed");
+      } else {
+        // handle network error
+        alert("Network Error");
+      }
     }
-
-  useEffect(() => {
-    window.google.accounts.id.initialize({
-        client_id: process.env.REACT_APP_CLIENT_ID,
-        callback: handleCallbackResponse,
-  });
-  
-
-    window.google.accounts.id.renderButton(
-      document.getElementById("signinDiv"),
-      {theme: "outline", size: "large", shape: "rectangular", text: "continue_with", width: "300px", height: "50px", prompt_parent_id: "g_id_onload"},
-    );
-  }, []);
+  };
 
   return (
-    <div>
-      <div id="signinDiv"></div>
-      {
-        Object.keys(user).length != 0 &&
-        <button onClick={handleSignout}>Sign Out</button>
-      }
-      {
-        user &&
-        <div>
-            <h3> Welcome {user.name} </h3>
-            <img src={user.picture} alt="user" />
-        </div>
-      }
-    </div>
+    <Container maxWidth="xs">
+      <Typography variant="h4" style={{marginTop: '20px'}}>Login</Typography>
+      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+        <TextField
+          label="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          fullWidth
+          margin="normal"
+          required
+        />
+        <TextField
+          label="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          fullWidth
+          margin="normal"
+          required
+        />
+        <Button
+          type="submit"
+          color="primary"
+          variant="contained"
+          style={{marginTop: '20px'}}
+          fullWidth
+        >
+          Login
+        </Button>
+      </form>
+      <Typography style={{marginTop: '20px'}}>
+        Don't have an account? <MuiLink component={RouterLink} to="/signup">Sign Up</MuiLink>
+      </Typography>
+    </Container>
   );
 }
+
+export default Login;
