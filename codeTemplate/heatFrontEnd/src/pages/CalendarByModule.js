@@ -6,14 +6,19 @@ import { backgroundColor } from "react-native-calendars/src/style";
 import { Box, Button, ButtonGroup, Icon, Typography } from "@mui/material";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { Tooltip } from "@mui/material";
+import EventDialog from "./EventDialog";
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export default function CalendarByModule() {
+    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [hoveredEvent, setHoveredEvent] = useState(null);
     const [events, setEvents] = useState([]);
     // const eventsSet = new Set(); // create a new hashSet to store the unitName
     const [currentYear, setCurrentYear] = useState(2022);
-
+    const [openDialog, setOpenDialog] = useState(false);
+    
     useEffect(() => {
         loadCalendarEvents();
     }, []);
@@ -25,10 +30,24 @@ export default function CalendarByModule() {
 
     };
 
-    const handleEventClick = (selectedEvent) => {
-        // alert(`Event: ${event.unitName}`);
-        alert(`Event: ${selectedEvent.unitName}`);
+    // const handleEventClick = (selectedEvent) => {
+    //     // alert(`Event: ${event.unitName}`);
+    //     alert(`Event: ${selectedEvent.title}`);
+    // };
+
+    const handleEventClick = (event) => {
+        setSelectedEvent(event);
+        setOpenDialog(true);
+      };
+    
+    const handleCloseDialog = () => {
+    setOpenDialog(false);
     };
+      
+    const handleEventHover = (event) => {
+        setHoveredEvent(event);
+    };
+      
 
     const getEventStyle = (event, index) => {
 
@@ -98,27 +117,43 @@ export default function CalendarByModule() {
                                 className={getUnitNameClass(filteredEvents[0])}
                                 key={index}
                                 style={getEventStyle(filteredEvents[0], index)}
-                                onClick={() => handleEventClick(filteredEvents[0])}
+                                // onClick={() => handleEventClick(filteredEvents[0])}
                             >
                                 <div className="test-names">
                                     {filteredEvents.map((event, subIndex) => (
-                                        <div
-                                            className="test-name"
+                                        <Tooltip
+                                            title={
+                                            <div>
+                                                <Typography variant="subtitle1">{event.title}</Typography>
+                                                <Typography variant="body2">Start Date: {event.start}</Typography>
+                                                <Typography variant="body2">End Date: {event.end}</Typography>
+                                                {event.location && (
+                                                <Typography variant="body2">Location: {event.location}</Typography>
+                                                )}
+                                            </div>
+                                            }
                                             key={subIndex}
-                                            style={{
-                                                backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
-                                                    ? '#CC313D'
-                                                    : event.type.toUpperCase() === "FORMATIVE"
-                                                    ? '#2C5F2D'
-                                                    : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                                                    ? '#8A307F'
-                                                    : "default-color",
-                                                color: 'white',
-                                                borderRadius: '5px',
-                                            }}
-                                        >
-                                            {event.title}
-                                        </div>
+                                            onClick={() => handleEventClick(event)}
+                                      >
+                                            <div
+                                                className="test-name"
+                                                key={subIndex}
+                                                style={{
+                                                    backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
+                                                        ? '#CC313D'
+                                                        : event.type.toUpperCase() === "FORMATIVE"
+                                                        ? '#2C5F2D'
+                                                        : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                        ? '#8A307F'
+                                                        : "default-color",
+                                                    color: 'white',
+                                                    borderRadius: '5px',
+                                                }}
+                                                // onClick={() => handleEventClick(event)}
+                                            >
+                                                {event.title}
+                                            </div>
+                                        </Tooltip>
                                     ))}
                                 </div>
                                 <div className="unit-codes">{filteredEvents[0].unitCode}</div>
@@ -139,28 +174,44 @@ export default function CalendarByModule() {
                                 className={`${getUnitNameClass(filteredEvents[0])}`}
                                 key={index}
                                 style={getEventStyle(filteredEvents[0], index)}
-                                onClick={() => handleEventClick(filteredEvents[0])}
+                                // onClick={() => handleEventClick(filteredEvents[0])}
                             >
                                 <div className="test-names">
                                     {filteredEvents.map((event, subIndex) => (
-                                        <div
-                                            className="test-name"
+                                        <Tooltip
+                                            title={
+                                            <div>
+                                                <Typography variant="subtitle1">{event.title}</Typography>
+                                                <Typography variant="body2">Start Date: {event.start}</Typography>
+                                                <Typography variant="body2">End Date: {event.end}</Typography>
+                                                {event.location && (
+                                                <Typography variant="body2">Location: {event.location}</Typography>
+                                                )}
+                                            </div>
+                                            }
                                             key={subIndex}
-                                            style={{
-                                                backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
-                                                ? '#CC313D'
-                                                : event.type.toUpperCase() === "FORMATIVE"
-                                                ? '#2C5F2D'
-                                                : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                                                ? '#8A307F'
-                                                : "default-color",
-                                                color: 'white',
-                                                borderRadius: '5px'
-
-                                            }}
+                                            onClick={() => handleEventClick(event)}
                                         >
-                                            {event.title}
-                                        </div>
+                                            <div
+                                                className="test-name"
+                                                key={subIndex}
+                                                style={{
+                                                    backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
+                                                    ? '#CC313D'
+                                                    : event.type.toUpperCase() === "FORMATIVE"
+                                                    ? '#2C5F2D'
+                                                    : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                    ? '#8A307F'
+                                                    : "default-color",
+                                                    color: 'white',
+                                                    borderRadius: '5px'
+
+                                                }}
+                                                // onClick={() => handleEventClick(event)}
+                                            >
+                                                {event.title}
+                                            </div>
+                                        </Tooltip>
                                     ))}
                                 </div>
                                 <div className="unit-codes">{filteredEvents[0].unitCode}</div>
@@ -181,28 +232,44 @@ export default function CalendarByModule() {
                                 className={`${getUnitNameClass(filteredEvents[0])}`}
                                 key={index}
                                 style={getEventStyle(filteredEvents[0], index)}
-                                onClick={() => handleEventClick(filteredEvents[0])}
+                                // onClick={() => handleEventClick(filteredEvents[0])}
                             >
                                 <div className="test-names">
                                     {filteredEvents.map((event, subIndex) => (
-                                        <div
-                                            className="test-name"
+                                        <Tooltip
+                                            title={
+                                            <div>
+                                                <Typography variant="subtitle1">{event.title}</Typography>
+                                                <Typography variant="body2">Start Date: {event.start}</Typography>
+                                                <Typography variant="body2">End Date: {event.end}</Typography>
+                                                {event.location && (
+                                                <Typography variant="body2">Location: {event.location}</Typography>
+                                                )}
+                                            </div>
+                                            }
                                             key={subIndex}
-                                            style={{
-                                                backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
-                                                ? '#CC313D'
-                                                : event.type.toUpperCase() === "FORMATIVE"
-                                                ? '#2C5F2D'
-                                                : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                                                ? '#8A307F'
-                                                : "default-color",
-                                                color: 'white',
-                                                borderRadius: '5px'
-
-                                            }}
+                                            onClick={() => handleEventClick(event)}
                                         >
-                                            {event.title}
-                                        </div>
+                                            <div
+                                                className="test-name"
+                                                key={subIndex}
+                                                style={{
+                                                    backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
+                                                    ? '#CC313D'
+                                                    : event.type.toUpperCase() === "FORMATIVE"
+                                                    ? '#2C5F2D'
+                                                    : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                    ? '#8A307F'
+                                                    : "default-color",
+                                                    color: 'white',
+                                                    borderRadius: '5px'
+
+                                                }}
+                                                // onClick={() => handleEventClick(event)}
+                                            >
+                                                {event.title}
+                                            </div>
+                                        </Tooltip>
                                     ))}
                                 </div>
                                 <div className="unit-codes">{filteredEvents[0].unitCode}</div>
@@ -212,8 +279,9 @@ export default function CalendarByModule() {
                         );
                     })}
                 </div>
-            </div>
+            <EventDialog open={openDialog} handleCloseDialog={handleCloseDialog} event={selectedEvent} />
 
+            </div>
 
 
         </div>
