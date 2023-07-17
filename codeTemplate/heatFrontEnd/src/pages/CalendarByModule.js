@@ -151,7 +151,7 @@ export default function CalendarByModule() {
                                                 }}
                                                 // onClick={() => handleEventClick(event)}
                                             >
-                                                {event.title}
+                                                <div className="text-name-p">{event.title}</div>
                                             </div>
                                         </Tooltip>
                                     ))}
@@ -205,11 +205,9 @@ export default function CalendarByModule() {
                                                     : "default-color",
                                                     color: 'white',
                                                     borderRadius: '5px'
-
                                                 }}
-                                                // onClick={() => handleEventClick(event)}
                                             >
-                                                {event.title}
+                                                <div className="text-name-p">{event.title}</div>
                                             </div>
                                         </Tooltip>
                                     ))}
@@ -267,7 +265,7 @@ export default function CalendarByModule() {
                                                 }}
                                                 // onClick={() => handleEventClick(event)}
                                             >
-                                                {event.title}
+                                                <div className="text-name-p">{event.title}</div>
                                             </div>
                                         </Tooltip>
                                     ))}
