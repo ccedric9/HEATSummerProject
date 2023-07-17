@@ -142,6 +142,7 @@
     overflow-wrap: break-word;
     word-wrap: break-word;
     font-size: small;
+    cursor: pointer;
 }
 
 .test-name::before {

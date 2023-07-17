@@ -25,7 +25,7 @@ const EventDialog = ({ open, handleCloseDialog, event }) => {
                 Summary:{" "}
                 {event.summary.startsWith("http") ? (
                   <a href={event.summary} target="_blank" rel="noreferrer">
-                    {event.summary}
+                    {event.summary.slice(0, 40) + (event.summary.length > 40 ? "..." : "")}
                   </a>
                 ) : (
                     event.summary.length > 20 ? (
@@ -41,7 +41,7 @@ const EventDialog = ({ open, handleCloseDialog, event }) => {
                 Feedback:{" "}
                 {event.feedback.startsWith("http") ? (
                   <a href={event.feedback} target="_blank" rel="noreferrer">
-                    {event.feedback}
+                    {event.feedback.slice(0, 40) + (event.feedback.length > 40 ? "..." : "")}
                   </a>
                 ) : (
                     event.feedback.length > 20 ? (

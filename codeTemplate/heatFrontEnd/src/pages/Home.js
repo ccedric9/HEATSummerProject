@@ -224,7 +224,7 @@ const Home = () => {
                   Summary:{" "}
                   {selectedEvent.summary.startsWith("http") ? (
                     <a href={selectedEvent.summary} target="_blank" rel="noreferrer">
-                      {selectedEvent.summary}
+                      {selectedEvent.summary.slice(0, 40) + (selectedEvent.summary.length > 40 ? "..." : "")}
                     </a>
                   ) : (
                     selectedEvent.summary.length > 20 ? (
@@ -245,7 +245,7 @@ const Home = () => {
                   Feedback:{" "}
                   {selectedEvent.feedback.startsWith("http") ? (
                     <a href={selectedEvent.feedback} target="_blank" rel="noreferrer">
-                      {selectedEvent.feedback}
+                      {selectedEvent.feedback.slice(0, 40) + (selectedEvent.feedback.length > 40 ? "..." : "")}
                     </a>
                   ) : (
                     selectedEvent.feedback.length > 20 ? (
