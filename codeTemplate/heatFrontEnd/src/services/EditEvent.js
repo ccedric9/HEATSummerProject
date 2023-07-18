@@ -28,7 +28,7 @@ export default function EditEvent() {
 
   useEffect(() => {
     const fetchEvent = async () => {
-      const result = await axios.get(`/calendarEvents/${id}`);
+      const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents/${id}`);
       setCalendarEvent(result.data);
     };
     fetchEvent();
@@ -40,7 +40,7 @@ export default function EditEvent() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`/calendarEvents/${id}`, calendarEvents);
+    await axios.put(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents/${id}`, calendarEvents);
     navigate("/");
   };
 

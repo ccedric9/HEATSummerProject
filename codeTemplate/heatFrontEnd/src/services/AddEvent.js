@@ -26,7 +26,7 @@ export default function AddEvent() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("/calendarEvents", calendarEvents);
+    await axios.post("${process.env.REACT_APP_API_BASE_URL}/calendarEvents", calendarEvents);
     navigate("/");
   };
 
