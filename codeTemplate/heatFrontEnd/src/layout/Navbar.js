@@ -23,13 +23,13 @@ const Navbar = () => {
         <IconButton component={Link} to='/'>
           <HomeIcon />
         </IconButton>
-        <IconButton component = {Link} to='/'>
+        <IconButton component = {Link} to='/login'>
           <PersonIcon/>
         </IconButton>
         <IconButton>
           <NotificationsIcon />
         </IconButton>
-        <IconButton component = {Link} to='/'>
+        <IconButton component = {Link} to='/adminaccess'>
           <SettingsIcon />
         </IconButton>
         <IconButton>
