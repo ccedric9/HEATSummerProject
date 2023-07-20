@@ -73,14 +73,14 @@ export default function CalendarByModule() {
         }
     }
 
-    const [hoveredLinkedId, setHoveredLinkedId] = useState(null);
+    const [hoveredLinkedIds, setHoveredLinkedIds] = useState([]);
 
     const handleMouseEnter = (linkedId) => {
-        setHoveredLinkedId(linkedId);
+        setHoveredLinkedIds(linkedId || []);
     };
 
     const handleMouseLeave = () => {
-        setHoveredLinkedId(null);
+        setHoveredLinkedIds([]);
     };
 
     return (
@@ -140,19 +140,20 @@ export default function CalendarByModule() {
                                                 {event.location && (
                                                 <Typography variant="body2">Location: {event.location}</Typography>
                                                 )}
+                                                <Typography variant="body2">linkedID: {event.linkedIds}</Typography>
                                             </div>
                                             }
                                             key={subIndex}
                                             onClick={() => handleEventClick(event)}
                                             style={{
-                                                border: '1px solid #ccc',      // Border style when not hovered
+                                                border: '5px solid',
                                                 padding: '8px',
                                                 borderRadius: '4px',
-                                                transition: 'border 0.3s',     // Transition to smooth the border change
+                                                transition: 'border 0.3s',
                                             }}
                                             onMouseEnter={(e) => {
-                                                e.currentTarget.style.border = '5px solid #FBEF01'; // Border style on hover
-                                                handleMouseEnter(event.linkedId);
+                                                e.currentTarget.style.border = '5px solid #FBEF01';
+                                                if (event.linkedIds!==null) handleMouseEnter(event.linkedIds);
                                             }}
                                             onMouseLeave={(e) => {
                                                 e.currentTarget.style.border = '1px solid #ccc';    // Border style when not hovered
@@ -171,8 +172,8 @@ export default function CalendarByModule() {
                                                         : "default-color",
                                                     color: 'white',
                                                     borderRadius: '5px',
+                                                    borderColor: hoveredLinkedIds.includes(event.id) ? '#FBEF01' : '#ccc',
                                                 }}
-                                                // onClick={() => handleEventClick(event)}
                                             >
                                                 <div className="text-name-p">{event.title}</div>
                                             </div>
@@ -214,12 +215,26 @@ export default function CalendarByModule() {
                                             }
                                             key={subIndex}
                                             onClick={() => handleEventClick(event)}
+                                            // style={{
+                                            //     border: '1px solid #ccc',
+                                            //     padding: '8px',
+                                            //     borderRadius: '4px',
+                                            //     transition: 'border 0.3s',
+                                            //     // borderColor: event.linkedIds === hoveredLinkedId ? '#f50057' : '#ccc',
+                                            // }}
                                             style={{
-                                                border: '1px solid #ccc',
+                                                border: '5px solid',
                                                 padding: '8px',
                                                 borderRadius: '4px',
                                                 transition: 'border 0.3s',
-                                                borderColor: event.linkedId === hoveredLinkedId ? '#f50057' : '#ccc',
+                                                borderColor: hoveredLinkedIds.includes(event.id) ? '#FBEF01' : '#ccc',
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.border = '5px solid #FBEF01';
+                                                if (event.linkedIds!==null) handleMouseEnter(event.linkedIds);
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.border = '1px solid #ccc';    // Border style when not hovered
                                             }}
                                         >
                                             <div
@@ -277,6 +292,20 @@ export default function CalendarByModule() {
                                             }
                                             key={subIndex}
                                             onClick={() => handleEventClick(event)}
+                                            style={{
+                                                border: '5px solid',
+                                                padding: '8px',
+                                                borderRadius: '4px',
+                                                transition: 'border 0.3s',
+                                                borderColor: hoveredLinkedIds.includes(event.id) ? '#FBEF01' : '#ccc',
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.border = '5px solid #FBEF01';
+                                                if (event.linkedIds!==null) handleMouseEnter(event.linkedIds);
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.border = '1px solid #ccc';    // Border style when not hovered
+                                            }}
                                         >
                                             <div
                                                 className="test-name"
