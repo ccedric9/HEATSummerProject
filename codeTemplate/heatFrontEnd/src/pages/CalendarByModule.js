@@ -73,6 +73,16 @@ export default function CalendarByModule() {
         }
     }
 
+    const [hoveredLinkedId, setHoveredLinkedId] = useState(null);
+
+    const handleMouseEnter = (linkedId) => {
+        setHoveredLinkedId(linkedId);
+    };
+
+    const handleMouseLeave = () => {
+        setHoveredLinkedId(null);
+    };
+
     return (
         <div className="timeline-container-module">
             {/* Title and Navigation Buttons */}
@@ -134,6 +144,19 @@ export default function CalendarByModule() {
                                             }
                                             key={subIndex}
                                             onClick={() => handleEventClick(event)}
+                                            style={{
+                                                border: '1px solid #ccc',      // Border style when not hovered
+                                                padding: '8px',
+                                                borderRadius: '4px',
+                                                transition: 'border 0.3s',     // Transition to smooth the border change
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.border = '5px solid #FBEF01'; // Border style on hover
+                                                handleMouseEnter(event.linkedId);
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.border = '1px solid #ccc';    // Border style when not hovered
+                                            }}
                                       >
                                             <div
                                                 className="test-name"
@@ -191,6 +214,13 @@ export default function CalendarByModule() {
                                             }
                                             key={subIndex}
                                             onClick={() => handleEventClick(event)}
+                                            style={{
+                                                border: '1px solid #ccc',
+                                                padding: '8px',
+                                                borderRadius: '4px',
+                                                transition: 'border 0.3s',
+                                                borderColor: event.linkedId === hoveredLinkedId ? '#f50057' : '#ccc',
+                                            }}
                                         >
                                             <div
                                                 className="test-name"
