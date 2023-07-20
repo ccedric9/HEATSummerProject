@@ -35,6 +35,7 @@ export default function AdminAccess() {
             <tr>
               <th scope="col">NO.</th>
               <th scope="col">id</th>
+              <th scope="col">program</th>
               <th scope="col">year</th>
               <th scope="col">term</th>
               <th scope="col">unit name</th>
@@ -60,6 +61,7 @@ export default function AdminAccess() {
                   {index + 1}
                 </th>
                 <td>{ce.id}</td>
+                <td>{ce.programName}</td>
                 <td>{ce.academicYear}</td>
                 <td>{ce.term}</td>
                 <td>{ce.unitName}</td>

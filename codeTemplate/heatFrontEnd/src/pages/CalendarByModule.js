@@ -30,6 +30,9 @@ export default function CalendarByModule() {
 
     };
 
+    //user program will define here 
+    const program = 'Computer Science';
+
     // const handleEventClick = (selectedEvent) => {
     //     // alert(`Event: ${event.unitName}`);
     //     alert(`Event: ${selectedEvent.title}`);
@@ -88,7 +91,7 @@ export default function CalendarByModule() {
             {/* Title and Navigation Buttons */}
             <Box display='grid' gridTemplateColumns="repeat(10, 1fr)" gap={2}  >
                 <Typography gridColumn="span 4" variant='h6' text='textSecondary' align="left">
-                    Computer Science
+                    {program}
                 </Typography>
                 <Box display='flex' gridColumn="span 3" >
                     <Button color="secondary" onClick={() => setCurrentYear(currentYear - 1)}>
