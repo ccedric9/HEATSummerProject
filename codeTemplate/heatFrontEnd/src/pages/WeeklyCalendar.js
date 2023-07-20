@@ -7,6 +7,9 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import EventDialog from "./EventDialog";
 
+  // User program defines here
+const program = 'Computer Science';
+
 const WeeklyCalendar = () => {
   const weeks = Array.from({ length: 13 }, (_, index) => index + 1);
   const [unitNameCounts, setUnitNameCounts] = useState({});
@@ -94,12 +97,12 @@ const WeeklyCalendar = () => {
       // backgroundColor: event.type === 'SUMMATIVE' ? 'red' : event.type ==='FORMATIVE' ? 'green' : event.type ==='CAPSTONESUMMATIVE'? 'purple': 'default-color',
       backgroundColor:
         event.type.toUpperCase() === "SUMMATIVE"
-          ? "#B20000"
+          ? "#CC313D"
           : event.type.toUpperCase() === "FORMATIVE"
-            ? "green"
-            : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-              ? "purple"
-              : "default-color",
+          ? "#2C5F2D"
+          : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+          ? "#8A307F"
+          : "default-color",
     };
   };
 
@@ -127,7 +130,7 @@ const WeeklyCalendar = () => {
       {/* Title and Navigation Buttons */}
       <Box display='grid' gridTemplateColumns="repeat(10, 1fr)" gap={2}  >
         <Typography gridColumn="span 4" variant='h6' text='textSecondary' align="left">
-          Computer Science
+          {program}
         </Typography>
         <Box display='flex' gridColumn="span 3" >
           <Button color="secondary" onClick={() => {

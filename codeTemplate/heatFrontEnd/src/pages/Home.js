@@ -25,6 +25,9 @@ const Home = () => {
     "August",
   ];
 
+  // User program defines here
+  const program = 'Computer Science';
+
   const [events, setEvents] = useState([]);
   const [unitNameCounts, setUnitNameCounts] = useState({});
   const [currentYear, setCurrentYear] = useState(2022);
@@ -85,10 +88,10 @@ const Home = () => {
         event.type.toUpperCase() === "SUMMATIVE"
           ? "#CC313D"
           : event.type.toUpperCase() === "FORMATIVE"
-            ? "#2C5F2D"
-            : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-              ? "#8A307F"
-              : "default-color",
+          ? "#2C5F2D"
+          : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+          ? "#8A307F"
+          : "default-color",
     };
   };
 
@@ -97,7 +100,7 @@ const Home = () => {
       {/* Title and Navigation Buttons */}
       <Box display="grid" gridTemplateColumns="repeat(10, 1fr)" gap={2}>
         <Typography gridColumn="span 4" variant="h6" text="textSecondary" align="left">
-          Computer Science
+          {program}
         </Typography>
         <Box display="flex" gridColumn="span 3">
           <Button color="secondary" onClick={() => setCurrentYear(currentYear - 1)}>
