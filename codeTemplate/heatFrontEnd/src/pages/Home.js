@@ -36,7 +36,7 @@ const Home = () => {
   }, []);
 
   const loadCalendarEvents = async () => {
-    const result = await axios.get(`/calendarEvents`);
+    const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents`);
     setEvents(result.data);
     let arr = result.data.map(e => e.unitName);
     arr = [...new Set(arr)];

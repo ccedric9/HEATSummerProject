@@ -12,12 +12,12 @@ export default function AdminAccess() {
   }, []);
 
   const loadEvents = async () => {
-    const result = await axios.get(`/calendarEvents`);
+    const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents`);
     setEvents(result.data);
   };
 
   const deleteEvents = async (id) => {
-    await axios.delete(`/calendarEvents/${id}`);
+    await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents/${id}`);
     loadEvents();
   };
 
