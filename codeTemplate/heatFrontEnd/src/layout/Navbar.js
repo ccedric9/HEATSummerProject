@@ -26,7 +26,7 @@ const Navbar = () => {
         <IconButton component = {Link} to='/login'>
           <PersonIcon/>
         </IconButton>
-        <IconButton>
+        <IconButton  component = {Link} to='/Notification'>
           <NotificationsIcon />
         </IconButton>
         <IconButton component = {Link} to='/adminaccess'>

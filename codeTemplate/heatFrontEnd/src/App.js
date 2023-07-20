@@ -12,6 +12,8 @@ import CalendarByModule from "./pages/CalendarByModule";
 import Login from "./services/Login";
 import Footer from "./layout/Footer/Footer";
 import SignUp from "./services/SignUp";
+import Notification from "./services/Notification";
+import { Alert } from "bootstrap";
 
 const Layout = ()=>{
   return (
@@ -37,6 +39,7 @@ const router = createBrowserRouter([
       {path:'/calendarByModule', element: <CalendarByModule /> },
       {path:'/login', element: <Login /> },
       {path:'/signup', element: <SignUp /> },
+      {path:'/notification', element: <Notification /> },
     ]
   }
 ])
