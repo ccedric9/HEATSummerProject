@@ -1,6 +1,8 @@
-package com.best.heatBackEnd.registration;
+package com.best.heatBackEnd.controller;
 
 
+import com.best.heatBackEnd.registration.RegistrationRequest;
+import com.best.heatBackEnd.registration.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

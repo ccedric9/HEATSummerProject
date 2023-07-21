@@ -3,10 +3,14 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Button, TextField, Typography, Container, Link as MuiLink } from "@mui/material";
 import { Link as RouterLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../redux/slices/userSlice';
+
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -19,9 +23,15 @@ function Login() {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       });
-
+      console.log(response);
+      // console.log(response.data.major);
       const status = response.status;
-
+      dispatch(setUser({
+        firstName: response.data.firstName,
+        lastName: response.data.lastName,
+        email: response.data.email,
+        major: response.data.major
+      }));
       // check the first digit of the status code
       switch (Math.floor(status / 100)) {
         case 2:

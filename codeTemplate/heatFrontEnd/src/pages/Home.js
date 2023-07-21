@@ -7,9 +7,14 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import shadows from "@mui/material/styles/shadows";
 import EventPopover from "./EventPopover";
+import { useSelector } from 'react-redux';
 
 
 const Home = () => {
+
+  const user = useSelector(state => state.user);
+  console.log(user);
+
   const months = [
     "September",
     "October",
@@ -35,10 +40,16 @@ const Home = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
-    loadCalendarEvents();
-  }, []);
+    try {
+        loadCalendarEvents();
+    } catch (error) {
+        console.error(error);
+    }
+}, []);
 
-  const loadCalendarEvents = async () => {
+
+const loadCalendarEvents = async () => {
+  try {
     const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents`);
     setEvents(result.data);
     let arr = result.data.map(e => e.unitName);
@@ -57,7 +68,12 @@ const Home = () => {
       counts[unitName] = counts[unitName] ? counts[unitName] + 1 : 1;
     });
     setUnitNameCounts(counts);
-  };
+  } catch (err) {
+    console.error(err);
+    // Handle the error appropriately for your application
+  }
+};
+
 
   const handleEventClick = (event) => {
     setSelectedEvent(event);

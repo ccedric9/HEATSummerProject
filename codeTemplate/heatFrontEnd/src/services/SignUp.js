@@ -7,6 +7,7 @@ function Registration() {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [major, setMajor] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -15,7 +16,8 @@ function Registration() {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      password: password
+      password: password,
+      major: major
     };
 
     try {
@@ -30,6 +32,7 @@ function Registration() {
       setLastName('');
       setEmail('');
       setPassword('');
+      setMajor('');
 
       alert('Registration Success');
     } catch (error) {
@@ -40,7 +43,7 @@ function Registration() {
 
   return (
     <Container maxWidth="xs">
-      <Typography variant="h4" style={{marginTop: '20px'}}>Registration</Typography>
+      <Typography variant="h4" style={{ marginTop: '20px' }}>Registration</Typography>
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
         <TextField
           label="First Name"
@@ -75,11 +78,20 @@ function Registration() {
           margin="normal"
           required
         />
+        <TextField
+          label="major"
+          value={major}
+          onChange={(e) => setMajor(e.target.value)}
+          type="major"
+          fullWidth
+          margin="normal"
+          required
+        />
         <Button
           type="submit"
           color="primary"
           variant="contained"
-          style={{marginTop: '20px'}}
+          style={{ marginTop: '20px' }}
           fullWidth
         >
           Register

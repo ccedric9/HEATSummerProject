@@ -3,7 +3,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Navbar from "./layout/Navbar";
 import Home from "./pages/Home";
-import { BrowserRouter as Router, Routes, Route,   createBrowserRouter,RouterProvider,Outlet,} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, createBrowserRouter, RouterProvider, Outlet, } from "react-router-dom";
 import AdminAccess from "./pages/AdminAccess";
 import AddEvent from "./services/AddEvent";
 import EditEvent from "./services/EditEvent";
@@ -14,8 +14,10 @@ import Footer from "./layout/Footer/Footer";
 import SignUp from "./services/SignUp";
 import Notification from "./services/Notification";
 import { Alert } from "bootstrap";
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
-const Layout = ()=>{
+const Layout = () => {
   return (
     <div className="app">
       <Navbar />
@@ -27,30 +29,32 @@ const Layout = ()=>{
 
 const router = createBrowserRouter([
   {
-    path:'/', 
-    element: <Layout/> , 
-    children :
-    [
-      {path:'/', element: <Home/> },
-      {path:'/adminAccess', element: <AdminAccess /> },
-      {path:'/addEvent', element: <AddEvent /> },
-      {path:'/editEvent/:id', element: <EditEvent /> },
-      {path:'/weeklyCalendar', element: <WeeklyCalendar /> },
-      {path:'/calendarByModule', element: <CalendarByModule /> },
-      {path:'/login', element: <Login /> },
-      {path:'/signup', element: <SignUp /> },
-      {path:'/notification', element: <Notification /> },
-    ]
+    path: '/',
+    element: <Layout />,
+    children:
+      [
+        { path: '/', element: <Home /> },
+        { path: '/adminAccess', element: <AdminAccess /> },
+        { path: '/addEvent', element: <AddEvent /> },
+        { path: '/editEvent/:id', element: <EditEvent /> },
+        { path: '/weeklyCalendar', element: <WeeklyCalendar /> },
+        { path: '/calendarByModule', element: <CalendarByModule /> },
+        { path: '/login', element: <Login /> },
+        { path: '/signup', element: <SignUp /> },
+        { path: '/notification', element: <Notification /> },
+      ]
   }
 ])
 
 
 const App = () => {
-  return(
-    <div>
-      <RouterProvider router= {router}/>
-    </div>
-  ) 
+  return (
+    <Provider store={store}>
+      <div>
+        <RouterProvider router={router} />
+      </div>
+    </Provider>
+  )
 
 };
 
