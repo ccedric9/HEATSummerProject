@@ -11,12 +11,18 @@ import EventDialog from "./EventDialog";
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
+
 export default function CalendarByModule() {
+
+    //user program will define here 
+    const program = 'Computer Science';
+    const firstYear = 2022;
+
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [hoveredEvent, setHoveredEvent] = useState(null);
     const [events, setEvents] = useState([]);
     // const eventsSet = new Set(); // create a new hashSet to store the unitName
-    const [currentYear, setCurrentYear] = useState(2022);
+    const [currentYear, setCurrentYear] = useState(firstYear);
     const [openDialog, setOpenDialog] = useState(false);
     
     useEffect(() => {
@@ -29,9 +35,6 @@ export default function CalendarByModule() {
         setEvents(result.data);
 
     };
-
-    //user program will define here 
-    const program = 'Computer Science';
 
     // const handleEventClick = (selectedEvent) => {
     //     // alert(`Event: ${event.unitName}`);
@@ -94,11 +97,16 @@ export default function CalendarByModule() {
                     {program}
                 </Typography>
                 <Box display='flex' gridColumn="span 3" >
-                    <Button color="secondary" onClick={() => setCurrentYear(currentYear - 1)}>
+                    <Button color="secondary" onClick={() => currentYear == firstYear ? setCurrentYear(currentYear +2):setCurrentYear(currentYear - 1)}>
                         <NavigateBeforeIcon />
                     </Button>
-                    <Typography fontSize={18} p={2}>{currentYear}~{currentYear + 1}</Typography>
-                    <Button color="secondary" onClick={() => setCurrentYear(currentYear + 1)}>
+                    <div className="timelinebar-middle">
+                        <div className="yearIndicator">Year {currentYear - firstYear + 1}</div>
+                        <div>
+                        {currentYear} - {currentYear + 1}
+                        </div>
+                    </div>
+                    <Button color="secondary" onClick={() => currentYear == firstYear + 2 ? setCurrentYear(firstYear):setCurrentYear(currentYear + 1)}>
                         <NavigateNextIcon />
                     </Button>
                 </Box>
