@@ -58,8 +58,8 @@ export default function CalendarByModule() {
         const credit = event.unitCredit;
 
         return {
-            width: term === "3" ? '195%' : '90%',
-            height: credit < "20" ? '130px' : credit < "30" ? '150px' : credit < '40' ? '170px' : '200px',
+            width: term === 3 ? '195%' : '90%',
+            height: credit < 20 ? '130px' : credit < 30 ? '150px' : credit < 40 ? '170px' : '200px',
             backgroundColor: '#F9F6EE',
         };
 
@@ -67,9 +67,9 @@ export default function CalendarByModule() {
 
     function getUnitNameClass(events) {
         const credit = events.unitCredit;
-        if (credit === "10") {
+        if (credit === 10) {
             return "credit10";
-        } else if (credit === "20") {
+        } else if (credit === 20) {
             return "credit20";
         } else {
             return "credit30plus";
@@ -122,7 +122,7 @@ export default function CalendarByModule() {
             <div className="module-parent">
                 <div className="module-parent-left">
                     {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
-                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === "1");
+                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === 1);
                         if (filteredEvents.length === 0) return null;
 
                         return (
@@ -196,7 +196,7 @@ export default function CalendarByModule() {
 
                 <div className="module-parent-right">
                     {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
-                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === "2");
+                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === 2);
                         if (filteredEvents.length === 0) return null;
 
                         return (
@@ -269,7 +269,7 @@ export default function CalendarByModule() {
 
                 <div className="module-parent-bottom">
                     {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
-                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === "3");
+                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === 3);
                         if (filteredEvents.length === 0) return null;
 
                         return (
