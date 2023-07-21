@@ -13,6 +13,7 @@ import Login from "./services/Login";
 import Footer from "./layout/Footer/Footer";
 import SignUp from "./services/SignUp";
 import Notification from "./services/Notification";
+import UserInfoPage from "./pages/UserInfoPage";
 import { Alert } from "bootstrap";
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -42,6 +43,7 @@ const router = createBrowserRouter([
         { path: '/login', element: <Login /> },
         { path: '/signup', element: <SignUp /> },
         { path: '/notification', element: <Notification /> },
+        { path: '/user-info', element: <UserInfoPage /> },
       ]
   }
 ])

@@ -1,16 +1,34 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button, TextField, Typography, Container } from "@mui/material";
+import { Button, TextField, Typography, Container, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import zxcvbn from 'zxcvbn';
+
+const majors = [
+  "Aerospace Engineering",
+  "Civil Engineering",
+  "Computer Science",
+  "Electrical and Electronic Engineering",
+  "Engineering Design",
+  "Engineering Mathematics",
+  "Mechanical Engineering"
+];
 
 function Registration() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [major, setMajor] = useState('');
+  const [passwordStrength, setPasswordStrength] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
 
     const userData = {
       firstName: firstName,
@@ -33,6 +51,7 @@ function Registration() {
       setEmail('');
       setPassword('');
       setMajor('');
+      setConfirmPassword('');
 
       alert('Registration Success');
     } catch (error) {
@@ -40,6 +59,28 @@ function Registration() {
       alert('Registration Failed');
     }
   };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setPasswordStrength(zxcvbn(e.target.value).score);
+  };
+
+  const passwordStrengthMessage = () => {
+    switch (passwordStrength) {
+      case 0:
+        return "Very Weak";
+      case 1:
+        return "Weak";
+      case 2:
+        return "Fair";
+      case 3:
+        return "Good";
+      case 4:
+        return "Strong";
+      default:
+        return "";
+    }
+  }
 
   return (
     <Container maxWidth="xs">
@@ -72,21 +113,35 @@ function Registration() {
         <TextField
           label="Password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handlePasswordChange}
+          helperText={passwordStrengthMessage()}
           type="password"
           fullWidth
           margin="normal"
           required
         />
         <TextField
-          label="major"
-          value={major}
-          onChange={(e) => setMajor(e.target.value)}
-          type="major"
+          label="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          type="password"
           fullWidth
           margin="normal"
           required
         />
+        <FormControl fullWidth margin="normal" required>
+          <InputLabel>Major</InputLabel>
+          <Select
+            value={major}
+            onChange={(e) => setMajor(e.target.value)}
+          >
+            {majors.map((option) => (
+              <MenuItem key={option} value={option}>
+                {option}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         <Button
           type="submit"
           color="primary"

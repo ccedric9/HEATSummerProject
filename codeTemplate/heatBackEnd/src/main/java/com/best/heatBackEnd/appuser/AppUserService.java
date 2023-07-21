@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -34,9 +35,9 @@ public class AppUserService implements UserDetailsService {
     }
 
     public String signUpUser(AppUser appUser) {
-        boolean userExists = appUserRepository
-                .findByEmail(appUser.getEmail())
-                .isPresent();
+        Optional<AppUser> optionalAppUser = appUserRepository.findByEmail(appUser.getEmail());
+//        System.out.println("optionalAppUser: " + optionalAppUser);
+        boolean userExists = optionalAppUser.isPresent();
 
         if (userExists) {
             // TODO check of attributes are the same and
