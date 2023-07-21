@@ -5,3 +5,14 @@
 5.Test and troubleshooting
 6.Secure the app
 7.Group Report
+
+Major Lists in FoE:
+•	Aerospace Engineering
+•	Civil Engineering
+•	Computer Science
+•	Electrical and Electronic Engineering
+•	Engineering Design
+•	Engineering Mathematics
+•	Mechanical Engineering
+
+
