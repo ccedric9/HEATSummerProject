@@ -74,10 +74,15 @@ const WeeklyCalendar = () => {
     setUnitNameCounts(counts);
   };
 
+  const selectedEvents = events.filter((event)=> 
+  
+    event.programName === program 
+    && 
+    event.academicYear === currentYear - firstYear + 1 
+    &&
+    currentTerm === 'TB1' ? (event.term === 1 ) : (event.term === 2)
+  );
 
-  // const handleEventClick = (event) => {
-  // alert(`Event: ${event.title}`);
-  // };
 
   const getEventWeekStyle = (event) => {
     const startDate = new Date(event.start);
@@ -184,7 +189,7 @@ const WeeklyCalendar = () => {
       {/* Events */}
       <div className="events-container">
         <div className="unitNames-container">
-          {events.map((event, index) => {
+          {selectedEvents.map((event, index) => {
             const isSameUnit =
               index > 0 && events[index - 1].unitName === event.unitName;
             const unitName = isSameUnit ? "" : event.unitName;
@@ -206,7 +211,7 @@ const WeeklyCalendar = () => {
             );
           })}
         </div>
-        {events.map((event, index) => (
+        {selectedEvents.map((event, index) => (
           <Tooltip
             title={
               <div>

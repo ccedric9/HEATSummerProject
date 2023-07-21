@@ -36,10 +36,8 @@ export default function CalendarByModule() {
 
     };
 
-    // const handleEventClick = (selectedEvent) => {
-    //     // alert(`Event: ${event.unitName}`);
-    //     alert(`Event: ${selectedEvent.title}`);
-    // };
+    const selectedEvents = events.filter((event)=> event.programName === program && event.academicYear === currentYear - firstYear + 1 );
+
 
     const handleEventClick = (event) => {
         setSelectedEvent(event);
@@ -130,7 +128,7 @@ export default function CalendarByModule() {
             <div className="module-parent">
                 <div className="module-parent-left">
                     {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
-                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === 1);
+                        const filteredEvents = selectedEvents.filter(event => event.unitName === unitName && event.term === 1);
                         if (filteredEvents.length === 0) return null;
 
                         return (
@@ -204,7 +202,7 @@ export default function CalendarByModule() {
 
                 <div className="module-parent-right">
                     {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
-                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === 2);
+                        const filteredEvents = selectedEvents.filter(event => event.unitName === unitName && event.term === 2);
                         if (filteredEvents.length === 0) return null;
 
                         return (
@@ -277,7 +275,7 @@ export default function CalendarByModule() {
 
                 <div className="module-parent-bottom">
                     {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
-                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === 3);
+                        const filteredEvents = selectedEvents.filter(event => event.unitName === unitName && event.term === 3);
                         if (filteredEvents.length === 0) return null;
 
                         return (

@@ -39,6 +39,8 @@ const Home = () => {
     loadCalendarEvents();
   }, []);
 
+  
+
   const loadCalendarEvents = async () => {
     const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents`);
     setEvents(result.data);
@@ -67,6 +69,8 @@ const Home = () => {
   const handleCloseDialog = () => {
     setSelectedEvent(null);
   };
+
+  const selectedEvents = events.filter((event)=> event.programName === program && event.academicYear === currentYear - firstYear + 1 );
 
   const getEventStyle = (event) => {
     const startDate = new Date(event.start);
@@ -146,7 +150,7 @@ const Home = () => {
       {/* Events */}
       <div className="events-container">
         <div className="unitNames-container">
-          {events.map((event, index) => {
+          {selectedEvents.map((event, index) => {
             const isSameUnit = index > 0 && events[index - 1].unitName === event.unitName;
             const unitName = isSameUnit ? "" : event.unitName;
             const occurrenceCount = unitNameCounts[event.unitName] || 0;
@@ -167,7 +171,7 @@ const Home = () => {
             );
           })}
         </div>
-        {events.map((event, index) => (
+        {selectedEvents.map((event, index) => (
           <Tooltip
             title={
               <div>
