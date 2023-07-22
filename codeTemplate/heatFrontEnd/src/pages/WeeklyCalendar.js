@@ -9,11 +9,12 @@ import EventDialog from "./EventDialog";
 
   // User program defines here
 const program = 'Computer Science';
+const firstYear= 2022;
 
 const WeeklyCalendar = () => {
   const weeks = Array.from({ length: 13 }, (_, index) => index + 1);
   const [unitNameCounts, setUnitNameCounts] = useState({});
-  const [currentYear, setCurrentYear] = useState(2022);
+  const [currentYear, setCurrentYear] = useState(firstYear);
   const [currentTerm, setCurrentTerm] = useState("TB1");
   const [events, setEvents] = useState([]);
   const [arrH, setArrH] = useState([]);
@@ -40,8 +41,9 @@ const WeeklyCalendar = () => {
     const filteredEvents = result.data.filter((event) => {
       const startDate = new Date(event.start);
       const endDate = new Date(event.end);
-      const startDateRange = new Date("2022-09-15");
-      const endDateRange = new Date("2023-01-30");
+
+      const startDateRange = currentTerm ==='TB1'? new Date(currentYear + "-09-01"): new Date(`${currentYear+1}` + "-01-20");
+      const endDateRange = currentTerm ==='TB1'? new Date( `${currentYear+1}` + "-01-20"): new Date(`${currentYear+1}` + "-08-31");
       setEvents(result.data);
       let arr = result.data.map(e => e.unitName);
       arr = [...new Set(arr)];
@@ -72,10 +74,15 @@ const WeeklyCalendar = () => {
     setUnitNameCounts(counts);
   };
 
+  const selectedEvents = events.filter((event)=> 
+  
+    event.programName === program 
+    && 
+    event.academicYear === currentYear - firstYear + 1 
+    &&
+    currentTerm === 'TB1' ? (event.term === 1 ) : (event.term === 2)
+  );
 
-  // const handleEventClick = (event) => {
-  // alert(`Event: ${event.title}`);
-  // };
 
   const getEventWeekStyle = (event) => {
     const startDate = new Date(event.start);
@@ -83,7 +90,7 @@ const WeeklyCalendar = () => {
     // const endDated = new Date(ev);
 
     // Fixed timeline start date
-    const timelineStart = new Date('2022-09-15');
+    const timelineStart = new Date(currentYear +"-09-15");
 
     // Calculate the number of weeks between the event start and end
     const durationWeeks = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 7) + 1;
@@ -134,8 +141,8 @@ const WeeklyCalendar = () => {
         </Typography>
         <Box display='flex' gridColumn="span 3" >
           <Button color="secondary" onClick={() => {
-            setCurrentYear(currentYear - 1)
             if (currentTerm === "TB1") {
+              currentYear == firstYear ? setCurrentYear(currentYear +2):setCurrentYear(currentYear - 1)
               setCurrentTerm("TB2")
             } else {
               setCurrentTerm("TB1")
@@ -143,13 +150,18 @@ const WeeklyCalendar = () => {
           }}>
             <NavigateBeforeIcon />
           </Button>
-          <Typography fontSize={18} p={2}>{currentYear}~{currentYear + 1} {currentTerm}</Typography>
+          <div className="timelinebar-middle">
+            <div className="yearIndicator">{currentTerm}</div>
+            <div>
+            {currentYear} - {currentYear + 1}
+            </div>
+          </div>
           <Button color="secondary" onClick={() => {
-            setCurrentYear(currentYear + 1)
             if (currentTerm === "TB1") {
               setCurrentTerm("TB2")
             } else {
               setCurrentTerm("TB1")
+              currentYear == firstYear + 2 ? setCurrentYear(firstYear):setCurrentYear(currentYear + 1)
             }
           }}>
             <NavigateNextIcon />
@@ -177,7 +189,7 @@ const WeeklyCalendar = () => {
       {/* Events */}
       <div className="events-container">
         <div className="unitNames-container">
-          {events.map((event, index) => {
+          {selectedEvents.map((event, index) => {
             const isSameUnit =
               index > 0 && events[index - 1].unitName === event.unitName;
             const unitName = isSameUnit ? "" : event.unitName;
@@ -199,7 +211,7 @@ const WeeklyCalendar = () => {
             );
           })}
         </div>
-        {events.map((event, index) => (
+        {selectedEvents.map((event, index) => (
           <Tooltip
             title={
               <div>

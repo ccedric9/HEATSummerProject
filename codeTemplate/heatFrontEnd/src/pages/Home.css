@@ -6,6 +6,7 @@
     font-family: Arial, sans-serif;
     padding-left: 160px; /* add this line to move the entire timeline to the right */
     height: 150vh;
+    position: relative;
   
   }
   .vertical-line {
@@ -218,4 +219,19 @@
     background-color: #ccc;
   }
 
+.timelinebar-middle{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: -12px;
+
+}
+
+.yearIndicator{
+  color: gray;
+  font-size: small;
+  font-weight: 600;
+}
 

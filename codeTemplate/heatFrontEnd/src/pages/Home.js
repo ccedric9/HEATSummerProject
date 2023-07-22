@@ -15,10 +15,15 @@ import {
 } from "@mui/material";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import zIndex from "@mui/material/styles/zIndex";
+import { useSelector } from 'react-redux';
+
 
 
 const Home = () => {
+
+  const user = useSelector(state => state.user);
+  console.log(user);
+
   const months = [
     "September",
     "October",
@@ -36,18 +41,25 @@ const Home = () => {
 
   // User program defines here
   const program = 'Computer Science';
+  const firstYear = 2022;
 
   const [events, setEvents] = useState([]);
   const [unitNameCounts, setUnitNameCounts] = useState({});
-  const [currentYear, setCurrentYear] = useState(2022);
+  const [currentYear, setCurrentYear] = useState(firstYear);
   const [arrH, setArrH] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
-    loadCalendarEvents();
-  }, []);
+    try {
+        loadCalendarEvents();
+    } catch (error) {
+        console.error(error);
+    }
+}, []);
 
-  const loadCalendarEvents = async () => {
+
+const loadCalendarEvents = async () => {
+  try {
     const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents`);
     setEvents(result.data);
     let arr = result.data.map(e => e.unitName);
@@ -66,7 +78,14 @@ const Home = () => {
       counts[unitName] = counts[unitName] ? counts[unitName] + 1 : 1;
     });
     setUnitNameCounts(counts);
-  };
+  } catch (err) {
+    console.error(err);
+    // Handle the error appropriately for your application
+  }
+};
+
+  const selectedEvents = events.filter((event)=> event.programName === program && event.academicYear === currentYear - firstYear + 1 );
+
 
   const handleEventClick = (event) => {
     setSelectedEvent(event);
@@ -82,7 +101,7 @@ const Home = () => {
     const eventDescription = new Date(event.description);
 
     // Fixed timeline start date
-    const timelineStart = new Date("2022-09-15");
+    const timelineStart = new Date( `${firstYear}`+"-09-01");
 
     // Calculate the number of days between the event start and end
     const durationDays = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1;
@@ -131,13 +150,16 @@ const Home = () => {
           {program}
         </Typography>
         <Box display="flex" gridColumn="span 3">
-          <Button color="secondary" onClick={() => setCurrentYear(currentYear - 1)}>
+          <Button color="secondary" onClick={() => currentYear == firstYear ? setCurrentYear(currentYear +2):setCurrentYear(currentYear - 1)}>
             <NavigateBeforeIcon />
           </Button>
-          <Typography fontSize={18} p={2}>
-            {currentYear}~{currentYear + 1}
-          </Typography>
-          <Button color="secondary" onClick={() => setCurrentYear(currentYear + 1)}>
+          <div className="timelinebar-middle">
+            <div className="yearIndicator">Year {currentYear - firstYear + 1}</div>
+            <div>
+            {currentYear} - {currentYear + 1}
+            </div>
+          </div>
+          <Button color="secondary" onClick={() => currentYear == firstYear + 2 ? setCurrentYear(firstYear):setCurrentYear(currentYear + 1)}>
             <NavigateNextIcon />
           </Button>
         </Box>
@@ -186,7 +208,7 @@ const Home = () => {
             }}
         ></div>
         <div className="unitNames-container">
-          {events.map((event, index) => {
+          {selectedEvents.map((event, index) => {
             const isSameUnit = index > 0 && events[index - 1].unitName === event.unitName;
             const unitName = isSameUnit ? "" : event.unitName;
             const occurrenceCount = unitNameCounts[event.unitName] || 0;
@@ -207,7 +229,7 @@ const Home = () => {
             );
           })}
         </div>
-        {events.map((event, index) => (
+        {selectedEvents.map((event, index) => (
           <Tooltip
             title={
               <div>

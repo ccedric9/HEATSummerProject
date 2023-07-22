@@ -11,12 +11,18 @@ import EventDialog from "./EventDialog";
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
+
 export default function CalendarByModule() {
+
+    //user program will define here 
+    const program = 'Computer Science';
+    const firstYear = 2022;
+
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [hoveredEvent, setHoveredEvent] = useState(null);
     const [events, setEvents] = useState([]);
     // const eventsSet = new Set(); // create a new hashSet to store the unitName
-    const [currentYear, setCurrentYear] = useState(2022);
+    const [currentYear, setCurrentYear] = useState(firstYear);
     const [openDialog, setOpenDialog] = useState(false);
     
     useEffect(() => {
@@ -30,13 +36,8 @@ export default function CalendarByModule() {
 
     };
 
-    //user program will define here 
-    const program = 'Computer Science';
+    const selectedEvents = events.filter((event)=> event.programName === program && event.academicYear === currentYear - firstYear + 1 );
 
-    // const handleEventClick = (selectedEvent) => {
-    //     // alert(`Event: ${event.unitName}`);
-    //     alert(`Event: ${selectedEvent.title}`);
-    // };
 
     const handleEventClick = (event) => {
         setSelectedEvent(event);
@@ -58,8 +59,8 @@ export default function CalendarByModule() {
         const credit = event.unitCredit;
 
         return {
-            width: term === "3" ? '195%' : '90%',
-            height: credit < "20" ? '130px' : credit < "30" ? '150px' : credit < '40' ? '170px' : '200px',
+            width: term === 3 ? '195%' : '90%',
+            height: credit < 20 ? '130px' : credit < 30 ? '150px' : credit < 40 ? '170px' : '200px',
             backgroundColor: '#F9F6EE',
         };
 
@@ -67,9 +68,9 @@ export default function CalendarByModule() {
 
     function getUnitNameClass(events) {
         const credit = events.unitCredit;
-        if (credit === "10") {
+        if (credit === 10) {
             return "credit10";
-        } else if (credit === "20") {
+        } else if (credit === 20) {
             return "credit20";
         } else {
             return "credit30plus";
@@ -94,11 +95,16 @@ export default function CalendarByModule() {
                     {program}
                 </Typography>
                 <Box display='flex' gridColumn="span 3" >
-                    <Button color="secondary" onClick={() => setCurrentYear(currentYear - 1)}>
+                    <Button color="secondary" onClick={() => currentYear == firstYear ? setCurrentYear(currentYear +2):setCurrentYear(currentYear - 1)}>
                         <NavigateBeforeIcon />
                     </Button>
-                    <Typography fontSize={18} p={2}>{currentYear}~{currentYear + 1}</Typography>
-                    <Button color="secondary" onClick={() => setCurrentYear(currentYear + 1)}>
+                    <div className="timelinebar-middle">
+                        <div className="yearIndicator">Year {currentYear - firstYear + 1}</div>
+                        <div>
+                        {currentYear} - {currentYear + 1}
+                        </div>
+                    </div>
+                    <Button color="secondary" onClick={() => currentYear == firstYear + 2 ? setCurrentYear(firstYear):setCurrentYear(currentYear + 1)}>
                         <NavigateNextIcon />
                     </Button>
                 </Box>
@@ -122,7 +128,7 @@ export default function CalendarByModule() {
             <div className="module-parent">
                 <div className="module-parent-left">
                     {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
-                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === "1");
+                        const filteredEvents = selectedEvents.filter(event => event.unitName === unitName && event.term === 1);
                         if (filteredEvents.length === 0) return null;
 
                         return (
@@ -196,7 +202,7 @@ export default function CalendarByModule() {
 
                 <div className="module-parent-right">
                     {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
-                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === "2");
+                        const filteredEvents = selectedEvents.filter(event => event.unitName === unitName && event.term === 2);
                         if (filteredEvents.length === 0) return null;
 
                         return (
@@ -269,7 +275,7 @@ export default function CalendarByModule() {
 
                 <div className="module-parent-bottom">
                     {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
-                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === "3");
+                        const filteredEvents = selectedEvents.filter(event => event.unitName === unitName && event.term === 3);
                         if (filteredEvents.length === 0) return null;
 
                         return (
