@@ -1,12 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import "./Home.css";
-import { Link } from "react-router-dom";
-import { Box, Button, ButtonGroup, Typography, Grid, Dialog, DialogTitle, DialogContent, DialogActions, Tooltip } from "@mui/material";
+import {Link} from "react-router-dom";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Tooltip,
+  Typography
+} from "@mui/material";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import shadows from "@mui/material/styles/shadows";
-import EventPopover from "./EventPopover";
+import zIndex from "@mui/material/styles/zIndex";
 
 
 const Home = () => {
@@ -93,8 +102,27 @@ const Home = () => {
           ? "#8A307F"
           : "default-color",
     };
+
+
   };
 
+  function updateTime() {
+    // the date vertical separate line
+
+    const startDate = new Date(`${currentYear}-09-12`);
+
+    const endDate = new Date(`${startDate.getFullYear()+1}-09-01`);
+
+    const timeDifference = endDate-startDate;
+    // const targetTimeDifference = currentDate-startDate;
+    const targetDate = new Date();
+    const targetTimeDifference = targetDate-startDate;
+    console.log(targetTimeDifference);
+    console.log(timeDifference);
+
+    return ((targetTimeDifference / timeDifference) * 100);
+  }
+  const leftPosition = `${updateTime()}%`;
   return (
     <div className="timeline-container">
       {/* Title and Navigation Buttons */}
@@ -141,6 +169,22 @@ const Home = () => {
 
       {/* Events */}
       <div className="events-container">
+        {/*const leftPosition = {updateTime()};*/}
+        <div
+            class="timeline"
+            style={{
+              position: 'absolute',
+              top: '-50px',
+              bottom: '0',
+              left: `${leftPosition}`,
+              width: '2px', /* Adjust the width of the vertical line as needed */
+              height: '950px',
+              // backgroundColor: 'lightslategrey', /* Adjust the color of the vertical line as needed */
+              border: '1px dashed cadetblue',
+              zIndex: '999',
+
+            }}
+        ></div>
         <div className="unitNames-container">
           {events.map((event, index) => {
             const isSameUnit = index > 0 && events[index - 1].unitName === event.unitName;
