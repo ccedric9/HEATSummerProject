@@ -155,7 +155,7 @@ const UserProfile = () => {
               />
               <TextField
                 select
-                label="Major"
+                label="Grade"
                 value={language}
                 fullWidth
                 margin="normal"
