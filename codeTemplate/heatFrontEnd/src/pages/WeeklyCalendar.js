@@ -132,6 +132,29 @@ const WeeklyCalendar = () => {
     }
   };
 
+  function updateTime() {
+    // the date vertical separate line
+
+    const startDate = new Date(`${currentYear}-09-12`);
+    const middleDate = new Date(`${currentYear}-01-12`);
+    const endDate = new Date(`${startDate.getFullYear()+1}-09-21`);
+
+    const timeDifference = endDate-startDate;
+    const targetDate = new Date();
+    const targetTimeDifference = targetDate-startDate;
+
+    if (currentTerm==="TB1" && targetDate<middleDate ||
+    currentTerm==="TB2" && targetDate>middleDate){
+      return ((targetTimeDifference / timeDifference) * 100);
+    } else if (currentTerm==="TB1" && targetDate>middleDate) {
+      return 100;
+    } else if (currentTerm==="TB2" && targetDate<middleDate) {
+      return 0;
+    }
+  }
+
+  const leftPosition = `${updateTime()}%`;
+
   return (
     <div className="timeline-container">
       {/* Title and Navigation Buttons */}
@@ -188,6 +211,20 @@ const WeeklyCalendar = () => {
 
       {/* Events */}
       <div className="events-container">
+        <div
+            class="timeline"
+            style={{
+              position: 'absolute',
+              top: '-50px',
+              bottom: '0',
+              left: `${leftPosition}`,
+              width: '2px', /* Adjust the width of the vertical line as needed */
+              height: '950px',
+              // backgroundColor: 'lightslategrey', /* Adjust the color of the vertical line as needed */
+              border: '1px dashed cadetblue',
+              zIndex: '999',
+            }}
+        ></div>
         <div className="unitNames-container">
           {selectedEvents.map((event, index) => {
             const isSameUnit =

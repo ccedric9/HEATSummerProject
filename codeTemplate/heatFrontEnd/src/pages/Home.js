@@ -142,6 +142,7 @@ const loadCalendarEvents = async () => {
     return ((targetTimeDifference / timeDifference) * 100);
   }
   const leftPosition = `${updateTime()}%`;
+
   return (
     <div className="timeline-container">
       {/* Title and Navigation Buttons */}
