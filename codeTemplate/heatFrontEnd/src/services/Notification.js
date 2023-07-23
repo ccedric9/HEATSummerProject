@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { format, isAfter } from 'date-fns';
 import {
   Button,
   TextField,
@@ -16,7 +17,9 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from "@mui/icons-material/Settings";
+import NotificationImportant from "@mui/icons-material/NotificationImportant";
 import { Link as RouterLink } from 'react-router-dom';
+import EventDialog from "../pages/EventDialog";
 
 const UserProfile = () => {
   const [username, setUsername] = useState('');
@@ -28,8 +31,19 @@ const UserProfile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [language, setLanguage] = useState('English');
+  const [events, setEvents] = useState([]);
+  const [arrH, setArrH] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [unitNameCounts, setUnitNameCounts] = useState({});
+  const [openDialog, setOpenDialog] = useState(false);
 
+  
   useEffect(() => {
+    try {
+        loadCalendarEvents();
+    } catch (error) {
+        console.error(error);
+    }
     //TODO fetch user data here from an API later
     setUsername('Simon');
     setPassword('password');
@@ -40,9 +54,42 @@ const UserProfile = () => {
     setIsLoading(false);
   }, []);
 
+  const loadCalendarEvents = async () => {
+    try {
+      const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents`);
+      setEvents(result.data);
+      let arr = result.data.map(e => e.unitName);
+      arr = [...new Set(arr)];
+      let seq = {};
+      arr.forEach(
+        (e, i) => {
+          seq[e] = i
+        }
+      )
+      setArrH(seq);
+      //Caculate the number of each unit name
+      const counts = {};
+      result.data.forEach((event) => {
+        const { unitName } = event;
+        counts[unitName] = counts[unitName] ? counts[unitName] + 1 : 1;
+      });
+      setUnitNameCounts(counts);
+    } catch (err) {
+      console.error(err);
+      // Handle the error appropriately for your application
+    }
+  };
+
+  const handleEventClick = (event) => {
+    setSelectedEvent(event);
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
   const handleUpdateProfile = async (event) => {
     event.preventDefault();
-
     //TODO Implement update profile logic later
     alert('Profile Updated!');
   };
@@ -52,9 +99,9 @@ const UserProfile = () => {
   }
 
   return (
-    <Container component="main" maxWidth="md">
+    <Container component="main" maxWidth="lg">
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={4}>
           <Paper elevation={3} sx={{ padding: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Avatar sx={{ m: 1, backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)', color: 'white' }}>
               <PersonIcon />
@@ -129,7 +176,57 @@ const UserProfile = () => {
             </form>
           </Paper>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={4}>
+          <Paper elevation={3} sx={{ padding: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Avatar sx={{ m: 1, backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)', color: 'white' }}>
+              <NotificationImportant />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Assessment Due
+            </Typography>
+
+            <br></br>
+            <Typography component="h1" variant="h5">
+              Ongoing Assessment
+            </Typography>
+            {events.map((event) => {
+              const today = new Date();
+              const startDate = new Date(event.start);
+              const endDate = new Date(event.end);
+              if (isAfter(today, startDate) && isAfter(endDate, today)) {
+                return (
+                  <div key={event.id} onClick={() => handleEventClick(event)}>
+                    <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: '#f0f0f0' , textAlign: 'center'}}>
+                    <Typography variant="subtitle1">{event.title}</Typography>
+                    <Typography variant="subtitle2">{event.start} -- {event.end}</Typography>
+                  </Paper>
+                  </div>
+                );
+              }
+              return null;
+            })}
+            <Typography component="h1" variant="h5">
+              Upcoming Assessment
+            </Typography>
+            {events.map((event) => {
+              const today = new Date();
+              const startDate = new Date(event.start);
+              const endDate = new Date(event.end);
+              if (isAfter(startDate, today)) {
+                return (
+                  <div key={event.id} onClick={() => handleEventClick(event)}>
+                    <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: '#f0f0f0' , textAlign: 'center'}}>
+                    <Typography variant="subtitle1">{event.title}</Typography>
+                    <Typography variant="subtitle2">{event.start} -- {event.end}</Typography>
+                  </Paper>
+                  </div>
+                );
+              }
+              return null;
+            })}
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={4}>
           <Paper elevation={3} sx={{ padding: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Avatar sx={{ m: 1, backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)', color: 'white' }}>
               <SettingsIcon />
@@ -160,7 +257,9 @@ const UserProfile = () => {
           </Paper>
         </Grid>
       </Grid>
+      <EventDialog open={openDialog} handleCloseDialog={handleCloseDialog} event={selectedEvent} />
     </Container>
+    
   );
 };
 
