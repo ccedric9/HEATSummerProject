@@ -6,13 +6,17 @@ import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from "react-router-dom";
-
+import { useTheme, useMediaQuery } from "@mui/material";
 
 const Navbar = () => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
   return (
     <Box display="flex" justifyContent="space-between" p={2} sx={{
         backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)',
-        borderRadius : '5px'
+        borderRadius : '5px',
+        width: isSmallScreen ? '305vw' : isMediumScreen ? '155vw' : '100%',
       }}>
         {/* Software Title */}
         <Typography variant = 'h6' fontWeight='bold' component={Link} to='/' sx={{color:'black', textDecoration:'None'}} >

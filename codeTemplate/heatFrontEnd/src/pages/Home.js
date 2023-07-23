@@ -7,6 +7,8 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import shadows from "@mui/material/styles/shadows";
 import EventPopover from "./EventPopover";
+import { useTheme, useMediaQuery } from "@mui/material";
+
 
 
 const Home = () => {
@@ -31,6 +33,8 @@ const Home = () => {
   const [arrH, setArrH] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
+  const theme = useTheme();
+  const isMdScreenOrWider = useMediaQuery(theme.breakpoints.up("md"));
   useEffect(() => {
     loadCalendarEvents();
   }, []);
@@ -96,9 +100,10 @@ const Home = () => {
     <div className="timeline-container">
       {/* Title and Navigation Buttons */}
       <Box display="grid" gridTemplateColumns="repeat(10, 1fr)" gap={2}>
-        <Typography gridColumn="span 4" variant="h6" text="textSecondary" align="left">
+        <Typography gridColumn="span 4" variant="h6" align="left">
           Computer Science
         </Typography>
+      
         <Box display="flex" gridColumn="span 3">
           <Button color="secondary" onClick={() => setCurrentYear(currentYear - 1)}>
             <NavigateBeforeIcon />
@@ -126,15 +131,16 @@ const Home = () => {
       </Box>
 
       {/* Months */}
-      <div className="months-container">
-        {months.map((month, index) => (
+    {/* Months */}
+    <div className="months-container">
+      {months.map((month, index) => (
+        <div className="month" key={month}>
+          {month}
+          {index !== months.length && index !== 0 && <div className="vertical-line" style={{ height: `${(Object.values(arrH).length - 1) * 765}%` }}></div>}
+        </div>
+      ))}
+    </div>
 
-          <div className="month" key={month} style={{ flex: 1 }}>
-            {month}
-            {index !== months.length && index !== 0 && <div className="vertical-line" style={{ height: `${(Object.values(arrH).length - 1) * 765}%` }}></div>}
-          </div>
-        ))}
-      </div>
 
       {/* Events */}
       <div className="events-container">
@@ -185,7 +191,6 @@ const Home = () => {
               onClick={() => handleEventClick(event)}
             >
               {event.title}
-              {/* {arrH[event.unitName]} */}
             </div>
           </Tooltip>
         ))}

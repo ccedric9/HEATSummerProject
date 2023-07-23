@@ -1,18 +1,16 @@
 .timeline-container {
     display: flex;
     flex-direction: column;
+  
     align-items: stretch;
     margin: 20px;
     font-family: Arial, sans-serif;
     padding-left: 160px; /* add this line to move the entire timeline to the right */
-    height: 150vh;
+    height: 100vh;
   
   }
   .vertical-line {
     position: relative;
-    /* left: 21.5%; */
-    margin-left: 8px;
-    margin-right: 8px;
     width: 1px;
     background-color: #eee;
     z-index: -1;
@@ -60,7 +58,9 @@
   
   .months-container {
     display: flex;
+    
     justify-content: space-between;
+  
     border-bottom: 2px solid black;
     padding-bottom: 10px;
     margin-bottom: 10px;
@@ -69,8 +69,10 @@
     color: white;
     font-family: Arial, sans-serif;
     border-radius: 3px;
+    justify-content: space-between;
   }
   .month {
+    flex: 1;
     text-align: center;
     padding: 0 5px;
   }
@@ -110,6 +112,7 @@
     color: white;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 0.6rem;
   }
   
   /* Additional styles for the new navigation buttons */
@@ -151,7 +154,7 @@
   
   .unitName {
     /* position: absolute; */
-    width: 150px; /* adjust this value as needed */
+    width: 150px;
     text-overflow: ellipsis;
     /* overflow: hidden; */
     white-space: nowrap;
@@ -160,10 +163,9 @@
     border: 1px solid #eee;
     padding: 2px 5px;
     text-align: center;
-    /* font-size: 0.9em; */
     font-weight: bold;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-    font-size: 15px;
+    font-size: 0.7rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -174,13 +176,48 @@
   .unitName::after{
     content: "";
     position: absolute;
-    width: 900%;
+    width: 90vw;
     height: 1px;
     background-color: #eee;
     display: block;
     left: 100%;
     bottom: 0;
   }
+
+  @media screen and (max-width: 600px) {
+    .unitName {
+      left: 0px;
+      width: 80px;
+    }
+    .months-container {
+    
+      padding-left: 10px; /* Allow months to wrap to new line on small screens */
+    }
+  
+    .month {
+      flex-basis: 20%; /* Make each month take 20% width on small screens */
+    }
+    .timeline-container{
+      width: 300vw;
+      height: 150vh;
+    }
+    .unitName::after {
+      width:270vw;
+    }
+    .unitNames-container {
+      left: -100px;
+    }
+  }
+    
+@media  screen and (max-width:850px) and (min-width:601px){
+  .timeline-container {
+    width: 150vw;
+  }
+  .unitName::after {
+    width: 130vw;
+  }
+}
+  
   
   .year-selector {
     display: flex;

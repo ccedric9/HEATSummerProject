@@ -13,6 +13,17 @@
     margin-top: auto;
     position: relative;
 }
+@media screen and (max-width: 600px) {
+    .footer {
+        width: 300vw;
+    }
+}
+@media screen and (max-width:850px) and (min-width: 601px){
+    .footer {
+        width: 150vw;
+    }
+    
+}
 
 .logo{
     position: absolute;
