@@ -6,6 +6,7 @@ export default function AddEvent() {
   let navigate = useNavigate();
 
   const [calendarEvents, setCalendarEvent] = useState({
+    programName:"",
     unitName: "",
     unitCode: "",
     unitCredit: "",
@@ -18,7 +19,7 @@ export default function AddEvent() {
     end: "",
   });
 
-  const { unitName, unitCode, unitCredit, term, academicYear, weight, title, type, start, end } = calendarEvents;
+  const { programName,unitName, unitCode, unitCredit, term, academicYear, weight, title, type, start, end } = calendarEvents;
 
   const onInputChange = (e) => {
     setCalendarEvent({ ...calendarEvents, [e.target.name]: e.target.value });
@@ -26,7 +27,7 @@ export default function AddEvent() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("/calendarEvents", calendarEvents);
+    await axios.post(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents`, calendarEvents);
     navigate("/");
   };
 
@@ -36,6 +37,19 @@ export default function AddEvent() {
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
           <h2 className="text-center m-4">Add Calendar Event</h2>
           <form onSubmit={(e) => onSubmit(e)}>
+            <div className="mb-3">
+              <label htmlFor="programName" className="form-label">
+                Program
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter program name"
+                name="programName"
+                value={programName}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
             <div className="mb-3">
               <label htmlFor="unitName" className="form-label">
                 Unit Name

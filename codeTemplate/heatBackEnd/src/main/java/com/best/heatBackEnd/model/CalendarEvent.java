@@ -14,6 +14,10 @@ public class CalendarEvent {
     @GeneratedValue
     private Long id;
 
+    @Column(name = "program_name")
+    @JsonProperty("programName")
+    private String programName;
+
     @Column(name = "unit_name")
     @JsonProperty("unitName")
     private String unitName;
@@ -24,19 +28,19 @@ public class CalendarEvent {
 
     @Column(name = "unit_credit_points")
     @JsonProperty("unitCredit")
-    private String unitCredit;
+    private int unitCredit;
 
     @Column(name = "term")
     @JsonProperty("term")
-    private String term;
+    private int term;
 
     @Column(name = "year")
     @JsonProperty("academicYear")
-    private String academicYear;
+    private int academicYear;
 
     @Column(name = "weight")
     @JsonProperty("weight")
-    private String weight;
+    private int weight;
 
     @Column(name = "title")
     @JsonProperty("title")
@@ -91,31 +95,37 @@ public class CalendarEvent {
         this.unitCode = unitCode;
     }
 
-    public String getUnitCredit() {
+    public int getUnitCredit() {
         return unitCredit;
     }
 
-    public void setUnitCredit(String unitCredit) {
+    public void setUnitCredit(int unitCredit) {
         this.unitCredit = unitCredit;
     }
 
-    public String getTerm() {
+    public int getTerm() {
         return term;
     }
 
-    public void setTerm(String term) {
+    public void setTerm(int term) {
         this.term = term;
     }
 
-    public String getAcademicYear() {
+    public int getAcademicYear() {
         return academicYear;
     }
 
-    public void setAcademicYear(String academicYear) {
+    public void setAcademicYear(int academicYear) {
         this.academicYear = academicYear;
     }
 
+    public String getProgramName() {
+        return programName;
+    }
 
+    public void setProgramName(String programName) {
+        this.programName = programName;
+    }
 
     public Long getId() {
         return id;
@@ -134,11 +144,11 @@ public class CalendarEvent {
         this.unitName = unitName;
     }
 
-    public String getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 

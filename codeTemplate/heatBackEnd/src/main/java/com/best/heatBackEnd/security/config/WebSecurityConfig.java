@@ -1,7 +1,10 @@
 package com.best.heatBackEnd.security.config;
 
+import com.best.heatBackEnd.appuser.AppUser;
 import com.best.heatBackEnd.appuser.AppUserService;
 import lombok.AllArgsConstructor;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -9,9 +12,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.core.GrantedAuthority;
+
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +26,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.stream.Collectors;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 
@@ -37,7 +46,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/v*/registration/**", "/calendarEvents")
+                .antMatchers("/api/v*/registration/**", "/calendarEvents","/calendarEvents/*")
+
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -56,11 +66,36 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 logger.info("Authentication success. User: " + authentication.getName());
                 logger.info("Username: " + request.getParameter("username"));
                 logger.info("Password: " + request.getParameter("password"));
-                response.getWriter().print("{\"status\": \"success\"}");
+
+                // Cast the authenticated principal to UserDetails
+                UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+                // Create a JSONObject
+                JSONObject resp = new JSONObject();
+
+                try {
+                    // Put user information into the JSON object
+                    resp.put("status", "success");
+                    AppUser appUser = (AppUser) authentication.getPrincipal();
+                    resp.put("email", appUser.getFirstName());
+                    resp.put("firstName", appUser.getFirstName());
+                    resp.put("lastName", appUser.getLastName());
+                    resp.put("major", appUser.getMajor());
+                    logger.info("major: " + appUser.getMajor());
+                    resp.put("authorities", userDetails.getAuthorities().stream()
+                            .map(GrantedAuthority::getAuthority)
+                            .collect(Collectors.toList()));
+
+                } catch (JSONException e) {
+                    // Handle or log the error according to your need
+                }
+
+                response.getWriter().print(resp.toString());
                 response.getWriter().flush();
             }
         };
     }
+
 
     @Bean
     public AuthenticationFailureHandler failureHandler() {

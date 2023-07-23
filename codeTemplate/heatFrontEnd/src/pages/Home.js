@@ -1,17 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import "./Home.css";
-import { Link } from "react-router-dom";
-import { Box, Button, ButtonGroup, Typography, Grid, Dialog, DialogTitle, DialogContent, DialogActions, Tooltip } from "@mui/material";
+import {Link} from "react-router-dom";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Tooltip,
+  Typography
+} from "@mui/material";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import shadows from "@mui/material/styles/shadows";
 import EventPopover from "./EventPopover";
 import { useTheme, useMediaQuery } from "@mui/material";
+import { useSelector } from 'react-redux';
 
 
 
 const Home = () => {
+
+  const user = useSelector(state => state.user);
+  console.log(user);
+
   const months = [
     "September",
     "October",
@@ -27,20 +42,30 @@ const Home = () => {
     "August",
   ];
 
+  // User program defines here
+  const program = 'Computer Science';
+  const firstYear = 2022;
+
   const [events, setEvents] = useState([]);
   const [unitNameCounts, setUnitNameCounts] = useState({});
-  const [currentYear, setCurrentYear] = useState(2022);
+  const [currentYear, setCurrentYear] = useState(firstYear);
   const [arrH, setArrH] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   const theme = useTheme();
   const isMdScreenOrWider = useMediaQuery(theme.breakpoints.up("md"));
   useEffect(() => {
-    loadCalendarEvents();
-  }, []);
+    try {
+        loadCalendarEvents();
+    } catch (error) {
+        console.error(error);
+    }
+}, []);
 
-  const loadCalendarEvents = async () => {
-    const result = await axios.get(`/calendarEvents`);
+
+const loadCalendarEvents = async () => {
+  try {
+    const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents`);
     setEvents(result.data);
     let arr = result.data.map(e => e.unitName);
     arr = [...new Set(arr)];
@@ -58,7 +83,14 @@ const Home = () => {
       counts[unitName] = counts[unitName] ? counts[unitName] + 1 : 1;
     });
     setUnitNameCounts(counts);
-  };
+  } catch (err) {
+    console.error(err);
+    // Handle the error appropriately for your application
+  }
+};
+
+  const selectedEvents = events.filter((event)=> event.programName === program && event.academicYear === currentYear - firstYear + 1 );
+
 
   const handleEventClick = (event) => {
     setSelectedEvent(event);
@@ -74,7 +106,7 @@ const Home = () => {
     const eventDescription = new Date(event.description);
 
     // Fixed timeline start date
-    const timelineStart = new Date("2022-09-15");
+    const timelineStart = new Date( `${firstYear}`+"-09-01");
 
     // Calculate the number of days between the event start and end
     const durationDays = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1;
@@ -89,29 +121,52 @@ const Home = () => {
         event.type.toUpperCase() === "SUMMATIVE"
           ? "#CC313D"
           : event.type.toUpperCase() === "FORMATIVE"
-            ? "#2C5F2D"
-            : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-              ? "#8A307F"
-              : "default-color",
+          ? "#2C5F2D"
+          : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+          ? "#8A307F"
+          : "default-color",
     };
+
+
   };
+
+  function updateTime() {
+    // the date vertical separate line
+
+    const startDate = new Date(`${currentYear}-09-12`);
+
+    const endDate = new Date(`${startDate.getFullYear()+1}-09-01`);
+
+    const timeDifference = endDate-startDate;
+    // const targetTimeDifference = currentDate-startDate;
+    const targetDate = new Date();
+    const targetTimeDifference = targetDate-startDate;
+    console.log(targetTimeDifference);
+    console.log(timeDifference);
+
+    return ((targetTimeDifference / timeDifference) * 100);
+  }
+  const leftPosition = `${updateTime()}%`;
 
   return (
     <div className="timeline-container">
       {/* Title and Navigation Buttons */}
       <Box display="grid" gridTemplateColumns="repeat(10, 1fr)" gap={2}>
-        <Typography gridColumn="span 4" variant="h6" align="left">
-          Computer Science
+        <Typography gridColumn="span 4" variant="h6" text="textSecondary" align="left">
+          {program}
         </Typography>
       
         <Box display="flex" gridColumn="span 3">
-          <Button color="secondary" onClick={() => setCurrentYear(currentYear - 1)}>
+          <Button color="secondary" onClick={() => currentYear == firstYear ? setCurrentYear(currentYear +2):setCurrentYear(currentYear - 1)}>
             <NavigateBeforeIcon />
           </Button>
-          <Typography fontSize={18} p={2}>
-            {currentYear}~{currentYear + 1}
-          </Typography>
-          <Button color="secondary" onClick={() => setCurrentYear(currentYear + 1)}>
+          <div className="timelinebar-middle">
+            <div className="yearIndicator">Year {currentYear - firstYear + 1}</div>
+            <div>
+            {currentYear} - {currentYear + 1}
+            </div>
+          </div>
+          <Button color="secondary" onClick={() => currentYear == firstYear + 2 ? setCurrentYear(firstYear):setCurrentYear(currentYear + 1)}>
             <NavigateNextIcon />
           </Button>
         </Box>
@@ -144,8 +199,24 @@ const Home = () => {
 
       {/* Events */}
       <div className="events-container">
+        {/*const leftPosition = {updateTime()};*/}
+        <div
+            class="timeline"
+            style={{
+              position: 'absolute',
+              top: '-50px',
+              bottom: '0',
+              left: `${leftPosition}`,
+              width: '2px', /* Adjust the width of the vertical line as needed */
+              height: '950px',
+              // backgroundColor: 'lightslategrey', /* Adjust the color of the vertical line as needed */
+              border: '1px dashed cadetblue',
+              zIndex: '999',
+
+            }}
+        ></div>
         <div className="unitNames-container">
-          {events.map((event, index) => {
+          {selectedEvents.map((event, index) => {
             const isSameUnit = index > 0 && events[index - 1].unitName === event.unitName;
             const unitName = isSameUnit ? "" : event.unitName;
             const occurrenceCount = unitNameCounts[event.unitName] || 0;
@@ -166,7 +237,7 @@ const Home = () => {
             );
           })}
         </div>
-        {events.map((event, index) => (
+        {selectedEvents.map((event, index) => (
           <Tooltip
             title={
               <div>
@@ -229,7 +300,7 @@ const Home = () => {
                   Summary:{" "}
                   {selectedEvent.summary.startsWith("http") ? (
                     <a href={selectedEvent.summary} target="_blank" rel="noreferrer">
-                      {selectedEvent.summary}
+                      {selectedEvent.summary.slice(0, 40) + (selectedEvent.summary.length > 40 ? "..." : "")}
                     </a>
                   ) : (
                     selectedEvent.summary.length > 20 ? (
@@ -250,7 +321,7 @@ const Home = () => {
                   Feedback:{" "}
                   {selectedEvent.feedback.startsWith("http") ? (
                     <a href={selectedEvent.feedback} target="_blank" rel="noreferrer">
-                      {selectedEvent.feedback}
+                      {selectedEvent.feedback.slice(0, 40) + (selectedEvent.feedback.length > 40 ? "..." : "")}
                     </a>
                   ) : (
                     selectedEvent.feedback.length > 20 ? (

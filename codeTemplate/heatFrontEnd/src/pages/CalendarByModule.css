@@ -115,11 +115,12 @@
     text-align: justify;
     display: inherit;
     position: absolute;
+    font-weight: bold;
 }
 
 .unit-name{
     text-align: center;
-
+    font-weight: bold;
 }
 
 .test-names {
@@ -133,32 +134,42 @@
 
 .test-name {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
+    /*line-height: 100px;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
     width: 80px; /* Adjust the width as needed */
     height: 80px; /* Adjust the height as needed */
     margin: 10px; /* Adjust the margin as needed */
-    overflow-wrap: break-word;
-    word-wrap: break-word;
+    /*overflow-wrap: break-word;*/
+    /*word-wrap: break-word;*/
     font-size: small;
+    /*cursor: pointer;*/
 }
 
-.test-name::before {
-    content: "";
+.text-name-p {
+    margin: 0;
     position: absolute;
-    top: -50%;
-    left: -50%;
-    background-color: inherit;
-    transform: rotate(-45deg);
-    z-index: -1; /* Ensure the pseudo-element is positioned behind the text */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+/*.test-name::before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: -50%;*/
+/*    left: -50%;*/
+/*    background-color: inherit;*/
+/*    transform: rotate(-45deg);*/
+/*    z-index: -1; !* Ensure the pseudo-element is positioned behind the text *!*/
+/*}*/
 
-.test-name span {
-    display: block;
-    transform: rotate(45deg); /* Rotate the text within the container */
-    color: black;
-}
+/*.test-name span {*/
+/*    display: block;*/
+/*    transform: rotate(45deg); !* Rotate the text within the container *!*/
+/*    color: black;*/
+/*}*/
 
 @media screen and (max-width: 600px) {
     .timeline-container-module {

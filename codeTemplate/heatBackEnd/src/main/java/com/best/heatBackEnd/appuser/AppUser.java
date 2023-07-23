@@ -38,17 +38,20 @@ public class AppUser implements UserDetails {
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
     private Boolean locked = false;
-    private Boolean enabled = false;
+    private Boolean enabled = true;
+    private String major;
 
     public AppUser(String firstName,
                    String lastName,
                    String email,
                    String password,
+                     String major,
                    AppUserRole appUserRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.major = major;
         this.appUserRole = appUserRole;
     }
 
@@ -57,6 +60,10 @@ public class AppUser implements UserDetails {
         SimpleGrantedAuthority authority =
                 new SimpleGrantedAuthority(appUserRole.name());
         return Collections.singletonList(authority);
+    }
+
+    public String getMajor() {
+        return major;
     }
 
     @Override

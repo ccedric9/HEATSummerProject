@@ -6,7 +6,9 @@
     margin: 20px;
     font-family: Arial, sans-serif;
     padding-left: 160px; /* add this line to move the entire timeline to the right */
-    height: 100vh;
+    height: 150vh;
+    position: relative;
+    /* height: 100vh; by Haoyan*/
   
   }
   .vertical-line {
@@ -99,7 +101,7 @@
     padding: 10px;
     min-height: 100px;
   }
-  
+
   .event {
     position: absolute;
     height: 20px;
@@ -113,6 +115,9 @@
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     font-size: 0.6rem;
+    display: flex;
+    align-items: center;
+    /* from font-size to align, is merge*/
   }
   
   /* Additional styles for the new navigation buttons */
@@ -252,4 +257,20 @@
   .year-selector button:hover {
     background-color: #ccc;
   }
-  
+
+.timelinebar-middle{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: -12px;
+
+}
+
+.yearIndicator{
+  color: gray;
+  font-size: small;
+  font-weight: 600;
+}
+

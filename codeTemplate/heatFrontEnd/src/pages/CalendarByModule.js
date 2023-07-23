@@ -6,29 +6,52 @@ import { backgroundColor } from "react-native-calendars/src/style";
 import { Box, Button, ButtonGroup, Icon, Typography } from "@mui/material";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { Tooltip } from "@mui/material";
+import EventDialog from "./EventDialog";
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
+
 export default function CalendarByModule() {
+
+    //user program will define here 
+    const program = 'Computer Science';
+    const firstYear = 2022;
+
+    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [hoveredEvent, setHoveredEvent] = useState(null);
     const [events, setEvents] = useState([]);
     // const eventsSet = new Set(); // create a new hashSet to store the unitName
-    const [currentYear, setCurrentYear] = useState(2022);
-
+    const [currentYear, setCurrentYear] = useState(firstYear);
+    const [openDialog, setOpenDialog] = useState(false);
+    
     useEffect(() => {
         loadCalendarEvents();
     }, []);
 
     const loadCalendarEvents = async () => {
-        const result = await axios.get(`/calendarEvents`);
+        const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents`);
 
         setEvents(result.data);
 
     };
 
-    const handleEventClick = (selectedEvent) => {
-        // alert(`Event: ${event.unitName}`);
-        alert(`Event: ${selectedEvent.unitName}`);
+    const selectedEvents = events.filter((event)=> event.programName === program && event.academicYear === currentYear - firstYear + 1 );
+
+
+    const handleEventClick = (event) => {
+        setSelectedEvent(event);
+        setOpenDialog(true);
+      };
+    
+    const handleCloseDialog = () => {
+    setOpenDialog(false);
     };
+      
+    const handleEventHover = (event) => {
+        setHoveredEvent(event);
+    };
+      
 
     const getEventStyle = (event, index) => {
 
@@ -36,8 +59,8 @@ export default function CalendarByModule() {
         const credit = event.unitCredit;
 
         return {
-            width: term === "3" ? '195%' : '90%',
-            height: credit < "20" ? '130px' : credit < "30" ? '150px' : credit < '40' ? '170px' : '200px',
+            width: term === 3 ? '195%' : '90%',
+            height: credit < 20 ? '130px' : credit < 30 ? '150px' : credit < 40 ? '170px' : '200px',
             backgroundColor: '#F9F6EE',
         };
 
@@ -45,28 +68,43 @@ export default function CalendarByModule() {
 
     function getUnitNameClass(events) {
         const credit = events.unitCredit;
-        if (credit === "10") {
+        if (credit === 10) {
             return "credit10";
-        } else if (credit === "20") {
+        } else if (credit === 20) {
             return "credit20";
         } else {
             return "credit30plus";
         }
     }
 
+    const [hoveredLinkedIds, setHoveredLinkedIds] = useState([]);
+
+    const handleMouseEnter = (linkedId) => {
+        setHoveredLinkedIds(linkedId || []);
+    };
+
+    const handleMouseLeave = () => {
+        setHoveredLinkedIds([]);
+    };
+
     return (
         <div className="timeline-container-module">
             {/* Title and Navigation Buttons */}
             <Box display='grid' gridTemplateColumns="repeat(10, 1fr)" gap={2}  >
                 <Typography gridColumn="span 4" variant='h6' text='textSecondary' align="left">
-                    Computer Science
+                    {program}
                 </Typography>
                 <Box display='flex' gridColumn="span 3" >
-                    <Button color="secondary" onClick={() => setCurrentYear(currentYear - 1)}>
+                    <Button color="secondary" onClick={() => currentYear == firstYear ? setCurrentYear(currentYear +2):setCurrentYear(currentYear - 1)}>
                         <NavigateBeforeIcon />
                     </Button>
-                    <Typography fontSize={18} p={2}>{currentYear}~{currentYear + 1}</Typography>
-                    <Button color="secondary" onClick={() => setCurrentYear(currentYear + 1)}>
+                    <div className="timelinebar-middle">
+                        <div className="yearIndicator">Year {currentYear - firstYear + 1}</div>
+                        <div>
+                        {currentYear} - {currentYear + 1}
+                        </div>
+                    </div>
+                    <Button color="secondary" onClick={() => currentYear == firstYear + 2 ? setCurrentYear(firstYear):setCurrentYear(currentYear + 1)}>
                         <NavigateNextIcon />
                     </Button>
                 </Box>
@@ -90,7 +128,7 @@ export default function CalendarByModule() {
             <div className="module-parent">
                 <div className="module-parent-left">
                     {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
-                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === "1");
+                        const filteredEvents = selectedEvents.filter(event => event.unitName === unitName && event.term === 1);
                         if (filteredEvents.length === 0) return null;
 
                         return (
@@ -98,27 +136,60 @@ export default function CalendarByModule() {
                                 className={getUnitNameClass(filteredEvents[0])}
                                 key={index}
                                 style={getEventStyle(filteredEvents[0], index)}
-                                onClick={() => handleEventClick(filteredEvents[0])}
+                                // onClick={() => handleEventClick(filteredEvents[0])}
                             >
                                 <div className="test-names">
                                     {filteredEvents.map((event, subIndex) => (
-                                        <div
-                                            className="test-name"
+                                        <Tooltip
+                                            title={
+                                            <div>
+                                                <Typography variant="subtitle1">{event.title}</Typography>
+                                                <Typography variant="body2">Start Date: {event.start}</Typography>
+                                                <Typography variant="body2">End Date: {event.end}</Typography>
+                                                {event.location && (
+                                                <Typography variant="body2">Location: {event.location}</Typography>
+                                                )}
+                                                <Typography variant="body2">linkedID: {event.linkedIds}</Typography>
+                                            </div>
+                                            }
                                             key={subIndex}
+                                            onClick={() => handleEventClick(event)}
                                             style={{
-                                                backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
-                                                    ? '#CC313D'
-                                                    : event.type.toUpperCase() === "FORMATIVE"
-                                                    ? '#2C5F2D'
-                                                    : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                                                    ? '#8A307F'
-                                                    : "default-color",
-                                                color: 'white',
-                                                borderRadius: '5px',
+                                                border: '1px solid',
+                                                padding: '8px',
+                                                borderRadius: '4px',
+                                                transition: 'border 0.3s',
                                             }}
-                                        >
-                                            {event.title}
-                                        </div>
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.border = '5px solid #FBEF01';
+                                                if (event.linkedIds!==null) handleMouseEnter(event.linkedIds);
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.border = '1px solid #ccc';    // Border style when not hovered
+                                                handleMouseLeave();
+                                            }}
+                                      >
+                                            <div
+                                                className="test-name"
+                                                key={subIndex}
+                                                style={{
+                                                    backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
+                                                        ? '#CC313D'
+                                                        : event.type.toUpperCase() === "FORMATIVE"
+                                                        ? '#2C5F2D'
+                                                        : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                        ? '#8A307F'
+                                                        : "default-color",
+                                                    color: 'white',
+                                                    borderRadius: '5px',
+                                                    border: `${
+                                                        hoveredLinkedIds.includes(event.id) ? '5px solid #FBEF01' : '1px solid #ccc'
+                                                    }`,
+                                                }}
+                                            >
+                                                <div className="text-name-p">{event.title}</div>
+                                            </div>
+                                        </Tooltip>
                                     ))}
                                 </div>
                                 <div className="unit-codes">{filteredEvents[0].unitCode}</div>
@@ -131,7 +202,7 @@ export default function CalendarByModule() {
 
                 <div className="module-parent-right">
                     {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
-                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === "2");
+                        const filteredEvents = selectedEvents.filter(event => event.unitName === unitName && event.term === 2);
                         if (filteredEvents.length === 0) return null;
 
                         return (
@@ -139,28 +210,59 @@ export default function CalendarByModule() {
                                 className={`${getUnitNameClass(filteredEvents[0])}`}
                                 key={index}
                                 style={getEventStyle(filteredEvents[0], index)}
-                                onClick={() => handleEventClick(filteredEvents[0])}
+                                // onClick={() => handleEventClick(filteredEvents[0])}
                             >
                                 <div className="test-names">
                                     {filteredEvents.map((event, subIndex) => (
-                                        <div
-                                            className="test-name"
+                                        <Tooltip
+                                            title={
+                                            <div>
+                                                <Typography variant="subtitle1">{event.title}</Typography>
+                                                <Typography variant="body2">Start Date: {event.start}</Typography>
+                                                <Typography variant="body2">End Date: {event.end}</Typography>
+                                                {event.location && (
+                                                <Typography variant="body2">Location: {event.location}</Typography>
+                                                )}
+                                            </div>
+                                            }
                                             key={subIndex}
+                                            onClick={() => handleEventClick(event)}
                                             style={{
-                                                backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
-                                                ? '#CC313D'
-                                                : event.type.toUpperCase() === "FORMATIVE"
-                                                ? '#2C5F2D'
-                                                : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                                                ? '#8A307F'
-                                                : "default-color",
-                                                color: 'white',
-                                                borderRadius: '5px'
-
+                                                border: '1px solid',
+                                                padding: '8px',
+                                                borderRadius: '4px',
+                                                transition: 'border 0.3s',
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.border = '5px solid #FBEF01';
+                                                if (event.linkedIds!==null) handleMouseEnter(event.linkedIds);
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.border = '1px solid #ccc';    // Border style when not hovered
+                                                handleMouseLeave();
                                             }}
                                         >
-                                            {event.title}
-                                        </div>
+                                            <div
+                                                className="test-name"
+                                                key={subIndex}
+                                                style={{
+                                                    backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
+                                                    ? '#CC313D'
+                                                    : event.type.toUpperCase() === "FORMATIVE"
+                                                    ? '#2C5F2D'
+                                                    : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                    ? '#8A307F'
+                                                    : "default-color",
+                                                    color: 'white',
+                                                    borderRadius: '5px',
+                                                    border: `${
+                                                        hoveredLinkedIds.includes(event.id) ? '5px solid #FBEF01' : '1px solid #ccc'
+                                                    }`,
+                                                }}
+                                            >
+                                                <div className="text-name-p">{event.title}</div>
+                                            </div>
+                                        </Tooltip>
                                     ))}
                                 </div>
                                 <div className="unit-codes">{filteredEvents[0].unitCode}</div>
@@ -173,7 +275,7 @@ export default function CalendarByModule() {
 
                 <div className="module-parent-bottom">
                     {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
-                        const filteredEvents = events.filter(event => event.unitName === unitName && event.term === "3");
+                        const filteredEvents = selectedEvents.filter(event => event.unitName === unitName && event.term === 3);
                         if (filteredEvents.length === 0) return null;
 
                         return (
@@ -181,28 +283,59 @@ export default function CalendarByModule() {
                                 className={`${getUnitNameClass(filteredEvents[0])}`}
                                 key={index}
                                 style={getEventStyle(filteredEvents[0], index)}
-                                onClick={() => handleEventClick(filteredEvents[0])}
+                                // onClick={() => handleEventClick(filteredEvents[0])}
                             >
                                 <div className="test-names">
                                     {filteredEvents.map((event, subIndex) => (
-                                        <div
-                                            className="test-name"
+                                        <Tooltip
+                                            title={
+                                            <div>
+                                                <Typography variant="subtitle1">{event.title}</Typography>
+                                                <Typography variant="body2">Start Date: {event.start}</Typography>
+                                                <Typography variant="body2">End Date: {event.end}</Typography>
+                                                {event.location && (
+                                                <Typography variant="body2">Location: {event.location}</Typography>
+                                                )}
+                                            </div>
+                                            }
                                             key={subIndex}
+                                            onClick={() => handleEventClick(event)}
                                             style={{
-                                                backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
-                                                ? '#CC313D'
-                                                : event.type.toUpperCase() === "FORMATIVE"
-                                                ? '#2C5F2D'
-                                                : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                                                ? '#8A307F'
-                                                : "default-color",
-                                                color: 'white',
-                                                borderRadius: '5px'
-
+                                                border: '5px solid',
+                                                padding: '8px',
+                                                borderRadius: '4px',
+                                                transition: 'border 0.3s',
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.border = '5px solid #FBEF01';
+                                                if (event.linkedIds!==null) handleMouseEnter(event.linkedIds);
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.border = '1px solid #ccc';    // Border style when not hovered
+                                                handleMouseLeave();
                                             }}
                                         >
-                                            {event.title}
-                                        </div>
+                                            <div
+                                                className="test-name"
+                                                key={subIndex}
+                                                style={{
+                                                    backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
+                                                    ? '#CC313D'
+                                                    : event.type.toUpperCase() === "FORMATIVE"
+                                                    ? '#2C5F2D'
+                                                    : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                    ? '#8A307F'
+                                                    : "default-color",
+                                                    color: 'white',
+                                                    borderRadius: '5px',
+                                                    border: `${
+                                                        hoveredLinkedIds.includes(event.id) ? '5px solid #FBEF01' : '1px solid #ccc'
+                                                    }`,
+                                                }}
+                                            >
+                                                <div className="text-name-p">{event.title}</div>
+                                            </div>
+                                        </Tooltip>
                                     ))}
                                 </div>
                                 <div className="unit-codes">{filteredEvents[0].unitCode}</div>
@@ -212,8 +345,9 @@ export default function CalendarByModule() {
                         );
                     })}
                 </div>
-            </div>
+            <EventDialog open={openDialog} handleCloseDialog={handleCloseDialog} event={selectedEvent} />
 
+            </div>
 
 
         </div>

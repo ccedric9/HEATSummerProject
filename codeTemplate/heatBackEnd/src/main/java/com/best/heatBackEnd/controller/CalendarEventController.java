@@ -35,6 +35,7 @@ public class CalendarEventController {
     CalendarEvent updateUser(@RequestBody CalendarEvent newCalendarEvent, @PathVariable Long id){
         return calendarEventRepository.findById(id)
                 .map(calendarEvent -> {
+                    calendarEvent.setProgramName(newCalendarEvent.getProgramName());
                     calendarEvent.setUnitName(newCalendarEvent.getUnitName());
                     calendarEvent.setUnitCode(newCalendarEvent.getUnitCode());
                     calendarEvent.setTerm(newCalendarEvent.getTerm());

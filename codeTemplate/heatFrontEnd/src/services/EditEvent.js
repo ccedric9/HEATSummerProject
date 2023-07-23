@@ -7,6 +7,7 @@ export default function EditEvent() {
   let { id } = useParams();
 
   const [calendarEvents, setCalendarEvent] = useState({
+    programName:"",
     unitName: "",
     unitCode: "",
     unitCredit: "",
@@ -24,11 +25,11 @@ export default function EditEvent() {
     linkedIds: "",
   });
 
-  const { unitName, unitCode, unitCredit, term, academicYear, weight, title, type, start, end, summary, feedback, location, examTime, linkedIds } = calendarEvents;
+  const {programName, unitName, unitCode, unitCredit, term, academicYear, weight, title, type, start, end, summary, feedback, location, examTime, linkedIds } = calendarEvents;
 
   useEffect(() => {
     const fetchEvent = async () => {
-      const result = await axios.get(`/calendarEvents/${id}`);
+      const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents/${id}`);
       setCalendarEvent(result.data);
     };
     fetchEvent();
@@ -40,7 +41,7 @@ export default function EditEvent() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`/calendarEvents/${id}`, calendarEvents);
+    await axios.put(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents/${id}`, calendarEvents);
     navigate("/");
   };
 
@@ -50,6 +51,19 @@ export default function EditEvent() {
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
           <h2 className="text-center m-4">Edit Calendar Event</h2>
           <form onSubmit={(e) => onSubmit(e)}>
+            <div className="mb-3">
+              <label htmlFor="programName" className="form-label">
+                Program Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter program name"
+                name="programName"
+                value={programName}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
             <div className="mb-3">
               <label htmlFor="unitName" className="form-label">
                 Unit Name
