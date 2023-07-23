@@ -94,6 +94,8 @@ const UserProfile = () => {
     alert('Profile Updated!');
   };
 
+  
+
   if (isLoading) {
     return <Typography variant="h4">Loading...</Typography>;
   }
@@ -193,10 +195,18 @@ const UserProfile = () => {
               const today = new Date();
               const startDate = new Date(event.start);
               const endDate = new Date(event.end);
+              const eventBackgroundColor =
+                event.type.toUpperCase() === "SUMMATIVE"
+                  ? "#CC313D"
+                  : event.type.toUpperCase() === "FORMATIVE"
+                  ? "#2C5F2D"
+                  : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                  ? "#8A307F"
+                  : "default-color";
               if (isAfter(today, startDate) && isAfter(endDate, today)) {
                 return (
                   <div key={event.id} onClick={() => handleEventClick(event)}>
-                    <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: '#f0f0f0' , textAlign: 'center'}}>
+                    <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>
                     <Typography variant="subtitle1">{event.title}</Typography>
                     <Typography variant="subtitle2">{event.start} -- {event.end}</Typography>
                   </Paper>
@@ -212,10 +222,18 @@ const UserProfile = () => {
               const today = new Date();
               const startDate = new Date(event.start);
               const endDate = new Date(event.end);
+              const eventBackgroundColor =
+                event.type.toUpperCase() === "SUMMATIVE"
+                  ? "#CC313D"
+                  : event.type.toUpperCase() === "FORMATIVE"
+                  ? "#2C5F2D"
+                  : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                  ? "#8A307F"
+                  : "default-color";
               if (isAfter(startDate, today)) {
                 return (
                   <div key={event.id} onClick={() => handleEventClick(event)}>
-                    <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: '#f0f0f0' , textAlign: 'center'}}>
+                    <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>
                     <Typography variant="subtitle1">{event.title}</Typography>
                     <Typography variant="subtitle2">{event.start} -- {event.end}</Typography>
                   </Paper>
