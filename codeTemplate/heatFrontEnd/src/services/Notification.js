@@ -20,6 +20,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import NotificationImportant from "@mui/icons-material/NotificationImportant";
 import { Link as RouterLink } from 'react-router-dom';
 import EventDialog from "../pages/EventDialog";
+import { useSelector, useDispatch } from 'react-redux';
+import { resetUser } from '../redux/slices/userSlice';
 
 const UserProfile = () => {
   const [username, setUsername] = useState('');
@@ -36,6 +38,7 @@ const UserProfile = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [unitNameCounts, setUnitNameCounts] = useState({});
   const [openDialog, setOpenDialog] = useState(false);
+  const user = useSelector(state => state.user);
 
   
   useEffect(() => {
@@ -114,7 +117,7 @@ const UserProfile = () => {
             <form noValidate autoComplete="off" style={{ width: '100%', marginTop: '20px' }} onSubmit={handleUpdateProfile}>
               <TextField
                 label="Username"
-                value={username}
+                value={user.firstName + '\t' + user.lastName}
                 fullWidth
                 margin="normal"
                 onChange={(e) => setUsername(e.target.value)}
@@ -129,7 +132,7 @@ const UserProfile = () => {
               />
               <TextField
                 label="Email"
-                value={email}
+                value={user.email}
                 fullWidth
                 margin="normal"
                 onChange={(e) => setEmail(e.target.value)}
@@ -144,7 +147,7 @@ const UserProfile = () => {
               />
               <TextField
                 label="Major"
-                value={major}
+                value={user.major}
                 fullWidth
                 margin="normal"
                 onChange={(e) => setMajor(e.target.value)}
