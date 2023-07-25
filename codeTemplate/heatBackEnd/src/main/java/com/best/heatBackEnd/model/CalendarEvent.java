@@ -1,6 +1,9 @@
 package com.best.heatBackEnd.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+@Table(name = "calendar_event_backup")
 public class CalendarEvent {
 
     @Id
