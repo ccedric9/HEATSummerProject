@@ -43,7 +43,8 @@ const Home = () => {
   ];
 
   // User program defines here
-  const program = 'Computer Science';
+  // const program = 'Computer Science';
+  const program = 'Mechanical Engineering';
   const firstYear = 2022;
 
   const [events, setEvents] = useState([]);

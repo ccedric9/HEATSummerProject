@@ -40,6 +40,7 @@ const UserProfile = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const user = useSelector(state => state.user);
 
+  const programName = 'Mechanical Engineering';
   
   useEffect(() => {
     try {
@@ -206,7 +207,7 @@ const UserProfile = () => {
                   : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
                   ? "#8A307F"
                   : "default-color";
-              if (isAfter(today, startDate) && isAfter(endDate, today)) {
+              if (isAfter(today, startDate) && isAfter(endDate, today) && event.programName === user.major) {
                 return (
                   <div key={event.id} onClick={() => handleEventClick(event)}>
                     <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>
@@ -233,11 +234,12 @@ const UserProfile = () => {
                   : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
                   ? "#8A307F"
                   : "default-color";
-              if (isAfter(startDate, today)) {
+              if (isAfter(startDate, today) && event.programName === user.major) {
                 return (
                   <div key={event.id} onClick={() => handleEventClick(event)}>
                     <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>
                     <Typography variant="subtitle1">{event.title}</Typography>
+                    <Typography variant="subtitle1">{event.programName}</Typography>
                     <Typography variant="subtitle2">{event.start} -- {event.end}</Typography>
                   </Paper>
                   </div>

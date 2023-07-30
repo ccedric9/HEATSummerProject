@@ -15,7 +15,8 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 export default function CalendarByModule() {
 
     //user program will define here 
-    const program = 'Computer Science';
+    // const program = 'Computer Science';
+    const program = 'Mechanical Engineering';
     const firstYear = 2022;
 
     const [selectedEvent, setSelectedEvent] = useState(null);

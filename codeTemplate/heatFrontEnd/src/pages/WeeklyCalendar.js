@@ -8,7 +8,8 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import EventDialog from "./EventDialog";
 
   // User program defines here
-const program = 'Computer Science';
+// const program = 'Computer Science';
+const program = 'Mechanical Engineering';
 const firstYear= 2022;
 
 const WeeklyCalendar = () => {
