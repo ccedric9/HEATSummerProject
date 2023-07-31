@@ -7,11 +7,13 @@ import { useNavigate } from 'react-router-dom';
 
 function UserInfoPage() {
   const user = useSelector(state => state.user);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(resetUser());
+    sessionStorage.removeItem('user'); 
     navigate('/login');
   };
 

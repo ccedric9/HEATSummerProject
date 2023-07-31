@@ -15,8 +15,13 @@ import SignUp from "./services/SignUp";
 import Notification from "./services/Notification";
 import UserInfoPage from "./pages/UserInfoPage";
 import { Alert } from "bootstrap";
-import { Provider } from 'react-redux';
+// import { Provider} from 'react-redux';
 import store from './redux/store';
+// import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector,Provider } from 'react-redux';
+
+import { useEffect } from 'react';
+import { setUser } from './redux/slices/userSlice';
 
 const Layout = () => {
   return (
@@ -52,10 +57,25 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <Provider store={store}>
-      <div>
-        <RouterProvider router={router} />
-      </div>
+      <AppComponent />
     </Provider>
+  )
+};
+
+const AppComponent = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    if (user) {
+      dispatch(setUser(user));
+    }
+  }, [dispatch]);
+
+  return (
+    <div>
+      <RouterProvider router={router} />
+    </div>
   )
 
 };

@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Button, TextField, Typography, Container, Link as MuiLink } from "@mui/material";
@@ -14,15 +14,15 @@ function Login() {
   const navigate = useNavigate();
 
 
-    // Get the current user from Redux state
-    const user = useSelector(state => state.user);
+  // Get the current user from Redux state
+  const user = useSelector(state => state.user);
 
-    // If there is a user logged in, navigate to the user info page
-    useEffect(() => {
-      if (user && user.email) {
-        navigate('/user-info');
-      }
-    }, [user, navigate]);
+  // If there is a user logged in, navigate to the user info page
+  useEffect(() => {
+    if (user && user.email) {
+      navigate('/user-info');
+    }
+  }, [user, navigate]);
 
 
   const handleSubmit = async (event) => {
@@ -43,6 +43,7 @@ function Login() {
         email: response.data.email,
         major: response.data.major
       }));
+
       // check the first digit of the status code
       switch (Math.floor(status / 100)) {
         case 2:
@@ -73,10 +74,14 @@ function Login() {
       }
     }
   };
-
+  useEffect(() => {
+    if (user) {
+      sessionStorage.setItem('user', JSON.stringify(user));
+    }
+  }, [user]);
   return (
     <Container maxWidth="xs">
-      <Typography variant="h4" style={{marginTop: '20px'}}>Login</Typography>
+      <Typography variant="h4" style={{ marginTop: '20px' }}>Login</Typography>
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
         <TextField
           label="Username"
@@ -99,13 +104,13 @@ function Login() {
           type="submit"
           color="primary"
           variant="contained"
-          style={{marginTop: '20px'}}
+          style={{ marginTop: '20px' }}
           fullWidth
         >
           Login
         </Button>
       </form>
-      <Typography style={{marginTop: '20px'}}>
+      <Typography style={{ marginTop: '20px' }}>
         Don't have an account? <MuiLink component={RouterLink} to="/signup">Sign Up</MuiLink>
       </Typography>
     </Container>

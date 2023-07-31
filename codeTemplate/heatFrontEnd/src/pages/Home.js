@@ -44,7 +44,7 @@ const Home = () => {
 
   // User program defines here
   const program = 'Computer Science';
-  const firstYear = 2022;
+  const firstYear = 2022; 
 
   const [events, setEvents] = useState([]);
   const [unitNameCounts, setUnitNameCounts] = useState({});
@@ -115,6 +115,7 @@ const loadCalendarEvents = async () => {
     const offsetDays = (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24);
 
     return {
+      
       left: `calc(${(offsetDays / 365) * 100}% + 10px)`,
       width: `calc(${(durationDays / 365) * 100}% - 20px)`,
       backgroundColor:

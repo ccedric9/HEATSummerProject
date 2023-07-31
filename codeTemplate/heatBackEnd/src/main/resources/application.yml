@@ -9,10 +9,10 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   mail:
-    host: localhost
-    port: 1025
-    username: hello
-    password: hello
+    host: smtp.mailgun.org
+    port: 587
+    username: postmaster@sandboxb09d2059fed0462bbc83eab0928c09bb.mailgun.org
+    password: c45b7891f5767ec3d06da608506f1589-4e034d9e-6159c035
 
     properties:
       mail:
