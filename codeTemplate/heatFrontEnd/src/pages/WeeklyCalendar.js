@@ -8,8 +8,8 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import EventDialog from "./EventDialog";
 
   // User program defines here
-// const program = 'Computer Science';
-const program = 'Mechanical Engineering';
+const program = 'Computer Science';
+// const program = 'Mechanical Engineering';
 const firstYear= 2022;
 
 const WeeklyCalendar = () => {
@@ -34,7 +34,7 @@ const WeeklyCalendar = () => {
 
   useEffect(() => {
     loadCalendarEvents();
-  }, []);
+  }, [currentYear, currentTerm]);
 
   const loadCalendarEvents = async () => {
     const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents`);
@@ -43,8 +43,8 @@ const WeeklyCalendar = () => {
       const startDate = new Date(event.start);
       const endDate = new Date(event.end);
 
-      const startDateRange = currentTerm ==='TB1'? new Date(currentYear + "-09-01"): new Date(`${currentYear+1}` + "-01-20");
-      const endDateRange = currentTerm ==='TB1'? new Date( `${currentYear+1}` + "-01-20"): new Date(`${currentYear+1}` + "-08-31");
+      // const startDateRange = currentTerm ==='TB1'? new Date(currentYear + "-09-01"): new Date(`${currentYear+1}` + "-01-20");
+      // const endDateRange = currentTerm ==='TB1'? new Date( `${currentYear+1}` + "-01-20"): new Date(`${currentYear+1}` + "-08-31");
       setEvents(result.data);
       let arr = result.data.map(e => e.unitName);
       arr = [...new Set(arr)];
@@ -57,14 +57,22 @@ const WeeklyCalendar = () => {
       setArrH(seq);
 
       return (
-        //use this code in the future
-        // event.term === "TB1" &&
-        startDate >= startDateRange &&
-        endDate <= endDateRange
+        event.programName === program &&
+        event.academicYear === currentYear - firstYear + 1 &&
+        event.term === (currentTerm === "TB1" ? 1 : 2)
       );
     });
+    console.log("Filtered Events:", filteredEvents);
+    console.log(currentYear);
     setEvents(filteredEvents);
 
+    // Update the unique unit names and their positions
+    const uniqueNames = [...new Set(filteredEvents.map((event) => event.unitName))];
+    const seq = {};
+    uniqueNames.forEach((e, i) => {
+      seq[e] = i;
+    });
+    setArrH(seq);
 
     // Calculate the number of each unit name
     const counts = {};
@@ -77,9 +85,9 @@ const WeeklyCalendar = () => {
 
   const selectedEvents = events.filter((event)=> 
   
-    event.programName === program 
-    && 
-    event.academicYear === currentYear - firstYear + 1 
+    // event.programName === program 
+    // && 
+    event.academicYear === currentYear - firstYear + 1  
     &&
     currentTerm === 'TB1' ? (event.term === 1 ) : (event.term === 2)
   );
@@ -91,7 +99,7 @@ const WeeklyCalendar = () => {
     // const endDated = new Date(ev);
 
     // Fixed timeline start date
-    const timelineStart = new Date(currentYear +"-09-15");
+    const timelineStart = currentTerm === 'TB1' ? new Date(currentYear +"-09-15") : new Date(currentYear + 1 +"-01-20");
 
     // Calculate the number of weeks between the event start and end
     const durationWeeks = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 7) + 1;
@@ -115,23 +123,6 @@ const WeeklyCalendar = () => {
   };
 
 
-  const handleNextButtonClick = () => {
-    if (currentTerm === "TB1") {
-      setCurrentTerm("TB2");
-    } else {
-      setCurrentTerm("TB1");
-      setCurrentYear((prevYear) => prevYear + 1);
-    }
-  };
-
-  const handlePrevButtonClick = () => {
-    if (currentTerm === "TB1") {
-      setCurrentTerm("TB2");
-      setCurrentYear((prevYear) => prevYear - 1);
-    } else {
-      setCurrentTerm("TB1");
-    }
-  };
 
   function updateTime() {
     // the date vertical separate line
@@ -171,6 +162,10 @@ const WeeklyCalendar = () => {
             } else {
               setCurrentTerm("TB1")
             }
+            console.log(currentTerm + currentYear);
+            console.log(selectedEvents.map((event, index) => {
+              return (event.unitName);
+            }));
           }}>
             <NavigateBeforeIcon />
           </Button>
@@ -187,6 +182,10 @@ const WeeklyCalendar = () => {
               setCurrentTerm("TB1")
               currentYear == firstYear + 2 ? setCurrentYear(firstYear):setCurrentYear(currentYear + 1)
             }
+            console.log(currentTerm + currentYear);
+            console.log(selectedEvents.map((event, index) => {
+              return (event.unitName);
+            }));
           }}>
             <NavigateNextIcon />
           </Button>

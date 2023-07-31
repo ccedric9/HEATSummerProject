@@ -39,8 +39,6 @@ const UserProfile = () => {
   const [unitNameCounts, setUnitNameCounts] = useState({});
   const [openDialog, setOpenDialog] = useState(false);
   const user = useSelector(state => state.user);
-
-  const programName = 'Mechanical Engineering';
   
   useEffect(() => {
     try {
@@ -54,7 +52,7 @@ const UserProfile = () => {
     setEmail('test44@gmail.com');
     setName('Simon');
     // setGrade('First year');
-    setMajor('Computer Science');
+    // setMajor('Mechanical Engineering');
     setIsLoading(false);
   }, []);
 

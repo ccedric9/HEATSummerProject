@@ -43,8 +43,8 @@ const Home = () => {
   ];
 
   // User program defines here
-  // const program = 'Computer Science';
-  const program = 'Mechanical Engineering';
+  const program = 'Computer Science';
+  // const program = 'Mechanical Engineering';
   const firstYear = 2022;
 
   const [events, setEvents] = useState([]);
@@ -245,6 +245,10 @@ const loadCalendarEvents = async () => {
                 <Typography variant="subtitle1">{event.title}</Typography>
                 <Typography variant="body2">Start Date: {event.start}</Typography>
                 <Typography variant="body2">End Date: {event.end}</Typography>
+                <Typography variant="body2">Year: {event.academicYear}</Typography>
+                <Typography variant="body2">Term: {event.term}</Typography>
+                <Typography variant="body2">{currentYear - firstYear + 1}</Typography>
+                {/* <Typography variant="body2">{currentTerm}</Typography> */}
                 {event.location && (
                   <Typography variant="body2">Location: {event.location}</Typography>
                 )}
