@@ -51,9 +51,14 @@ const Home = () => {
   const [currentYear, setCurrentYear] = useState(firstYear);
   const [arrH, setArrH] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [showTimeline, setShowTimeline] = useState(true);
 
   const theme = useTheme();
   const isMdScreenOrWider = useMediaQuery(theme.breakpoints.up("md"));
+  const startDate = new Date(`${currentYear}-09-12`);
+  const endDate = new Date(`${startDate.getFullYear()+1}-09-01`);
+  const currentDate = new Date();
+
   useEffect(() => {
     try {
         loadCalendarEvents();
@@ -62,6 +67,10 @@ const Home = () => {
     }
 }, []);
 
+  useEffect(()=>{
+    setShowTimeline(currentDate<endDate && currentDate>startDate);
+    // setShowTimeline(currentYear===thisYear);
+  })
 
 const loadCalendarEvents = async () => {
   try {
@@ -126,26 +135,20 @@ const loadCalendarEvents = async () => {
           ? "#8A307F"
           : "default-color",
     };
-
-
   };
 
   function updateTime() {
     // the date vertical separate line
-
-    const startDate = new Date(`${currentYear}-09-12`);
-
-    const endDate = new Date(`${startDate.getFullYear()+1}-09-01`);
-
     const timeDifference = endDate-startDate;
-    // const targetTimeDifference = currentDate-startDate;
-    const targetDate = new Date();
-    const targetTimeDifference = targetDate-startDate;
-    console.log(targetTimeDifference);
-    console.log(timeDifference);
+
+    // const targetDate = new Date();
+    const targetTimeDifference = currentDate-startDate;
+    // console.log(targetTimeDifference);
+    // console.log(timeDifference);
 
     return ((targetTimeDifference / timeDifference) * 100);
   }
+
   const leftPosition = `${updateTime()}%`;
 
   return (
@@ -200,21 +203,21 @@ const loadCalendarEvents = async () => {
       {/* Events */}
       <div className="events-container">
         {/*const leftPosition = {updateTime()};*/}
-        <div
-            class="timeline"
-            style={{
-              position: 'absolute',
-              top: '-50px',
-              bottom: '0',
-              left: `${leftPosition}`,
-              width: '2px', /* Adjust the width of the vertical line as needed */
-              height: '950px',
-              // backgroundColor: 'lightslategrey', /* Adjust the color of the vertical line as needed */
-              border: '1px dashed cadetblue',
-              zIndex: '999',
-
-            }}
-        ></div>
+        {showTimeline && (
+          <div
+              class="timeline"
+              style={{
+                position: 'absolute',
+                top: '-50px',
+                bottom: '0',
+                left: `${leftPosition}`,
+                width: '2px', /* Adjust the width of the vertical line as needed */
+                height: '950px',
+                border: '1px dashed cadetblue',
+                zIndex: '999',
+              }}
+          ></div>
+        )}
         <div className="unitNames-container">
           {selectedEvents.map((event, index) => {
             const isSameUnit = index > 0 && events[index - 1].unitName === event.unitName;
