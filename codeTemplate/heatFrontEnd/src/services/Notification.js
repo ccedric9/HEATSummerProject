@@ -22,6 +22,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import EventDialog from "../pages/EventDialog";
 import { useSelector, useDispatch } from 'react-redux';
 import { resetUser } from '../redux/slices/userSlice';
+import { addMonths, isBefore, isWithinInterval } from 'date-fns';
 
 const UserProfile = () => {
   const [username, setUsername] = useState('');
@@ -39,7 +40,6 @@ const UserProfile = () => {
   const [unitNameCounts, setUnitNameCounts] = useState({});
   const [openDialog, setOpenDialog] = useState(false);
   const user = useSelector(state => state.user);
-
   
   useEffect(() => {
     try {
@@ -53,9 +53,19 @@ const UserProfile = () => {
     setEmail('test44@gmail.com');
     setName('Simon');
     // setGrade('First year');
-    setMajor('Computer Science');
+    // setMajor('Mechanical Engineering');
     setIsLoading(false);
   }, []);
+
+  const filterUpcomingAssessments = (events) => {
+    const today = new Date();
+    const nextMonth = addMonths(today, 1);
+
+    return events.filter((event) => {
+      const startDate = new Date(event.start);
+      return isWithinInterval(startDate, { start: today, end: nextMonth }) && event.programName === user.major;
+    });
+  };
 
   const loadCalendarEvents = async () => {
     try {
@@ -206,7 +216,7 @@ const UserProfile = () => {
                   : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
                   ? "#8A307F"
                   : "default-color";
-              if (isAfter(today, startDate) && isAfter(endDate, today)) {
+              if (isAfter(today, startDate) && isAfter(endDate, today) && event.programName === user.major) {
                 return (
                   <div key={event.id} onClick={() => handleEventClick(event)}>
                     <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>
@@ -221,7 +231,7 @@ const UserProfile = () => {
             <Typography component="h1" variant="h5">
               Upcoming Assessment
             </Typography>
-            {events.map((event) => {
+            {filterUpcomingAssessments(events).map((event) => {
               const today = new Date();
               const startDate = new Date(event.start);
               const endDate = new Date(event.end);
@@ -233,11 +243,12 @@ const UserProfile = () => {
                   : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
                   ? "#8A307F"
                   : "default-color";
-              if (isAfter(startDate, today)) {
+              if (isAfter(startDate, today) && event.programName === user.major) {
                 return (
                   <div key={event.id} onClick={() => handleEventClick(event)}>
                     <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>
                     <Typography variant="subtitle1">{event.title}</Typography>
+                    <Typography variant="subtitle1">{event.programName}</Typography>
                     <Typography variant="subtitle2">{event.start} -- {event.end}</Typography>
                   </Paper>
                   </div>

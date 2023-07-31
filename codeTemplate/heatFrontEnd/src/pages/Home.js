@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Home.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Box,
   Button,
@@ -43,8 +43,9 @@ const Home = () => {
   ];
 
   // User program defines here
-  const program = 'Computer Science';
-  const firstYear = 2022; 
+  // const program = 'Computer Science';
+  const program = 'Mechanical Engineering';
+  const firstYear = 2022;
 
   const [events, setEvents] = useState([]);
   const [unitNameCounts, setUnitNameCounts] = useState({});
@@ -56,40 +57,40 @@ const Home = () => {
   const isMdScreenOrWider = useMediaQuery(theme.breakpoints.up("md"));
   useEffect(() => {
     try {
-        loadCalendarEvents();
+      loadCalendarEvents();
     } catch (error) {
-        console.error(error);
+      console.error(error);
     }
-}, []);
+  }, []);
 
 
-const loadCalendarEvents = async () => {
-  try {
-    const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents`);
-    setEvents(result.data);
-    let arr = result.data.map(e => e.unitName);
-    arr = [...new Set(arr)];
-    let seq = {};
-    arr.forEach(
-      (e, i) => {
-        seq[e] = i
-      }
-    )
-    setArrH(seq);
-    //Caculate the number of each unit name
-    const counts = {};
-    result.data.forEach((event) => {
-      const { unitName } = event;
-      counts[unitName] = counts[unitName] ? counts[unitName] + 1 : 1;
-    });
-    setUnitNameCounts(counts);
-  } catch (err) {
-    console.error(err);
-    // Handle the error appropriately for your application
-  }
-};
+  const loadCalendarEvents = async () => {
+    try {
+      const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents`);
+      setEvents(result.data);
+      let arr = result.data.map(e => e.unitName);
+      arr = [...new Set(arr)];
+      let seq = {};
+      arr.forEach(
+        (e, i) => {
+          seq[e] = i
+        }
+      )
+      setArrH(seq);
+      //Caculate the number of each unit name
+      const counts = {};
+      result.data.forEach((event) => {
+        const { unitName } = event;
+        counts[unitName] = counts[unitName] ? counts[unitName] + 1 : 1;
+      });
+      setUnitNameCounts(counts);
+    } catch (err) {
+      console.error(err);
+      // Handle the error appropriately for your application
+    }
+  };
 
-  const selectedEvents = events.filter((event)=> event.programName === program && event.academicYear === currentYear - firstYear + 1 );
+  const selectedEvents = events.filter((event) => event.programName === program && event.academicYear === currentYear - firstYear + 1);
 
 
   const handleEventClick = (event) => {
@@ -106,7 +107,7 @@ const loadCalendarEvents = async () => {
     const eventDescription = new Date(event.description);
 
     // Fixed timeline start date
-    const timelineStart = new Date( `${firstYear}`+"-09-01");
+    const timelineStart = new Date(`${firstYear}` + "-09-01");
 
     // Calculate the number of days between the event start and end
     const durationDays = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1;
@@ -115,17 +116,17 @@ const loadCalendarEvents = async () => {
     const offsetDays = (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24);
 
     return {
-      
+
       left: `calc(${(offsetDays / 365) * 100}% + 10px)`,
       width: `calc(${(durationDays / 365) * 100}% - 20px)`,
       backgroundColor:
         event.type.toUpperCase() === "SUMMATIVE"
           ? "#CC313D"
           : event.type.toUpperCase() === "FORMATIVE"
-          ? "#2C5F2D"
-          : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-          ? "#8A307F"
-          : "default-color",
+            ? "#2C5F2D"
+            : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+              ? "#8A307F"
+              : "default-color",
     };
 
 
@@ -136,12 +137,12 @@ const loadCalendarEvents = async () => {
 
     const startDate = new Date(`${currentYear}-09-12`);
 
-    const endDate = new Date(`${startDate.getFullYear()+1}-09-01`);
+    const endDate = new Date(`${startDate.getFullYear() + 1}-09-01`);
 
-    const timeDifference = endDate-startDate;
+    const timeDifference = endDate - startDate;
     // const targetTimeDifference = currentDate-startDate;
     const targetDate = new Date();
-    const targetTimeDifference = targetDate-startDate;
+    const targetTimeDifference = targetDate - startDate;
     console.log(targetTimeDifference);
     console.log(timeDifference);
 
@@ -156,18 +157,18 @@ const loadCalendarEvents = async () => {
         <Typography gridColumn="span 4" variant="h6" text="textSecondary" align="left">
           {program}
         </Typography>
-      
+
         <Box display="flex" gridColumn="span 3">
-          <Button color="secondary" onClick={() => currentYear == firstYear ? setCurrentYear(currentYear +2):setCurrentYear(currentYear - 1)}>
+          <Button color="secondary" onClick={() => currentYear == firstYear ? setCurrentYear(currentYear + 2) : setCurrentYear(currentYear - 1)}>
             <NavigateBeforeIcon />
           </Button>
           <div className="timelinebar-middle">
             <div className="yearIndicator">Year {currentYear - firstYear + 1}</div>
             <div>
-            {currentYear} - {currentYear + 1}
+              {currentYear} - {currentYear + 1}
             </div>
           </div>
-          <Button color="secondary" onClick={() => currentYear == firstYear + 2 ? setCurrentYear(firstYear):setCurrentYear(currentYear + 1)}>
+          <Button color="secondary" onClick={() => currentYear == firstYear + 2 ? setCurrentYear(firstYear) : setCurrentYear(currentYear + 1)}>
             <NavigateNextIcon />
           </Button>
         </Box>
@@ -187,34 +188,34 @@ const loadCalendarEvents = async () => {
       </Box>
 
       {/* Months */}
-    {/* Months */}
-    <div className="months-container">
-      {months.map((month, index) => (
-        <div className="month" key={month}>
-          {month}
-          {index !== months.length && index !== 0 && <div className="vertical-line" style={{ height: `${(Object.values(arrH).length - 1) * 765}%` }}></div>}
-        </div>
-      ))}
-    </div>
+      {/* Months */}
+      <div className="months-container">
+        {months.map((month, index) => (
+          <div className="month" key={month}>
+            {month}
+            {index !== months.length && index !== 0 && <div className="vertical-line" style={{ height: `${(Object.values(arrH).length - 1) * 765}%` }}></div>}
+          </div>
+        ))}
+      </div>
 
 
       {/* Events */}
       <div className="events-container">
         {/*const leftPosition = {updateTime()};*/}
         <div
-            class="timeline"
-            style={{
-              position: 'absolute',
-              top: '-50px',
-              bottom: '0',
-              left: `${leftPosition}`,
-              width: '2px', /* Adjust the width of the vertical line as needed */
-              height: '950px',
-              // backgroundColor: 'lightslategrey', /* Adjust the color of the vertical line as needed */
-              border: '1px dashed cadetblue',
-              zIndex: '999',
+          class="timeline"
+          style={{
+            position: 'absolute',
+            top: '-50px',
+            bottom: '0',
+            left: `${leftPosition}`,
+            width: '2px', /* Adjust the width of the vertical line as needed */
+            height: '950px',
+            // backgroundColor: 'lightslategrey', /* Adjust the color of the vertical line as needed */
+            border: '1px dashed cadetblue',
+            zIndex: '999',
 
-            }}
+          }}
         ></div>
         <div className="unitNames-container">
           {selectedEvents.map((event, index) => {
@@ -245,6 +246,10 @@ const loadCalendarEvents = async () => {
                 <Typography variant="subtitle1">{event.title}</Typography>
                 <Typography variant="body2">Start Date: {event.start}</Typography>
                 <Typography variant="body2">End Date: {event.end}</Typography>
+                <Typography variant="body2">Year: {event.academicYear}</Typography>
+                <Typography variant="body2">Term: {event.term}</Typography>
+                <Typography variant="body2">{currentYear - firstYear + 1}</Typography>
+                {/* <Typography variant="body2">{currentTerm}</Typography> */}
                 {event.location && (
                   <Typography variant="body2">Location: {event.location}</Typography>
                 )}
