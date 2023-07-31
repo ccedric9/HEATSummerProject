@@ -22,6 +22,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import EventDialog from "../pages/EventDialog";
 import { useSelector, useDispatch } from 'react-redux';
 import { resetUser } from '../redux/slices/userSlice';
+import { addMonths, isBefore, isWithinInterval } from 'date-fns';
 
 const UserProfile = () => {
   const [username, setUsername] = useState('');
@@ -55,6 +56,16 @@ const UserProfile = () => {
     // setMajor('Mechanical Engineering');
     setIsLoading(false);
   }, []);
+
+  const filterUpcomingAssessments = (events) => {
+    const today = new Date();
+    const nextMonth = addMonths(today, 1);
+
+    return events.filter((event) => {
+      const startDate = new Date(event.start);
+      return isWithinInterval(startDate, { start: today, end: nextMonth }) && event.programName === user.major;
+    });
+  };
 
   const loadCalendarEvents = async () => {
     try {
@@ -220,7 +231,7 @@ const UserProfile = () => {
             <Typography component="h1" variant="h5">
               Upcoming Assessment
             </Typography>
-            {events.map((event) => {
+            {filterUpcomingAssessments(events).map((event) => {
               const today = new Date();
               const startDate = new Date(event.start);
               const endDate = new Date(event.end);
