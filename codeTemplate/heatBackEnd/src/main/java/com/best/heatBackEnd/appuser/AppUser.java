@@ -35,6 +35,7 @@ public class AppUser implements UserDetails {
     private String lastName;
     private String email;
     private String password;
+    private Boolean staff;
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
     private Boolean locked = false;
@@ -45,13 +46,15 @@ public class AppUser implements UserDetails {
                    String lastName,
                    String email,
                    String password,
-                     String major,
+                   String major,
+                   Boolean staff,
                    AppUserRole appUserRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.major = major;
+        this.staff = staff;
         this.appUserRole = appUserRole;
     }
 
@@ -61,6 +64,7 @@ public class AppUser implements UserDetails {
                 new SimpleGrantedAuthority(appUserRole.name());
         return Collections.singletonList(authority);
     }
+
 
     public String getMajor() {
         return major;

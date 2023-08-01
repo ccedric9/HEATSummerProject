@@ -37,6 +37,7 @@ public class RegistrationService {
                         request.getEmail(),
                         request.getPassword(),
                         request.getMajor(),
+                        request.getStaff(),
                         AppUserRole.USER
                 )
         );
