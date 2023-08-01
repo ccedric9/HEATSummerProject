@@ -342,6 +342,7 @@ const Home = () => {
               )}
             </DialogContent>
             <DialogActions>
+              <Button component={Link} to={`/editEvent/${selectedEvent.id}`}>Edit</Button>
               <Button onClick={handleCloseDialog}>Close</Button>
             </DialogActions>
           </>

@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import './EditEvent.css';
 
 export default function EditEvent() {
   let navigate = useNavigate();
   let { id } = useParams();
+
+  const feedbackLink = "https://www.ole.bris.ac.uk/";
 
   const [calendarEvents, setCalendarEvent] = useState({
     programName:"",
@@ -45,40 +48,66 @@ export default function EditEvent() {
     navigate("/");
   };
 
+  const [calendarEvent, setEvents] = useState([]);
+
+  const loadEvents = async () => {
+    const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents`);
+    setEvents(result.data);
+  };
+
+  const deleteEvents = async (id) => {
+    const isConfirmed = window.confirm("Please confirm to delete ? ")
+    if(isConfirmed){
+      await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents/${id}`);
+      loadEvents();
+    }
+  };
+
+  const weightOptions=[];
+  for (let i = 0 ; i <= 100 ; i += 5){
+    weightOptions.push(i);
+  }
+
+
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-          <h2 className="text-center m-4">Edit Calendar Event</h2>
-          <form onSubmit={(e) => onSubmit(e)}>
-            <div className="mb-3">
-              <label htmlFor="programName" className="form-label">
-                Program Name
-              </label>
-              <input
-                type="text"
+      <h3>Edit Assessment :{" < "+unitName+" - "+ title + " > " } </h3>
+        <form onSubmit={(e) => onSubmit(e)}>
+          <div className="row">
+            <label htmlFor="programName">
+              Program Name
+            </label>
+            <select
                 className="form-control"
-                placeholder="Enter program name"
                 name="programName"
                 value={programName}
                 onChange={(e) => onInputChange(e)}
-              />
+              >
+                <option value=""></option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Aerospace Engineering">Aerospace Engineering</option>
+                <option value="Electrical & Electronic Engineering">Electrical & Electronic Engineering</option>
+                <option value="Engineering Mathematics">Engineering Mathematics</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+              </select>
+          </div>
+          <div className="row">
+            <div className="col">
+            <label htmlFor="unitName">
+              Unit Name
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter unit name"
+              name="unitName"
+              value={unitName}
+              onChange={(e) => onInputChange(e)}
+            />
             </div>
-            <div className="mb-3">
-              <label htmlFor="unitName" className="form-label">
-                Unit Name
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter unit name"
-                name="unitName"
-                value={unitName}
-                onChange={(e) => onInputChange(e)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="unitCode" className="form-label">
+            <div className="col">
+              <label htmlFor="unitCode">
                 Unit Code
               </label>
               <input
@@ -90,60 +119,66 @@ export default function EditEvent() {
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="academicYear" className="form-label">
+            <div className="col">
+              <label htmlFor="unitCredit">
+                Credit Points
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                name="unitCredit"
+                value={unitCredit}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <label htmlFor="academicYear">
                 Academic Year
               </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="select a year"
-                name="academicYear"
+              <select 
+                name="academicYear" 
                 value={academicYear}
+                className="form-control"
                 onChange={(e) => onInputChange(e)}
-              />
+                >
+                <option value="1">Year 1</option>
+                <option value="2">Year 2</option>
+                <option value="3">Year 3</option>
+              </select>
             </div>
-            <div className="mb-3">
-              <label htmlFor="term" className="form-label">
+            <div className="col">
+              <label htmlFor="term">
                 Term
               </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter term"
-                name="term"
+              <select 
+                name="term" 
                 value={term}
-                onChange={(e) => onInputChange(e)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="weight" className="form-label">
-                Weight (%)
-              </label>
-              <input
-                type="text"
                 className="form-control"
-                placeholder="Enter weight to total unit 0 ~ 100 "
-                name="weight"
-                value={weight}
                 onChange={(e) => onInputChange(e)}
-              />
+                >
+                <option value="1">Term 1</option>
+                <option value="2">Term 2</option>
+              </select>
             </div>
-            <div className="mb-3">
-              <label htmlFor="Title" className="form-label">
+          </div>
+          <div className="row">
+            <div className="col">
+              <label htmlFor="Title" >
                 Assessment Title
               </label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Enter event title"
+                placeholder="Enter assessment title"
                 name="title"
                 value={title}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="Type" className="form-label">
+            <div className="col">
+              <label htmlFor="Type">
                 Assessment Type
               </label>
               <select
@@ -157,9 +192,28 @@ export default function EditEvent() {
                 <option value="CAPSTONESUMMATIVE">CAPSTONESUMMATIVE</option>
               </select>
             </div>
-            <div className="mb-3">
-              <label htmlFor="Start" className="form-label">
-                Start Time
+            <div className="col">
+              <label htmlFor="weight" >
+                Weight (%)
+              </label>
+              <select name="weightInput" id="weightInput" className="form-control">
+                <option value={weight}>
+                  {weight}
+                </option>
+                {
+                  weightOptions.map((value)=>(
+                    value!== weight && <option id={value} value = {value}>
+                      {value}
+                    </option>
+                  ))  
+                }
+              </select>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <label htmlFor="Start" >
+                Start Date
               </label>
               <input
                 type="date"
@@ -169,9 +223,9 @@ export default function EditEvent() {
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="End" className="form-label">
-                End Time
+            <div className="col">
+              <label htmlFor="End" >
+                End Date
               </label>
               <input
                 type="date"
@@ -181,108 +235,57 @@ export default function EditEvent() {
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-
-
-            <div className="mb-3">
-              <label htmlFor="weight" className="form-label">
-                unitCredit
+            <div className="col">
+              <label htmlFor="location" >
+                Location
               </label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Enter weight to total unit 0 ~ 100 "
-                name="unitCredit"
-                value={unitCredit}
-                onChange={(e) => onInputChange(e)}
-              />
-            </div>
-
-
-            <div className="mb-3">
-              <label htmlFor="weight" className="form-label">
-                summary
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter weight to total unit 0 ~ 100 "
-                name="summary"
-                value={summary}
-                onChange={(e) => onInputChange(e)}
-              />
-            </div>
-
-
-            <div className="mb-3">
-              <label htmlFor="weight" className="form-label">
-                feedback
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter weight to total unit 0 ~ 100 "
-                name="feedback"
-                value={feedback}
-                onChange={(e) => onInputChange(e)}
-              />
-            </div>
-
-
-            <div className="mb-3">
-              <label htmlFor="weight" className="form-label">
-                location
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter weight to total unit 0 ~ 100 "
+                placeholder="please select assessment location"
                 name="location"
                 value={location}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-
-
-            <div className="mb-3">
-              <label htmlFor="weight" className="form-label">
-                examTime
+          </div>
+          <div className="row">
+          <label htmlFor="location" >
+                Feedback
               </label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Enter weight to total unit 0 ~ 100 "
-                name="examTime"
-                value={examTime}
+                placeholder="please select assessment location"
+                name="feedback"
+                value={feedback}
                 onChange={(e) => onInputChange(e)}
               />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="weight" className="form-label">
-                linkedIds
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter weight to total unit 0 ~ 100 "
-                name="linkedIds"
-                value={linkedIds}
-                onChange={(e) => onInputChange(e)}
-              />
-            </div>
-
-
-
-
-            <button type="submit" className="btn btn-outline-primary">
-              Save Changes
-            </button>
-            <Link className="btn btn-outline-danger mx-2" to="/">
-              Cancel
-            </Link>
-          </form>
-        </div>
-      </div>
+          </div>
+          <div className="row">
+            <label htmlFor="summary" >
+              Assessment Summary
+            </label>
+            <input
+              type="text"
+              className="form-control summary"
+              name="summary"
+              value={summary}
+              onChange={(e) => onInputChange(e)}
+            />
+          </div>
+          <div className="buttons">
+          <button type="submit" className="btn btn-outline-primary">
+            Submit
+          </button>
+          <button type="delete" className="btn btn-outline-danger mx-2" onClick={()=>deleteEvents(id)}>
+            Delete
+          </button>
+          <Link className="btn btn-outline-danger mx-2" to="/">
+            Cancel
+          </Link>
+          </div>
+        </form>
     </div>
   );
 }

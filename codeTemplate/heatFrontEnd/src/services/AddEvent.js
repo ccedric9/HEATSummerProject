@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './AddEvent.css';
 
+
 export default function AddEvent() {
   let navigate = useNavigate();
 
@@ -23,6 +24,7 @@ export default function AddEvent() {
     location:"",
   });
 
+
   const { programName,unitName, unitCode, unitCredit, term, academicYear, weight, title, type, start, end, feedback,summary,location } = calendarEvents;
 
   const onInputChange = (e) => {
@@ -35,22 +37,34 @@ export default function AddEvent() {
     navigate("/");
   };
 
+  const weightOptions=[];
+  for (let i = 0 ; i <= 100 ; i += 5){
+    weightOptions.push(i);
+  }
+
+
   return (
     <div className="container">
       <h3>Add an assessment </h3>
         <form onSubmit={(e) => onSubmit(e)}>
-          <div className="row single">
+          <div className="row">
             <label htmlFor="programName">
               Program Name
             </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Enter program name"
-              name="programName"
-              value={programName}
-              onChange={(e) => onInputChange(e)}
-            />
+            <select
+                className="form-control"
+                name="programName"
+                value={programName}
+                onChange={(e) => onInputChange(e)}
+              >
+                <option value=""></option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Aerospace Engineering">Aerospace Engineering</option>
+                <option value="Electrical & Electronic Engineering">Electrical & Electronic Engineering</option>
+                <option value="Engineering Mathematics">Engineering Mathematics</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+              </select>
           </div>
           <div className="row">
             <div className="col">
@@ -98,27 +112,30 @@ export default function AddEvent() {
               <label htmlFor="academicYear">
                 Academic Year
               </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="select a year"
-                name="academicYear"
+              <select 
+                name="academicYear" 
                 value={academicYear}
+                className="form-control"
                 onChange={(e) => onInputChange(e)}
-              />
+                >
+                <option value="1">Year 1</option>
+                <option value="2">Year 2</option>
+                <option value="3">Year 3</option>
+              </select>
             </div>
             <div className="col">
               <label htmlFor="term">
                 Term
               </label>
-              <input
-                type="text"
-                className="form-control"  
-                placeholder="Enter term"
-                name="term"
+              <select 
+                name="term" 
                 value={term}
+                className="form-control"
                 onChange={(e) => onInputChange(e)}
-              />
+                >
+                <option value="1">Term 1</option>
+                <option value="2">Term 2</option>
+              </select>
             </div>
           </div>
           <div className="row">
@@ -154,14 +171,15 @@ export default function AddEvent() {
               <label htmlFor="weight" >
                 Weight (%)
               </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="0 ~ 100 "
-                name="weight"
-                value={weight}
-                onChange={(e) => onInputChange(e)}
-              />
+              <select name="weightInput" id="weightInput" className="form-control">
+                {
+                  weightOptions.map((value)=>(
+                    <option id={value} value = {value}>
+                      {value}
+                    </option>
+                  ))
+                }
+              </select>
             </div>
           </div>
           <div className="row">
