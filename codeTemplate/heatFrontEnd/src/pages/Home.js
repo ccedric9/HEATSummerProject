@@ -222,28 +222,19 @@ const Home = () => {
                 }}
             ></div>
         )}
+        {/*curriculum*/}
         <div className="unitNames-container">
-          {selectedEvents.map((event, index) => {
-            const isSameUnit = index > 0 && events[index - 1].unitName === event.unitName;
-            const unitName = isSameUnit ? "" : event.unitName;
-            const occurrenceCount = unitNameCounts[event.unitName] || 0;
-            const unitHeight = 150;
-            const weight = event.weight;
-
+          {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
+            const filteredEvents = selectedEvents.filter(event => event.unitName === unitName);
+            if (filteredEvents.length === 0) return null;
             return (
-              <div key={index}>
-                {!isSameUnit && (
-                  <div
-                    className="unitName"
-                    style={{ height: `${unitHeight}px` }}
-                  >
-                    {unitName}
-                  </div>
-                )}
-              </div>
-            );
+                <div className="unitName"
+                     style = {{height:'150px'}}
+                >{unitName}</div>
+            )
           })}
         </div>
+
         {selectedEvents.map((event, index) => (
           <Tooltip
             title={
