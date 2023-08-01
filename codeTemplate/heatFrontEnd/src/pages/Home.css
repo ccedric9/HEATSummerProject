@@ -103,21 +103,22 @@
   }
 
   .event {
-    position: absolute;
-    height: 20px;
-    line-height: 20px;
+    /*position: absolute;*/
+    /*height: 20px;*/
+    /*line-height: 20px;*/
+    display: flex;
+    position: relative;
     text-align: center;
     white-space: nowrap;
-    overflow: hidden;
+    /*overflow: hidden;*/
     border-radius: 4px;
     padding: 0 5px;
     color: white;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     font-size: 0.6rem;
-    display: flex;
     align-items: center;
-    /* from font-size to align, is merge*/
+    margin: 10px 0;
   }
   
   /* Additional styles for the new navigation buttons */

@@ -207,7 +207,6 @@ const Home = () => {
 
       {/* Events */}
       <div className="events-container">
-        {/*const leftPosition = {updateTime()};*/}
         {showTimeline && (
             <div
                 class="timeline"
@@ -216,7 +215,7 @@ const Home = () => {
                   top: '-50px',
                   bottom: '0',
                   left: `${leftPosition}`,
-                  width: '2px', /* Adjust the width of the vertical line as needed */
+                  width: '2px',
                   height: '950px',
                   border: '1px dashed cadetblue',
                   zIndex: '999',
@@ -268,7 +267,8 @@ const Home = () => {
               key={index}
               style={{
                 ...getEventStyle(event),
-                top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`,
+                // top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`,
+                // top: `${arrH[event.unitName]  + (event.weight >= 40 ? 100 : 50)}px`,
                 height: `${event.weight >= 40 ? 40 : 20}px`,
               }}
               onClick={() => handleEventClick(event)}
