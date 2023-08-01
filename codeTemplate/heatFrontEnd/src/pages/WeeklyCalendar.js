@@ -211,20 +211,22 @@ const WeeklyCalendar = () => {
 
       {/* Events */}
       <div className="events-container">
-        <div
-            class="timeline"
-            style={{
-              position: 'absolute',
-              top: '-50px',
-              bottom: '0',
-              left: `${leftPosition}`,
-              width: '2px', /* Adjust the width of the vertical line as needed */
-              height: '950px',
-              // backgroundColor: 'lightslategrey', /* Adjust the color of the vertical line as needed */
-              border: '1px dashed cadetblue',
-              zIndex: '999',
-            }}
-        ></div>
+
+        {/*<div*/}
+        {/*    class="timeline"*/}
+        {/*    style={{*/}
+        {/*      position: 'absolute',*/}
+        {/*      top: '-50px',*/}
+        {/*      bottom: '0',*/}
+        {/*      left: `${leftPosition}`,*/}
+        {/*      width: '2px', */}
+        {/*      height: '950px',*/}
+        {/*      // backgroundColor: 'lightslategrey',*/}
+        {/*      border: '1px dashed cadetblue',*/}
+        {/*      zIndex: '999',*/}
+        {/*    }}*/}
+        {/*></div>*/}
+
         <div className="unitNames-container">
           {selectedEvents.map((event, index) => {
             const isSameUnit =
