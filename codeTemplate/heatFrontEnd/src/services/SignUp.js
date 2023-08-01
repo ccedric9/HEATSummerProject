@@ -20,6 +20,7 @@ function Registration() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [major, setMajor] = useState('');
+  const [staff,setStaff] = useState(0);
   const [passwordStrength, setPasswordStrength] = useState(null);
 
   const handleSubmit = async (event) => {
@@ -35,7 +36,8 @@ function Registration() {
       lastName: lastName,
       email: email,
       password: password,
-      major: major
+      major: major,
+      staff:staff,
     };
 
     try {

@@ -9,13 +9,17 @@ import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { resetUser } from '../redux/slices/userSlice';
 import { useTheme, useMediaQuery } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-
+  const isSaff = true;
+  console.log(user);
   return (
     <Box display="flex" justifyContent="space-between" p={2} sx={{
       backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)',
@@ -31,6 +35,9 @@ const Navbar = () => {
         <IconButton component={Link} to='/'>
           <HomeIcon />
         </IconButton>
+        {isSaff &&<IconButton component={Link} to='/addEvent'>
+          <AddIcon /> 
+        </IconButton>}
         <IconButton component={Link} to='/login'>
           <PersonIcon />
         </IconButton>
