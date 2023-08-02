@@ -39,7 +39,8 @@ const router = createBrowserRouter([
     element: <Layout />,
     children:
       [
-        { path: '/', element: <Home /> },
+        { path: '/', element: <Login /> },
+        { path: '/home', element: <Home /> },
         { path: '/adminAccess', element: <AdminAccess /> },
         { path: '/addEvent', element: <AddEvent /> },
         { path: '/editEvent/:id', element: <EditEvent /> },

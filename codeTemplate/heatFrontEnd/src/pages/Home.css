@@ -95,29 +95,35 @@
     text-align: center;
     padding: 0 5px;
   }
-  
-  .events-container {
+
+
+
+
+  /* CSS for the left unitName */
+  .test-container {
     position: relative;
-    /*min-height: 100px;*/
+    /*z-index: -1;*/
+  }
+
+  /*event*/
+  .component {
+    display: flex;
+    /*width: 1000px; !* Ensure the component spans the entire width of its parent *!*/
   }
 
   .event {
-    /*position: absolute;*/
-    /*height: 20px;*/
-    /*line-height: 20px;*/
-    display: flex;
     position: relative;
+    /*display: flex;*/
     text-align: center;
     white-space: nowrap;
     /*overflow: hidden;*/
     border-radius: 4px;
-    padding: 0 5px;
+    /*padding: 0 5px;*/
     color: white;
-    cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     align-items: center;
-    margin: 7px 0;
+    margin: 5px 0;
   }
   
   /* Additional styles for the new navigation buttons */

@@ -32,7 +32,7 @@ const Navbar = () => {
       </Typography>
       {/* ICONS */}
       <Box display="flex">
-        <IconButton component={Link} to='/'>
+        <IconButton component={Link} to='/home'>
           <HomeIcon />
         </IconButton>
         {isSaff &&<IconButton component={Link} to='/addEvent'>
