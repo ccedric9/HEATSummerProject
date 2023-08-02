@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, TextField, Typography, Container, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import zxcvbn from 'zxcvbn';
+import { useNavigate } from 'react-router-dom';
 
 const majors = [
   "Aerospace Engineering",
@@ -22,6 +23,9 @@ function Registration() {
   const [major, setMajor] = useState('');
   const [staff,setStaff] = useState(0);
   const [passwordStrength, setPasswordStrength] = useState(null);
+
+  const navigate = useNavigate();
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -55,7 +59,9 @@ function Registration() {
       setMajor('');
       setConfirmPassword('');
 
+      navigate('/login');
       alert('Registration Success');
+
     } catch (error) {
       // handle error here
       alert('Registration Failed');
