@@ -6,6 +6,7 @@ const initialState = {
     lastName: '',
     email: '',
     major: '',
+    staff: 0,
 };
 
 export const userSlice = createSlice({
