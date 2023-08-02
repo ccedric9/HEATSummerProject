@@ -43,7 +43,7 @@ const Home = () => {
   ];
 
   // User program defines here
-  // const program = 'Computer Science';
+    // const program = 'Computer Science';
   const program = 'Mechanical Engineering';
   const firstYear = 2022;
 
@@ -60,6 +60,14 @@ const Home = () => {
   const startDate = new Date(`${currentYear}-09-12`);
   const endDate = new Date(`${startDate.getFullYear()+1}-09-01`);
   const currentDate = new Date();
+  let filteredEvents = events.filter((event) => event.programName === program && event.academicYear===1);
+  const uniqueUnitNames = new Set();
+  filteredEvents.forEach((event) => {
+    uniqueUnitNames.add(event.unitName);
+  });
+  const totalUniqueUnitNames = uniqueUnitNames.size;
+  console.log(totalUniqueUnitNames)
+  console.log(filteredEvents);
 
   useEffect(() => {
     try {
@@ -73,12 +81,16 @@ const Home = () => {
     setShowTimeline(currentDate<endDate && currentDate>startDate);
     // setShowTimeline(currentYear===thisYear);
   })
+  
 
   const loadCalendarEvents = async () => {
     try {
       const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents`);
       setEvents(result.data);
-      let arr = result.data.map(e => e.unitName);
+      //  let filteredArr = events.filter(event => event.program === program);
+       //let arr = filteredEvents.map(e => e.unitName); 
+      let arr = result.data
+      .map(event => event.unitName);
       arr = [...new Set(arr)];
       let seq = {};
       arr.forEach(
@@ -87,6 +99,10 @@ const Home = () => {
         }
       )
       setArrH(seq);
+      console.log(arrH);
+      filteredEvents.forEach((event) => {
+
+      })
       //Caculate the number of each unit name
       const counts = {};
       result.data.forEach((event) => {
@@ -199,7 +215,7 @@ const Home = () => {
         {months.map((month, index) => (
           <div className="month" key={month}>
             {month}
-            {index !== months.length && index !== 0 && <div className="vertical-line" style={{ height: `${(Object.values(arrH).length - 1) * 765}%` }}></div>}
+            {index !== months.length && index !== 0 && <div className="vertical-line" style={{ height: `${totalUniqueUnitNames * 640}%` }}></div>}
           </div>
         ))}
       </div>
