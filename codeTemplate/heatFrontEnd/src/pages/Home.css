@@ -115,9 +115,10 @@
     color: white;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     align-items: center;
-    margin: 7px 0;
+    margin: 9px 0;
+
   }
   
   /* Additional styles for the new navigation buttons */
