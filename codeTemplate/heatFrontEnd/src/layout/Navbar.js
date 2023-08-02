@@ -18,8 +18,9 @@ const Navbar = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-  const isSaff = true;
-  console.log(user);
+  const isSaff = user.staff === 1 ? true : false;
+  // console.log("user", user);
+  // console.log("isSaff", isSaff);
   return (
     <Box display="flex" justifyContent="space-between" p={2} sx={{
       backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)',

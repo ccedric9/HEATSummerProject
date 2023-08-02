@@ -63,9 +63,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             @Override
             public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                                 Authentication authentication) throws IOException, ServletException {
-                logger.info("Authentication success. User: " + authentication.getName());
-                logger.info("Username: " + request.getParameter("username"));
-                logger.info("Password: " + request.getParameter("password"));
+//                logger.info("Authentication success. User: " + authentication.getName());
+//                logger.info("Username: " + request.getParameter("username"));
+//                logger.info("Password: " + request.getParameter("password"));
 
                 // Cast the authenticated principal to UserDetails
                 UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -81,7 +81,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     resp.put("firstName", appUser.getFirstName());
                     resp.put("lastName", appUser.getLastName());
                     resp.put("major", appUser.getMajor());
-                    logger.info("major: " + appUser.getMajor());
+                    resp.put("staff", appUser.getStaff());
+
+//                    logger.info("staff: " + appUser.getStaff());
                     resp.put("authorities", userDetails.getAuthorities().stream()
                             .map(GrantedAuthority::getAuthority)
                             .collect(Collectors.toList()));
