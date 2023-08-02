@@ -179,7 +179,7 @@ const Home = () => {
         </Box>
         <Box gridColumn="span 3" align="right">
           <ButtonGroup variant="contained" aria-label="outlined primary button group" color="inherit">
-            <Button component={Link} to="/" sx={{ color: "black", backgroundColor: "#a0332c" }}>
+            <Button component={Link} to="/home" sx={{ color: "black", backgroundColor: "#a0332c" }}>
               Year
             </Button>
             <Button component={Link} to="/weeklyCalendar" sx={{ color: "black", backgroundColor: "#a0332c" }}>
