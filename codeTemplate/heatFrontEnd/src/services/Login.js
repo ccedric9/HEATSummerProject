@@ -34,14 +34,15 @@ function Login() {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       });
-      console.log(response);
+      console.log("response.data", response.data);
       // console.log(response.data.major);
       const status = response.status;
       dispatch(setUser({
         firstName: response.data.firstName,
         lastName: response.data.lastName,
         email: response.data.email,
-        major: response.data.major
+        major: response.data.major,
+        staff:  response.data.staff,
       }));
 
       // check the first digit of the status code

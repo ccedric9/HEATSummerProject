@@ -18,8 +18,9 @@ const Navbar = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-  const isStaff = true;
-  console.log(user);
+  const isStaff = user.staff;
+  console.log("user", user);
+  console.log("isSaff", isSaff);
   return (
     <Box display="flex" justifyContent="space-between" p={2} sx={{
       backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)',
@@ -32,7 +33,7 @@ const Navbar = () => {
       </Typography>
       {/* ICONS */}
       <Box display="flex">
-        <IconButton component={Link} to='/'>
+        <IconButton component={Link} to='/home'>
           <HomeIcon />
         </IconButton>
         {isStaff &&<IconButton component={Link} to='/addEvent'>
