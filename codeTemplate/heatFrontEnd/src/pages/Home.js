@@ -260,7 +260,12 @@ const Home = () => {
                 ...getEventStyle(event),
                 // top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`,
                 // top: `${arrH[event.unitName]  + (event.weight >= 40 ? 100 : 50)}px`,
-                height: `${event.weight >= 40 ? 40 : 20}px`,
+                // height: `${event.weight >= 40 ? 40 : 20}px`,
+                height: event.weight === 100? '140px' :
+                        event.weight >= 50? '65px':
+                        event.weight >= 40? '52px':
+                        event.weight >= 30? '39px':
+                        event.weight >= 20? '26px':'13px',
               }}
               onClick={() => handleEventClick(event)}
             >
