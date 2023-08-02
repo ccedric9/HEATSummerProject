@@ -117,16 +117,18 @@ const Home = () => {
     // const eventDescription = new Date(event.description);
 
     // Fixed timeline start date
-    const timelineStart = new Date(`${firstYear}` + "-09-01");
+    // eslint-disable-next-line no-useless-concat
+    const timelineStart = new Date(`${currentYear}` + "-09-01");
     // Calculate the number of days between the event start and end
     // const durationDays = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1;
-    const durationDays = (endDate-startDate)/3655000;
+    const offsetDays = (startDate-timelineStart) / (1000 * 60 * 60 * 24);
+    const durationDays = (endDate-startDate) / (1000 * 60 * 60 * 24);
     // Calculate the number of days between the start of the timeline and the start of the event
-    const offsetDays = (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24);
-    return {
+    // const offsetDays = (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24);
 
-      left: `calc(${(offsetDays / 365) * 100}% + 10px)`,
-      width: `calc(${(durationDays / 365) * 100}% - 20px)`,
+    return {
+      left: `calc(${(offsetDays / 365 ) * 1000}%)`,
+      width: event.start === event.end? "10%":`calc(${(durationDays / 365 ) * 1000}%)`,
       backgroundColor:
         event.type.toUpperCase() === "SUMMATIVE"
           ? "#CC313D"
