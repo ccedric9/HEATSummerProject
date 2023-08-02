@@ -108,7 +108,7 @@
   /*event*/
   .component {
     display: flex;
-    width: 1000px; /* Ensure the component spans the entire width of its parent */
+    /*width: 1000px; !* Ensure the component spans the entire width of its parent *!*/
   }
 
   .event {
@@ -118,12 +118,12 @@
     white-space: nowrap;
     /*overflow: hidden;*/
     border-radius: 4px;
-    padding: 0 5px;
+    /*padding: 0 5px;*/
     color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     font-size: 0.8rem;
     align-items: center;
-    margin: 9px 0;
+    margin: 5px 0;
   }
   
   /* Additional styles for the new navigation buttons */
