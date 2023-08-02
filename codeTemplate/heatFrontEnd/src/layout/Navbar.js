@@ -18,7 +18,7 @@ const Navbar = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-  const isSaff = true;
+  const isStaff = true;
   console.log(user);
   return (
     <Box display="flex" justifyContent="space-between" p={2} sx={{
@@ -35,7 +35,7 @@ const Navbar = () => {
         <IconButton component={Link} to='/'>
           <HomeIcon />
         </IconButton>
-        {isSaff &&<IconButton component={Link} to='/addEvent'>
+        {isStaff &&<IconButton component={Link} to='/addEvent'>
           <AddIcon /> 
         </IconButton>}
         <IconButton component={Link} to='/login'>
@@ -44,9 +44,9 @@ const Navbar = () => {
         <IconButton component={Link} to='/Notification'>
           <NotificationsIcon />
         </IconButton>
-        <IconButton component={Link} to='/adminaccess'>
+        { isStaff  && <IconButton component={Link} to='/adminaccess'>
           <SettingsIcon />
-        </IconButton>
+        </IconButton>}
 
         <Link to="/login">
           <IconButton onClick={() => dispatch(resetUser())}>
