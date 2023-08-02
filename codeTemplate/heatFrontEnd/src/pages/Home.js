@@ -116,17 +116,15 @@ const Home = () => {
   const getEventStyle = (event) => {
     const startDate = new Date(event.start);
     const endDate = new Date(event.end);
-    const eventDescription = new Date(event.description);
+    // const eventDescription = new Date(event.description);
 
     // Fixed timeline start date
     const timelineStart = new Date(`${firstYear}` + "-09-01");
-
     // Calculate the number of days between the event start and end
-    const durationDays = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1;
-
+    // const durationDays = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1;
+    const durationDays = (endDate-startDate)/3655000;
     // Calculate the number of days between the start of the timeline and the start of the event
     const offsetDays = (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24);
-
     return {
 
       left: `calc(${(offsetDays / 365) * 100}% + 10px)`,
@@ -208,7 +206,8 @@ const Home = () => {
 
 
       {/* Events */}
-      <div className="events-container">
+      <div className="test-container">
+        {/*timeline*/}
         {showTimeline && (
             <div
                 class="timeline"
@@ -224,60 +223,77 @@ const Home = () => {
                 }}
             ></div>
         )}
-        {/*curriculum*/}
+        {/*curriculum+events*/}
         <div className="unitNames-container">
-          {Array.from(new Set(events.map(event => event.unitName))).map((unitName, index) => {
-            const filteredEvents = selectedEvents.filter(event => event.unitName === unitName);
-            if (filteredEvents.length === 0) return null;
-            return (
-                <div className="unitName"
-                     style = {{height:'150px'}}
-                >{unitName}</div>
-            )
-          })}
+          {Array.from(new Set(events.map((event) => event.unitName))).map(
+              (unitName, index) => {
+                const filteredEvents = selectedEvents.filter(
+                    (event) => event.unitName === unitName
+                );
+                if (filteredEvents.length === 0) return null;
+                return (
+                    <div className="component" key={index}>
+                      <div className="unitName" style={{ height: '150px' }}>
+                        {unitName}
+                      </div>
+                      <div className="events-container">
+                        {filteredEvents.map((event, eventIndex) => (
+                            <Tooltip
+                                title={
+                                  <div>
+                                    <Typography variant="subtitle1">{event.title}</Typography>
+                                    <Typography variant="body2">Start Date: {event.start}</Typography>
+                                    <Typography variant="body2">End Date: {event.end}</Typography>
+                                    <Typography variant="body2">Year: {event.academicYear}</Typography>
+                                    <Typography variant="body2">Term: {event.term}</Typography>
+                                    <Typography variant="body2">{currentYear - firstYear + 1}</Typography>
+                                    {/* <Typography variant="body2">{currentTerm}</Typography> */}
+                                    {event.location && (
+                                        <Typography variant="body2">Location: {event.location}</Typography>
+                                    )}
+                                  </div>
+                                }
+                                key={eventIndex}
+                            >
+                              <div
+                                  className="event"
+                                  style={{
+                                    ...getEventStyle(event),
+                                    height:
+                                        event.weight === 100
+                                            ? '140px'
+                                            : event.weight >= 80
+                                                ? '104px'
+                                                : event.weight >= 70
+                                                    ? '91px'
+                                                    : event.weight >= 60
+                                                        ? '78px'
+                                                        : event.weight >= 50
+                                                            ? '65px'
+                                                            : event.weight >= 40
+                                                                ? '52px'
+                                                                : event.weight >= 30
+                                                                    ? '39px'
+                                                                    : event.weight >= 20
+                                                                        ? '26px'
+                                                                        : '13px',
+                                  }}
+                                  onClick={() => handleEventClick(event)}
+                                  key={eventIndex}
+                              >
+                                {event.title}
+                              </div>
+                            </Tooltip>
+                        ))}
+                      </div>
+                    </div>
+                );
+              }
+          )}
         </div>
 
-        {selectedEvents.map((event, index) => (
-          <Tooltip
-            title={
-              <div>
-                <Typography variant="subtitle1">{event.title}</Typography>
-                <Typography variant="body2">Start Date: {event.start}</Typography>
-                <Typography variant="body2">End Date: {event.end}</Typography>
-                <Typography variant="body2">Year: {event.academicYear}</Typography>
-                <Typography variant="body2">Term: {event.term}</Typography>
-                <Typography variant="body2">{currentYear - firstYear + 1}</Typography>
-                {/* <Typography variant="body2">{currentTerm}</Typography> */}
-                {event.location && (
-                  <Typography variant="body2">Location: {event.location}</Typography>
-                )}
-              </div>
-            }
-            key={index}
-          >
-            <div
-              className="event"
-              key={index}
-              style={{
-                ...getEventStyle(event),
-                // top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`,
-                // top: `${arrH[event.unitName]  + (event.weight >= 40 ? 100 : 50)}px`,
-                // height: `${event.weight >= 40 ? 40 : 20}px`,
-                height: event.weight === 100? '140px' :
-                        event.weight >= 80? '104px':
-                        event.weight >= 70? '91px':
-                        event.weight >= 60? '78px':
-                        event.weight >= 50? '65px':
-                        event.weight >= 40? '52px':
-                        event.weight >= 30? '39px':
-                        event.weight >= 20? '26px':'13px',
-              }}
-              onClick={() => handleEventClick(event)}
-            >
-              {event.title}
-            </div>
-          </Tooltip>
-        ))}
+
+
       </div>
 
       {/* Event Popup Dialog */}
