@@ -347,7 +347,6 @@ export default function CalendarByModule() {
                     })}
                 </div>
             <EventDialog open={openDialog} handleCloseDialog={handleCloseDialog} event={selectedEvent} />
-
             </div>
 
 
