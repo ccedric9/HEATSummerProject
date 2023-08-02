@@ -70,6 +70,8 @@ public class AppUser implements UserDetails {
         return major;
     }
 
+    public Boolean getStaff(){return staff;}
+
     @Override
     public String getPassword() {
         return password;
