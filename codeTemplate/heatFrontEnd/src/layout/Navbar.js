@@ -11,16 +11,15 @@ import { resetUser } from '../redux/slices/userSlice';
 import { useTheme, useMediaQuery } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { useSelector } from 'react-redux';
+import EditIcon from '@mui/icons-material/Edit';
 
 const Navbar = () => {
-  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  const user = useSelector(state => state.user);
   const isStaff = user.staff;
-  console.log("user", user);
-  console.log("isSaff", isSaff);
   return (
     <Box display="flex" justifyContent="space-between" p={2} sx={{
       backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)',
@@ -39,16 +38,15 @@ const Navbar = () => {
         {isStaff &&<IconButton component={Link} to='/addEvent'>
           <AddIcon /> 
         </IconButton>}
+        { isStaff  && <IconButton component={Link} to='/EditMenu'>
+          <EditIcon/>
+        </IconButton>}
         <IconButton component={Link} to='/login'>
           <PersonIcon />
         </IconButton>
         <IconButton component={Link} to='/Notification'>
           <NotificationsIcon />
         </IconButton>
-        { isStaff  && <IconButton component={Link} to='/adminaccess'>
-          <SettingsIcon />
-        </IconButton>}
-
         <Link to="/login">
           <IconButton onClick={() => dispatch(resetUser())}>
             <LogoutIcon />

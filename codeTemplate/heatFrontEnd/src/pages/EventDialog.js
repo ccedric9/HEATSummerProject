@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const EventDialog = ({ open, handleCloseDialog, event }) => {
+
+  const user = useSelector(state => state.user);
+  const isStaff = user.staff;
+
   return (
     <Dialog open={open} onClose={handleCloseDialog}>
       {event && (
@@ -55,7 +60,7 @@ const EventDialog = ({ open, handleCloseDialog, event }) => {
             )}
           </DialogContent>
           <DialogActions>
-            <Button component={Link} to={`/editEvent/${event.id}`}>Edit</Button>
+            {isStaff && <Button component={Link} to={`/editEvent/${event.id}`}>Edit</Button>}
             <Button onClick={handleCloseDialog}>Close</Button>
           </DialogActions>
         </>
