@@ -262,6 +262,9 @@ const Home = () => {
                 // top: `${arrH[event.unitName]  + (event.weight >= 40 ? 100 : 50)}px`,
                 // height: `${event.weight >= 40 ? 40 : 20}px`,
                 height: event.weight === 100? '140px' :
+                        event.weight >= 80? '104px':
+                        event.weight >= 70? '91px':
+                        event.weight >= 60? '78px':
                         event.weight >= 50? '65px':
                         event.weight >= 40? '52px':
                         event.weight >= 30? '39px':
