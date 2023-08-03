@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./WeeklyCalendar.css"; 
 import { Box, Button, ButtonGroup, Icon, Typography, Tooltip } from "@mui/material";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
@@ -22,6 +23,20 @@ const WeeklyCalendar = () => {
 
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
+  const [showTimeline, setShowTimeline] = useState(true);
+  const startDate = new Date(`${currentYear}-09-12`);
+  const endDate = new Date(`${startDate.getFullYear()+1}-09-01`);
+  const currentDate = new Date();
+
+  const currentTermNumber = parseInt(currentTerm.replace(/\D/g, ""));
+  let unitFilteredEvents = events.filter((event) => event.programName === program && event.academicYear===(currentYear - firstYear + 1) && event.term === currentTermNumber);
+  let uniqueUnitNames = new Set();
+  unitFilteredEvents.forEach((event) => {
+    uniqueUnitNames.add(event.unitName);
+  });
+  let totalUniqueUnitNames =uniqueUnitNames.size;;
+  console.log(totalUniqueUnitNames)
+  console.log(unitFilteredEvents);
 
   const handleEventClick = (event) => {
     setSelectedEvent(event);
@@ -32,6 +47,10 @@ const WeeklyCalendar = () => {
     setOpenDialog(false);
   };
 
+  useEffect(()=>{
+    setShowTimeline(currentDate<endDate && currentDate>startDate);
+    // setShowTimeline(currentYear===thisYear);
+  })
   useEffect(() => {
     loadCalendarEvents();
   }, [currentYear, currentTerm]);
@@ -96,21 +115,19 @@ const WeeklyCalendar = () => {
   const getEventWeekStyle = (event) => {
     const startDate = new Date(event.start);
     const endDate = new Date(event.end);
-    // const endDated = new Date(ev);
-
+  
     // Fixed timeline start date
-    const timelineStart = currentTerm === 'TB1' ? new Date(currentYear +"-09-15") : new Date(currentYear + 1 +"-01-20");
-
+    const timelineStart = currentTerm === 'TB1' ? new Date(currentYear + "-09-15") : new Date(currentYear + 1 + "-01-20");
+  
     // Calculate the number of weeks between the event start and end
     const durationWeeks = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 7) + 1;
-
+  
     // Calculate the number of weeks between the start of the timeline and the start of the event
     const offsetWeeks = (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24 * 7);
-
+  
     return {
-      left: `calc(${(offsetWeeks / 20) * 100}% + 10px)`, // 20 does not make sense , just for visual demostration
-      width: `calc(${(durationWeeks / 20) * 100}% - 20px)`, // 20 does not make sense , just for visual demostration
-      // backgroundColor: event.type === 'SUMMATIVE' ? 'red' : event.type ==='FORMATIVE' ? 'green' : event.type ==='CAPSTONESUMMATIVE'? 'purple': 'default-color',
+      left: `calc(${(offsetWeeks / 20) * 100}% + 10px)`, // 13 is the total number of weeks in a term
+      width: `calc(${(durationWeeks / 20) * 100}% )`, // 13 is the total number of weeks in a term
       backgroundColor:
         event.type.toUpperCase() === "SUMMATIVE"
           ? "#CC313D"
@@ -192,7 +209,7 @@ const WeeklyCalendar = () => {
         </Box>
         <Box gridColumn="span 3" align='right'>
           <ButtonGroup variant="contained" aria-label="outlined primary button group" color='inherit'>
-            <Button component={Link} to='/home' sx={{ color: 'black', backgroundColor: '#a0332c' }}>Year</Button>
+            <Button component={Link} to='/' sx={{ color: 'black', backgroundColor: '#a0332c' }}>Year</Button>
             <Button component={Link} to='/weeklyCalendar' sx={{ color: 'black', backgroundColor: '#a0332c' }}>Term</Button>
             <Button component={Link} to='/CalendarByModule' sx={{ color: 'black', backgroundColor: '#a0332c' }}>Module</Button>
           </ButtonGroup>
@@ -204,85 +221,106 @@ const WeeklyCalendar = () => {
         {weeks.map((week, index) => (
           <div className="week" key={week} style={{ flex: 1 }}>
             {week}
-            {index !== week.length && index !== 0 && <div className="vertical-week" style={{ height: `${(Object.values(arrH).length - 1)  * 980}%` }}></div>}
+            {index !== week.length && index !== 0 && <div className="vertical-week" style={{ height: `${totalUniqueUnitNames * 645}%` }}></div>}
           </div>
         ))}
       </div>
 
-      {/* Events */}
-      <div className="events-container">
 
-        {/*<div*/}
-        {/*    class="timeline"*/}
-        {/*    style={{*/}
-        {/*      position: 'absolute',*/}
-        {/*      top: '-50px',*/}
-        {/*      bottom: '0',*/}
-        {/*      left: `${leftPosition}`,*/}
-        {/*      width: '2px', */}
-        {/*      height: '950px',*/}
-        {/*      // backgroundColor: 'lightslategrey',*/}
-        {/*      border: '1px dashed cadetblue',*/}
-        {/*      zIndex: '999',*/}
-        {/*    }}*/}
-        {/*></div>*/}
-
-        <div className="unitNames-container">
-          {selectedEvents.map((event, index) => {
-            const isSameUnit =
-              index > 0 && events[index - 1].unitName === event.unitName;
-            const unitName = isSameUnit ? "" : event.unitName;
-            const occurrenceCount = unitNameCounts[event.unitName] || 0;
-            const unitHeight = 150;
-
-            return (
-              <div key={index}>
-                {!isSameUnit && (
-                  <div
-                    className="unitName"
-                    style={{ height: `${unitHeight}px` }}
-                  >
-                    {unitName}
-                  </div>
-
-                )}
-              </div>
-            );
-          })}
-        </div>
-        {selectedEvents.map((event, index) => (
-          <Tooltip
-            title={
-              <div>
-                <Typography variant="subtitle1">{event.title}</Typography>
-                <Typography variant="body2">Start Date: {event.start}</Typography>
-                <Typography variant="body2">End Date: {event.end}</Typography>
-                {event.location && (
-                  <Typography variant="body2">Location: {event.location}</Typography>
-                )}
-              </div>
-            }
-            key={index}
-            onClick={() => handleEventClick(event)}
-          >
+        
+       {/* Events */}
+       <div className="test-container">
+        {/*timeline*/}
+        {showTimeline && (
             <div
-              className="event"
-              style={{
-                ...getEventWeekStyle(event), top: `${arrH[event.unitName] * 150 + (event.weight >= 40 ? 80 : 30)}px`,
-                height: `${event.weight >= 40 ? 40 : 20}px`,
-              }}
-              onClick={() => handleEventClick(event)}
-            >
-              {event.title}
-            </div>
-          </Tooltip>
-        ))}
-
+                class="timeline"
+                style={{
+                  position: 'absolute',
+                  top: '-50px',
+                  bottom: '0',
+                  left: `${leftPosition}`,
+                  width: '2px',
+                  height: '950px',
+                  border: '1px dashed cadetblue',
+                  zIndex: '999',
+                }}
+            ></div>
+        )}
+        {/*curriculum+events*/}
+        <div className="unitNames-container">
+          {Array.from(new Set(events.map((event) => event.unitName))).map(
+              (unitName, index) => {
+                const filteredEvents = selectedEvents.filter(
+                    (event) => event.unitName === unitName
+                );
+                if (filteredEvents.length === 0) return null;
+                return (
+                    <div className="component" key={index}>
+                      <div className="unitName" style={{ height: '150px' }}>
+                        {unitName}
+                      </div>
+                      <div className="eventsWeek-container">
+                        {filteredEvents.map((event, eventIndex) => (
+                            <Tooltip
+                                title={
+                                  <div>
+                                    <Typography variant="subtitle1">{event.title}</Typography>
+                                    <Typography variant="body2">Start Date: {event.start}</Typography>
+                                    <Typography variant="body2">End Date: {event.end}</Typography>
+                                    <Typography variant="body2">Year: {event.academicYear}</Typography>
+                                    <Typography variant="body2">Term: {event.term}</Typography>
+                                    {/* <Typography variant="body2">{currentYear - firstYear + 1}</Typography> */}
+                                    {/* <Typography variant="body2">{currentTerm}</Typography> */}
+                                    {event.location && (
+                                        <Typography variant="body2">Location: {event.location}</Typography>
+                                    )}
+                                  </div>
+                                }
+                                key={eventIndex}
+                            >
+                              <div
+                                  className="event"
+                                  style={{
+                                    ...getEventWeekStyle(event),
+                                    height:
+                                        event.weight === 100
+                                            ? '140px'
+                                            : event.weight >= 80
+                                                ? '104px'
+                                                : event.weight >= 70
+                                                    ? '91px'
+                                                    : event.weight >= 60
+                                                        ? '78px'
+                                                        : event.weight >= 50
+                                                            ? '65px'
+                                                            : event.weight >= 40
+                                                                ? '52px'
+                                                                : event.weight >= 30
+                                                                    ? '39px'
+                                                                    : event.weight >= 20
+                                                                        ? '26px'
+                                                                        : '13px',
+                                  }}
+                                  onClick={() => handleEventClick(event)}
+                                  key={eventIndex}
+                              >
+                                {event.title}
+                              </div>
+                            </Tooltip>
+                        ))}
+                      </div>
+                    </div>
+                );
+              }
+          )}
+        </div>
       </div>
       <EventDialog open={openDialog} handleCloseDialog={handleCloseDialog} event={selectedEvent} />
     </div>
   );
 };
+
+
 
 export default WeeklyCalendar;
 

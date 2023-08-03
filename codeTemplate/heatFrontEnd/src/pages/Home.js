@@ -46,13 +46,15 @@ const Home = () => {
   // const program = user.major;
   const program = 'Mechanical Engineering';
   const firstYear = 2022;
-
+  const academicYear = 1;
   const [events, setEvents] = useState([]);
   const [unitNameCounts, setUnitNameCounts] = useState({});
   const [currentYear, setCurrentYear] = useState(firstYear);
   const [arrH, setArrH] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showTimeline, setShowTimeline] = useState(true);
+ 
+
 
   const theme = useTheme();
   const isMdScreenOrWider = useMediaQuery(theme.breakpoints.up("md"));
@@ -60,14 +62,16 @@ const Home = () => {
   const startDate = new Date(`${currentYear}-09-12`);
   const endDate = new Date(`${startDate.getFullYear()+1}-09-01`);
   const currentDate = new Date();
-  let filteredEvents = events.filter((event) => event.programName === program && event.academicYear===1);
-  const uniqueUnitNames = new Set();
-  filteredEvents.forEach((event) => {
+
+  let unitFilteredEvents = events.filter((event) => event.programName === program && event.academicYear===(currentYear - firstYear + 1));
+  let uniqueUnitNames = new Set();
+  unitFilteredEvents.forEach((event) => {
     uniqueUnitNames.add(event.unitName);
   });
-  const totalUniqueUnitNames = uniqueUnitNames.size;
-  console.log(totalUniqueUnitNames)
-  console.log(filteredEvents);
+  let totalUniqueUnitNames =uniqueUnitNames.size;;
+   
+  // console.log(totalUniqueUnitNames)
+  // console.log(unitFilteredEvents);
 
   useEffect(() => {
     try {
@@ -87,22 +91,6 @@ const Home = () => {
     try {
       const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents`);
       setEvents(result.data);
-      //  let filteredArr = events.filter(event => event.program === program);
-       //let arr = filteredEvents.map(e => e.unitName); 
-      let arr = result.data
-      .map(event => event.unitName);
-      arr = [...new Set(arr)];
-      let seq = {};
-      arr.forEach(
-        (e, i) => {
-          seq[e] = i
-        }
-      )
-      setArrH(seq);
-      console.log(arrH);
-      filteredEvents.forEach((event) => {
-
-      })
       //Caculate the number of each unit name
       const counts = {};
       result.data.forEach((event) => {
@@ -181,7 +169,8 @@ const Home = () => {
         </Typography>
 
         <Box display="flex" gridColumn="span 3">
-          <Button color="secondary" onClick={() => currentYear == firstYear ? setCurrentYear(currentYear + 2) : setCurrentYear(currentYear - 1)}>
+          <Button color="secondary" onClick={() => 
+            currentYear == firstYear ? setCurrentYear(currentYear + 2) : setCurrentYear(currentYear - 1)}>
             <NavigateBeforeIcon />
           </Button>
           <div className="timelinebar-middle">
@@ -190,7 +179,9 @@ const Home = () => {
               {currentYear} - {currentYear + 1}
             </div>
           </div>
-          <Button color="secondary" onClick={() => currentYear == firstYear + 2 ? setCurrentYear(firstYear) : setCurrentYear(currentYear + 1)}>
+          <Button color="secondary" onClick={() => {
+            currentYear == firstYear + 2 ? setCurrentYear(firstYear) : setCurrentYear(currentYear + 1)
+            }}>
             <NavigateNextIcon />
           </Button>
         </Box>
@@ -215,7 +206,8 @@ const Home = () => {
         {months.map((month, index) => (
           <div className="month" key={month}>
             {month}
-            {index !== months.length && index !== 0 && <div className="vertical-line" style={{ height: `${totalUniqueUnitNames * 640}%` }}></div>}
+            {index !== months.length && index !== 0 && <div className="vertical-line" style={{  
+              height: `${totalUniqueUnitNames * 640}%`, }}></div>}
           </div>
         ))}
       </div>
