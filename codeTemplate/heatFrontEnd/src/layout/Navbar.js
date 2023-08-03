@@ -27,7 +27,7 @@ const Navbar = () => {
       width: isSmallScreen ? '305vw' : isMediumScreen ? '155vw' : '100%',
     }}>
       {/* Software Title */}
-      <Typography variant='h6' fontWeight='bold' component={Link} to='/' sx={{ color: 'black', textDecoration: 'None' }} >
+      <Typography variant='h6' fontWeight='bold' component={Link} to='/home' sx={{ color: 'black', textDecoration: 'None' }} >
         Assessment Calendar Tool
       </Typography>
       {/* ICONS */}
