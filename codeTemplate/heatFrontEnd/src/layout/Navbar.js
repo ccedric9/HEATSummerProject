@@ -41,7 +41,7 @@ const Navbar = () => {
         { isStaff  && <IconButton component={Link} to='/EditMenu'>
           <EditIcon/>
         </IconButton>}
-        <IconButton component={Link} to='/login'>
+        <IconButton component={Link} to='/user-info'>
           <PersonIcon />
         </IconButton>
         <IconButton component={Link} to='/Notification'>

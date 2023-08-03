@@ -1,18 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Button, TextField, Typography, Container, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { Button, TextField, Typography, Container, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox } from "@mui/material";
 import zxcvbn from 'zxcvbn';
 import { useNavigate } from 'react-router-dom';
+import heatProgramData from '../jsondata/heatProgram.json';
+import { Autocomplete, ListItemText } from "@mui/material";
 
-const majors = [
-  "Aerospace Engineering",
-  "Civil Engineering",
-  "Computer Science",
-  "Electrical and Electronic Engineering",
-  "Engineering Design",
-  "Engineering Mathematics",
-  "Mechanical Engineering"
-];
+
+const majors = heatProgramData.map((data) => data.major);
 
 function Registration() {
   const [firstName, setFirstName] = useState('');
@@ -21,11 +16,32 @@ function Registration() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [major, setMajor] = useState('');
-  const [staff,setStaff] = useState(0);
+  const [courses, setCourses] = useState([]);
+  const [staff, setStaff] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(null);
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!staff) {
+      setCourses([]);
+    }
+  }, [staff]);
+
+  const majors = heatProgramData.map((program) => program.major);
+
+  const handleMajorChange = (event) => {
+    setMajor(event.target.value);
+    if (staff) {
+      const selectedMajorData = heatProgramData.find((program) => program.major === event.target.value);
+      setCourses(selectedMajorData ? selectedMajorData.units : []);
+    }
+  };
+
+  // 定义处理多选的函数
+  const handleCoursesChange = (selectedOptions) => {
+    setCourses(selectedOptions);
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -41,7 +57,8 @@ function Registration() {
       email: email,
       password: password,
       major: major,
-      staff:staff,
+      staff: staff,
+      courses: courses
     };
 
     try {
@@ -51,19 +68,19 @@ function Registration() {
         }
       });
 
-      // If the request is successful, reset the form
       setFirstName('');
       setLastName('');
       setEmail('');
       setPassword('');
       setMajor('');
       setConfirmPassword('');
+      setStaff(false);
+      setCourses([]);
 
       navigate('/login');
       alert('Registration Success');
 
     } catch (error) {
-      // handle error here
       alert('Registration Failed');
     }
   };
@@ -88,7 +105,7 @@ function Registration() {
       default:
         return "";
     }
-  }
+  };
 
   return (
     <Container maxWidth="xs">
@@ -137,19 +154,60 @@ function Registration() {
           margin="normal"
           required
         />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={staff}
+              onChange={(e) => setStaff(e.target.checked)}
+              color="primary"
+            />
+          }
+          label="Staff"
+        />
+
         <FormControl fullWidth margin="normal" required>
-          <InputLabel>Major</InputLabel>
-          <Select
+          <Autocomplete
+            id="combo-box-demo"
+            options={majors}
             value={major}
-            onChange={(e) => setMajor(e.target.value)}
-          >
-            {majors.map((option) => (
-              <MenuItem key={option} value={option}>
-                {option}
-              </MenuItem>
-            ))}
-          </Select>
+            onChange={(event, newValue) => {
+              setMajor(newValue);
+            }}
+            renderInput={(params) => <TextField {...params} label="Major" />}
+          />
         </FormControl>
+
+
+
+
+        {staff && (
+          <FormControl fullWidth margin="normal" required>
+            <Autocomplete
+              multiple
+              id="checkboxes-tags-demo"
+              options={major !== '' ? heatProgramData.find(majorData => majorData.major === major).units : []}
+              value={courses}
+              onChange={(event, newValue) => {
+                setCourses(newValue);
+              }}
+              disableCloseOnSelect
+              getOptionSelected={(option, value) => option === value}
+              getOptionLabel={(option) => option}
+              renderOption={(props, option, { selected }) => (
+                <li {...props} style={{ backgroundColor: selected ? 'lightgreen' : 'lightgray' }}>
+                  <Checkbox checked={selected} />
+                  <ListItemText primary={option} />
+                </li>
+              )}
+              renderInput={(params) => (
+                <TextField {...params} variant="standard" label="Courses" placeholder="Courses" />
+              )}
+            />
+          </FormControl>
+        )}
+
+
+
         <Button
           type="submit"
           color="primary"

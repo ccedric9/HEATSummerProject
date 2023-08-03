@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Button, TextField, Typography, Container, Link as MuiLink } from "@mui/material";
+import { Button, TextField, Typography, Container, Link as MuiLink, Box, Card, CardContent, Grid, InputAdornment, Snackbar } from "@mui/material";
 import { Link as RouterLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../redux/slices/userSlice';
+import { AccountCircle, LockRounded } from '@mui/icons-material';
+
 
 
 function Login() {
@@ -12,7 +14,12 @@ function Login() {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
+  };
 
   // Get the current user from Redux state
   const user = useSelector(state => state.user);
@@ -20,7 +27,7 @@ function Login() {
   // If there is a user logged in, navigate to the user info page
   useEffect(() => {
     if (user && user.email) {
-      navigate('/user-info');
+      navigate('/home');
     }
   }, [user, navigate]);
 
@@ -42,7 +49,7 @@ function Login() {
         lastName: response.data.lastName,
         email: response.data.email,
         major: response.data.major,
-        staff:  response.data.staff,
+        staff: response.data.staff,
       }));
 
       // check the first digit of the status code
@@ -50,7 +57,7 @@ function Login() {
         case 2:
           // if login is successful, show a success message
           // alert("Login Success");
-          navigate('/user-info');
+          navigate('/home');
           break;
         case 3:
           // if the status code starts with 3, navigate to another page
@@ -58,7 +65,7 @@ function Login() {
           break;
         case 4:
           // if the status code starts with 4, show an error message
-          alert("Login Error");
+          setOpenSnackbar(true);
           break;
         default:
           // handle other cases
@@ -68,10 +75,10 @@ function Login() {
       // handle error here
       if (error.response && error.response.status === 401) {
         // handle login failed case
-        alert("Login Failed");
+        setOpenSnackbar(true);
       } else {
         // handle network error
-        alert("Network Error");
+        setOpenSnackbar(true);
       }
     }
   };
@@ -81,39 +88,64 @@ function Login() {
     }
   }, [user]);
   return (
-    <Container maxWidth="xs">
-      <Typography variant="h4" style={{ marginTop: '20px' }}>Login</Typography>
-      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        <TextField
-          label="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          fullWidth
-          margin="normal"
-          required
-        />
-        <TextField
-          label="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          fullWidth
-          margin="normal"
-          required
-        />
-        <Button
-          type="submit"
-          color="primary"
-          variant="contained"
-          style={{ marginTop: '20px' }}
-          fullWidth
-        >
-          Login
-        </Button>
-      </form>
-      <Typography style={{ marginTop: '20px' }}>
-        Don't have an account? <MuiLink component={RouterLink} to="/signup">Sign Up</MuiLink>
-      </Typography>
+    <Container style={{ 
+      minHeight: '100vh',
+      backgroundImage: 'linear-gradient(to right top, #559966, #ff5e62)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
+      <Card>
+        <CardContent>
+          <Typography variant="h4" style={{ marginBottom: '20px' }} align="center">Login</Typography>
+          <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+            <TextField
+              label="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              fullWidth
+              margin="normal"
+              required
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              label="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              fullWidth
+              margin="normal"
+              required
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LockRounded />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              fullWidth
+              style={{ marginTop: '20px' }}
+            >
+              Login
+            </Button>
+          </form>
+          <Typography style={{ marginTop: '20px', textAlign: 'center' }}>
+            Don't have an account? <MuiLink component={RouterLink} to="/signup">Sign Up</MuiLink>
+          </Typography>
+        </CardContent>
+      </Card>
+      <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar} message="Login Failed" />
     </Container>
   );
 }

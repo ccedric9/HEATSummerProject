@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -16,4 +18,5 @@ public class RegistrationRequest {
     private final String password;
     private final String major;
     private final Boolean staff;
+    private final List<String> courses;
 }

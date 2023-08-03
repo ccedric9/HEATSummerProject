@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Getter
 @Setter
@@ -41,6 +42,10 @@ public class AppUser implements UserDetails {
     private Boolean locked = false;
     private Boolean enabled = false;
     private String major;
+    @ElementCollection
+    private List<String> courses;
+
+
 
     public AppUser(String firstName,
                    String lastName,
@@ -48,6 +53,7 @@ public class AppUser implements UserDetails {
                    String password,
                    String major,
                    Boolean staff,
+                   List<String> courses,
                    AppUserRole appUserRole) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -55,6 +61,7 @@ public class AppUser implements UserDetails {
         this.password = password;
         this.major = major;
         this.staff = staff;
+        this.courses = courses;
         this.appUserRole = appUserRole;
     }
 
@@ -65,6 +72,9 @@ public class AppUser implements UserDetails {
         return Collections.singletonList(authority);
     }
 
+    public List<String> getCourses() {
+        return courses;
+    }
 
     public String getMajor() {
         return major;

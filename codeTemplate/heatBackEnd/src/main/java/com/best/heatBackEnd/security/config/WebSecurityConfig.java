@@ -77,11 +77,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     // Put user information into the JSON object
                     resp.put("status", "success");
                     AppUser appUser = (AppUser) authentication.getPrincipal();
-                    resp.put("email", appUser.getFirstName());
+                    resp.put("email", appUser.getEmail());
                     resp.put("firstName", appUser.getFirstName());
                     resp.put("lastName", appUser.getLastName());
                     resp.put("major", appUser.getMajor());
                     resp.put("staff", appUser.getStaff());
+//                    resp.put("courses", appUser.getCourses());
 
 //                    logger.info("staff: " + appUser.getStaff());
                     resp.put("authorities", userDetails.getAuthorities().stream()
