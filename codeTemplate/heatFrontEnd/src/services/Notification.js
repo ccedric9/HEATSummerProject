@@ -228,65 +228,47 @@ const UserProfile = () => {
               }
               return null;
             })}
-            <Typography component="h1" variant="h5">
-              Upcoming Assessment
-            </Typography>
-            {filterUpcomingAssessments(events).map((event) => {
-              const today = new Date();
-              const startDate = new Date(event.start);
-              const endDate = new Date(event.end);
-              const eventBackgroundColor =
-                event.type.toUpperCase() === "SUMMATIVE"
-                  ? "#CC313D"
-                  : event.type.toUpperCase() === "FORMATIVE"
-                  ? "#2C5F2D"
-                  : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                  ? "#8A307F"
-                  : "default-color";
-              if (isAfter(startDate, today) && event.programName === user.major) {
-                return (
-                  <div key={event.id} onClick={() => handleEventClick(event)}>
-                    <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>
-                    <Typography variant="subtitle1">{event.title}</Typography>
-                    <Typography variant="subtitle1">{event.programName}</Typography>
-                    <Typography variant="subtitle2">{event.start} -- {event.end}</Typography>
-                  </Paper>
-                  </div>
-                );
-              }
-              return null;
-            })}
           </Paper>
         </Grid>
         <Grid item xs={12} sm={4}>
           <Paper elevation={3} sx={{ padding: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Avatar sx={{ m: 1, backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)', color: 'white' }}>
-              <SettingsIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Settings
-            </Typography>
-            <FormControlLabel
-              control={<Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />}
-              label="Dark Mode"
-            />
-            <TextField
-              select
-              label="Language"
-              value={language}
-              fullWidth
-              margin="normal"
-              onChange={(e) => setLanguage(e.target.value)}
-              SelectProps={{
-                native: true, // Use native select element to properly handle select event
-              }}
-            >
-              <option value="English">English</option>
-              <option value="Spanish">Spanish</option>
-              <option value="French">French</option>
-              <option value="Chinese">Chinese</option>
-            </TextField>
-          </Paper>
+              <Avatar sx={{ m: 1, backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)', color: 'white' }}>
+                <NotificationImportant />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Assessment Due
+              </Typography>
+
+              <br></br>
+              <Typography component="h1" variant="h5">
+                Upcoming Assessment
+              </Typography>
+              {filterUpcomingAssessments(events).map((event) => {
+                const today = new Date();
+                const startDate = new Date(event.start);
+                const endDate = new Date(event.end);
+                const eventBackgroundColor =
+                  event.type.toUpperCase() === "SUMMATIVE"
+                    ? "#CC313D"
+                    : event.type.toUpperCase() === "FORMATIVE"
+                    ? "#2C5F2D"
+                    : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                    ? "#8A307F"
+                    : "default-color";
+                if (isAfter(startDate, today) && event.programName === user.major) {
+                  return (
+                    <div key={event.id} onClick={() => handleEventClick(event)}>
+                      <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>
+                      <Typography variant="subtitle1">{event.title}</Typography>
+                      <Typography variant="subtitle1">{event.programName}</Typography>
+                      <Typography variant="subtitle2">{event.start} -- {event.end}</Typography>
+                    </Paper>
+                    </div>
+                  );
+                }
+                return null;
+              })}
+            </Paper>
         </Grid>
       </Grid>
       <EventDialog open={openDialog} handleCloseDialog={handleCloseDialog} event={selectedEvent} />
