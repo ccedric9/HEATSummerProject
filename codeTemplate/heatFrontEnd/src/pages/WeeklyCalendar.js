@@ -234,22 +234,7 @@ const WeeklyCalendar = () => {
         
        {/* Events */}
        <div className="test-container">
-        {/*timeline*/}
-        {showTimeline && (
-            <div
-                class="timeline"
-                style={{
-                  position: 'absolute',
-                  top: '-50px',
-                  bottom: '0',
-                  left: `${leftPosition}`,
-                  width: '2px',
-                  height: '950px',
-                  border: '1px dashed cadetblue',
-                  zIndex: '999',
-                }}
-            ></div>
-        )}
+        
         {/*curriculum+events*/}
         <div className="unitNames-container">
           {Array.from(new Set(events.map((event) => event.unitName))).map(
