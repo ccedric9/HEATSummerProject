@@ -45,8 +45,8 @@ const Home = () => {
   ];
 
   // User program defines here
-  // const program = user.major;
-  const program = 'Mechanical Engineering';
+  const program = user.major;
+  // const program = 'Mechanical Engineering';
   const firstYear = 2022;
   const academicYear = 1;
   const [events, setEvents] = useState([]);

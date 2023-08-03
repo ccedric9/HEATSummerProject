@@ -7,13 +7,17 @@ import { Box, Button, ButtonGroup, Icon, Typography, Tooltip } from "@mui/materi
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import EventDialog from "./EventDialog";
+import { useSelector } from 'react-redux';
 
   // User program defines here
 // const program = 'Computer Science';
-const program = 'Mechanical Engineering';
 const firstYear= 2022;
 
 const WeeklyCalendar = () => {
+  const user = useSelector(state => state.user);
+  const isStaff = user.staff;
+  const program = user.major;
+
   const weeks = Array.from({ length: 13 }, (_, index) => index + 1);
   const [unitNameCounts, setUnitNameCounts] = useState({});
   const [currentYear, setCurrentYear] = useState(firstYear);
