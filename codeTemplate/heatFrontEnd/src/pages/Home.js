@@ -127,7 +127,7 @@ const Home = () => {
     const timelineStart = new Date(`${currentYear}` + "-09-01");
     // Calculate the number of days between the event start and end
     // const durationDays = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1;
-    const offsetDays = (startDate-timelineStart) / (1000 * 60 * 60 * 24);
+    const offsetDays = (startDate-timelineStart) / (1000 * 60 * 60 * 24) + 30;
     const durationDays = (endDate-startDate) / (1000 * 60 * 60 * 24);
     // Calculate the number of days between the start of the timeline and the start of the event
     // const offsetDays = (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24);
@@ -144,8 +144,6 @@ const Home = () => {
               ? "#8A307F"
               : "default-color",
     };
-
-
   };
 
   function updateTime() {
