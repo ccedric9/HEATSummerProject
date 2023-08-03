@@ -18,11 +18,21 @@
         width: 300vw;
     }
 }
-@media screen and (max-width:850px) and (min-width: 601px){
+@media screen and (max-width:850px) and (min-width: 601px) {
     .footer {
         width: 150vw;
     }
     
+}
+@media screen and (orientation: landscape) and (max-height: 770px) and (min-height: 500px){
+    .footer{
+        width: 110vw;
+    }
+}
+@media screen and (orientation: landscape) and (max-height: 499px){
+    .footer{
+        height: 70vh;
+    }
 }
 
 .logo{

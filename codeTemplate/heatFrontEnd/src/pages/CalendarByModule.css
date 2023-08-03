@@ -114,7 +114,7 @@
 .unit-codes {
     text-align: justify;
     display: inherit;
-    position: absolute;
+    /* position: absolute; */
     font-weight: bold;
 }
 
@@ -174,5 +174,15 @@
 @media screen and (max-width: 600px) {
     .timeline-container-module {
         width: 300vw;
+    }
+}
+@media screen and (orientation: landscape) and (max-height: 770px){
+    .timeline-container-module {
+        
+    }
+}
+@media  screen and (max-width:850px) and (min-width:601px){
+    .timeline-container-module {
+      width: 150vw;
     }
 }

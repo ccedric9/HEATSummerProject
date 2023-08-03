@@ -224,7 +224,9 @@
     .unitNames-container {
       left: -100px;
     }
-
+    .events-container{
+      width: 300vw;
+    }
   }
     
 @media  screen and (max-width:850px) and (min-width:601px){
@@ -233,6 +235,19 @@
   }
   .unitName::after {
     width: 130vw;
+  }
+  .events-container {
+    width: 130vw;
+  }
+}
+@media screen and (orientation: landscape) and (max-height: 800px) and (min-height: 500px){
+  .timeline-container{
+    width: 100vw;
+  }
+}
+@media screen and (orientation: landscape) and (max-height: 499px){
+  .timeline-container{
+    height: 300vh;
   }
 }
   
