@@ -133,8 +133,8 @@ const Home = () => {
     // const offsetDays = (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24);
 
     return {
-      left: `calc(${(offsetDays / 365 ) * 1000}%)`,
-      width: event.start === event.end? "10%":`calc(${(durationDays / 365 ) * 1000}%)`,
+      left: `calc(${(offsetDays / 365 ) * 100}%)`,
+      width: event.start === event.end? "10%":`calc(${(durationDays / 365 ) * 100}%)`,
       backgroundColor:
         event.type.toUpperCase() === "SUMMATIVE"
           ? "#CC313D"

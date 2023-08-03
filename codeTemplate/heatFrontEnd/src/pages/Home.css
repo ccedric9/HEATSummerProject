@@ -125,6 +125,11 @@
     align-items: center;
     margin: 5px 0;
   }
+
+  .events-container {
+    /*width: 1000px;*/
+    width: 90vw;
+  }
   
   /* Additional styles for the new navigation buttons */
   .header-container {
