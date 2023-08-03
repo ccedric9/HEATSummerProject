@@ -221,6 +221,7 @@ const UserProfile = () => {
                   <div key={event.id} onClick={() => handleEventClick(event)}>
                     <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>
                     <Typography variant="subtitle1">{event.title}</Typography>
+                    <Typography variant="subtitle1">{event.programName}</Typography>
                     <Typography variant="subtitle2">{event.start} -- {event.end}</Typography>
                   </Paper>
                   </div>
