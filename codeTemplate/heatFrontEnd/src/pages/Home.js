@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Home.css";
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
+
 import {
   Box,
   Button,
@@ -18,14 +20,14 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import shadows from "@mui/material/styles/shadows";
 import EventPopover from "./EventPopover";
 import { useTheme, useMediaQuery } from "@mui/material";
-import { useSelector } from 'react-redux';
+
 
 
 
 const Home = () => {
 
   const user = useSelector(state => state.user);
-  console.log(user);
+  const isStaff = user.staff;
 
   const months = [
     "September",
@@ -376,7 +378,7 @@ const Home = () => {
               )}
             </DialogContent>
             <DialogActions>
-              <Button component={Link} to={`/editEvent/${selectedEvent.id}`}>Edit</Button>
+              {isStaff && <Button component={Link} to={`/editEvent/${selectedEvent.id}`}>Edit</Button>}
               <Button onClick={handleCloseDialog}>Close</Button>
             </DialogActions>
           </>

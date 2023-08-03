@@ -22,6 +22,7 @@ import { useDispatch, useSelector,Provider } from 'react-redux';
 
 import { useEffect } from 'react';
 import { setUser } from './redux/slices/userSlice';
+import EditMenu from "./services/EditMenu";
 
 const Layout = () => {
   return (
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
         { path: '/adminAccess', element: <AdminAccess /> },
         { path: '/addEvent', element: <AddEvent /> },
         { path: '/editEvent/:id', element: <EditEvent /> },
+        { path: '/editMenu', element: <EditMenu /> },
         { path: '/weeklyCalendar', element: <WeeklyCalendar /> },
         { path: '/calendarByModule', element: <CalendarByModule /> },
         { path: '/login', element: <Login /> },
