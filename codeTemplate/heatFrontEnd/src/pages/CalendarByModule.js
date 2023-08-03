@@ -8,15 +8,18 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Tooltip } from "@mui/material";
 import EventDialog from "./EventDialog";
-
+import { useSelector } from 'react-redux';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 
 export default function CalendarByModule() {
 
+    const user = useSelector(state => state.user);
+    const isStaff = user.staff;
+    const program = user.major;
     //user program will define here 
     // const program = 'Computer Science';
-    const program = 'Mechanical Engineering';
+
     const firstYear = 2022;
 
     const [selectedEvent, setSelectedEvent] = useState(null);
