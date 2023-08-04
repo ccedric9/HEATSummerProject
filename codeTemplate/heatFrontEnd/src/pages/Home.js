@@ -254,7 +254,13 @@ const Home = () => {
                                     <Typography variant="body2">End Date: {event.end}</Typography>
                                     <Typography variant="body2">Year: {event.academicYear}</Typography>
                                     <Typography variant="body2">Term: {event.term}</Typography>
-                                    <Typography variant="body2">{currentYear - firstYear + 1}</Typography>
+                                    {event.feedback ? (
+                                      <Typography variant="body2">FeedBack: ✅</Typography>
+                                    ) : (
+                                      // If no feedback, display the wrong emoji
+                                      <Typography variant="body2">FeedBack: ❌</Typography>
+                                    )}
+                                    {/* <Typography variant="body2">FeedBack: {event.feedback}</Typography> */}
                                     {/* <Typography variant="body2">{currentTerm}</Typography> */}
                                     {event.location && (
                                         <Typography variant="body2">Location: {event.location}</Typography>

@@ -59,7 +59,7 @@ const UserProfile = () => {
 
   const filterUpcomingAssessments = (events) => {
     const today = new Date();
-    const fakeDay = new Date();
+    // const today = new Date(2022, 11, 1);
     const nextMonth = addMonths(today, 1);
 
     return events.filter((event) => {
@@ -166,22 +166,6 @@ const UserProfile = () => {
                 // onChange={(e) => setEmail(e.target.value)}
                 disabled
               />
-              {/* <TextField
-                select
-                label="Grade"
-                value={language}
-                fullWidth
-                margin="normal"
-                onChange={(e) => setLanguage(e.target.value)}
-                SelectProps={{
-                  native: true,
-                }}
-              >
-                <option value="First Year">First Year</option>
-                <option value="Second Year">Second Year</option>
-                <option value="Last Year">Last Year</option>
-                <option value="Master Year">Master Year</option>
-              </TextField> */}
               {/* <Button
                 type="submit"
                 color="primary"
@@ -209,6 +193,7 @@ const UserProfile = () => {
             </Typography>
             {events.map((event) => {
               const today = new Date();
+              // const today = new Date(2022, 10, 1);
               const startDate = new Date(event.start);
               const endDate = new Date(event.end);
               const eventBackgroundColor =
@@ -247,8 +232,11 @@ const UserProfile = () => {
               <Typography component="h1" variant="h5">
                 Upcoming Assessment
               </Typography>
-              {filterUpcomingAssessments(events).map((event) => {
+              {/* {filterUpcomingAssessments(events).map((event) => { */}
+              {events.map((event) => {
+                // const today = new Date(2023, 3, 1);
                 const today = new Date();
+                const oneMonthLater = addMonths(today, 2);
                 const startDate = new Date(event.start);
                 const endDate = new Date(event.end);
                 const eventBackgroundColor =
@@ -259,7 +247,8 @@ const UserProfile = () => {
                     : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
                     ? "#8A307F"
                     : "default-color";
-                if (isAfter(startDate, today) && event.programName === user.major) {
+                // if (isAfter(startDate, today) && event.programName === user.major) {
+                if (isWithinInterval(startDate, { start: today, end: oneMonthLater }) && event.programName === user.major) {
                   return (
                     <div key={event.id} onClick={() => handleEventClick(event)}>
                       <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>

@@ -171,10 +171,15 @@ export default function AddEvent() {
               <label htmlFor="weight" >
                 Weight (%)
               </label>
-              <select name="weightInput" id="weightInput" className="form-control">
+              <select 
+                name="weight" 
+                value={weight}
+                className="form-control"
+                onChange={(e) => onInputChange(e)}
+                >
                 {
                   weightOptions.map((value)=>(
-                    <option id={value} value = {value}>
+                    <option key={value} value = {value}>
                       {value}
                     </option>
                   ))

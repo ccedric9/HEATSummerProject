@@ -38,3 +38,10 @@ h3{
 .summary{
     min-height: 100px;
 }
+
+@media screen and (max-width: 600px) {
+    .container {
+        width: 250vw;
+    }
+}
+

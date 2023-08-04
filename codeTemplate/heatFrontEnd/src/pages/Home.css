@@ -113,7 +113,8 @@
 
   .event {
     position: relative;
-    /*display: flex;*/
+    display: flex;
+    justify-content: center;
     text-align: center;
     white-space: nowrap;
     /*overflow: hidden;*/
