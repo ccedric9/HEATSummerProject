@@ -58,8 +58,8 @@ const UserProfile = () => {
   }, []);
 
   const filterUpcomingAssessments = (events) => {
-    // const today = new Date();
-    const today = new Date(2022, 11, 1);
+    const today = new Date();
+    // const today = new Date(2022, 11, 1);
     const nextMonth = addMonths(today, 1);
 
     return events.filter((event) => {
@@ -232,9 +232,11 @@ const UserProfile = () => {
               <Typography component="h1" variant="h5">
                 Upcoming Assessment
               </Typography>
-              {filterUpcomingAssessments(events).map((event) => {
-                const today = new Date();
+              {/* {filterUpcomingAssessments(events).map((event) => { */}
+              {events.map((event) => {
                 // const today = new Date(2023, 3, 1);
+                const today = new Date();
+                const oneMonthLater = addMonths(today, 2);
                 const startDate = new Date(event.start);
                 const endDate = new Date(event.end);
                 const eventBackgroundColor =
@@ -246,6 +248,7 @@ const UserProfile = () => {
                     ? "#8A307F"
                     : "default-color";
                 // if (isAfter(startDate, today) && event.programName === user.major) {
+                if (isWithinInterval(startDate, { start: today, end: oneMonthLater }) && event.programName === user.major) {
                   return (
                     <div key={event.id} onClick={() => handleEventClick(event)}>
                       <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>
@@ -255,8 +258,8 @@ const UserProfile = () => {
                     </Paper>
                     </div>
                   );
-                // }
-                // return null;
+                }
+                return null;
               })}
             </Paper>
         </Grid>
