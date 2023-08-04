@@ -131,7 +131,7 @@ const WeeklyCalendar = () => {
   
     return {
       left: `calc(${(offsetWeeks / 20) * 100}% + 10px)`, // 13 is the total number of weeks in a term
-      width: `calc(${(durationWeeks / 20) * 100}% )`, // 13 is the total number of weeks in a term
+      width: event.start === event.end? "1%":`calc(${(durationWeeks / 20) * 100}%)`, // 13 is the total number of weeks in a term
       backgroundColor:
         event.type.toUpperCase() === "SUMMATIVE"
           ? "#CC313D"
