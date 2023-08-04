@@ -134,7 +134,7 @@ const Home = () => {
 
     return {
       left: `calc(${(offsetDays / 365 ) * 100}%)`,
-      width: event.start === event.end? "10%":`calc(${(durationDays / 365 ) * 100}%)`,
+      width: event.start === event.end? "1%":`calc(${(durationDays / 365 ) * 100}%)`,
       backgroundColor:
         event.type.toUpperCase() === "SUMMATIVE"
           ? "#CC313D"
