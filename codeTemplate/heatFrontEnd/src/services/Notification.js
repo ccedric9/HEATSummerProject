@@ -59,6 +59,7 @@ const UserProfile = () => {
 
   const filterUpcomingAssessments = (events) => {
     const today = new Date();
+    const fakeDay = new Date();
     const nextMonth = addMonths(today, 1);
 
     return events.filter((event) => {
@@ -131,15 +132,16 @@ const UserProfile = () => {
                 fullWidth
                 margin="normal"
                 onChange={(e) => setUsername(e.target.value)}
+                disabled
               />
-              <TextField
+              {/* <TextField
                 label="Password"
                 value={password}
                 type="password"
                 fullWidth
                 margin="normal"
                 onChange={(e) => setPassword(e.target.value)}
-              />
+              /> */}
               <TextField
                 label="Email"
                 value={user.email}
@@ -147,13 +149,6 @@ const UserProfile = () => {
                 margin="normal"
                 onChange={(e) => setEmail(e.target.value)}
                 disabled
-              />
-              <TextField
-                label="Name"
-                value={name}
-                fullWidth
-                margin="normal"
-                onChange={(e) => setName(e.target.value)}
               />
               <TextField
                 label="Major"
@@ -164,6 +159,14 @@ const UserProfile = () => {
                 disabled
               />
               <TextField
+                label="Entry Year"
+                value={user.entryYear}
+                fullWidth
+                margin="normal"
+                // onChange={(e) => setEmail(e.target.value)}
+                disabled
+              />
+              {/* <TextField
                 select
                 label="Grade"
                 value={language}
@@ -178,8 +181,8 @@ const UserProfile = () => {
                 <option value="Second Year">Second Year</option>
                 <option value="Last Year">Last Year</option>
                 <option value="Master Year">Master Year</option>
-              </TextField>
-              <Button
+              </TextField> */}
+              {/* <Button
                 type="submit"
                 color="primary"
                 variant="contained"
@@ -187,7 +190,7 @@ const UserProfile = () => {
                 fullWidth
               >
                 Update Profile
-              </Button>
+              </Button> */}
             </form>
           </Paper>
         </Grid>
