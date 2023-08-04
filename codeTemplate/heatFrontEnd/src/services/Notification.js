@@ -116,70 +116,9 @@ const UserProfile = () => {
 
   return (
     <Container component="main" maxWidth="lg">
-      <Grid container spacing={2}>
+      <Grid container spacing={2} justifyContent="center" alignItems="center">
         <Grid item xs={12} sm={4}>
-          <Paper elevation={3} sx={{ padding: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Avatar sx={{ m: 1, backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)', color: 'white' }}>
-              <PersonIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              User Profile
-            </Typography>
-            <form noValidate autoComplete="off" style={{ width: '100%', marginTop: '20px' }} onSubmit={handleUpdateProfile}>
-              <TextField
-                label="Username"
-                value={user.firstName + '\t' + user.lastName}
-                fullWidth
-                margin="normal"
-                onChange={(e) => setUsername(e.target.value)}
-                disabled
-              />
-              {/* <TextField
-                label="Password"
-                value={password}
-                type="password"
-                fullWidth
-                margin="normal"
-                onChange={(e) => setPassword(e.target.value)}
-              /> */}
-              <TextField
-                label="Email"
-                value={user.email}
-                fullWidth
-                margin="normal"
-                onChange={(e) => setEmail(e.target.value)}
-                disabled
-              />
-              <TextField
-                label="Major"
-                value={user.major}
-                fullWidth
-                margin="normal"
-                onChange={(e) => setMajor(e.target.value)}
-                disabled
-              />
-              <TextField
-                label="Entry Year"
-                value={user.entryYear}
-                fullWidth
-                margin="normal"
-                // onChange={(e) => setEmail(e.target.value)}
-                disabled
-              />
-              {/* <Button
-                type="submit"
-                color="primary"
-                variant="contained"
-                style={{ marginTop: '20px' }}
-                fullWidth
-              >
-                Update Profile
-              </Button> */}
-            </form>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Paper elevation={3} sx={{ padding: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <Paper elevation={3} sx={{ padding: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' , minHeight: '535px'}}>
             <Avatar sx={{ m: 1, backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)', color: 'white' }}>
               <NotificationImportant />
             </Avatar>
@@ -220,7 +159,7 @@ const UserProfile = () => {
           </Paper>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <Paper elevation={3} sx={{ padding: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <Paper elevation={3} sx={{ padding: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '535px' }}>
               <Avatar sx={{ m: 1, backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)', color: 'white' }}>
                 <NotificationImportant />
               </Avatar>
