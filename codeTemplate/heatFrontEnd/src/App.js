@@ -32,36 +32,15 @@ import EditMenu from "./services/EditMenu";
 
 
 const AppLayout = ({ children }) => {
-    // Check if the current route is '/'
-    // const isHomePage = window.location.pathname === '/' || window.location.pathname==='/login';
 
     return (
         <div className="app">
             <Navbar />
             <Outlet />
-            {/*{isHomePage ? null : <Footer />}*/}
             <Footer />
         </div>
     );
 };
-
-const LoginLayout = ({children}) => {
-    return (
-        <div className="app">
-            <Outlet />
-        </div>
-    );
-}
-// const Layout = () => {
-//     // check if the login is successful
-//   return (
-//     <div className="app">
-//       <Navbar />
-//       <Outlet />
-//       <Footer />
-//     </div>
-//   )
-// }
 
 const router = createBrowserRouter([
   {
