@@ -20,6 +20,10 @@ function Registration() {
   const [staff, setStaff] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(null);
 
+  const [entryYear, setEntryYear] = useState('');
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: 5 }, (v, i) => currentYear - i);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -58,7 +62,8 @@ function Registration() {
       password: password,
       major: major,
       staff: staff,
-      courses: courses
+      courses: courses,
+      entryYear: entryYear,
     };
 
     try {
@@ -206,7 +211,19 @@ function Registration() {
           </FormControl>
         )}
 
-
+        <FormControl fullWidth margin="normal" required>
+          <InputLabel id="entry-year-label">Entry Year</InputLabel>
+          <Select
+            labelId="entry-year-label"
+            id="entry-year"
+            value={entryYear}
+            onChange={(event) => setEntryYear(event.target.value)}
+          >
+            {years.map((year) => (
+              <MenuItem key={year} value={year}>{year}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
         <Button
           type="submit"
