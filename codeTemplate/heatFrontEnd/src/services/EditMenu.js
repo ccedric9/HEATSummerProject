@@ -10,7 +10,7 @@ export default function EditMenu() {
   const { id } = useParams();
   const user = useSelector(state => state.user);
   const program = user.major;
-  const selectedEvents = calendarEvent.filter((event) => event.programName === program);
+  const selectedEvents = calendarEvent.filter((event) => event.programName !==null);
   console.log(selectedEvents);
   
   useEffect(() => {
