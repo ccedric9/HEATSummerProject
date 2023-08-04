@@ -3,7 +3,15 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Navbar from "./layout/Navbar";
 import Home from "./pages/Home";
-import { BrowserRouter as Router, Routes, Route, createBrowserRouter, RouterProvider, Outlet, } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    createBrowserRouter,
+    RouterProvider,
+    Outlet,
+    useNavigate,
+} from "react-router-dom";
 import AdminAccess from "./pages/AdminAccess";
 import AddEvent from "./services/AddEvent";
 import EditEvent from "./services/EditEvent";
@@ -15,29 +23,50 @@ import SignUp from "./services/SignUp";
 import Notification from "./services/Notification";
 import UserInfoPage from "./pages/UserInfoPage";
 import { Alert } from "bootstrap";
-// import { Provider} from 'react-redux';
 import store from './redux/store';
-// import { useDispatch } from 'react-redux';
 import { useDispatch, useSelector,Provider } from 'react-redux';
-
 import { useEffect } from 'react';
 import { setUser } from './redux/slices/userSlice';
 import EditMenu from "./services/EditMenu";
+// import {useRoutes, Outlet} from 'react-router-dom';
 
-const Layout = () => {
-  return (
-    <div className="app">
-      <Navbar />
-      <Outlet />
-      <Footer />
-    </div>
-  )
+
+const AppLayout = ({ children }) => {
+    // Check if the current route is '/'
+    // const isHomePage = window.location.pathname === '/' || window.location.pathname==='/login';
+
+    return (
+        <div className="app">
+            <Navbar />
+            <Outlet />
+            {/*{isHomePage ? null : <Footer />}*/}
+            <Footer />
+        </div>
+    );
+};
+
+const LoginLayout = ({children}) => {
+    return (
+        <div className="app">
+            <Outlet />
+        </div>
+    );
 }
+// const Layout = () => {
+//     // check if the login is successful
+//   return (
+//     <div className="app">
+//       <Navbar />
+//       <Outlet />
+//       <Footer />
+//     </div>
+//   )
+// }
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: <AppLayout />,
     children:
       [
         { path: '/', element: <Login /> },
