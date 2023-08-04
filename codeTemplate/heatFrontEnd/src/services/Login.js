@@ -137,10 +137,9 @@ function Login() {
             />
             <Button
               type="submit"
-              color="primary"
               variant="contained"
               fullWidth
-              style={{ marginTop: '20px' }}
+              style={{ marginTop: '20px', backgroundColor:'black' }}
             >
               Login
             </Button>

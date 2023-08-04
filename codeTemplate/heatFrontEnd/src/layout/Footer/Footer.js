@@ -28,7 +28,7 @@ const Footer = () => {
                 <h5>Tools</h5>
                 <a href="https://www.ole.bris.ac.uk/" className="item">Blackboard</a>
                 <a href="https://www.bris.ac.uk/syllabus-plus/" className="item">Timetable</a>
-                <a href="https://evision.apps.bristol.ac.uk/" className="item">Evision</a>
+                <a href="https://evision.apps.bristol.ac.uk/" className="item">eVision</a>
                 {/* <a href="https://www.bristol.ac.uk/help/" className="item">Help</a> */}
             </div>
         </div>
