@@ -234,7 +234,7 @@ const WeeklyCalendar = () => {
         
        {/* Events */}
        <div className="test-container">
-        
+
         {/*curriculum+events*/}
         <div className="unitNames-container">
           {Array.from(new Set(events.map((event) => event.unitName))).map(
