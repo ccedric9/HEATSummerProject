@@ -50,6 +50,7 @@ function Login() {
         email: response.data.email,
         major: response.data.major,
         staff: response.data.staff,
+        entryYear: response.data.entryYear,
       }));
 
       // check the first digit of the status code

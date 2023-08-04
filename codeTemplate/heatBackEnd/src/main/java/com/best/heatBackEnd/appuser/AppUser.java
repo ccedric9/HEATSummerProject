@@ -45,6 +45,8 @@ public class AppUser implements UserDetails {
     @ElementCollection
     private List<String> courses;
 
+    private  String entryYear;
+
 
 
     public AppUser(String firstName,
@@ -54,6 +56,7 @@ public class AppUser implements UserDetails {
                    String major,
                    Boolean staff,
                    List<String> courses,
+                   String entryYear,
                    AppUserRole appUserRole) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -62,6 +65,7 @@ public class AppUser implements UserDetails {
         this.major = major;
         this.staff = staff;
         this.courses = courses;
+        this.entryYear = entryYear;
         this.appUserRole = appUserRole;
     }
 
@@ -70,6 +74,10 @@ public class AppUser implements UserDetails {
         SimpleGrantedAuthority authority =
                 new SimpleGrantedAuthority(appUserRole.name());
         return Collections.singletonList(authority);
+    }
+
+    public String getEntryYear() {
+        return entryYear;
     }
 
     public List<String> getCourses() {

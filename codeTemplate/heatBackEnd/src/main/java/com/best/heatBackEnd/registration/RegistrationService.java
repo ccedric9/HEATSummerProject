@@ -39,6 +39,7 @@ public class RegistrationService {
                         request.getMajor(),
                         request.getStaff(),
                         request.getCourses(),
+                        request.getEntryYear(),
                         AppUserRole.USER
                 )
         );

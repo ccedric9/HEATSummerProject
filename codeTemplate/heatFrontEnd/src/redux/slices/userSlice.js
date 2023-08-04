@@ -7,6 +7,7 @@ const initialState = {
     email: '',
     major: '',
     staff: false,
+    entryYear: '',
 };
 
 export const userSlice = createSlice({
@@ -19,6 +20,7 @@ export const userSlice = createSlice({
             state.email = action.payload.email;
             state.major = action.payload.major;
             state.staff = action.payload.staff;
+            state.entryYear = action.payload.entryYear;
         },
         resetUser: state => initialState,
     },
