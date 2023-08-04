@@ -45,8 +45,3 @@ h3{
     }
 }
 
-@media  screen and (max-width:850px) and (min-width:601px) {
-    .container {
-        width: 150vw;
-    }
-}
