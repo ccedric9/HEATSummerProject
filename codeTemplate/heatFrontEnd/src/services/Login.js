@@ -6,7 +6,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../redux/slices/userSlice';
 import { AccountCircle, LockRounded } from '@mui/icons-material';
-
+import { useTheme, useMediaQuery } from "@mui/material";
 
 
 function Login() {
@@ -15,7 +15,9 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [openSnackbar, setOpenSnackbar] = useState(false);
-
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
 
   const handleCloseSnackbar = () => {
     setOpenSnackbar(false);
@@ -91,10 +93,12 @@ function Login() {
   return (
     <Container style={{ 
       minHeight: '100vh',
-      backgroundImage: 'linear-gradient(to right top, #559966, #ff5e62)',
+      height: isSmallScreen ? '200vh' : isMediumScreen ? '155vw' : 'auto',
+      // backgroundImage: 'linear-gradient(to right top, #559966, #ff5e62)',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      width: isSmallScreen ? '305vw' : isMediumScreen ? '155vw' : 'auto',
     }}>
       <Card>
         <CardContent>
