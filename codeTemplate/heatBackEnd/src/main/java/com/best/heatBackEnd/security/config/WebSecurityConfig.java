@@ -82,6 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     resp.put("lastName", appUser.getLastName());
                     resp.put("major", appUser.getMajor());
                     resp.put("staff", appUser.getStaff());
+                    resp.put("entryYear", appUser.getEntryYear());
 //                    resp.put("courses", appUser.getCourses());
 
 //                    logger.info("staff: " + appUser.getStaff());

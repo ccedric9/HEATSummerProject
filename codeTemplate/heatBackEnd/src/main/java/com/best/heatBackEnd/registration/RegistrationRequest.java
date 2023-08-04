@@ -19,4 +19,5 @@ public class RegistrationRequest {
     private final String major;
     private final Boolean staff;
     private final List<String> courses;
+    private final String entryYear;
 }
