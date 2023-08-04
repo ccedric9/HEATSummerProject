@@ -84,3 +84,7 @@
 .bottom , .a{
     gap: 20px;
 }
+
+.footer-valid {
+    display: grid;
+}

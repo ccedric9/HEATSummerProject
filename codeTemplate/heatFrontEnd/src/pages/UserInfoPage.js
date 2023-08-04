@@ -20,6 +20,7 @@ function UserInfoPage() {
     navigate('/home');
   }
 
+
   return (
     <Container maxWidth="sm">
       <Grid container direction="column" justify="center" style={{ minHeight: '80vh' }}>
@@ -32,7 +33,7 @@ function UserInfoPage() {
               <Typography variant="h6" align="center">Name: {user.firstName} {user.lastName}</Typography>
               <Typography variant="h6" align="center" style={{marginTop: '20px'}}>Email: {user.email}</Typography>
               <Typography variant="h6" align="center" style={{marginTop: '20px'}}>Major: {user.major}</Typography>
-              <Typography variant="h6" align="center" style={{marginTop: '20px'}}>Course: {user.program}</Typography>
+              <Typography variant="h6" align="center" style={{marginTop: '20px'}}>Course: {user.courses}</Typography>
             </CardContent>
           </Card>
         </Box>

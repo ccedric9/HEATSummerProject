@@ -1,8 +1,11 @@
 import React from 'react'
 import './Footer.css';
-import { Link } from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 const Footer = () => {
+    const location = useLocation();
+    const isHomePage = location.pathname === '/' || location.pathname === '/login';
+
   return (
     <div className="footer">
         <div className="top">
@@ -14,15 +17,31 @@ const Footer = () => {
             </div>
             <div className="calendar">
                 <h5>Calendar</h5>
-                <Link className="item" to='/'>
-                    By Year
-                </Link>
-                <Link className="item" to='/weeklyCalendar'>
-                    By Term
-                </Link>
-                <Link className="item" to='calendarByModule'>
-                    By Module
-                </Link>
+                {!isHomePage ? (
+                    <div className="footer-valid">
+                        <Link className="item" to='/'>
+                            By Year
+                        </Link>
+                        <Link className="item" to='/weeklyCalendar' >
+                            By Term
+                        </Link>
+                        <Link className="item" to='calendarByModule' >
+                            By Module
+                        </Link>
+                    </div>
+                ) : (
+                    <div class="footer-valid">
+                        <span className="item disabled">
+                            By Year
+                        </span>
+                        <span className="item" to='/weeklyCalendar' >
+                            By Term
+                        </span>
+                        <span className="item" to='calendarByModule'>
+                            By Module
+                        </span>
+                    </div>
+                )}
             </div>
             <div className="tools">
                 <h5>Tools</h5>

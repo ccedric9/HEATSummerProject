@@ -32,7 +32,15 @@ const Navbar = () => {
       width: isSmallScreen ? '305vw' : isMediumScreen ? '155vw' : '100%',
     }}>
       {/* Software Title */}
-      <Typography variant='h6' fontWeight='bold' component={Link} to='/home' sx={{ color: 'black', textDecoration: 'None' }} >
+      <Typography variant='h6' fontWeight='bold' component={Link} to='/home' disabled={isHomePage}
+                  sx={{
+                    color: 'black',
+                    textDecoration: 'none',
+                    fontWeight: 'bold', // Set the fontWeight using sx prop
+                    pointerEvents: isHomePage ? 'none' : 'auto', // Disable pointer events based on isHomePage
+                    opacity: isHomePage ? 0.5 : 1, // Reduce opacity for disabled link
+                  }}
+      >
         Assessment Calendar Tool
       </Typography>
       {/* ICONS */}
@@ -57,8 +65,6 @@ const Navbar = () => {
             <LogoutIcon />
           </IconButton>
         </Link>
-
-
       </Box>
     </Box>
   );
