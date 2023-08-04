@@ -12,6 +12,7 @@ import { useTheme, useMediaQuery } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { useSelector } from 'react-redux';
 import EditIcon from '@mui/icons-material/Edit';
+import {useLocation} from "react-router-dom";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,10 @@ const Navbar = () => {
   const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
   const user = useSelector(state => state.user);
   const isStaff = user.staff;
+
+  const location = useLocation();
+  const isHomePage = location.pathname === '/' || location.pathname === '/login';
+
   return (
     <Box display="flex" justifyContent="space-between" p={2} sx={{
       backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)',
@@ -32,19 +37,19 @@ const Navbar = () => {
       </Typography>
       {/* ICONS */}
       <Box display="flex">
-        <IconButton component={Link} to='/home'>
+        <IconButton component={Link} to='/home' disabled={isHomePage}>
           <HomeIcon />
         </IconButton>
-        {isStaff &&<IconButton component={Link} to='/addEvent'>
+        {isStaff &&<IconButton component={Link} to='/addEvent' >
           <AddIcon /> 
         </IconButton>}
         { isStaff  && <IconButton component={Link} to='/EditMenu'>
           <EditIcon/>
         </IconButton>}
-        <IconButton component={Link} to='/user-info'>
+        <IconButton component={Link} to='/user-info' disabled={isHomePage}>
           <PersonIcon />
         </IconButton>
-        <IconButton component={Link} to='/Notification'>
+        <IconButton component={Link} to='/Notification' disabled={isHomePage}>
           <NotificationsIcon />
         </IconButton>
         <Link to="/login">
