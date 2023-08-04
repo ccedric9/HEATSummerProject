@@ -32,6 +32,7 @@ function UserInfoPage() {
               <Typography variant="h6" align="center">Name: {user.firstName} {user.lastName}</Typography>
               <Typography variant="h6" align="center" style={{marginTop: '20px'}}>Email: {user.email}</Typography>
               <Typography variant="h6" align="center" style={{marginTop: '20px'}}>Major: {user.major}</Typography>
+              <Typography variant="h6" align="center" style={{marginTop: '20px'}}>Course: {user.program}</Typography>
             </CardContent>
           </Card>
         </Box>

@@ -55,7 +55,7 @@ export default function EditMenu() {
                 <td>
                   <Link
                     className="btn btn-outline-primary mx-2"
-                    to={`/editEvent/${selectedEvents.id}`}
+                    to={`/editEvent/${event.id}`}
                   >
                     Edit
                   </Link>

@@ -153,7 +153,7 @@ export default function CalendarByModule() {
                                                 {event.location && (
                                                 <Typography variant="body2">Location: {event.location}</Typography>
                                                 )}
-                                                <Typography variant="body2">linkedID: {event.linkedIds}</Typography>
+                                                {/* <Typography variant="body2">linkedID: {event.linkedIds}</Typography> */}
                                             </div>
                                             }
                                             key={subIndex}
