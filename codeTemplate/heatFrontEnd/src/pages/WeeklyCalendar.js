@@ -262,7 +262,7 @@ const WeeklyCalendar = () => {
                                       <Typography variant="body2">FeedBack: ✅</Typography>
                                     ) : (
                                       // If no feedback, display the wrong emoji
-                                      <Typography variant="body2">FeedBack: ❌</Typography>
+                                      <Typography variant="body2">FeedBack: Not Available</Typography>
                                     )}
                                     {/* <Typography variant="body2">{currentYear - firstYear + 1}</Typography> */}
                                     {/* <Typography variant="body2">{currentTerm}</Typography> */}

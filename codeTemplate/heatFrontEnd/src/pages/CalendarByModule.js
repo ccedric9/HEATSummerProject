@@ -150,10 +150,17 @@ export default function CalendarByModule() {
                                                 <Typography variant="subtitle1">{event.title}</Typography>
                                                 <Typography variant="body2">Start Date: {event.start}</Typography>
                                                 <Typography variant="body2">End Date: {event.end}</Typography>
-                                                {event.location && (
-                                                <Typography variant="body2">Location: {event.location}</Typography>
+                                                <Typography variant="body2">Year: {event.academicYear}</Typography>
+                                                <Typography variant="body2">Term: {event.term}</Typography>
+                                                {event.feedback ? (
+                                                <Typography variant="body2">FeedBack: ✅</Typography>
+                                                ) : (
+                                                // If no feedback, display the wrong emoji
+                                                <Typography variant="body2">FeedBack: Not Available</Typography>
                                                 )}
-                                                {/* <Typography variant="body2">linkedID: {event.linkedIds}</Typography> */}
+                                                {event.location && (
+                                                    <Typography variant="body2">Location: {event.location}</Typography>
+                                                )}
                                             </div>
                                             }
                                             key={subIndex}
@@ -224,8 +231,16 @@ export default function CalendarByModule() {
                                                 <Typography variant="subtitle1">{event.title}</Typography>
                                                 <Typography variant="body2">Start Date: {event.start}</Typography>
                                                 <Typography variant="body2">End Date: {event.end}</Typography>
+                                                <Typography variant="body2">Year: {event.academicYear}</Typography>
+                                                <Typography variant="body2">Term: {event.term}</Typography>
+                                                {event.feedback ? (
+                                                <Typography variant="body2">FeedBack: ✅</Typography>
+                                                ) : (
+                                                // If no feedback, display the wrong emoji
+                                                <Typography variant="body2">FeedBack: Not Available</Typography>
+                                                )}
                                                 {event.location && (
-                                                <Typography variant="body2">Location: {event.location}</Typography>
+                                                    <Typography variant="body2">Location: {event.location}</Typography>
                                                 )}
                                             </div>
                                             }
@@ -297,8 +312,16 @@ export default function CalendarByModule() {
                                                 <Typography variant="subtitle1">{event.title}</Typography>
                                                 <Typography variant="body2">Start Date: {event.start}</Typography>
                                                 <Typography variant="body2">End Date: {event.end}</Typography>
+                                                <Typography variant="body2">Year: {event.academicYear}</Typography>
+                                                <Typography variant="body2">Term: {event.term}</Typography>
+                                                {event.feedback ? (
+                                                <Typography variant="body2">FeedBack: ✅</Typography>
+                                                ) : (
+                                                // If no feedback, display the wrong emoji
+                                                <Typography variant="body2">FeedBack: Not Available</Typography>
+                                                )}
                                                 {event.location && (
-                                                <Typography variant="body2">Location: {event.location}</Typography>
+                                                    <Typography variant="body2">Location: {event.location}</Typography>
                                                 )}
                                             </div>
                                             }
