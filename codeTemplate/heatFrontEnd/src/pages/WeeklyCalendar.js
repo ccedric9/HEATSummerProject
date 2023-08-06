@@ -295,8 +295,14 @@ const WeeklyCalendar = () => {
                                                                     : event.weight >= 20
                                                                         ? '26px'
                                                                         : '13px',
+                                    display:
+                                        new Date(event.start).getMonth() >= 6 &&
+                                        new Date(event.start).getMonth() <= 8
+                                            ? 'none'
+                                            : 'block',
                                   }}
                                   onClick={() => handleEventClick(event)}
+
                                   key={eventIndex}
                               >
                                 {event.title}
