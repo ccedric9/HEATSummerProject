@@ -38,7 +38,7 @@ function Login() {
     event.preventDefault();
 
     try {
-      const response = await axios.post('/login', `username=${username}&password=${password}`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/login`, `username=${username}&password=${password}`, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -91,7 +91,7 @@ function Login() {
     }
   }, [user]);
   return (
-    <Container style={{ 
+    <Container style={{
       minHeight: '100vh',
       height: isSmallScreen ? '200vh' : isMediumScreen ? '155vw' : 'auto',
       // backgroundImage: 'linear-gradient(to right top, #559966, #ff5e62)',
@@ -139,7 +139,7 @@ function Login() {
               type="submit"
               variant="contained"
               fullWidth
-              style={{ marginTop: '20px', backgroundColor:'black' }}
+              style={{ marginTop: '20px', backgroundColor: 'black' }}
             >
               Login
             </Button>

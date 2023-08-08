@@ -33,7 +33,7 @@ public class EmailService implements EmailSender{
             helper.setSubject("Confirm your email");
             helper.setFrom("VerifyEmail@AssessmentTool.com");
             //todo: uncomment this line to send email
-            mailSender.send(mimeMessage);
+//            mailSender.send(mimeMessage);
         } catch (MessagingException e) {
             LOGGER.error("failed to send email", e);
             throw new IllegalStateException("failed to send email");

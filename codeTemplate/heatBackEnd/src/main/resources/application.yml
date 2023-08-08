@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:mysql://amazonheatdb.cczulapjuexr.eu-west-2.rds.amazonaws.com:3306/heatDB
     username: admin
-    password: ${DATASOURCE_PASSWORD}
+    password: d76cf6cc9bfcd880395ddea39468bbe327a7f6bd
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   mail:

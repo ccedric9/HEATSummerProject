@@ -67,7 +67,7 @@ function Registration() {
     };
 
     try {
-      await axios.post('/api/v1/registration', userData, {
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/v1/registration`, userData, {
         headers: {
           'Content-Type': 'application/json'
         }
