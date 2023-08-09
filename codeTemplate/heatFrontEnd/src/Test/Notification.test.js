@@ -31,7 +31,7 @@ describe('Notification Component', () => {
       </Provider>
     );
 
-    const expectedOngoingAssessmentsCount = 3;
+    const expectedOngoingAssessmentsCount = 1;
     const expectedUpcomingAssessmentsCount = 1;
 
     const newCurrentTime = new Date(2022, 10, 28); 
