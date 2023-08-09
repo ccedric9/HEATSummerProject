@@ -1,6 +1,5 @@
 import { Box, IconButton } from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import SettingsIcon from "@mui/icons-material/Settings";
 import PersonIcon from "@mui/icons-material/Person";
 import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
