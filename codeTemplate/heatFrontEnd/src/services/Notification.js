@@ -24,7 +24,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { resetUser } from '../redux/slices/userSlice';
 import { addMonths, isBefore, isWithinInterval } from 'date-fns';
 
-const UserProfile = () => {
+const Notification = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -40,8 +40,8 @@ const UserProfile = () => {
   const [unitNameCounts, setUnitNameCounts] = useState({});
   const [openDialog, setOpenDialog] = useState(false);
   const user = useSelector(state => state.user);
-  const today = new Date(2022, 10, 28);
-  // const today = new Date();
+  // const today = new Date(2022, 10, 28);
+  const today = new Date();
   
   useEffect(() => {
     try {
@@ -147,8 +147,9 @@ const UserProfile = () => {
                   : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
                   ? "#8A307F"
                   : "default-color";
-              
+                  const ongoingAssessments = screen.findAllByText('Ongoing Assessment');
               if ((today >= startDate && today <= endDate) && event.programName === user.major) {
+                console.log("ongoingAssessments: " + ongoingAssessments);
                 return (
                   <div key={event.id} onClick={() => handleEventClick(event)}>
                     <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>
@@ -215,4 +216,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default Notification;

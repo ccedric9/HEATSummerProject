@@ -1,43 +1,52 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import UserProfile from '../services/Notification/UserProfile';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import { addMonths } from 'date-fns';
 
-test('assessments change based on current time', async () => {
-  // You can mock axios or any API calls here if needed
+import Notification from '../services/Notification';
 
-  // Render the UserProfile component
-  render(<UserProfile />);
+const mockStore = configureStore([]);
 
-  // Assuming the initial number of ongoing assessments and upcoming assessments is known
-  const initialOngoingAssessmentsCount = 1/* initial count */;
-  const initialUpcomingAssessmentsCount = 0/* initial count */;
+describe('Notification Component', () => {
+  let initialState;
 
-  // Helper function to set the current time
-  const setCurrentTime = (newTime) => {
-    jest.useFakeTimers('modern');
-    jest.setSystemTime(newTime);
-  };
+  beforeEach(() => {
+    initialState = {
+      user: {
+        major: 'Mechanical Engineering',
+      },
+    };
+  });
 
-  // Change the current time
-  const newCurrentTime = new Date(2022,11,10);
-  setCurrentTime(newCurrentTime);
+  test('should display correct counts of ongoing and upcoming assessments', async () => {
+    const mockedAxios = jest.spyOn(require('axios'), 'get');
+    mockedAxios.mockResolvedValue({ data: [] });
 
-  // You might need to wait for some async tasks to complete if your component uses them
-  // For example, you can use `waitFor` from '@testing-library/react'
+    const store = mockStore(initialState);
 
-  // Assuming your assessments are displayed with a specific text
-  const ongoingAssessmentsText = 'Ongoing Assessment';
-  const upcomingAssessmentsText = 'Upcoming Assessment';
+    render(
+      <Provider store={store}>
+        <Notification />
+      </Provider>
+    );
 
-  // Find the assessment elements
-  const ongoingAssessments = await screen.findAllByText(ongoingAssessmentsText);
-  const upcomingAssessments = await screen.findAllByText(upcomingAssessmentsText);
+    const expectedOngoingAssessmentsCount = 3;
+    const expectedUpcomingAssessmentsCount = 1;
 
-  // Get the count of assessments for each board
-  const ongoingAssessmentsCount = ongoingAssessments.length;
-  const upcomingAssessmentsCount = upcomingAssessments.length;
+    const newCurrentTime = new Date(2022, 10, 28); 
+    jest.spyOn(global, 'Date').mockImplementation(() => newCurrentTime);
 
-   // Assert the counts based on your logic
-   expect(ongoingAssessmentsCount).toBe(1);
-   expect(upcomingAssessmentsCount).toBe(1);
+    const ongoingAssessments = await screen.findAllByText('Ongoing Assessment');
+    const upcomingAssessments = await screen.findAllByText('Upcoming Assessment');
+
+    const actualOngoingAssessmentsCount = ongoingAssessments.length;
+    const actualUpcomingAssessmentsCount = upcomingAssessments.length;
+
+    expect(actualOngoingAssessmentsCount).toBe(expectedOngoingAssessmentsCount);
+    expect(actualUpcomingAssessmentsCount).toBe(expectedUpcomingAssessmentsCount);
+
+    // Clean up the timer
+    jest.useRealTimers();
+  });
 });
