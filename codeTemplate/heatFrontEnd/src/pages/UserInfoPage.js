@@ -26,19 +26,7 @@ function UserInfoPage() {
   return (
     <Container maxWidth="sm">
       <Grid container direction="column" justify="center" style={{ minHeight: '80vh' }}>
-        {/* <Box mt={2}>
-          <Typography variant="h4" align="center">User Info</Typography>
-        </Box>
-        <Box mt={2}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6" align="center">Name: {user.firstName} {user.lastName}</Typography>
-              <Typography variant="h6" align="center" style={{marginTop: '20px'}}>Email: {user.email}</Typography>
-              <Typography variant="h6" align="center" style={{marginTop: '20px'}}>Major: {user.major}</Typography>
-              <Typography variant="h6" align="center" style={{marginTop: '20px'}}>Course: {user.courses}</Typography>
-            </CardContent>
-          </Card>
-        </Box> */}
+
         <Grid item xs={12} sm={4}>
           <Paper elevation={3} sx={{ padding: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Avatar sx={{ m: 1, backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)', color: 'white' }}>
@@ -47,36 +35,20 @@ function UserInfoPage() {
             <Typography component="h1" variant="h5">
               User Profile
             </Typography>
-            <form noValidate autoComplete="off" style={{ width: '100%', marginTop: '20px' }}>
-              <TextField
-                label="Name"
-                value={user.firstName + '\t' + user.lastName}
-                fullWidth
-                margin="normal"
-                disabled
-              />
-              <TextField
-                label="Email"
-                value={user.email}
-                fullWidth
-                margin="normal"
-                disabled
-              />
-              <TextField
-                label="Major"
-                value={user.major}
-                fullWidth
-                margin="normal"
-                disabled
-              />
-              <TextField
-                label="Entry Year"
-                value={user.entryYear}
-                fullWidth
-                margin="normal"
-                disabled
-              />
-            </form>
+            <div style={{ width: '100%', marginTop: '20px' }}>
+              <Typography variant="body1" gutterBottom>
+                <strong>Name:</strong> {user.firstName} {user.lastName}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <strong>Email:</strong> {user.email}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <strong>Major:</strong> {user.major}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <strong>Entry Year:</strong> {user.entryYear}
+              </Typography>
+            </div>
           </Paper>
         </Grid>
         <Box mt={2}>
@@ -102,7 +74,7 @@ function UserInfoPage() {
               <Button
                 variant="contained"
                 sx={{
-                  backgroundColor: 'black',
+                  backgroundColor: '#3498db',
                   color: 'white',
                   '&:hover': {
                     backgroundColor: 'black', // Set the desired hover color here
