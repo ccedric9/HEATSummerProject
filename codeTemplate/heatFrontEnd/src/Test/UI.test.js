@@ -24,9 +24,23 @@ async function loginAsStaff(){
         // if contains program name 
         // if display corrent year
         // if display corrent assessment information
-        
+
+        //check staff page has edit & add event button 
+        const homeButton = await driver.findElement(By.id("homeIcon"));
+        const addEventButton = await driver.findElement(By.id("addIcon"));
+        const editEventButton = await driver.findElement(By.id("editIcon"));
+        const userInfoButton = await driver.findElement(By.id("personIcon"));
+        const notificationButton = await driver.findElement(By.id("notificationIcon"));
+        const logoutButton = await driver.findElement(By.id("logoutIcon"));
+        assert.ok(homeButton,"Test Failed: not exist");
+        assert.ok(addEventButton,"Test Failed: not exist");
+        assert.ok(editEventButton,"Test Failed: not exist");
+        assert.ok(userInfoButton,"Test Failed: not exist");
+        assert.ok(notificationButton,"Test Failed: not exist");
+        assert.ok(logoutButton,"Test Failed: not exist");
+
     }   finally{
-        // await driver.quit();
+        await driver.quit(); 
     }
 }
 
