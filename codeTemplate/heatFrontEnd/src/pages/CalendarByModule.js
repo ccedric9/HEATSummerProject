@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./CalendarByModule.css";
-import { Link } from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import axios from "axios";
 import { backgroundColor } from "react-native-calendars/src/style";
 import { Box, Button, ButtonGroup, Icon, Typography } from "@mui/material";
@@ -17,6 +17,7 @@ export default function CalendarByModule() {
     const user = useSelector(state => state.user);
     const isStaff = user.staff;
     const program = user.major;
+    const location = useLocation();
     //user program will define here 
     // const program = 'Computer Science';
 
@@ -114,9 +115,27 @@ export default function CalendarByModule() {
                 </Box>
                 <Box gridColumn="span 3" align='right'>
                     <ButtonGroup variant="contained" aria-label="outlined primary button group" color='inherit'>
-                        <Button component={Link} to='/home' sx={{ color: 'black', backgroundColor: '#a0332c' }}>Year</Button>
-                        <Button component={Link} to='/weeklyCalendar' sx={{ color: 'black', backgroundColor: '#a0332c' }}>Term</Button>
-                        <Button component={Link} to='/CalendarByModule' sx={{ color: 'black', backgroundColor: '#a0332c' }}>Module</Button>
+                        <Button
+                            component={Link}
+                            to="/home"
+                            sx={{ color: "white", backgroundColor: location.pathname === '/home' ? "#3498db" : "#a0332c" }}
+                        >
+                            Year
+                        </Button>
+                        <Button
+                            component={Link}
+                            to="/weeklyCalendar"
+                            sx={{ color: "white", backgroundColor: location.pathname === '/weeklyCalendar' ? "#3498db" : "#a0332c" }}
+                        >
+                            Term
+                        </Button>
+                        <Button
+                            component={Link}
+                            to="/CalendarByModule"
+                            sx={{ color: "white", backgroundColor: location.pathname === '/CalendarByModule' ? "#3498db" : "#a0332c" }}
+                        >
+                            Module
+                        </Button>
                     </ButtonGroup>
                 </Box>
             </Box>
