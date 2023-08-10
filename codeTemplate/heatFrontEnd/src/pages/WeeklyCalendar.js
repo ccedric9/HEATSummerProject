@@ -133,13 +133,13 @@ const WeeklyCalendar = () => {
       left: `calc(${(offsetWeeks / 20) * 100}% + 10px)`, // 13 is the total number of weeks in a term
       width: event.start === event.end? "1%":`calc(${(durationWeeks / 20) * 100}%)`, // 13 is the total number of weeks in a term
       backgroundColor:
-        event.type.toUpperCase() === "SUMMATIVE"
-          ? "#CC313D"
-          : event.type.toUpperCase() === "FORMATIVE"
-          ? "#2C5F2D"
-          : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-          ? "#8A307F"
-          : "default-color",
+          event.type.toUpperCase() === "SUMMATIVE"
+              ? "#C05555"
+              : event.type.toUpperCase() === "FORMATIVE"
+                  ? "#59886B"
+                  : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                      ? "#6C5070"
+                      : "default-color",
     };
   };
 

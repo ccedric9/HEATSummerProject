@@ -184,13 +184,14 @@ export default function CalendarByModule() {
                                                 className="test-name"
                                                 key={subIndex}
                                                 style={{
-                                                    backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
-                                                        ? '#CC313D'
-                                                        : event.type.toUpperCase() === "FORMATIVE"
-                                                        ? '#2C5F2D'
-                                                        : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                                                        ? '#8A307F'
-                                                        : "default-color",
+                                                    backgroundColor:
+                                                        event.type.toUpperCase() === "SUMMATIVE"
+                                                            ? "#C05555"
+                                                            : event.type.toUpperCase() === "FORMATIVE"
+                                                                ? "#59886B"
+                                                                : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                                    ? "#6C5070"
+                                                                    : "default-color",
                                                     color: 'white',
                                                     borderRadius: '5px',
                                                     border: `${
@@ -265,13 +266,14 @@ export default function CalendarByModule() {
                                                 className="test-name"
                                                 key={subIndex}
                                                 style={{
-                                                    backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
-                                                    ? '#CC313D'
-                                                    : event.type.toUpperCase() === "FORMATIVE"
-                                                    ? '#2C5F2D'
-                                                    : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                                                    ? '#8A307F'
-                                                    : "default-color",
+                                                    backgroundColor:
+                                                        event.type.toUpperCase() === "SUMMATIVE"
+                                                            ? "#C05555"
+                                                            : event.type.toUpperCase() === "FORMATIVE"
+                                                                ? "#59886B"
+                                                                : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                                    ? "#6C5070"
+                                                                    : "default-color",
                                                     color: 'white',
                                                     borderRadius: '5px',
                                                     border: `${
@@ -346,13 +348,14 @@ export default function CalendarByModule() {
                                                 className="test-name"
                                                 key={subIndex}
                                                 style={{
-                                                    backgroundColor: event.type.toUpperCase() === "SUMMATIVE"
-                                                    ? '#CC313D'
-                                                    : event.type.toUpperCase() === "FORMATIVE"
-                                                    ? '#2C5F2D'
-                                                    : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                                                    ? '#8A307F'
-                                                    : "default-color",
+                                                    backgroundColor:
+                                                        event.type.toUpperCase() === "SUMMATIVE"
+                                                            ? "#C05555"
+                                                            : event.type.toUpperCase() === "FORMATIVE"
+                                                                ? "#59886B"
+                                                                : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                                                                    ? "#6C5070"
+                                                                    : "default-color",
                                                     color: 'white',
                                                     borderRadius: '5px',
                                                     border: `${

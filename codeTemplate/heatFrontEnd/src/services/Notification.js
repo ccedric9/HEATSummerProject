@@ -147,6 +147,7 @@ const Notification = () => {
                   : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
                   ? "#8A307F"
                   : "default-color";
+              // eslint-disable-next-line no-restricted-globals
                   const ongoingAssessments = screen.findAllByText('Ongoing Assessment');
               if ((today >= startDate && today <= endDate) && event.programName === user.major) {
                 console.log("ongoingAssessments: " + ongoingAssessments);

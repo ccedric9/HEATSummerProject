@@ -136,13 +136,13 @@ const Home = () => {
       left: `calc(${(offsetDays / 365 ) * 100}%)`,
       width: event.start === event.end? "1%":`calc(${(durationDays / 365 ) * 100}%)`,
       backgroundColor:
-        event.type.toUpperCase() === "SUMMATIVE"
-          ? "#CC313D"
-          : event.type.toUpperCase() === "FORMATIVE"
-            ? "#2C5F2D"
-            : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-              ? "#8A307F"
-              : "default-color",
+          event.type.toUpperCase() === "SUMMATIVE"
+              ? "#C05555"
+              : event.type.toUpperCase() === "FORMATIVE"
+                  ? "#59886B"
+                  : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                      ? "#6C5070"
+                      : "default-color",
     };
   };
 
@@ -187,13 +187,13 @@ const Home = () => {
         </Box>
         <Box gridColumn="span 3" align="right">
           <ButtonGroup variant="contained" aria-label="outlined primary button group" color="inherit">
-            <Button component={Link} to="/home" sx={{ color: "black", backgroundColor: "#a0332c" }}>
+            <Button component={Link} to="/home" sx={{ color: "white", backgroundColor: "#a0332c" }}>
               Year
             </Button>
-            <Button component={Link} to="/weeklyCalendar" sx={{ color: "black", backgroundColor: "#a0332c" }}>
+            <Button component={Link} to="/weeklyCalendar" sx={{ color: "white", backgroundColor: "#a0332c" }}>
               Term
             </Button>
-            <Button component={Link} to="/CalendarByModule" sx={{ color: "black", backgroundColor: "#a0332c" }}>
+            <Button component={Link} to="/CalendarByModule" sx={{ color: "white", backgroundColor: "#a0332c" }}>
               Module
             </Button>
           </ButtonGroup>
