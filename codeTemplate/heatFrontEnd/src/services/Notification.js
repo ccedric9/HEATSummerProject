@@ -40,6 +40,8 @@ const UserProfile = () => {
   const [unitNameCounts, setUnitNameCounts] = useState({});
   const [openDialog, setOpenDialog] = useState(false);
   const user = useSelector(state => state.user);
+  const today = new Date(2022, 10, 28);
+  // const today = new Date();
   
   useEffect(() => {
     try {
@@ -57,17 +59,18 @@ const UserProfile = () => {
     setIsLoading(false);
   }, []);
 
-  const filterUpcomingAssessments = (events) => {
-    const today = new Date();
-    // const today = new Date(2022, 11, 1);
-    const nextMonth = addMonths(today, 1);
+  // const filterUpcomingAssessments = (events) => {
+  //   const today = new Date();
+  //   // const today = new Date(2022, 11, 10);
+  //   const nextMonth = addMonths(today, 1);
 
-    return events.filter((event) => {
-      const startDate = new Date(event.start);
-      return isWithinInterval(startDate, { start: today, end: nextMonth }) && event.programName === user.major;
-    });
-  };
+  //   return events.filter((event) => {
+  //     const startDate = new Date(event.start);
+  //     return isWithinInterval(startDate, { start: today, end: nextMonth }) && event.programName === user.major;
+  //   });
+  // };
 
+  
   const loadCalendarEvents = async () => {
     try {
       const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/calendarEvents`);
@@ -116,9 +119,9 @@ const UserProfile = () => {
 
   return (
     <Container component="main" maxWidth="lg">
-      <Grid container spacing={2} justifyContent="center" alignItems="center">
+      <Grid container spacing={2} justifyContent="center" alignItems="flex-start">
         <Grid item xs={12} sm={4}>
-          <Paper elevation={3} sx={{ padding: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' , minHeight: '535px'}}>
+          <Paper elevation={3} sx={{ padding: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' , minHeight: '735px'}}>
             <Avatar sx={{ m: 1, backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)', color: 'white' }}>
               <NotificationImportant />
             </Avatar>
@@ -131,10 +134,11 @@ const UserProfile = () => {
               Ongoing Assessment
             </Typography>
             {events.map((event) => {
-              const today = new Date();
-              // const today = new Date(2022, 10, 1);
+              // const today = new Date();
+              // const today = new Date(2022, 10, 28);
               const startDate = new Date(event.start);
               const endDate = new Date(event.end);
+
               const eventBackgroundColor =
                 event.type.toUpperCase() === "SUMMATIVE"
                   ? "#CC313D"
@@ -143,12 +147,13 @@ const UserProfile = () => {
                   : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
                   ? "#8A307F"
                   : "default-color";
-              if (isAfter(today, startDate) && isAfter(endDate, today) && event.programName === user.major) {
+              
+              if ((today >= startDate && today <= endDate) && event.programName === user.major) {
                 return (
                   <div key={event.id} onClick={() => handleEventClick(event)}>
                     <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>
                     <Typography variant="subtitle1">{event.title}</Typography>
-                    <Typography variant="subtitle1">{event.programName}</Typography>
+                    <Typography variant="subtitle1">{event.unitName}</Typography>
                     <Typography variant="subtitle2">{event.start} -- {event.end}</Typography>
                   </Paper>
                   </div>
@@ -159,7 +164,7 @@ const UserProfile = () => {
           </Paper>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <Paper elevation={3} sx={{ padding: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '535px' }}>
+          <Paper elevation={3} sx={{ padding: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '735px' }}>
               <Avatar sx={{ m: 1, backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)', color: 'white' }}>
                 <NotificationImportant />
               </Avatar>
@@ -173,9 +178,9 @@ const UserProfile = () => {
               </Typography>
               {/* {filterUpcomingAssessments(events).map((event) => { */}
               {events.map((event) => {
-                // const today = new Date(2023, 3, 1);
-                const today = new Date();
-                const oneMonthLater = addMonths(today, 2);
+                // const today = new Date(2022, 10, 28);
+                // const today = new Date();
+                const oneMonthLater = addMonths(today, 1);
                 const startDate = new Date(event.start);
                 const endDate = new Date(event.end);
                 const eventBackgroundColor =
@@ -187,12 +192,13 @@ const UserProfile = () => {
                     ? "#8A307F"
                     : "default-color";
                 // if (isAfter(startDate, today) && event.programName === user.major) {
-                if (isWithinInterval(startDate, { start: today, end: oneMonthLater }) && event.programName === user.major) {
+                // if (isWithinInterval(startDate, { start: today, end: oneMonthLater }) && event.programName === user.major) {
+                  if ((oneMonthLater > startDate && today < startDate ) && event.programName === user.major) {
                   return (
                     <div key={event.id} onClick={() => handleEventClick(event)}>
                       <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>
                       <Typography variant="subtitle1">{event.title}</Typography>
-                      <Typography variant="subtitle1">{event.programName}</Typography>
+                      <Typography variant="subtitle1">{event.unitName}</Typography>
                       <Typography variant="subtitle2">{event.start} -- {event.end}</Typography>
                     </Paper>
                     </div>

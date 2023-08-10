@@ -26,10 +26,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @AllArgsConstructor
@@ -44,10 +48,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .cors() // 允许CORS配置
+                .and()
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/v*/registration/**", "/calendarEvents","/calendarEvents/*")
-
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -56,6 +61,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(successHandler())
                 .failureHandler(failureHandler());
     }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost", "http://assessmentcalendar.s3-website.eu-west-2.amazonaws.com")); // 可以替换为你自己的域名
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "HEAD"));
+        configuration.setAllowCredentials(true);
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
 
     @Bean
     public AuthenticationSuccessHandler successHandler() {
@@ -85,7 +103,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     resp.put("entryYear", appUser.getEntryYear());
 //                    resp.put("courses", appUser.getCourses());
 
-//                    logger.info("staff: " + appUser.getStaff());
+//                    logger.info("courses: " + appUser.getCourses());
                     resp.put("authorities", userDetails.getAuthorities().stream()
                             .map(GrantedAuthority::getAuthority)
                             .collect(Collectors.toList()));
