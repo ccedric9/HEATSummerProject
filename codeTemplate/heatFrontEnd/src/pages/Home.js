@@ -238,6 +238,7 @@ const Home = () => {
       <div className="test-container">
         {/*timeline*/}
         {showTimeline && (
+            <div>
             <div
                 class="timeline"
                 style={{
@@ -251,6 +252,21 @@ const Home = () => {
                   zIndex: '999',
                 }}
             ></div>
+          <div
+              style={{
+                position: 'absolute',
+                top: '-10px',
+                left: `${leftPosition}`,
+                fontSize: '14px', // Adjust font size as needed
+                fontWeight: 'bold', // Adjust font weight as needed
+                color: 'darkslategray', // Adjust color as needed
+                backgroundColor: 'white', // Add background color if desired
+                padding: '2px 5px', // Add padding for better appearance
+                borderRadius: '4px', // Add border radius for rounded corners
+                zIndex: '999',
+            }}
+          >Date</div>
+            </div>
         )}
         {/*curriculum+events*/}
         <div className="unitNames-container">
@@ -275,6 +291,7 @@ const Home = () => {
                                     <Typography variant="body2">End Date: {event.end}</Typography>
                                     <Typography variant="body2">Year: {event.academicYear}</Typography>
                                     <Typography variant="body2">Term: {event.term}</Typography>
+                                    <Typography variant="body2">Type: {event.type}</Typography>
                                     {event.feedback ? (
                                       <Typography variant="body2">FeedBack: ✅</Typography>
                                     ) : (

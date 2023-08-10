@@ -171,6 +171,7 @@ export default function CalendarByModule() {
                                                 <Typography variant="body2">End Date: {event.end}</Typography>
                                                 <Typography variant="body2">Year: {event.academicYear}</Typography>
                                                 <Typography variant="body2">Term: {event.term}</Typography>
+                                                <Typography variant="body2">Type: {event.type}</Typography>
                                                 {event.feedback ? (
                                                 <Typography variant="body2">FeedBack: ✅</Typography>
                                                 ) : (
