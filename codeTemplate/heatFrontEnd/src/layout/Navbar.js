@@ -45,23 +45,23 @@ const Navbar = () => {
       {/* ICONS */}
       <Box display="flex">
         <IconButton component={Link} to='/home' disabled={isHomePage}>
-          <HomeIcon />
+          <HomeIcon id="homeIcon"/>
         </IconButton>
         {isStaff &&<IconButton component={Link} to='/addEvent' >
-          <AddIcon /> 
+          <AddIcon id="addIcon"/> 
         </IconButton>}
         { isStaff  && <IconButton component={Link} to='/EditMenu'>
-          <EditIcon/>
+          <EditIcon id="editIcon"/>
         </IconButton>}
         <IconButton component={Link} to='/user-info' disabled={isHomePage}>
-          <PersonIcon />
+          <PersonIcon id="personIcon"/>
         </IconButton>
         <IconButton component={Link} to='/Notification' disabled={isHomePage}>
-          <NotificationsIcon />
+          <NotificationsIcon id="notificationIcon" />
         </IconButton>
         <Link to="/login">
           <IconButton onClick={() => dispatch(resetUser())}>
-            <LogoutIcon />
+            <LogoutIcon id="logoutIcon" />
           </IconButton>
         </Link>
       </Box>
