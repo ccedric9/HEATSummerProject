@@ -105,6 +105,7 @@ function Login() {
           <Typography variant="h4" style={{ marginBottom: '20px' }} align="center">Login</Typography>
           <form noValidate autoComplete="off" onSubmit={handleSubmit}>
             <TextField
+              id = "username-input"
               label="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -120,6 +121,7 @@ function Login() {
               }}
             />
             <TextField
+              id = "password-input"
               label="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -136,6 +138,7 @@ function Login() {
               }}
             />
             <Button
+              id = "submit-btn"
               type="submit"
               variant="contained"
               fullWidth
