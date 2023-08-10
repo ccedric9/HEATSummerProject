@@ -31,6 +31,7 @@ public class CalendarEventController {
         return calendarEventRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Could not found the user with id "+ id));
     }
+
     @PutMapping("/calendarEvents/{id}")
     CalendarEvent updateUser(@RequestBody CalendarEvent newCalendarEvent, @PathVariable Long id){
         return calendarEventRepository.findById(id)

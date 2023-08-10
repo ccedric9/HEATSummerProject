@@ -27,14 +27,14 @@ const Navbar = () => {
 
   return (
     <Box display="flex" justifyContent="space-between" p={2} sx={{
-      backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)',
+      backgroundImage: 'linear-gradient(to right, #DF2E38 , #a0332c)',
       borderRadius: '5px',
       width: isSmallScreen ? '305vw' : isMediumScreen ? '155vw' : '100%',
     }}>
       {/* Software Title */}
       <Typography variant='h6' fontWeight='bold' component={Link} to='/home' disabled={isHomePage}
                   sx={{
-                    color: 'black',
+                    color: 'white',
                     textDecoration: 'none',
                     fontWeight: 'bold', // Set the fontWeight using sx prop
                     pointerEvents: isHomePage ? 'none' : 'auto', // Disable pointer events based on isHomePage
