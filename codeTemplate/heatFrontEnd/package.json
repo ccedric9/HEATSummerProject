@@ -64,7 +64,8 @@
     "@babel/preset-react": "^7.22.5",
     "@types/jest": "^29.5.3",
     "babel-jest": "^27.5.1",
-    "jest": "^27.5.1"
+    "jest": "^27.5.1",
+    "mock-require": "^3.0.3"
   },
   "jest": {
     "moduleNameMapper": {

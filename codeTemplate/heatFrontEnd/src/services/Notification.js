@@ -25,6 +25,9 @@ import { resetUser } from '../redux/slices/userSlice';
 import { addMonths, isBefore, isWithinInterval } from 'date-fns';
 import { screen } from '@testing-library/react';
 
+// export let today = new Date();
+export let today = new Date(2022, 10, 28);
+
 const Notification = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -42,7 +45,9 @@ const Notification = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const user = useSelector(state => state.user);
   // const today = new Date(2022, 10, 28);
-  const today = new Date();
+  // const today = new Date();
+
+  
   
   useEffect(() => {
     try {
@@ -121,7 +126,7 @@ const Notification = () => {
   return (
     <Container component="main" maxWidth="lg">
       <Grid container spacing={2} justifyContent="center" alignItems="flex-start">
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={4} id = 'ongoing'>
           <Paper elevation={3} sx={{ padding: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' , minHeight: '735px'}}>
             <Avatar sx={{ m: 1, backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)', color: 'white' }}>
               <NotificationImportant />
@@ -146,7 +151,6 @@ const Notification = () => {
               // const today = new Date(2022, 10, 28);
               const startDate = new Date(event.start);
               const endDate = new Date(event.end);
-
               const eventBackgroundColor =
                 event.type.toUpperCase() === "SUMMATIVE"
                   ? "#CC313D"
@@ -156,11 +160,11 @@ const Notification = () => {
                   ? "#8A307F"
                   : "default-color";
               // eslint-disable-next-line no-restricted-globals
-              const ongoingAssessments = screen.findAllByText('Ongoing Assessment');
+              // const ongoingAssessments = screen.findAllByText('Ongoing Assessment');
               if ((today >= startDate && today <= endDate) && event.programName === user.major) {
-                console.log("ongoingAssessments: " + ongoingAssessments);
+                // console.log("ongoingAssessments: " + ongoingAssessments);
                 return (
-                  <div key={event.id} onClick={() => handleEventClick(event)}>
+                  <div key={event.id} onClick={() => handleEventClick(event)} id='ongoingAssessments'>
                     <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>
                     <Typography variant="subtitle1">{event.title}</Typography>
                     <Typography variant="subtitle1">{event.unitName}</Typography>
