@@ -1,4 +1,4 @@
-const {Builder,By,Key} = require('selenium-webdriver');
+const {Builder,By,Key,until} = require('selenium-webdriver');
 const assert = require('assert');
 
     const homepageURL = "http://localhost:3000/home";
@@ -83,13 +83,13 @@ async function loginAsStaff(){
         unitName = "Intro to Computer Science";
         unitCode = "COMSM0084";
         creditPoints = 10;
-        year = 1;
-        term = 1;
+        year = "Year 1";
+        term = "Term 1";
         assessmentTitle = "Quiz 4";
         assessmentType = "SUMMATIVE";
         weight = 10;
-        start = "2022-11-01";
-        end = "2022-11-05";
+        start = "01-11-2022";
+        end = "07-11-2022";
         location = "MVB 110";
         summary = "not available";
 
@@ -120,29 +120,40 @@ async function loginAsStaff(){
         await endTextField.sendKeys(end);
         await locationTextField.sendKeys(location);
         await summaryTextField.sendKeys(summary);
-
-        // for (let i = 0; i < labels.length; i++) {
-        //     const label = labels[i];
-        //     const associatedInput = await label.findElement(By.xpath('./following-sibling::input'));
-        //     if(i === 0) await associatedInput.sendKeys(programName);
-        //     if(i === 1) await associatedInput.sendKeys(unitName);
-        //     if(i === 2) await associatedInput.sendKeys(unitCode);
-        //     if(i === 3) await associatedInput.sendKeys(creditPoints);
-        //     if(i === 4) await associatedInput.sendKeys(year);
-        //     if(i === 5) await associatedInput.sendKeys(term);
-        //     if(i === 6) await associatedInput.sendKeys(assessmentTitle);
-        //     if(i === 7) await associatedInput.sendKeys(assessmentType);
-        //     if(i === 8) await associatedInput.sendKeys(weight);
-        //     if(i === 9) await associatedInput.sendKeys(start);
-        //     if(i === 10) await associatedInput.sendKeys(end);
-        //     if(i === 11) await associatedInput.sendKeys(location);
-        //     if(i === 12) await associatedInput.sendKeys(summary);
-        // }
-        let submitEventButton = await driver.findElement(By.id('submit-event'));
-        await submitEventButton.click();
-        await driver.sleep(100);
         
-
+        //submit the above result
+        await summaryTextField.sendKeys(Key.TAB);
+        await summaryTextField.sendKeys(Key.RETURN);
+        await driver.sleep(500);
+        //check if redirect to home page after add event
+        currentURL = (await driver.getCurrentUrl()).toString();
+        assert.strictEqual(currentURL,homepageURL,"Test Failed: " + "URL doesn't direct to homepage after add event");
+        // //check the new added element list in database
+        const events = await driver.findElements(By.className('event'));
+        let isExist = false;
+        let length = events.length;
+        for (let i = 0 ; i < events.length;i++){
+            let event = await events[i].getText()
+            if(event === 'Quiz 4'){
+                isExist = true;
+            }
+        }
+        assert.ok(isExist,"Test Failed: item does not exist");
+        // find it in the edit page 
+        for (let i = 0 ;i < 20 ; i++){
+            await driver.actions().sendKeys(Key.ARROW_UP).perform();
+            await driver.sleep(100);
+        }
+        const  editPageButton = driver.findElement(By.id('editIcon'));
+        editPageButton.click(); 
+        for (let i = 0 ;i < 20 ; i++){
+            await driver.actions().sendKeys(Key.ARROW_DOWN).perform();
+            await driver.sleep(100);
+        }
+        const editMenuList = await driver.findElements(By.className(''));
+        // currentURL = (await driver.getCurrentUrl()).toString();
+        // const editPageURL = "http://localhost:3000/EditMenu";
+        // assert.strictEqual(currentURL,editPageButton,"Test Failed: " + "URL error - editpage");
     }   finally{
         // await driver.quit(); 
     }

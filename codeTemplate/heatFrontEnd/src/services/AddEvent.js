@@ -125,9 +125,9 @@ export default function AddEvent() {
                 onChange={(e) => onInputChange(e)}
                 >
                 <option value="">Select a year</option>
-                <option value={1}>Year 1</option>
-                <option value={2}>Year 2</option>
-                <option value={3}>Year 3</option>
+                <option value="1">Year 1</option>
+                <option value="2">Year 2</option>
+                <option value="3">Year 3</option>
               </select>
             </div>
             <div className="col">
@@ -142,8 +142,8 @@ export default function AddEvent() {
                 onChange={(e) => onInputChange(e)}
                 >
                 <option value="">Select a term</option>
-                <option value={1}>Term 1</option>
-                <option value={2}>Term 2</option>
+                <option value="1">Term 1</option>
+                <option value="2">Term 2</option>
               </select>
             </div>
           </div>
@@ -167,7 +167,7 @@ export default function AddEvent() {
                 Assessment Type
               </label>
               <select
-                id='assessment-type'
+                id="assessment-type"
                 className="form-control"
                 name="type"
                 value={type}
@@ -232,7 +232,7 @@ export default function AddEvent() {
                 Location
               </label>
               <input
-                id='location'
+                id="location"
                 type="text"
                 className="form-control"
                 placeholder="please select assessment location"
@@ -247,7 +247,7 @@ export default function AddEvent() {
                 Assessment Summary
               </label>
               <input
-              id="summary"
+                id="summary"
                 type="text"
                 className="form-control summary"
                 placeholder="Write assessment summary here"
@@ -256,11 +256,11 @@ export default function AddEvent() {
                 onChange={(e) => onInputChange(e)}
               />
           </div>
-          <div className="buttons" id="submit-event">
-          <button type="submit" className="btn btn-outline-primary">
+          <div className="buttons">
+          <button type="submit" className="btn btn-outline-primary" id="submit-event">
             Submit
           </button>
-          <Link className="btn btn-outline-danger mx-2" to="/">
+          <Link className="btn btn-outline-danger mx-2" to="/" id='cancel-btn'>
             Cancel
           </Link>
           </div>
