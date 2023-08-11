@@ -152,13 +152,13 @@ const Notification = () => {
               const startDate = new Date(event.start);
               const endDate = new Date(event.end);
               const eventBackgroundColor =
-                event.type.toUpperCase() === "SUMMATIVE"
-                  ? "#CC313D"
-                  : event.type.toUpperCase() === "FORMATIVE"
-                  ? "#2C5F2D"
-                  : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                  ? "#8A307F"
-                  : "default-color";
+                  event.type.toUpperCase() === "SUMMATIVE"
+                      ? "#C05555"
+                      : event.type.toUpperCase() === "FORMATIVE"
+                          ? "#59886B"
+                          : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                              ? "#6C5070"
+                              : "default-color";
               // eslint-disable-next-line no-restricted-globals
               // const ongoingAssessments = screen.findAllByText('Ongoing Assessment');
               if ((today >= startDate && today <= endDate) && event.programName === user.major) {
@@ -208,11 +208,11 @@ const Notification = () => {
                 const endDate = new Date(event.end);
                 const eventBackgroundColor =
                   event.type.toUpperCase() === "SUMMATIVE"
-                    ? "#CC313D"
+                    ? "#C05555"
                     : event.type.toUpperCase() === "FORMATIVE"
-                    ? "#2C5F2D"
+                    ? "#59886B"
                     : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                    ? "#8A307F"
+                    ? "#6C5070"
                     : "default-color";
                 // if (isAfter(startDate, today) && event.programName === user.major) {
                 // if (isWithinInterval(startDate, { start: today, end: oneMonthLater }) && event.programName === user.major) {

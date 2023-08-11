@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './AddEvent.css';
+import { colors } from "@mui/material";
 
 
 export default function AddEvent() {
@@ -12,8 +13,8 @@ export default function AddEvent() {
     unitName: "",
     unitCode: "",
     unitCredit: "",
-    term: "",
     academicYear: "",
+    term: "",
     weight: "",
     title: "",
     type: "",
@@ -25,7 +26,7 @@ export default function AddEvent() {
   });
 
 
-  const { programName,unitName, unitCode, unitCredit, term, academicYear, weight, title, type, start, end, feedback,summary,location } = calendarEvents;
+  const { programName,unitName, unitCode, unitCredit,academicYear,term,  weight, title, type, start, end, feedback,summary,location } = calendarEvents;
 
   const onInputChange = (e) => {
     setCalendarEvent({ ...calendarEvents, [e.target.name]: e.target.value });
@@ -56,8 +57,9 @@ export default function AddEvent() {
                 name="programName"
                 value={programName}
                 onChange={(e) => onInputChange(e)}
+                id ="program-name"
               >
-                <option value=""></option>
+                <option value="">Please select a program</option>
                 <option value="Civil Engineering">Civil Engineering</option>
                 <option value="Computer Science">Computer Science</option>
                 <option value="Aerospace Engineering">Aerospace Engineering</option>
@@ -72,6 +74,7 @@ export default function AddEvent() {
               Unit Name
             </label>
             <input
+              id="unit-name"
               type="text"
               className="form-control"
               placeholder="Enter unit name"
@@ -85,6 +88,7 @@ export default function AddEvent() {
                 Unit Code
               </label>
               <input
+                id="unit-code"
                 type="text"
                 className="form-control"
                 placeholder="Enter unit code"
@@ -98,6 +102,7 @@ export default function AddEvent() {
                 Credit Points
               </label>
               <input
+                id="unit-credit"
                 type="text"
                 className="form-control"
                 placeholder="Enter unit credit points"
@@ -113,14 +118,16 @@ export default function AddEvent() {
                 Academic Year
               </label>
               <select 
+                id="year-input"
                 name="academicYear" 
                 value={academicYear}
                 className="form-control"
                 onChange={(e) => onInputChange(e)}
                 >
-                <option value="1">Year 1</option>
-                <option value="2">Year 2</option>
-                <option value="3">Year 3</option>
+                <option value="">Select a year</option>
+                <option value={1}>Year 1</option>
+                <option value={2}>Year 2</option>
+                <option value={3}>Year 3</option>
               </select>
             </div>
             <div className="col">
@@ -128,13 +135,15 @@ export default function AddEvent() {
                 Term
               </label>
               <select 
+                id="term-input"
                 name="term" 
                 value={term}
                 className="form-control"
                 onChange={(e) => onInputChange(e)}
                 >
-                <option value="1">Term 1</option>
-                <option value="2">Term 2</option>
+                <option value="">Select a term</option>
+                <option value={1}>Term 1</option>
+                <option value={2}>Term 2</option>
               </select>
             </div>
           </div>
@@ -144,6 +153,7 @@ export default function AddEvent() {
                 Assessment Title
               </label>
               <input
+                id="assessment-title"
                 type="text"
                 className="form-control"
                 placeholder="Enter assessment title"
@@ -157,11 +167,13 @@ export default function AddEvent() {
                 Assessment Type
               </label>
               <select
+                id='assessment-type'
                 className="form-control"
                 name="type"
                 value={type}
                 onChange={(e) => onInputChange(e)}
               >
+                <option value="">Select a type</option>
                 <option value="FORMATIVE">FORMATIVE</option>
                 <option value="SUMMATIVE">SUMMATIVE</option>
                 <option value="CAPSTONESUMMATIVE">CAPSTONESUMMATIVE</option>
@@ -172,6 +184,7 @@ export default function AddEvent() {
                 Weight (%)
               </label>
               <select 
+                id="weight"
                 name="weight" 
                 value={weight}
                 className="form-control"
@@ -193,6 +206,7 @@ export default function AddEvent() {
                 Start Date
               </label>
               <input
+                id="start"
                 type="date"
                 className="form-control"
                 name="start"
@@ -205,6 +219,7 @@ export default function AddEvent() {
                 End Date
               </label>
               <input
+                id="end"
                 type="date"
                 className="form-control"
                 name="end"
@@ -217,6 +232,7 @@ export default function AddEvent() {
                 Location
               </label>
               <input
+                id='location'
                 type="text"
                 className="form-control"
                 placeholder="please select assessment location"
@@ -231,14 +247,16 @@ export default function AddEvent() {
                 Assessment Summary
               </label>
               <input
+              id="summary"
                 type="text"
                 className="form-control summary"
+                placeholder="Write assessment summary here"
                 name="summary"
                 value={summary}
                 onChange={(e) => onInputChange(e)}
               />
           </div>
-          <div className="buttons">
+          <div className="buttons" id="submit-event">
           <button type="submit" className="btn btn-outline-primary">
             Submit
           </button>

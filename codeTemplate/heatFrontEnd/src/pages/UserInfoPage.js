@@ -35,7 +35,7 @@ function UserInfoPage() {
             <Typography component="h1" variant="h5">
               User Profile
             </Typography>
-            <div style={{ width: '100%', marginTop: '20px' }}>
+            <div style={{ width: '100%', marginTop: '20px' , textAlign: 'center'}}>
               <Typography variant="body1" gutterBottom>
                 <strong>Name:</strong> {user.firstName} {user.lastName}
               </Typography>
