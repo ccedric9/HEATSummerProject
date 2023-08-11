@@ -158,8 +158,8 @@ export default function EditEvent() {
                 className="form-control"
                 onChange={(e) => onInputChange(e)}
                 >
-                <option value="1">Term 1</option>
-                <option value="2">Term 2</option>
+                <option value={1}>Term 1</option>
+                <option value={2}>Term 2</option>
               </select>
             </div>
           </div>
