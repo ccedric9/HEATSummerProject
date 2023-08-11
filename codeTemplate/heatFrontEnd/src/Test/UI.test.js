@@ -90,34 +90,61 @@ async function loginAsStaff(){
         weight = 10;
         start = "2022-11-01";
         end = "2022-11-05";
-        location = "MVB 115";
+        location = "MVB 110";
         summary = "not available";
 
-        for (let i = 0; i < labels.length; i++) {
-            const label = labels[i];
-            const associatedInput = await label.findElement(By.xpath('./following-sibling::input'));
-            if(i === 0) await associatedInput.sendKeys(programName);
-            if(i === 1) await associatedInput.sendKeys(unitName);
-            if(i === 2) await associatedInput.sendKeys(unitCode);
-            if(i === 3) await associatedInput.sendKeys(creditPoints);
-            if(i === 4) await associatedInput.sendKeys(year);
-            if(i === 5) await associatedInput.sendKeys(term);
-            if(i === 6) await associatedInput.sendKeys(assessmentTitle);
-            if(i === 7) await associatedInput.sendKeys(assessmentType);
-            if(i === 8) await associatedInput.sendKeys(weight);
-            if(i === 9) await associatedInput.sendKeys(start);
-            if(i === 10) await associatedInput.sendKeys(end);
-            if(i === 11) await associatedInput.sendKeys(location);
-            if(i === 12) await associatedInput.sendKeys(summary);
-        }
+        const programNameTextField = await driver.findElement(By.id("program-name"));
+        const unitNameTextField = await driver.findElement(By.id("unit-name"));
+        const unitCodeTextField = await driver.findElement(By.id("unit-code"));
+        const unitCreditTextField = await driver.findElement(By.id("unit-credit"));
+        const yearTextField = await driver.findElement(By.id("year-input"));
+        const termTextField = await driver.findElement(By.id("term-input"));
+        const titleTextField = await driver.findElement(By.id("assessment-title"));
+        const typeTextField = await driver.findElement(By.id("assessment-type"));
+        const weightTextField = await driver.findElement(By.id("weight"));
+        const startTextField = await driver.findElement(By.id("start"));
+        const endTextField = await driver.findElement(By.id("end"));
+        const locationTextField = await driver.findElement(By.id("location"));
+        const summaryTextField = await driver.findElement(By.id("summary"));
 
+        await programNameTextField.sendKeys(programName);
+        await unitNameTextField.sendKeys(unitName);
+        await unitCodeTextField.sendKeys(unitCode);
+        await unitCreditTextField.sendKeys(creditPoints);
+        await yearTextField.sendKeys(year);
+        await termTextField.sendKeys(term);
+        await titleTextField.sendKeys(assessmentTitle);
+        await typeTextField.sendKeys(assessmentType);
+        await weightTextField.sendKeys(weight);
+        await startTextField.sendKeys(start);
+        await endTextField.sendKeys(end);
+        await locationTextField.sendKeys(location);
+        await summaryTextField.sendKeys(summary);
+
+        // for (let i = 0; i < labels.length; i++) {
+        //     const label = labels[i];
+        //     const associatedInput = await label.findElement(By.xpath('./following-sibling::input'));
+        //     if(i === 0) await associatedInput.sendKeys(programName);
+        //     if(i === 1) await associatedInput.sendKeys(unitName);
+        //     if(i === 2) await associatedInput.sendKeys(unitCode);
+        //     if(i === 3) await associatedInput.sendKeys(creditPoints);
+        //     if(i === 4) await associatedInput.sendKeys(year);
+        //     if(i === 5) await associatedInput.sendKeys(term);
+        //     if(i === 6) await associatedInput.sendKeys(assessmentTitle);
+        //     if(i === 7) await associatedInput.sendKeys(assessmentType);
+        //     if(i === 8) await associatedInput.sendKeys(weight);
+        //     if(i === 9) await associatedInput.sendKeys(start);
+        //     if(i === 10) await associatedInput.sendKeys(end);
+        //     if(i === 11) await associatedInput.sendKeys(location);
+        //     if(i === 12) await associatedInput.sendKeys(summary);
+        // }
         let submitEventButton = await driver.findElement(By.id('submit-event'));
         await submitEventButton.click();
         await driver.sleep(100);
         
 
     }   finally{
-        await driver.quit(); 
+        // await driver.quit(); 
     }
 }
 

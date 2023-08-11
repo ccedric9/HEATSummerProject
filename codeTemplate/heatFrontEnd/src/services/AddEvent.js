@@ -57,6 +57,7 @@ export default function AddEvent() {
                 name="programName"
                 value={programName}
                 onChange={(e) => onInputChange(e)}
+                id ="program-name"
               >
                 <option value="">Please select a program</option>
                 <option value="Civil Engineering">Civil Engineering</option>
@@ -73,7 +74,7 @@ export default function AddEvent() {
               Unit Name
             </label>
             <input
-              
+              id="unit-name"
               type="text"
               className="form-control"
               placeholder="Enter unit name"
@@ -87,6 +88,7 @@ export default function AddEvent() {
                 Unit Code
               </label>
               <input
+                id="unit-code"
                 type="text"
                 className="form-control"
                 placeholder="Enter unit code"
@@ -100,6 +102,7 @@ export default function AddEvent() {
                 Credit Points
               </label>
               <input
+                id="unit-credit"
                 type="text"
                 className="form-control"
                 placeholder="Enter unit credit points"
@@ -115,6 +118,7 @@ export default function AddEvent() {
                 Academic Year
               </label>
               <select 
+                id="year-input"
                 name="academicYear" 
                 value={academicYear}
                 className="form-control"
@@ -131,6 +135,7 @@ export default function AddEvent() {
                 Term
               </label>
               <select 
+                id="term-input"
                 name="term" 
                 value={term}
                 className="form-control"
@@ -148,6 +153,7 @@ export default function AddEvent() {
                 Assessment Title
               </label>
               <input
+                id="assessment-title"
                 type="text"
                 className="form-control"
                 placeholder="Enter assessment title"
@@ -161,6 +167,7 @@ export default function AddEvent() {
                 Assessment Type
               </label>
               <select
+                id='assessment-type'
                 className="form-control"
                 name="type"
                 value={type}
@@ -177,6 +184,7 @@ export default function AddEvent() {
                 Weight (%)
               </label>
               <select 
+                id="weight"
                 name="weight" 
                 value={weight}
                 className="form-control"
@@ -198,6 +206,7 @@ export default function AddEvent() {
                 Start Date
               </label>
               <input
+                id="start"
                 type="date"
                 className="form-control"
                 name="start"
@@ -210,6 +219,7 @@ export default function AddEvent() {
                 End Date
               </label>
               <input
+                id="end"
                 type="date"
                 className="form-control"
                 name="end"
@@ -222,6 +232,7 @@ export default function AddEvent() {
                 Location
               </label>
               <input
+                id='location'
                 type="text"
                 className="form-control"
                 placeholder="please select assessment location"
@@ -236,6 +247,7 @@ export default function AddEvent() {
                 Assessment Summary
               </label>
               <input
+              id="summary"
                 type="text"
                 className="form-control summary"
                 placeholder="Write assessment summary here"
