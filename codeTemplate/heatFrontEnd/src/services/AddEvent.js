@@ -257,7 +257,7 @@ export default function AddEvent() {
               />
           </div>
           <div className="buttons" id="submit-event">
-          <button type="submit" className="btn btn-outline-primary">
+          <button type="submit" className="btn btn-outline-primary" id = "submit-event-button">
             Submit
           </button>
           <Link className="btn btn-outline-danger mx-2" to="/">
