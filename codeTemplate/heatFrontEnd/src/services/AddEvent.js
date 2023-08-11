@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './AddEvent.css';
+import { colors } from "@mui/material";
 
 
 export default function AddEvent() {
@@ -12,8 +13,8 @@ export default function AddEvent() {
     unitName: "",
     unitCode: "",
     unitCredit: "",
-    term: "",
     academicYear: "",
+    term: "",
     weight: "",
     title: "",
     type: "",
@@ -25,7 +26,7 @@ export default function AddEvent() {
   });
 
 
-  const { programName,unitName, unitCode, unitCredit, term, academicYear, weight, title, type, start, end, feedback,summary,location } = calendarEvents;
+  const { programName,unitName, unitCode, unitCredit,academicYear,term,  weight, title, type, start, end, feedback,summary,location } = calendarEvents;
 
   const onInputChange = (e) => {
     setCalendarEvent({ ...calendarEvents, [e.target.name]: e.target.value });
@@ -57,7 +58,7 @@ export default function AddEvent() {
                 value={programName}
                 onChange={(e) => onInputChange(e)}
               >
-                <option value=""></option>
+                <option value="">Please select a program</option>
                 <option value="Civil Engineering">Civil Engineering</option>
                 <option value="Computer Science">Computer Science</option>
                 <option value="Aerospace Engineering">Aerospace Engineering</option>
@@ -72,6 +73,7 @@ export default function AddEvent() {
               Unit Name
             </label>
             <input
+              
               type="text"
               className="form-control"
               placeholder="Enter unit name"
@@ -118,9 +120,10 @@ export default function AddEvent() {
                 className="form-control"
                 onChange={(e) => onInputChange(e)}
                 >
-                <option value="1">Year 1</option>
-                <option value="2">Year 2</option>
-                <option value="3">Year 3</option>
+                <option value="">Select a year</option>
+                <option value={1}>Year 1</option>
+                <option value={2}>Year 2</option>
+                <option value={3}>Year 3</option>
               </select>
             </div>
             <div className="col">
@@ -133,8 +136,9 @@ export default function AddEvent() {
                 className="form-control"
                 onChange={(e) => onInputChange(e)}
                 >
-                <option value="1">Term 1</option>
-                <option value="2">Term 2</option>
+                <option value="">Select a term</option>
+                <option value={1}>Term 1</option>
+                <option value={2}>Term 2</option>
               </select>
             </div>
           </div>
@@ -162,6 +166,7 @@ export default function AddEvent() {
                 value={type}
                 onChange={(e) => onInputChange(e)}
               >
+                <option value="">Select a type</option>
                 <option value="FORMATIVE">FORMATIVE</option>
                 <option value="SUMMATIVE">SUMMATIVE</option>
                 <option value="CAPSTONESUMMATIVE">CAPSTONESUMMATIVE</option>
@@ -233,12 +238,13 @@ export default function AddEvent() {
               <input
                 type="text"
                 className="form-control summary"
+                placeholder="Write assessment summary here"
                 name="summary"
                 value={summary}
                 onChange={(e) => onInputChange(e)}
               />
           </div>
-          <div className="buttons">
+          <div className="buttons" id="submit-event">
           <button type="submit" className="btn btn-outline-primary">
             Submit
           </button>
