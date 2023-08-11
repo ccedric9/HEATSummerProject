@@ -174,7 +174,7 @@ const WeeklyCalendar = () => {
       {/* Title and Navigation Buttons */}
       <Box display='grid' gridTemplateColumns="repeat(10, 1fr)" gap={2}  >
         <Typography gridColumn="span 4" variant='h6' text='textSecondary' align="left">
-          {program}
+          Faculty: {program}
         </Typography>
         <Box display='flex' gridColumn="span 3" >
           <Button color="secondary" onClick={() => {
@@ -277,14 +277,13 @@ const WeeklyCalendar = () => {
                                     <Typography variant="body2">End Date: {event.end}</Typography>
                                     <Typography variant="body2">Year: {event.academicYear}</Typography>
                                     <Typography variant="body2">Term: {event.term}</Typography>
+                                    <Typography variant="body2">Type: {event.type}</Typography>
                                     {event.feedback ? (
                                       <Typography variant="body2">FeedBack: ✅</Typography>
                                     ) : (
                                       // If no feedback, display the wrong emoji
                                       <Typography variant="body2">FeedBack: Not Available</Typography>
                                     )}
-                                    {/* <Typography variant="body2">{currentYear - firstYear + 1}</Typography> */}
-                                    {/* <Typography variant="body2">{currentTerm}</Typography> */}
                                     {event.location && (
                                         <Typography variant="body2">Location: {event.location}</Typography>
                                     )}

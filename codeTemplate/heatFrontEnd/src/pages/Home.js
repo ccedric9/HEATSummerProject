@@ -174,12 +174,13 @@ const Home = () => {
       {/* Title and Navigation Buttons */}
       <Box display="grid" gridTemplateColumns="repeat(10, 1fr)" gap={2}>
         <Typography gridColumn="span 4" variant="h6" text="textSecondary" align="left">
-          {program}
+          Faculty: {program}
         </Typography>
 
         <Box display="flex" gridColumn="span 3">
           <Button color="secondary" onClick={() => 
-            currentYear == firstYear ? setCurrentYear(currentYear + 2) : setCurrentYear(currentYear - 1)}>
+            currentYear == firstYear ? setCurrentYear(currentYear + 2) : setCurrentYear(currentYear - 1)}
+            aria-label="Previous Year">
             <NavigateBeforeIcon />
           </Button>
           <div className="timelinebar-middle">
@@ -190,7 +191,7 @@ const Home = () => {
           </div>
           <Button color="secondary" onClick={() => {
             currentYear == firstYear + 2 ? setCurrentYear(firstYear) : setCurrentYear(currentYear + 1)
-            }}>
+            }}aria-label="Next Year">
             <NavigateNextIcon />
           </Button>
         </Box>
@@ -238,6 +239,7 @@ const Home = () => {
       <div className="test-container">
         {/*timeline*/}
         {showTimeline && (
+            <div>
             <div
                 class="timeline"
                 style={{
@@ -251,6 +253,21 @@ const Home = () => {
                   zIndex: '999',
                 }}
             ></div>
+          <div
+              style={{
+                position: 'absolute',
+                top: '-10px',
+                left: `${leftPosition}`,
+                fontSize: '14px', // Adjust font size as needed
+                fontWeight: 'bold', // Adjust font weight as needed
+                color: 'darkslategray', // Adjust color as needed
+                backgroundColor: 'white', // Add background color if desired
+                padding: '2px 5px', // Add padding for better appearance
+                borderRadius: '4px', // Add border radius for rounded corners
+                zIndex: '999',
+            }}
+          >Date</div>
+            </div>
         )}
         {/*curriculum+events*/}
         <div className="unitNames-container">
@@ -275,6 +292,7 @@ const Home = () => {
                                     <Typography variant="body2">End Date: {event.end}</Typography>
                                     <Typography variant="body2">Year: {event.academicYear}</Typography>
                                     <Typography variant="body2">Term: {event.term}</Typography>
+                                    <Typography variant="body2">Type: {event.type}</Typography>
                                     {event.feedback ? (
                                       <Typography variant="body2">FeedBack: ✅</Typography>
                                     ) : (

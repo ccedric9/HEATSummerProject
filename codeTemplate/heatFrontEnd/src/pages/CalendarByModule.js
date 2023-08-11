@@ -97,7 +97,7 @@ export default function CalendarByModule() {
             {/* Title and Navigation Buttons */}
             <Box display='grid' gridTemplateColumns="repeat(10, 1fr)" gap={2}  >
                 <Typography gridColumn="span 4" variant='h6' text='textSecondary' align="left">
-                    {program}
+                    Faculty: {program}
                 </Typography>
                 <Box display='flex' gridColumn="span 3" >
                     <Button color="secondary" onClick={() => currentYear == firstYear ? setCurrentYear(currentYear +2):setCurrentYear(currentYear - 1)}>
@@ -171,6 +171,7 @@ export default function CalendarByModule() {
                                                 <Typography variant="body2">End Date: {event.end}</Typography>
                                                 <Typography variant="body2">Year: {event.academicYear}</Typography>
                                                 <Typography variant="body2">Term: {event.term}</Typography>
+                                                <Typography variant="body2">Type: {event.type}</Typography>
                                                 {event.feedback ? (
                                                 <Typography variant="body2">FeedBack: ✅</Typography>
                                                 ) : (
@@ -253,6 +254,7 @@ export default function CalendarByModule() {
                                                 <Typography variant="body2">End Date: {event.end}</Typography>
                                                 <Typography variant="body2">Year: {event.academicYear}</Typography>
                                                 <Typography variant="body2">Term: {event.term}</Typography>
+                                                <Typography variant="body2">Type: {event.type}</Typography>
                                                 {event.feedback ? (
                                                 <Typography variant="body2">FeedBack: ✅</Typography>
                                                 ) : (
@@ -335,6 +337,7 @@ export default function CalendarByModule() {
                                                 <Typography variant="body2">End Date: {event.end}</Typography>
                                                 <Typography variant="body2">Year: {event.academicYear}</Typography>
                                                 <Typography variant="body2">Term: {event.term}</Typography>
+                                                <Typography variant="body2">Type: {event.type}</Typography>
                                                 {event.feedback ? (
                                                 <Typography variant="body2">FeedBack: ✅</Typography>
                                                 ) : (

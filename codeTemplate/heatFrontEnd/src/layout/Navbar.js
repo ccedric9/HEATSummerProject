@@ -1,4 +1,4 @@
-import { Box, IconButton } from "@mui/material";
+import {Box, IconButton, Tooltip} from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import PersonIcon from "@mui/icons-material/Person";
 import Typography from "@mui/material/Typography";
@@ -44,26 +44,43 @@ const Navbar = () => {
       </Typography>
       {/* ICONS */}
       <Box display="flex">
-        <IconButton component={Link} to='/home' disabled={isHomePage}>
-          <HomeIcon id="homeIcon"/>
-        </IconButton>
-        {isStaff &&<IconButton component={Link} to='/addEvent' >
-          <AddIcon id="addIcon"/> 
-        </IconButton>}
-        { isStaff  && <IconButton component={Link} to='/EditMenu'>
-          <EditIcon id="editIcon"/>
-        </IconButton>}
-        <IconButton component={Link} to='/user-info' disabled={isHomePage}>
-          <PersonIcon id="personIcon"/>
-        </IconButton>
-        <IconButton component={Link} to='/Notification' disabled={isHomePage}>
-          <NotificationsIcon id="notificationIcon" />
-        </IconButton>
-        <Link to="/login">
-          <IconButton onClick={() => dispatch(resetUser())}>
-            <LogoutIcon id="logoutIcon" />
-          </IconButton>
-        </Link>
+          <Tooltip title = "Home Page">
+            <IconButton component={Link} to='/home' disabled={isHomePage} aria-label="home">
+              <HomeIcon id="homeIcon"/>
+            </IconButton>
+          </Tooltip>
+        {isStaff &&
+            <Tooltip title="Add Event">
+                <IconButton component={Link} to='/addEvent' aria-label="Add Event">
+                  <AddIcon id="addIcon"/>
+                </IconButton>
+            </Tooltip>
+        }
+        {isStaff  &&
+            <Tooltip title="Edit Menu">
+                <IconButton component={Link} to='/EditMenu' aria-label="Edit Menu">
+                  <EditIcon id="editIcon"/>
+                </IconButton>
+            </Tooltip>
+        }
+          <Tooltip title="Profile">
+            <IconButton component={Link} to='/user-info' disabled={isHomePage} aria-label="User Infomation">
+              <PersonIcon id="personIcon"/>
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Due-alert">
+            <IconButton component={Link} to='/Notification' disabled={isHomePage} aria-label="Notification">
+              <NotificationsIcon id="notificationIcon" />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Exit">
+            <Link to="/login" aria-label="Logout">
+              <IconButton onClick={() => dispatch(resetUser())}
+              aria-label="Logout">
+                <LogoutIcon id="logoutIcon" />
+              </IconButton>
+            </Link>
+          </Tooltip>
       </Box>
     </Box>
   );

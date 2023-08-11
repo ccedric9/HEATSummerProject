@@ -112,6 +112,11 @@ function Registration() {
     }
   };
 
+  function isValidEmail(email) {
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    return emailRegex.test(email);
+  }
+
   return (
     <Container maxWidth="xs">
       <Typography variant="h4" style={{ marginTop: '20px' }}>Registration</Typography>
@@ -139,6 +144,16 @@ function Registration() {
           fullWidth
           margin="normal"
           required
+          error={!isValidEmail(email)} // Add error prop based on email validity
+          helperText={
+            !isValidEmail(email) ? (
+                <Typography variant="body2" color="error">
+                  Invalid email format
+                </Typography>
+            ) : (
+                ''
+            )
+          }
         />
         <TextField
           label="Password"
@@ -158,6 +173,15 @@ function Registration() {
           fullWidth
           margin="normal"
           required
+          helperText={
+            confirmPassword !== password ? (
+                <Typography variant="body2" color="error">
+                  Passwords do not match
+                </Typography>
+            ) : (
+                ''
+            )
+          }
         />
         <FormControlLabel
           control={
