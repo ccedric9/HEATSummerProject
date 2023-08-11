@@ -179,7 +179,8 @@ const Home = () => {
 
         <Box display="flex" gridColumn="span 3">
           <Button color="secondary" onClick={() => 
-            currentYear == firstYear ? setCurrentYear(currentYear + 2) : setCurrentYear(currentYear - 1)}>
+            currentYear == firstYear ? setCurrentYear(currentYear + 2) : setCurrentYear(currentYear - 1)}
+            aria-label="Previous Year">
             <NavigateBeforeIcon />
           </Button>
           <div className="timelinebar-middle">
@@ -190,7 +191,7 @@ const Home = () => {
           </div>
           <Button color="secondary" onClick={() => {
             currentYear == firstYear + 2 ? setCurrentYear(firstYear) : setCurrentYear(currentYear + 1)
-            }}>
+            }}aria-label="Next Year">
             <NavigateNextIcon />
           </Button>
         </Box>

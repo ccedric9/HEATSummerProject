@@ -44,23 +44,24 @@ const Navbar = () => {
       </Typography>
       {/* ICONS */}
       <Box display="flex">
-        <IconButton component={Link} to='/home' disabled={isHomePage}>
+        <IconButton component={Link} to='/home' disabled={isHomePage} aria-label="home">
           <HomeIcon id="homeIcon"/>
         </IconButton>
-        {isStaff &&<IconButton component={Link} to='/addEvent' >
+        {isStaff &&<IconButton component={Link} to='/addEvent' aria-label="Add Event">
           <AddIcon id="addIcon"/> 
         </IconButton>}
-        { isStaff  && <IconButton component={Link} to='/EditMenu'>
+        { isStaff  && <IconButton component={Link} to='/EditMenu' aria-label="Edit Menu">
           <EditIcon id="editIcon"/>
         </IconButton>}
-        <IconButton component={Link} to='/user-info' disabled={isHomePage}>
+        <IconButton component={Link} to='/user-info' disabled={isHomePage} aria-label="User Infomation">
           <PersonIcon id="personIcon"/>
         </IconButton>
-        <IconButton component={Link} to='/Notification' disabled={isHomePage}>
+        <IconButton component={Link} to='/Notification' disabled={isHomePage} aria-label="Notification">
           <NotificationsIcon id="notificationIcon" />
         </IconButton>
-        <Link to="/login">
-          <IconButton onClick={() => dispatch(resetUser())}>
+        <Link to="/login" aria-label="Logout">
+          <IconButton onClick={() => dispatch(resetUser())}
+          aria-label="Logout">
             <LogoutIcon id="logoutIcon" />
           </IconButton>
         </Link>
