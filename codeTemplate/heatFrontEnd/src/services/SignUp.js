@@ -158,6 +158,15 @@ function Registration() {
           fullWidth
           margin="normal"
           required
+          helperText={
+            confirmPassword !== password ? (
+                <Typography variant="body2" color="error">
+                  Passwords do not match
+                </Typography>
+            ) : (
+                ''
+            )
+          }
         />
         <FormControlLabel
           control={
