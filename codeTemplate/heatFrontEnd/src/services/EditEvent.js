@@ -280,7 +280,7 @@ export default function EditEvent() {
           <button type="submit" className="btn btn-outline-primary">
             Submit
           </button>
-          <button type="delete" className="btn btn-outline-danger mx-2" onClick={()=>deleteEvents(id)}>
+          <button type="delete" className="btn btn-outline-danger mx-2" onClick={()=>deleteEvents(id)} id = 'delete-button'>
             Delete
           </button>
           <Link className="btn btn-outline-danger mx-2" to="/">

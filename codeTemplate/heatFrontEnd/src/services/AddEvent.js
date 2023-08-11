@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './AddEvent.css';
-import { colors } from "@mui/material";
 
 
 export default function AddEvent() {
@@ -257,7 +256,7 @@ export default function AddEvent() {
               />
           </div>
           <div className="buttons">
-          <button type="submit" className="btn btn-outline-primary" id="submit-event">
+          <button type="submit" className="btn btn-outline-primary" id = "submit-event-button" id="submit-event">
             Submit
           </button>
           <Link className="btn btn-outline-danger mx-2" to="/" id='cancel-btn'>

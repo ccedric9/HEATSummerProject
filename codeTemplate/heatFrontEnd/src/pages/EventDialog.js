@@ -60,7 +60,7 @@ const EventDialog = ({ open, handleCloseDialog, event }) => {
             )}
           </DialogContent>
           <DialogActions>
-            {isStaff && <Button component={Link} to={`/editEvent/${event.id}`}>Edit</Button>}
+            {isStaff && <Button component={Link} to={`/editEvent/${event.id}`} id = 'edit-button'>Edit</Button>}
             <Button onClick={handleCloseDialog}>Close</Button>
           </DialogActions>
         </>

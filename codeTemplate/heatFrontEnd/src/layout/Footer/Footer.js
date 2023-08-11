@@ -18,7 +18,7 @@ const Footer = () => {
             <div className="calendar">
                 <h5>Calendar</h5>
                 {!isHomePage ? (
-                    <div className="footer-valid">
+                    <div className="footer-valid" id = 'footer-year'>
                         <Link className="item" to='/'>
                             By Year
                         </Link>

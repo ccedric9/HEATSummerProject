@@ -121,7 +121,7 @@ const Notification = () => {
   return (
     <Container component="main" maxWidth="lg">
       <Grid container spacing={2} justifyContent="center" alignItems="flex-start">
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={4} >
           <Paper elevation={3} sx={{ padding: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' , minHeight: '735px'}}>
             <Avatar sx={{ m: 1, backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)', color: 'white' }}>
               <NotificationImportant />
@@ -146,21 +146,20 @@ const Notification = () => {
               // const today = new Date(2022, 10, 28);
               const startDate = new Date(event.start);
               const endDate = new Date(event.end);
-
               const eventBackgroundColor =
-                  event.type.toUpperCase() === "SUMMATIVE"
-                      ? "#C05555"
-                      : event.type.toUpperCase() === "FORMATIVE"
-                          ? "#59886B"
-                          : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                              ? "#6C5070"
-                              : "default-color";
+                event.type.toUpperCase() === "SUMMATIVE"
+                  ? "#CC313D"
+                  : event.type.toUpperCase() === "FORMATIVE"
+                  ? "#2C5F2D"
+                  : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
+                  ? "#8A307F"
+                  : "default-color";
               // eslint-disable-next-line no-restricted-globals
-              const ongoingAssessments = screen.findAllByText('Ongoing Assessment');
+              // const ongoingAssessments = screen.findAllByText('Ongoing Assessment');
               if ((today >= startDate && today <= endDate) && event.programName === user.major) {
-                console.log("ongoingAssessments: " + ongoingAssessments);
+                // console.log("ongoingAssessments: " + ongoingAssessments);
                 return (
-                  <div key={event.id} onClick={() => handleEventClick(event)}>
+                  <div key={event.id} onClick={() => handleEventClick(event)} id='ongoingAssessments'>
                     <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>
                     <Typography variant="subtitle1">{event.title}</Typography>
                     <Typography variant="subtitle1">{event.unitName}</Typography>
@@ -204,11 +203,11 @@ const Notification = () => {
                 const endDate = new Date(event.end);
                 const eventBackgroundColor =
                   event.type.toUpperCase() === "SUMMATIVE"
-                    ? "#C05555"
+                    ? "#CC313D"
                     : event.type.toUpperCase() === "FORMATIVE"
-                    ? "#59886B"
+                    ? "#2C5F2D"
                     : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                    ? "#6C5070"
+                    ? "#8A307F"
                     : "default-color";
                 // if (isAfter(startDate, today) && event.programName === user.major) {
                 // if (isWithinInterval(startDate, { start: today, end: oneMonthLater }) && event.programName === user.major) {

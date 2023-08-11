@@ -38,7 +38,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "webdriver:start": "webdriver-manager start"
   },
   "eslintConfig": {
     "extends": [
@@ -64,7 +65,9 @@
     "@babel/preset-react": "^7.22.5",
     "@types/jest": "^29.5.3",
     "babel-jest": "^27.5.1",
-    "jest": "^27.5.1"
+    "jest": "^27.5.1",
+    "mock-require": "^3.0.3",
+    "webdriver-manager": "^12.1.9"
   },
   "jest": {
     "moduleNameMapper": {
