@@ -7,14 +7,14 @@ const homepageURL = "http://localhost:3000/home";
 const notificationURL = "http://localhost:3000/notification";
 const addEventURL = "http://localhost:3000/addEvent"; 
 
-async function addAssessment(driver, startDate, endDate) {
+async function addAssessment(driver, startDate, endDate, assessmentTitle) {
     const programName = 'Computer Science';
     const unitName = 'Object-Oriented Programming with Java';
     const unitCode = 'COMSM0086';
     const creditPoint = '20';
     const academicYear = 'Year 1';
     const term = 'Term 1';
-    const assessmentTitle = 'testtest';
+    
     const assessmentType = 'SUMMATIVE';
     const weight = '30';
     const waitTimeout = 20000;
@@ -36,12 +36,66 @@ async function addAssessment(driver, startDate, endDate) {
     // await driver.findElement(By.id("location")).sendKeys(password);
     // await driver.findElement(By.id("summary")).sendKeys(password);
     // await driver.findElement(By.id("submit-event")).click();
-    const element = await driver.wait(until.elementIsEnabled(driver.findElement(By.id('submit-event-button'))), waitTimeout);
-    await element.click();
-    
+    // Scroll down the page
+    // await driver.executeScript('window.scrollBy(0, 1000);');
+    // const scrollElement = await driver.findElement(By.id('footer-year'));
+    // await driver.executeScript('arguments[0].scrollIntoView();', scrollElement);
 
+    // await driver.executeScript('window.scrollTo(0, document.body.scrollHeight);');
+
+
+    const element = await driver.wait(until.elementIsEnabled(driver.findElement(By.id('submit-event-button'))), waitTimeout);
+    // await element.click();
+    await element.sendKeys(Key.RETURN);
     await driver.sleep(1000);
 }
+
+// async function deleteAssessment(driver, assessmentTitle) {
+//     const waitTimeout = 20000;
+//     // Locate the assessment element
+//     const assessmentElement = await driver.findElement(By.xpath(`//*[text()="${assessmentTitle}"]`));
+//     await driver.sleep(1000);
+//     await assessmentElement.click();
+//     // await assessmentElement.sendKeys(Key.RETURN);
+//     // Scroll to the assessment element
+//     await driver.executeScript("arguments[0].scrollIntoView(true);", assessmentElement);
+//     // Click the edit button
+//     const assessmentElementButton = assessmentElement.findElement(By.id("edit-button"));
+//     await assessmentElementButton.click();
+//     await driver.sleep(1000);
+//     // Wait for the delete button to be clickable
+//     const deleteButton = await driver.wait(until.elementToBeClickable(By.id('delete-button')), waitTimeout);
+//     // Click the delete button using JavaScript
+//     await driver.executeScript("arguments[0].click();", deleteButton);
+//     await driver.sleep(1000);
+// }
+
+async function deleteAssessment(driver, assessmentTitle) {
+    const waitTimeout = 2000;
+    // Locate the assessment element
+    const assessmentElement = await driver.findElement(By.xpath(`//*[text()="${assessmentTitle}"]`));
+    // Scroll to the assessment element
+    await driver.executeScript("arguments[0].scrollIntoView(true);", assessmentElement);
+    // Click the assessment element (this might not be necessary but could help)
+    await assessmentElement.click();
+    // Wait for the edit button to be clickable
+    const editButton = await driver.findElement(By.id("edit-button"), waitTimeout);
+    // Click the edit button
+    await editButton.click();
+    // Wait for the delete button to be clickable
+    const deleteButton = await driver.findElement(By.id("delete-button"), waitTimeout);
+    // Click the delete button using JavaScript
+    await driver.executeScript("arguments[0].click();", deleteButton);
+    // Wait for the alert to appear
+    const alert = await driver.switchTo().alert();
+
+    // Accept the alert (click OK)
+    await alert.accept();
+    // Wait for a short moment to allow the operation to complete
+    await driver.sleep(1000);
+}
+
+
 
 async function loginAsStaff() {
 
@@ -76,12 +130,13 @@ async function loginAsStaff() {
 
         const ongoingAssessmentDivs = await driver.findElements(By.id('ongoingAssessments'));
         const ongoingCount = ongoingAssessmentDivs.length;
-        const expectedOngoingCountPast = 2;
+        const expectedOngoingCountPast = 1;
         console.log('Number of Ongoing Assessments:', ongoingCount);
         assert.strictEqual(ongoingCount, expectedOngoingCountPast, "Ongoing assessments count mismatch");
         const startDate = '09/08/2023';
         const endDate = '18/08/2023';
-        await addAssessment(driver, startDate, endDate)
+        const assessmentTitle = 'testtest';
+        await addAssessment(driver, startDate, endDate, assessmentTitle)
 
 
         await driver.get(notificationURL);
@@ -89,9 +144,12 @@ async function loginAsStaff() {
 
         const ongoingAssessmentDivsAfter = await driver.findElements(By.id('ongoingAssessments'));
         const ongoingCountAfter = ongoingAssessmentDivsAfter.length;
-        const expectedOngoingCountAfter = 3;
+        const expectedOngoingCountAfter = 2;
         console.log('Number of Ongoing Assessments:', ongoingCountAfter);
-        assert.strictEqual(ongoingCountAfter, expectedOngoingCountAfter, "Ongoing assessments count mismatch");              
+        assert.strictEqual(ongoingCountAfter, expectedOngoingCountAfter, "Ongoing assessments count mismatch");      
+        await driver.sleep(2000);        
+        deleteAssessment(driver, assessmentTitle);
+        await driver.sleep(2000); 
 
     } finally {
         await driver.quit();
