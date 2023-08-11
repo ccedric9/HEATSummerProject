@@ -204,11 +204,11 @@ const Notification = () => {
                 const endDate = new Date(event.end);
                 const eventBackgroundColor =
                   event.type.toUpperCase() === "SUMMATIVE"
-                    ? "#CC313D"
+                    ? "#C05555"
                     : event.type.toUpperCase() === "FORMATIVE"
-                    ? "#2C5F2D"
+                    ? "#59886B"
                     : event.type.toUpperCase() === "CAPSTONESUMMATIVE"
-                    ? "#8A307F"
+                    ? "#6C5070"
                     : "default-color";
                 // if (isAfter(startDate, today) && event.programName === user.major) {
                 // if (isWithinInterval(startDate, { start: today, end: oneMonthLater }) && event.programName === user.major) {
