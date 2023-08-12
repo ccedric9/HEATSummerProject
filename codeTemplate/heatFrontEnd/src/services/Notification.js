@@ -213,7 +213,7 @@ const Notification = () => {
                 // if (isWithinInterval(startDate, { start: today, end: oneMonthLater }) && event.programName === user.major) {
                   if ((oneMonthLater > startDate && today < startDate ) && event.programName === user.major) {
                   return (
-                    <div key={event.id} onClick={() => handleEventClick(event)}>
+                    <div key={event.id} onClick={() => handleEventClick(event)} id='upComingAssessments'>
                       <Paper key={event.id} style={{ padding: '10px', marginBottom: '10px', backgroundColor: eventBackgroundColor , textAlign: 'center', color: 'white'}}>
                       <Typography variant="subtitle1">{event.title}</Typography>
                       <Typography variant="subtitle1">{event.unitName}</Typography>

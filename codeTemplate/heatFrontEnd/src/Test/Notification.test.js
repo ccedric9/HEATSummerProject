@@ -1,6 +1,7 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 const assert = require('assert');
 const mockRequire = require('mock-require');
+const { Upcoming } = require('@mui/icons-material');
 // const { today } = require('../services/Notification');
 
 const homepageURL = "http://localhost:3000/home";
@@ -33,42 +34,12 @@ async function addAssessment(driver, startDate, endDate, assessmentTitle) {
     await driver.sleep(1000);
     await driver.findElement(By.id("end")).sendKeys(endDate);
     await driver.sleep(1000);
-    // await driver.findElement(By.id("location")).sendKeys(password);
-    // await driver.findElement(By.id("summary")).sendKeys(password);
-    // await driver.findElement(By.id("submit-event")).click();
-    // Scroll down the page
-    // await driver.executeScript('window.scrollBy(0, 1000);');
-    // const scrollElement = await driver.findElement(By.id('footer-year'));
-    // await driver.executeScript('arguments[0].scrollIntoView();', scrollElement);
-
-    // await driver.executeScript('window.scrollTo(0, document.body.scrollHeight);');
-
-
     const element = await driver.wait(until.elementIsEnabled(driver.findElement(By.id('submit-event-button'))), waitTimeout);
     // await element.click();
     await element.sendKeys(Key.RETURN);
     await driver.sleep(1000);
 }
 
-// async function deleteAssessment(driver, assessmentTitle) {
-//     const waitTimeout = 20000;
-//     // Locate the assessment element
-//     const assessmentElement = await driver.findElement(By.xpath(`//*[text()="${assessmentTitle}"]`));
-//     await driver.sleep(1000);
-//     await assessmentElement.click();
-//     // await assessmentElement.sendKeys(Key.RETURN);
-//     // Scroll to the assessment element
-//     await driver.executeScript("arguments[0].scrollIntoView(true);", assessmentElement);
-//     // Click the edit button
-//     const assessmentElementButton = assessmentElement.findElement(By.id("edit-button"));
-//     await assessmentElementButton.click();
-//     await driver.sleep(1000);
-//     // Wait for the delete button to be clickable
-//     const deleteButton = await driver.wait(until.elementToBeClickable(By.id('delete-button')), waitTimeout);
-//     // Click the delete button using JavaScript
-//     await driver.executeScript("arguments[0].click();", deleteButton);
-//     await driver.sleep(1000);
-// }
 
 async function deleteAssessment(driver, assessmentTitle) {
     const waitTimeout = 2000;
@@ -93,11 +64,12 @@ async function deleteAssessment(driver, assessmentTitle) {
     await alert.accept();
     // Wait for a short moment to allow the operation to complete
     await driver.sleep(1000);
+    await driver.get(notificationURL);
 }
 
 
 
-async function loginAsStaff() {
+async function ongoingTest() {
 
     mockRequire('../services/Notification.js', {
         today: new Date(2022, 10, 28) //delete?
@@ -136,9 +108,7 @@ async function loginAsStaff() {
         const startDate = '09/08/2023';
         const endDate = '18/08/2023';
         const assessmentTitle = 'testtest';
-        await addAssessment(driver, startDate, endDate, assessmentTitle)
-
-
+        await addAssessment(driver, startDate, endDate, assessmentTitle);
         await driver.get(notificationURL);
         await driver.wait(until.elementLocated(By.id('ongoingAssessments')), waitTimeout);
 
@@ -151,10 +121,82 @@ async function loginAsStaff() {
         deleteAssessment(driver, assessmentTitle);
         await driver.sleep(2000); 
 
+        // upComingTest(driver);
     } finally {
         await driver.quit();
-        // mockRequire.stop('../services/Notification.js');
     }
 }
 
-loginAsStaff();
+async function upComingTest() {
+    mockRequire('../services/Notification.js', {
+        today: new Date(2022, 10, 28) //delete?
+    });
+    let driver = await new Builder().forBrowser('chrome').build();
+    try {
+        await driver.get("http://localhost:3000/login");
+
+        const username = driver.findElement(By.id("username-input"));
+        const password = driver.findElement(By.id("password-input"));
+
+        await username.sendKeys("staff@gmail.com");
+        await password.sendKeys("password");
+
+        const submit = await driver.findElement(By.id("submit-btn"));
+        await submit.click();
+        await driver.sleep(1000);
+
+        const currentURL = (await driver.getCurrentUrl()).toString();
+        assert.strictEqual(currentURL, homepageURL, "Test Failed: URL doesn't direct to homepage after login");
+
+        await driver.sleep(1000);
+        await driver.get(notificationURL);
+
+        // Wait for the ongoing assessments to load
+        const waitTimeout = 20000;
+        // await driver.wait(until.elementLocated(By.id('upComingAssessments')), waitTimeout);
+
+        // const upcomingAssessmentDivs = await driver.findElements(By.id('upComingAssessments'));
+        // const upcomingCount = 0;
+        // if(upcomingAssessmentDivs === null){
+        //     upcomingCount = 0;
+        // }else{
+        //     upcomingCount = upcomingAssessmentDivs.length;
+        // }
+        // const expectedUpcomingCountPast = 0;
+        // console.log('Number of Upcoming Assessments:', upcomingCount);
+        // assert.strictEqual(upcomingCount, expectedUpcomingCountPast, "Ongoing assessments count mismatch");
+        const startDate1 = '09/09/2023';
+        const endDate1 = '18/09/2023';
+        const assessmentTitle1 = 'testtest1';
+        const startDate2 = '10/09/2023';
+        const endDate2 = '10/09/2023';
+        const assessmentTitle2 = 'testtest2';
+        await addAssessment(driver, startDate1, endDate1, assessmentTitle1);
+        await addAssessment(driver, startDate2, endDate2, assessmentTitle2);
+        await driver.get(notificationURL);
+        await driver.wait(until.elementLocated(By.id('upComingAssessments')), waitTimeout);
+
+        const ongoingAssessmentDivsAfter = await driver.findElements(By.id('upComingAssessments'));
+        const ongoingCountAfter = ongoingAssessmentDivsAfter.length;
+        const expectedOngoingCountAfter = 2;
+        console.log('Number of Upcoming Assessments:', ongoingCountAfter);
+        assert.strictEqual(ongoingCountAfter, expectedOngoingCountAfter, "Upcoming assessments count mismatch");      
+        await driver.sleep(2000);        
+        deleteAssessment(driver, assessmentTitle1);
+        await driver.sleep(2000);    
+        deleteAssessment(driver, assessmentTitle2);
+        await driver.sleep(2000); 
+    } finally {
+        await driver.quit();
+    }
+}
+
+async function runTests() {
+    await ongoingTest();
+    await upComingTest();
+}
+
+runTests();
+
+// ongoingTest();
+// upComingTest();
