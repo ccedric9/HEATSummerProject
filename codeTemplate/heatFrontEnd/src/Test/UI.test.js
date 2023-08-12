@@ -2,6 +2,7 @@ const {Builder,By,Key,until} = require('selenium-webdriver');
 const assert = require('assert');
 
     const homepageURL = "http://localhost:3000/home";
+
 async function loginAsStaff(){
     let driver = await new Builder().forBrowser('chrome').build();
     try{
@@ -140,22 +141,94 @@ async function loginAsStaff(){
         }
         assert.ok(isExist,"Test Failed: item does not exist");
         // find it in the edit page 
-        for (let i = 0 ;i < 20 ; i++){
+        for (let i = 0 ;i < 30 ; i++){
             await driver.actions().sendKeys(Key.ARROW_UP).perform();
             await driver.sleep(100);
         }
-        const  editPageButton = driver.findElement(By.id('editIcon'));
+
+        const editPageButton = driver.findElement(By.id('editIcon'));
         editPageButton.click(); 
-        for (let i = 0 ;i < 20 ; i++){
+
+        for (let i = 0 ;i < 30 ; i++){
             await driver.actions().sendKeys(Key.ARROW_DOWN).perform();
             await driver.sleep(100);
         }
-        const editMenuList = await driver.findElements(By.className(''));
-        // currentURL = (await driver.getCurrentUrl()).toString();
-        // const editPageURL = "http://localhost:3000/EditMenu";
-        // assert.strictEqual(currentURL,editPageButton,"Test Failed: " + "URL error - editpage");
+
+        currentURL = (await driver.getCurrentUrl()).toString();
+        const editPageURL = "http://localhost:3000/EditMenu";
+        assert.strictEqual(currentURL,editPageURL,"Test Failed: " + "URL error - editpage");
+
+        //check the new added element exist in the table
+        const tableMenu = await driver.findElements(By.css('table tr'));
+        let lastRow = tableMenu[tableMenu.length - 1];
+        assert.ok(lastRow);
+        let lastRowProgram = await lastRow.findElement(By.xpath('./td[1]')).getText();
+        let lastRowUnitName = await lastRow.findElement(By.xpath('./td[2]')).getText();
+        let lastRowTitle = await lastRow.findElement(By.xpath('./td[3]')).getText();
+        assert.strictEqual(lastRowProgram,"Computer Science", "Test failed :" +lastRowProgram);
+        assert.strictEqual(lastRowUnitName,"Intro to Computer Science", "Test failed :" +lastRowUnitName);
+        assert.strictEqual(lastRowTitle,"Quiz 4", "Test failed : last row does not exist" + lastRowTitle);
+
+        //test edit function
+        let editLastRowButton = lastRow.findElement(By.className('btn'));
+        await editLastRowButton.click();
+
+        for (let i = 0 ;i < 10 ; i++){
+        await driver.actions().sendKeys(Key.ARROW_UP).perform();
+        await driver.sleep(100);
+        }
+
+        let editYearField = await driver.findElement(By.id("edit-year"));
+        let editTermField = await driver.findElement(By.id("edit-term"));
+        let editTypeField = await driver.findElement(By.id("edit-type"));
+        let editEndField = await driver.findElement(By.id("edit-end"));
+        let editLocationField = await driver.findElement(By.id("edit-location"));
+        let editFeedbackField = await driver.findElement(By.id("edit-feedback"));
+        let editSummaryField = await driver.findElement(By.id("edit-summary"));
+
+        year = "Year 2";
+        term = "Term 2";
+        assessmentType = "CAPSTONESUMMATIVE";
+        end = "22-11-2022";
+        location = "QB 110";
+        let feedback = "Not available";
+        summary = "Available now!";
+
+        await editYearField.sendKeys(year);
+        await editTermField.sendKeys(term);
+        await editTypeField.sendKeys(assessmentType);
+        await editEndField.sendKeys(end);
+        await editLocationField.clear();
+        await editLocationField.sendKeys(location);
+        await editFeedbackField.sendKeys(feedback);
+        await editFeedbackField.sendKeys(Key.TAB);
+        for (let i = 0 ;i < 5 ; i++){
+            await driver.actions().sendKeys(Key.ARROW_DOWN).perform();
+            await driver.sleep(100);
+        }
+        await editSummaryField.clear();
+        await editSummaryField.sendKeys(summary);
+        let editPageSubmit = await driver.findElement(By.id("edit-submit"));
+        await editPageSubmit.click();
+
+        //check webpage contains this edited assessment 
+        for (let i = 0 ;i < 20 ; i++){
+            await driver.actions().sendKeys(Key.ARROW_UP).perform();
+            await driver.sleep(50);
+        }
+        const moduleBtn = await driver.findElement(By.id("module-btn"));
+        await moduleBtn.click();
+        const nextYearBtn = await driver.findElement(By.id("nextYear-btn"));
+        await nextYearBtn.click();
+
+        let rightModules = await driver.findElements(By.className("text-name-p"));
+        for (let module of rightModules){
+            let text = await module.getText();
+            if(text==='Quiz 4') isExist = true;
+        }
+        assert.ok(isExist,"test failed" + rightModules.length);
     }   finally{
-        // await driver.quit(); 
+        await driver.quit(); 
     }
 }
 

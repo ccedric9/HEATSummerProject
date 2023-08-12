@@ -212,6 +212,7 @@ const Home = () => {
               Term
             </Button>
             <Button
+                id="module-btn"
                 component={Link}
                 to="/CalendarByModule"
                 sx={{ color: "white", backgroundColor: location.pathname === '/CalendarByModule' ? "#3498db" : "#a0332c" }}
