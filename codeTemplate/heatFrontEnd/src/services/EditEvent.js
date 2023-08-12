@@ -78,6 +78,7 @@ export default function EditEvent() {
               Program Name
             </label>
             <select
+                id="edit-programName"
                 className="form-control"
                 name="programName"
                 value={programName}
@@ -98,6 +99,7 @@ export default function EditEvent() {
               Unit Name
             </label>
             <input
+              id="edit-unitName"
               type="text"
               className="form-control"
               placeholder="Enter unit name"
@@ -111,6 +113,7 @@ export default function EditEvent() {
                 Unit Code
               </label>
               <input
+                id="edit-unitCode"
                 type="text"
                 className="form-control"
                 placeholder="Enter unit code"
@@ -124,6 +127,7 @@ export default function EditEvent() {
                 Credit Points
               </label>
               <input
+                id="edit-credit"
                 type="text"
                 className="form-control"
                 name="unitCredit"
@@ -138,14 +142,15 @@ export default function EditEvent() {
                 Academic Year
               </label>
               <select 
+                id="edit-year"
                 name="academicYear" 
                 value={academicYear}
                 className="form-control"
                 onChange={(e) => onInputChange(e)}
                 >
-                <option value="1">Year 1</option>
-                <option value="2">Year 2</option>
-                <option value="3">Year 3</option>
+                <option value={1}>Year 1</option>
+                <option value={2}>Year 2</option>
+                <option value={3}>Year 3</option>
               </select>
             </div>
             <div className="col">
@@ -153,6 +158,7 @@ export default function EditEvent() {
                 Term
               </label>
               <select 
+                id="edit-term"
                 name="term" 
                 value={term}
                 className="form-control"
@@ -169,6 +175,7 @@ export default function EditEvent() {
                 Assessment Title
               </label>
               <input
+                id="edit-title"
                 type="text"
                 className="form-control"
                 placeholder="Enter assessment title"
@@ -182,6 +189,7 @@ export default function EditEvent() {
                 Assessment Type
               </label>
               <select
+                id="edit-type"
                 className="form-control"
                 name="type"
                 value={type}
@@ -197,6 +205,7 @@ export default function EditEvent() {
                 Weight (%)
               </label>
               <select 
+                id="edit-weight"
                 name="weight" 
                 value={weight}
                 className="form-control"
@@ -218,6 +227,7 @@ export default function EditEvent() {
                 Start Date
               </label>
               <input
+                id="edit-start"
                 type="date"
                 className="form-control"
                 name="start"
@@ -230,6 +240,7 @@ export default function EditEvent() {
                 End Date
               </label>
               <input
+                id="edit-end"
                 type="date"
                 className="form-control"
                 name="end"
@@ -242,6 +253,7 @@ export default function EditEvent() {
                 Location
               </label>
               <input
+                id="edit-location"
                 type="text"
                 className="form-control"
                 placeholder="please select assessment location"
@@ -256,6 +268,7 @@ export default function EditEvent() {
                 Feedback
               </label>
               <input
+                id="edit-feedback"
                 type="text"
                 className="form-control"
                 placeholder="please select assessment location"
@@ -269,6 +282,7 @@ export default function EditEvent() {
               Assessment Summary
             </label>
             <input
+              id="edit-summary"
               type="text"
               className="form-control summary"
               name="summary"
@@ -277,7 +291,7 @@ export default function EditEvent() {
             />
           </div>
           <div className="buttons">
-          <button type="submit" className="btn btn-outline-primary">
+          <button type="submit" className="btn btn-outline-primary" id="edit-submit">
             Submit
           </button>
           <button type="delete" className="btn btn-outline-danger mx-2" onClick={()=>deleteEvents(id)} id = 'delete-button'>
