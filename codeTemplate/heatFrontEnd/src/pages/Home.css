@@ -116,14 +116,14 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    white-space: nowrap;
+    /* white-space: nowrap; */
+    align-items: center;
     /*overflow: hidden;*/
     border-radius: 4px;
     /*padding: 0 5px;*/
     color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     font-size: 1rem;
-    align-items: center;
     margin: 5px 0;
   }
 

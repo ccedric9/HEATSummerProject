@@ -5,7 +5,7 @@ import zxcvbn from 'zxcvbn';
 import { useNavigate } from 'react-router-dom';
 import heatProgramData from '../jsondata/heatProgram.json';
 import { Autocomplete, ListItemText } from "@mui/material";
-
+import { useTheme, useMediaQuery } from "@mui/material";
 
 const majors = heatProgramData.map((data) => data.major);
 
@@ -19,6 +19,9 @@ function Registration() {
   const [courses, setCourses] = useState([]);
   const [staff, setStaff] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(null);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
 
   const [entryYear, setEntryYear] = useState('');
   const currentYear = new Date().getFullYear();
@@ -118,7 +121,10 @@ function Registration() {
   }
 
   return (
-    <Container maxWidth="xs">
+    <Container maxWidth="xs" style={{
+      minHeight: '80vh',
+      height: isSmallScreen ? '130vh' : isMediumScreen ? '100vw' : 'auto',
+    }}>
       <Typography variant="h4" style={{ marginTop: '20px' }}>Registration</Typography>
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
         <TextField

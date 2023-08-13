@@ -174,7 +174,7 @@ const WeeklyCalendar = () => {
       {/* Title and Navigation Buttons */}
       <Box display='grid' gridTemplateColumns="repeat(10, 1fr)" gap={2}  >
         <Typography gridColumn="span 4" variant='h6' text='textSecondary' align="left">
-          Program: {program}
+          Programme: {program}
         </Typography>
         <Box display='flex' gridColumn="span 3" >
           <Button color="secondary" onClick={() => {
