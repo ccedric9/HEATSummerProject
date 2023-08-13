@@ -25,7 +25,7 @@ const Navbar = () => {
   const isHomePage = location.pathname === '/' || location.pathname === '/login';
 
   return (
-    <Box display="flex" justifyContent="space-between" p={2} sx={{
+    <Box display="flex" justifyContent={isSmallScreen ? "flex-start" : "space-between"} p={2} sx={{
       backgroundImage: 'linear-gradient(to right, #DF2E38 , #a0332c)',
       borderRadius: '5px',
       width: isSmallScreen ? '305vw' : isMediumScreen ? '155vw' : '100%',
