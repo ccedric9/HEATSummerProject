@@ -109,7 +109,7 @@ export default function CalendarByModule() {
                         {currentYear} - {currentYear + 1}
                         </div>
                     </div>
-                    <Button color="secondary" onClick={() => currentYear == firstYear + 2 ? setCurrentYear(firstYear):setCurrentYear(currentYear + 1)}>
+                    <Button id="nextYear-btn" color="secondary" onClick={() => currentYear == firstYear + 2 ? setCurrentYear(firstYear):setCurrentYear(currentYear + 1)}>
                         <NavigateNextIcon />
                     </Button>
                 </Box>
@@ -219,7 +219,7 @@ export default function CalendarByModule() {
                                                     }`,
                                                 }}
                                             >
-                                                <div className="text-name-p">{event.title}</div>
+                                                <div className="text-name-p" >{event.title}</div>
                                             </div>
                                         </Tooltip>
                                     ))}
@@ -385,7 +385,7 @@ export default function CalendarByModule() {
                                                     }`,
                                                 }}
                                             >
-                                                <div className="text-name-p">{event.title}</div>
+                                                <div className="text-name-p" >{event.title}</div>
                                             </div>
                                         </Tooltip>
                                     ))}

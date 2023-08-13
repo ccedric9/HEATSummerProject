@@ -126,8 +126,9 @@ function Registration() {
       height: isSmallScreen ? '130vh' : isMediumScreen ? '100vw' : 'auto',
     }}>
       <Typography variant="h4" style={{ marginTop: '20px' }}>Registration</Typography>
-      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+      <form noValidate autoComplete="off" onSubmit={handleSubmit} id="registration-form">
         <TextField
+          id="first-name"
           label="First Name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
@@ -136,6 +137,7 @@ function Registration() {
           required
         />
         <TextField
+          id="last-name"
           label="Last Name"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
@@ -144,6 +146,7 @@ function Registration() {
           required
         />
         <TextField
+          id="email"
           label="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -153,15 +156,16 @@ function Registration() {
           error={!isValidEmail(email)} // Add error prop based on email validity
           helperText={
             !isValidEmail(email) ? (
-                <Typography variant="body2" color="error">
-                  Invalid email format
-                </Typography>
+              <Typography variant="body2" color="error">
+                Invalid email format
+              </Typography>
             ) : (
-                ''
+              ''
             )
           }
         />
         <TextField
+          id="password"
           label="Password"
           value={password}
           onChange={handlePasswordChange}
@@ -172,6 +176,7 @@ function Registration() {
           required
         />
         <TextField
+          id="confirm-password"
           label="Confirm Password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
@@ -181,15 +186,16 @@ function Registration() {
           required
           helperText={
             confirmPassword !== password ? (
-                <Typography variant="body2" color="error">
-                  Passwords do not match
-                </Typography>
+              <Typography variant="body2" color="error">
+                Passwords do not match
+              </Typography>
             ) : (
-                ''
+              ''
             )
           }
         />
         <FormControlLabel
+          id="staff-checkbox"
           control={
             <Checkbox
               checked={staff}
@@ -202,7 +208,7 @@ function Registration() {
 
         <FormControl fullWidth margin="normal" required>
           <Autocomplete
-            id="combo-box-demo"
+            id="major-combo-box"
             options={majors}
             value={major}
             onChange={(event, newValue) => {
@@ -212,14 +218,11 @@ function Registration() {
           />
         </FormControl>
 
-
-
-
         {staff && (
           <FormControl fullWidth margin="normal" required>
             <Autocomplete
               multiple
-              id="checkboxes-tags-demo"
+              id="courses-checkboxes"
               options={major !== '' ? heatProgramData.find(majorData => majorData.major === major).units : []}
               value={courses}
               onChange={(event, newValue) => {
@@ -244,8 +247,8 @@ function Registration() {
         <FormControl fullWidth margin="normal" required>
           <InputLabel id="entry-year-label">Entry Year</InputLabel>
           <Select
+            id="entry-year-select"
             labelId="entry-year-label"
-            id="entry-year"
             value={entryYear}
             onChange={(event) => setEntryYear(event.target.value)}
           >
@@ -256,6 +259,7 @@ function Registration() {
         </FormControl>
 
         <Button
+          id="register-button"
           type="submit"
           color="primary"
           variant="contained"
@@ -266,6 +270,7 @@ function Registration() {
         </Button>
       </form>
     </Container>
+
   );
 }
 
