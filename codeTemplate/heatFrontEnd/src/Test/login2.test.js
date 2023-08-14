@@ -12,15 +12,14 @@ async function checkInputSize(driver, elementId, expectedWidth, expectedHeight) 
   
 async function checkNavbarBeforeLogin(driver) {
   try {
-    await driver.findElement(By.id("homeIcon")); // Assuming this icon is part of the Navbar
+    await driver.findElement(By.id("homeIcon")); 
     assert.fail("Navbar should not be accessible before login");
   } catch (e) {
-    // Navbar element not found, which is expected
   }
 }
 
 async function checkNavbarAfterLogin(driver) {
-  const homeIconElement = await driver.findElement(By.id("homeIcon")); // Assuming this icon is part of the Navbar
+  const homeIconElement = await driver.findElement(By.id("homeIcon")); 
   assert.ok(homeIconElement, "Navbar should be accessible after login");
 }
 
@@ -29,8 +28,8 @@ async function loginTest(username, password, shouldBeSuccessful) {
   try {
     await driver.get("http://localhost:3000/login");
     await checkNavbarBeforeLogin(driver);
-    await checkInputSize(driver, "username-input", 542, 56); // Adjusted expected width and height based on your provided code
-    await checkInputSize(driver, "password-input", 542, 56); // Adjusted expected width and height based on your provided code
+    await checkInputSize(driver, "username-input", 542, 56); 
+    await checkInputSize(driver, "password-input", 542, 56); 
     
     const usernameElement = driver.findElement(By.id("username-input"));
     const passwordElement = driver.findElement(By.id("password-input"));

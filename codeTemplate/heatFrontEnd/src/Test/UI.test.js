@@ -218,8 +218,10 @@ async function loginAsStaff(){
         }
         const moduleBtn = await driver.findElement(By.id("module-btn"));
         await moduleBtn.click();
+
         const nextYearBtn = await driver.findElement(By.id("nextYear-btn"));
         await nextYearBtn.click();
+
 
         let rightModules = await driver.findElements(By.className("text-name-p"));
         for (let module of rightModules){

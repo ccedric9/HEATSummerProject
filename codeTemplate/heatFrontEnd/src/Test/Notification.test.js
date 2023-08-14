@@ -179,7 +179,6 @@ async function upComingTest() {
         const ongoingAssessmentDivsAfter = await driver.findElements(By.id('upComingAssessments'));
         const ongoingCountAfter = ongoingAssessmentDivsAfter.length;
         const expectedOngoingCountAfter = 2;
-        console.log('Number of Upcoming Assessments:', ongoingCountAfter);
         assert.strictEqual(ongoingCountAfter, expectedOngoingCountAfter, "Upcoming assessments count mismatch");      
         await driver.sleep(2000);        
         deleteAssessment(driver, assessmentTitle1);
