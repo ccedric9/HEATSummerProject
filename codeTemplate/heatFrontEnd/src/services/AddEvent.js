@@ -49,7 +49,7 @@ export default function AddEvent() {
         <form onSubmit={(e) => onSubmit(e)}>
           <div className="row">
             <label htmlFor="programName">
-              Program Name
+              Program Name <span class="red-asterisk">*</span>
             </label>
             <select
                 className="form-control"
@@ -57,6 +57,7 @@ export default function AddEvent() {
                 value={programName}
                 onChange={(e) => onInputChange(e)}
                 id ="program-name"
+                required
               >
                 <option value="">Please select a program</option>
                 <option value="Civil Engineering">Civil Engineering</option>
@@ -70,7 +71,7 @@ export default function AddEvent() {
           <div className="row">
             <div className="col">
             <label htmlFor="unitName">
-              Unit Name
+              Unit Name <span class="red-asterisk">*</span>
             </label>
             <input
               id="unit-name"
@@ -80,6 +81,7 @@ export default function AddEvent() {
               name="unitName"
               value={unitName}
               onChange={(e) => onInputChange(e)}
+              required
             />
             </div>
             <div className="col">
@@ -114,7 +116,7 @@ export default function AddEvent() {
           <div className="row">
             <div className="col">
               <label htmlFor="academicYear">
-                Academic Year
+                Academic Year <span class="red-asterisk">*</span>
               </label>
               <select 
                 id="year-input"
@@ -122,6 +124,7 @@ export default function AddEvent() {
                 value={academicYear}
                 className="form-control"
                 onChange={(e) => onInputChange(e)}
+                required
                 >
                 <option value="">Select a year</option>
                 <option value="1">Year 1</option>
@@ -131,7 +134,7 @@ export default function AddEvent() {
             </div>
             <div className="col">
               <label htmlFor="term">
-                Term
+                Term <span class="red-asterisk">*</span>
               </label>
               <select 
                 id="term-input"
@@ -139,6 +142,7 @@ export default function AddEvent() {
                 value={term}
                 className="form-control"
                 onChange={(e) => onInputChange(e)}
+                required
                 >
                 <option value="">Select a term</option>
                 <option value="1">Term 1</option>
@@ -149,7 +153,7 @@ export default function AddEvent() {
           <div className="row">
             <div className="col">
               <label htmlFor="Title" >
-                Assessment Title
+                Assessment Title <span class="red-asterisk">*</span>
               </label>
               <input
                 id="assessment-title"
@@ -159,11 +163,12 @@ export default function AddEvent() {
                 name="title"
                 value={title}
                 onChange={(e) => onInputChange(e)}
+                required
               />
             </div>
             <div className="col">
               <label htmlFor="Type">
-                Assessment Type
+                Assessment Type <span class="red-asterisk">*</span>
               </label>
               <select
                 id="assessment-type"
@@ -171,6 +176,7 @@ export default function AddEvent() {
                 name="type"
                 value={type}
                 onChange={(e) => onInputChange(e)}
+                required
               >
                 <option value="">Select a type</option>
                 <option value="FORMATIVE">FORMATIVE</option>
@@ -180,7 +186,7 @@ export default function AddEvent() {
             </div>
             <div className="col">
               <label htmlFor="weight" >
-                Weight (%)
+                Weight (%) <span class="red-asterisk">*</span>
               </label>
               <select 
                 id="weight"
@@ -188,6 +194,7 @@ export default function AddEvent() {
                 value={weight}
                 className="form-control"
                 onChange={(e) => onInputChange(e)}
+                required
                 >
                 {
                   weightOptions.map((value)=>(
@@ -202,7 +209,7 @@ export default function AddEvent() {
           <div className="row">
             <div className="col">
               <label htmlFor="Start" >
-                Start Date
+                Start Date <span class="red-asterisk">*</span>
               </label>
               <input
                 id="start"
@@ -211,11 +218,12 @@ export default function AddEvent() {
                 name="start"
                 value={start}
                 onChange={(e) => onInputChange(e)}
+                required
               />
             </div>
             <div className="col">
               <label htmlFor="End" >
-                End Date
+                End Date <span class="red-asterisk">*</span>
               </label>
               <input
                 id="end"
@@ -224,6 +232,7 @@ export default function AddEvent() {
                 name="end"
                 value={end}
                 onChange={(e) => onInputChange(e)}
+                required
               />
             </div>
             <div className="col">
