@@ -4,7 +4,7 @@ import {Link, useLocation} from "react-router-dom";
 
 const Footer = () => {
     const location = useLocation();
-    const isHomePage = location.pathname === '/' || location.pathname === '/login';
+    const isHomePage = location.pathname === '/' || location.pathname === '/login' || location.pathname === '/signup';
 
   return (
     <div className="footer">
