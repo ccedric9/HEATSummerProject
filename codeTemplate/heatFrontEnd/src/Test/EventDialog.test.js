@@ -1,10 +1,16 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux'; 
 import store from '../redux/store'; 
 import EventDialog from '../pages/EventDialog'; 
+import  { MemoryRouter } from 'react-router-dom';
 
+afterEach(()=>{
+  cleanup();
+}
+
+)
 describe('EventDialog', () => {
   const mockEvent = {
     id: 1,
@@ -20,7 +26,9 @@ describe('EventDialog', () => {
   it('renders event details correctly', () => {
     render(
       <Provider store={store}>
-        <EventDialog open={true} handleCloseDialog={() => {}} event={mockEvent} />
+        <MemoryRouter>
+          <EventDialog open={true} handleCloseDialog={() => {}} event={mockEvent} />
+        </MemoryRouter>
       </Provider>
     );
 
@@ -36,7 +44,9 @@ describe('EventDialog', () => {
   it('displays Edit button for staff', () => {
     render(
       <Provider store={store}>
-        <EventDialog open={true} handleCloseDialog={() => {}} event={mockEvent} />
+        <MemoryRouter>
+          <EventDialog open={true} handleCloseDialog={() => {}} event={mockEvent} />
+        </MemoryRouter>
       </Provider>
     );
 
@@ -51,12 +61,14 @@ describe('EventDialog', () => {
 
     render(
       <Provider store={store}>
-        <EventDialog
-          open={true}
-          handleCloseDialog={() => {}}
-          event={mockEvent}
-          user={mockUser}
-        />
+        <MemoryRouter>
+          <EventDialog
+            open={true}
+            handleCloseDialog={() => {}}
+            event={mockEvent}
+            user={mockUser}
+          />
+        </MemoryRouter>
       </Provider>
     );
 
@@ -68,7 +80,9 @@ describe('EventDialog', () => {
 
     render(
       <Provider store={store}>
-        <EventDialog open={true} handleCloseDialog={handleCloseDialog} event={mockEvent} />
+        <MemoryRouter>
+          <EventDialog open={true} handleCloseDialog={handleCloseDialog} event={mockEvent} />
+        </MemoryRouter>
       </Provider>
     );
 
