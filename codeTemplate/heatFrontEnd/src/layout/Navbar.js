@@ -22,7 +22,7 @@ const Navbar = () => {
   const isStaff = user.staff;
 
   const location = useLocation();
-  const isHomePage = location.pathname === '/' || location.pathname === '/login';
+  const isHomePage = location.pathname === '/' || location.pathname === '/login' || location.pathname === '/signup';
 
   return (
     <Box display="flex" justifyContent={isSmallScreen ? "flex-start" : "space-between"} p={2} sx={{
