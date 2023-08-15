@@ -6,6 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import heatProgramData from '../jsondata/heatProgram.json';
 import { Autocomplete, ListItemText } from "@mui/material";
 import { useTheme, useMediaQuery } from "@mui/material";
+import { styled } from '@mui/system';
+const StyledContainer = styled(Container)({
+  '& .MuiFormLabel-asterisk': {
+    color: 'red',
+  },
+});
 
 const majors = heatProgramData.map((data) => data.major);
 
@@ -121,7 +127,7 @@ function Registration() {
   }
 
   return (
-    <Container maxWidth="xs" style={{
+    <StyledContainer  maxWidth="xs" style={{
       minHeight: '80vh',
       height: isSmallScreen ? '130vh' : isMediumScreen ? '100vw' : 'auto',
     }}>
@@ -270,7 +276,7 @@ function Registration() {
           Register
         </Button>
       </form>
-    </Container>
+    </StyledContainer >
 
   );
 }
