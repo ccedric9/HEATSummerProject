@@ -3,14 +3,7 @@
 *{
   font-family: 'Open Sans';
 }
-.timeline-container-module {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    margin: 20px;
-    font-family: Arial, sans-serif;
-    padding-left: 160px; /* add this line to move the entire timeline to the right */
-}
+
 
 .timeline-title {
     display: flex;

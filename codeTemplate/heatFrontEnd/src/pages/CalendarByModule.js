@@ -93,7 +93,7 @@ export default function CalendarByModule() {
     };
 
     return (
-        <div className="timeline-container-module">
+        <div className="timeline-container">
             {/* Title and Navigation Buttons */}
             <Box display='grid' gridTemplateColumns="repeat(10, 1fr)" gap={2}  >
                 <Typography gridColumn="span 4" variant='h6' text='textSecondary' align="left">

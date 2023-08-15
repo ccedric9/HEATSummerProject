@@ -194,6 +194,7 @@ function Registration() {
             )
           }
         />
+
         <FormControlLabel
           id="staff-checkbox"
           control={
