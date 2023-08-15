@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://assessmentcalendar.s3-website.eu-west-2.amazonaws.com"})
 public class CalendarEventController {
 
     @Autowired
@@ -35,10 +35,22 @@ public class CalendarEventController {
     CalendarEvent updateUser(@RequestBody CalendarEvent newCalendarEvent, @PathVariable Long id){
         return calendarEventRepository.findById(id)
                 .map(calendarEvent -> {
+                    calendarEvent.setProgramName(newCalendarEvent.getProgramName());
+                    calendarEvent.setUnitName(newCalendarEvent.getUnitName());
+                    calendarEvent.setUnitCode(newCalendarEvent.getUnitCode());
+                    calendarEvent.setTerm(newCalendarEvent.getTerm());
+                    calendarEvent.setAcademicYear(newCalendarEvent.getAcademicYear());
+                    calendarEvent.setUnitCredit(newCalendarEvent.getUnitCredit());
+                    calendarEvent.setWeight(newCalendarEvent.getWeight());
                     calendarEvent.setTitle(newCalendarEvent.getTitle());
                     calendarEvent.setEventType(newCalendarEvent.getEventType());
                     calendarEvent.setStartTime(newCalendarEvent.getStartTime());
                     calendarEvent.setEndTime(newCalendarEvent.getEndTime());
+                    calendarEvent.setFeedback(newCalendarEvent.getFeedback());
+                    calendarEvent.setLocation(newCalendarEvent.getLocation());
+                    calendarEvent.setLinkedIds(newCalendarEvent.getLinkedIds());
+                    calendarEvent.setExamTime(newCalendarEvent.getExamTime());
+                    calendarEvent.setSummary(newCalendarEvent.getSummary());
                     return calendarEventRepository.save(calendarEvent);
                 })
                 .orElseThrow(

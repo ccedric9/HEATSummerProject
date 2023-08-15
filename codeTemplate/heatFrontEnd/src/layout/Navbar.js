@@ -1,71 +1,72 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import avatarImage from '../photos/messi.png';
+import { Box, IconButton } from "@mui/material";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import PersonIcon from "@mui/icons-material/Person";
+import Typography from "@mui/material/Typography";
+import LogoutIcon from '@mui/icons-material/Logout';
+import HomeIcon from '@mui/icons-material/Home';
+import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { resetUser } from '../redux/slices/userSlice';
+import { useTheme, useMediaQuery } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
+import { useSelector } from 'react-redux';
+import EditIcon from '@mui/icons-material/Edit';
+import {useLocation} from "react-router-dom";
 
-export default function Navbar() {
-    return (
-        <div>
-            {/* Top Navigation */}
-            <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-                <div className="container-fluid">
-                    <Link className="navbar-brand" to="/">
-                        Heat Tools
-                    </Link>
+const Navbar = () => {
+  const dispatch = useDispatch();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  const user = useSelector(state => state.user);
+  const isStaff = user.staff;
 
-                    <div className="collapse navbar-collapse">
-                        <ul className="navbar-nav ms-auto">
-                            <li className="nav-item dropdown">
-                                <Link className="nav-link dropdown-toggle" to="#" id="assessTimeTable" role="button" data-bs-toggle="dropdown">
-                                    Assessment Time Table
-                                </Link>
-                                <div className="dropdown-menu" aria-labelledby="assessTimeTable">
-                                    <Link className="dropdown-item" to="/time-table/option1">Option 1</Link>
-                                    <Link className="dropdown-item" to="/time-table/option2">Option 2</Link>
-                                </div>
-                            </li>
-                            <li className="nav-item dropdown">
-                                <Link className="nav-link dropdown-toggle" to="#" id="assessInfo" role="button" data-bs-toggle="dropdown">
-                                    Assessment Information
-                                </Link>
-                                <div className="dropdown-menu" aria-labelledby="assessInfo">
-                                    <Link className="dropdown-item" to="/info/option1">Option 1</Link>
-                                    <Link className="dropdown-item" to="/info/option2">Option 2</Link>
-                                </div>
-                            </li>
-                            <li className="nav-item dropdown">
-                                <Link className="nav-link dropdown-toggle" to="#" id="supporting" role="button" data-bs-toggle="dropdown">
-                                    Supporting
-                                </Link>
-                                <div className="dropdown-menu" aria-labelledby="supporting">
-                                    <Link className="dropdown-item" to="/support/option1">Option 1</Link>
-                                    <Link className="dropdown-item" to="/support/option2">Option 2</Link>
-                                </div>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="btn btn-outline-light" to="/adminAccess">
-                                    Admin Access Button
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
+  const location = useLocation();
+  const isHomePage = location.pathname === '/' || location.pathname === '/login';
 
-                    <div className="collapse navbar-collapse">
-                        <ul className="navbar-nav ms-auto">
-                            <li className="nav-item">
-                                <Link className="btn btn-outline-light" to="/login">
-                                    {/* <img src={avatarImage} alt="avatar" style={{ width: '100px', height: '100px', marginRight: '8px' }} /> */}
-                                    Lionel Messi
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            
-            {/* Main Content */}
-            <div style={{ marginLeft: '200px', paddingTop: '60px' }}>
-                {/* This is where the main content will be rendered */}
-            </div>
-        </div>
-    );
-}
+  return (
+    <Box display="flex" justifyContent="space-between" p={2} sx={{
+      backgroundImage: 'linear-gradient(to right, #B20000 , #a0332c)',
+      borderRadius: '5px',
+      width: isSmallScreen ? '305vw' : isMediumScreen ? '155vw' : '100%',
+    }}>
+      {/* Software Title */}
+      <Typography variant='h6' fontWeight='bold' component={Link} to='/home' disabled={isHomePage}
+                  sx={{
+                    color: 'black',
+                    textDecoration: 'none',
+                    fontWeight: 'bold', // Set the fontWeight using sx prop
+                    pointerEvents: isHomePage ? 'none' : 'auto', // Disable pointer events based on isHomePage
+                    opacity: isHomePage ? 0.5 : 1, // Reduce opacity for disabled link
+                  }}
+      >
+        Assessment Calendar Tool
+      </Typography>
+      {/* ICONS */}
+      <Box display="flex">
+        <IconButton component={Link} to='/home' disabled={isHomePage}>
+          <HomeIcon />
+        </IconButton>
+        {isStaff &&<IconButton component={Link} to='/addEvent' >
+          <AddIcon /> 
+        </IconButton>}
+        { isStaff  && <IconButton component={Link} to='/EditMenu'>
+          <EditIcon/>
+        </IconButton>}
+        <IconButton component={Link} to='/user-info' disabled={isHomePage}>
+          <PersonIcon />
+        </IconButton>
+        <IconButton component={Link} to='/Notification' disabled={isHomePage}>
+          <NotificationsIcon />
+        </IconButton>
+        <Link to="/login">
+          <IconButton onClick={() => dispatch(resetUser())}>
+            <LogoutIcon />
+          </IconButton>
+        </Link>
+      </Box>
+    </Box>
+  );
+};
+
+export default Navbar;

@@ -1,0 +1,27 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://amazonheatdb.cczulapjuexr.eu-west-2.rds.amazonaws.com:3306/heatDB
+    username: admin
+    password: d76cf6cc9bfcd880395ddea39468bbe327a7f6bd
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  mail:
+    host: smtp.mailgun.org
+    port: 587
+    username: postmaster@sandboxb09d2059fed0462bbc83eab0928c09bb.mailgun.org
+    password: ${MAIL_PASSWORD}
+
+    properties:
+      mail:
+        smtp:
+          ssl:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
