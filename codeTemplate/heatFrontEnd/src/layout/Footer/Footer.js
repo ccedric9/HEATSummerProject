@@ -15,7 +15,7 @@ const Footer = () => {
                 <div className="item">Tel: +44 (0)117 928 9000</div>
                 <div className="item">Email: admin@bristol.ac.uk</div>
             </div>
-            <div className="calendar">
+            {/* <div className="calendar">
                 <h5>Calendar</h5>
                 {!isHomePage ? (
                     <div className="footer-valid" id = 'footer-year'>
@@ -42,7 +42,7 @@ const Footer = () => {
                         </span>
                     </div>
                 )}
-            </div>
+            </div> */}
             <div className="tools">
                 <h5>Tools</h5>
                 <a href="https://www.ole.bris.ac.uk/" className="item">Blackboard</a>
