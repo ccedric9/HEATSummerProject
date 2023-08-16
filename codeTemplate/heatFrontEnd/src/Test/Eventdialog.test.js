@@ -40,15 +40,6 @@ describe('EventDialog', () => {
     expect(screen.queryByText('Weight: 30%')).not.toBeNull();
     expect(screen.queryByText('Summary: Mock summary')).not.toBeNull();
     expect(screen.queryByText('Feedback: Mock feedback')).not.toBeNull();
-
-
-    // expect(screen.getByText('Mock Event')).toBeInTheDocument();
-    // expect(screen.getByText('Start Date: 2023-06-24')).toBeInTheDocument();
-    // expect(screen.getByText('End Date: 2023-06-25')).toBeInTheDocument();
-    // expect(screen.getByText('Type: SUMMATIVE')).toBeInTheDocument();
-    // expect(screen.getByText('Weight: 30%')).toBeInTheDocument();
-    // expect(screen.getByText('Summary: Mock summary')).toBeInTheDocument();
-    // expect(screen.getByText('Feedback: Mock feedback')).toBeInTheDocument();
   });
 
   it('displays Edit button for staff', () => {
