@@ -99,7 +99,7 @@ export default function CalendarByModule() {
                     {program}
                 </Typography>
                 <Box display='flex' gridColumn="span 3" >
-                    <Button color="secondary" onClick={() => currentYear == firstYear ? setCurrentYear(currentYear +2):setCurrentYear(currentYear - 1)}>
+                    <Button data-testid ='navigateBeforeButton' color="secondary" onClick={() => currentYear == firstYear ? setCurrentYear(currentYear +2):setCurrentYear(currentYear - 1)}>
                         <NavigateBeforeIcon />
                     </Button>
                     <div className="timelinebar-middle">
@@ -108,7 +108,7 @@ export default function CalendarByModule() {
                         {currentYear} - {currentYear + 1}
                         </div>
                     </div>
-                    <Button color="secondary" onClick={() => currentYear == firstYear + 2 ? setCurrentYear(firstYear):setCurrentYear(currentYear + 1)}>
+                    <Button data-testid = 'navigateNextButton' color="secondary" onClick={() => currentYear == firstYear + 2 ? setCurrentYear(firstYear):setCurrentYear(currentYear + 1)}>
                         <NavigateNextIcon />
                     </Button>
                 </Box>

@@ -176,7 +176,7 @@ const WeeklyCalendar = () => {
           {program}
         </Typography>
         <Box display='flex' gridColumn="span 3" >
-          <Button color="secondary" onClick={() => {
+          <Button data-testid ='navigateBeforeButton' color="secondary" onClick={() => {
             if (currentTerm === "TB1") {
               currentYear == firstYear ? setCurrentYear(currentYear +2):setCurrentYear(currentYear - 1)
               setCurrentTerm("TB2")
@@ -196,7 +196,7 @@ const WeeklyCalendar = () => {
             {currentYear} - {currentYear + 1}
             </div>
           </div>
-          <Button color="secondary" onClick={() => {
+          <Button data-testid = 'navigateNextButton' color="secondary" onClick={() => {
             if (currentTerm === "TB1") {
               setCurrentTerm("TB2")
             } else {
