@@ -129,17 +129,10 @@ const Home = () => {
   const getEventStyle = (event) => {
     const startDate = new Date(event.start);
     const endDate = new Date(event.end);
-    // const eventDescription = new Date(event.description);
-
-    // Fixed timeline start date
-    // eslint-disable-next-line no-useless-concat
     const timelineStart = new Date(`${currentYear}` + "-09-01");
-    // Calculate the number of days between the event start and end
-    // const durationDays = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1;
+
     const offsetDays = (startDate-timelineStart) / (1000 * 60 * 60 * 24) + 1;
     const durationDays = (endDate-startDate) / (1000 * 60 * 60 * 24);
-    // Calculate the number of days between the start of the timeline and the start of the event
-    // const offsetDays = (startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24);
 
     return {
       left: `calc(${(offsetDays / 365 ) * 100}%)`,
@@ -157,16 +150,12 @@ const Home = () => {
 
   function updateTime() {
     // the date vertical separate line
-
     const timeDifference = endDate-startDate;
-
-    // const targetDate = new Date();
     const targetTimeDifference = currentDate-startDate;
-    // console.log(targetTimeDifference);
-    // console.log(timeDifference);
 
     return ((targetTimeDifference / timeDifference) * 100);
   }
+
   const leftPosition = `${updateTime()}%`;
 
   return (
