@@ -1,4 +1,3 @@
-# Learning Management System Enhancement Project
 
 ## Motivation
 
