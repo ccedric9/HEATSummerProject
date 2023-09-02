@@ -1,15 +1,3 @@
-Event bar : change 1 to feedback — Leon
-Edit Login page — Yu
-Add Dependencies ID
-User profile name change to username
-Grade — Entry year, change the logic of other page, add more data into database —
-Assessment due test — Leon
-Delete update button — Leon
-Event text be center — Haoyan
-Edit page, weight — Cedric
-In the staff user page, add the course he is responsible for 
-
-
 Introduction and conclusion
 Background — Leon
 Methodology — Cedric
@@ -21,8 +9,22 @@ Highlighting/hover — Leon
 Click event — Leon
 Edit/add event — Cedric
 Timeline — Dyla
-Dependencies — dyla
+Dependencies — Dyla
 Log — Yu
 Responsive — Haoyan
-Accessibility   
+Accessibility — Haoyan
+Testing
+Integration test — Yu
+Unit Test — Haoyan
+Testing Tools (Selenium, Curl) —
+Curl — Dyla
+Selenium — Cedric
+Testing for Database — Leon
+Evaluation — Haoyan
+Teamwork
+Tools — Dyla
+Version control —
+Development process — Dyla
+Contribution —
+Development process and future work — Cedric
  
