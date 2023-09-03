@@ -1,0 +1,33 @@
+[
+  {
+    "major": "Computer Science",
+    "units": [
+        "Intro to Computer Science",
+        "Computer Architecture",
+        "Programming in C",
+        "Object-Oriented Programming with Java",
+        "Overview of Software Engineering",
+        "Final Project"
+    ]
+  },
+  {
+    "major": "Mechanical Engineering",
+    "units": [
+      "Engineering Mathematics 1",
+      "Engineering Science",
+      "Engineering by Investigation",
+      "Engineering by Design",
+      "Principles of Mechanical Engineering",
+      "Engineering Mathematics 2",
+      "Thermofluids",
+      "Dynamics and Control",
+      "Materials Engineering",
+      "Engineering Practice",
+      "Individual Research Project",
+      "Behaviour of Dynamic Systems",
+      "Applied Solid Mechanics",
+      "Engineering Management",
+      "Fluid Mechanics and Heat Transfer"
+    ]
+  }
+]

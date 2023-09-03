@@ -1,0 +1,303 @@
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 20px;
+    font-family: Arial, sans-serif;
+    padding-left: 140px; /* add this line to move the entire timeline to the right */
+    height: 150vh;
+    /*position: relative;*/
+  }
+
+.vertical-line {
+  position: relative;
+  width: 1px;
+  background-color: #eee;
+  z-index: -1;
+
+}
+
+  /* .vertical-line::before{
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    width: 1px;
+    height: 900px;
+    border-left: 1px dashed #ccc;
+    transform: translateX(-50%);
+  } */
+
+  .vertical-week {
+    position: relative;
+    /* left: 21.5%; */
+    margin-left: 8px;
+    margin-right: 8px;
+    width: 1px;
+    background-color: #eee;
+    z-index: -1;
+  }
+
+  /* .vertical-week::before{
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    width: 1px;
+    height: 500px;
+    border-left: 1px dashed #ccc;
+    transform: translateX(-50%);
+  } */
+  
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .months-container {
+    display: flex;
+    
+    justify-content: space-between;
+  
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); */
+    background-image: linear-gradient(to right, #B20000 , #a0332c);  
+    color: white;
+    font-family: Arial, sans-serif;
+    border-radius: 3px;
+    justify-content: space-between;
+  }
+  .month {
+    flex: 1;
+    text-align: center;
+    padding: 0 5px;
+  }
+  
+  .weeks-container {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); */
+    background-image: linear-gradient(to right, #B20000 , #a0332c); 
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  
+  .weeks {
+    text-align: center;
+    padding: 0 5px;
+  }
+
+
+
+
+  /* CSS for the left unitName */
+  .test-container {
+    position: relative;
+    /*z-index: -1;*/
+  }
+
+  /*event*/
+  .component {
+    display: flex;
+    /*width: 1000px; !* Ensure the component spans the entire width of its parent *!*/
+  }
+
+  .event {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    /* white-space: nowrap; */
+    align-items: center;
+    /*overflow: hidden;*/
+    border-radius: 4px;
+    /*padding: 0 5px;*/
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    margin: 5px 0;
+  }
+
+  .events-container {
+    /*width: 1000px;*/
+    width: 90vw;
+  }
+  
+  /* Additional styles for the new navigation buttons */
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .nav-buttons {
+    display: flex;
+  }
+  
+  .nav-button {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-button:hover {
+    background-color: #45a049;
+  }
+  
+  .unitNames-container {
+    position: absolute;
+    left: -160px; /* add this line to position unitNames on the left */
+    top: 0;
+    
+  }
+  
+  .unitName {
+    /* position: absolute; */
+    width: 150px;
+    text-overflow: ellipsis;
+    /* overflow: hidden; */
+    white-space: nowrap;
+    background-color: rgb(252, 252, 252);
+    border-radius: 5px;
+    border: 1px solid #eee;
+    padding: 2px 5px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    white-space: normal;
+    position: relative;
+  }
+  .unitName::after{
+    content: "";
+    position: absolute;
+    width: 90vw;
+    height: 1px;
+    background-color: #eee;
+    display: block;
+    left: 100%;
+    bottom: 0;
+  }
+
+  @media screen and (max-width: 600px) {
+    .unitName {
+      left: 0px;
+      width: 80px;
+      font-size: 0.7rem;
+    }
+    .months-container {
+    
+      padding-left: 10px; /* Allow months to wrap to new line on small screens */
+    }
+  
+    .month {
+      flex-basis: 20%; /* Make each month take 20% width on small screens */
+    }
+    .timeline-container{
+      width: 300vw;
+      height: 150vh;
+    }
+    .unitName::after {
+      width:270vw;
+    }
+    .unitNames-container {
+      left: -100px;
+    }
+    .events-container{
+      width: 300vw;
+    }
+  }
+    
+@media  screen and (max-width:850px) and (min-width:601px){
+  .timeline-container {
+    width: 150vw;
+  }
+  .unitName::after {
+    width: 130vw;
+  }
+  .events-container {
+    width: 130vw;
+  }
+}
+@media screen and (orientation: landscape) and (max-height: 800px) and (min-height: 500px){
+  .timeline-container{
+    width: 100vw;
+  }
+}
+@media screen and (orientation: landscape) and (max-height: 499px){
+  .timeline-container{
+    height: 300vh;
+  }
+}
+  
+  
+  .year-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .year-selector span {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .year-selector button {
+    background-color: #ddd;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 50%; /* make the buttons circular */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    transition: background-color 0.3s;
+  }
+  
+  .year-selector button:hover {
+    background-color: #ccc;
+  }
+
+.timelinebar-middle{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: -12px;
+
+}
+
+.yearIndicator{
+  color:black;
+  font-size: small;
+  font-weight: 600;
+}
+
