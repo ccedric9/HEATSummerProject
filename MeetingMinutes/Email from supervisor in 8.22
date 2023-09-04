@@ -1,0 +1,39 @@
+Hiya team,
+
+everything is shaping up OK
+a few comments:
+be sure to introduce your client clearly: they are a major part of the work and are referred to frequently in the report, so you should make sure they are introduced early on. You don't need to mention Joel by name, but it is important to talk about his role, responsibilities, desires and concerns.
+you "motivations" section outlines your aims and objectives (which is fine) but doesn't really provide a "motivation" for the project (i.e. "why" - what is currently wrong, what impact does this have and what might be the potential benefits of the project)
+you don't talk much about teamwork and collaboration in the "challenges" section - was that part of the project easy ?
+coverage of existing systems is fairly limited - there is a range of different learning management systems out there, you should discuss the features offered by them in more detail. Also include any existing systems outside of education that are also relevant (for example, there is likely to be relevant systems from domains such as project management etc)
+it might be nice to have an overview of the methodology early on in section 3 - including a diagram illustrating when each activity takes place would be nice. Currently there is just a bunch of apparently unrelated subsections.
+some of the methodology subsection feel a bit too low level to appear here (for example 3.3.1 Reduced Feature Coupling)
+are the principles laid out in "4.2.3 Layout and Styling" of your own devising ? If so, who were they selected. If they are an existing framework then it is essential that you provide a reference
+discussion in some sections is very low-level (for example "4.2.2.1 Hover and Highlighting" and "4.2.2.2 Click events") is this kind of material relevant for inclusion in a dissertation (which aims to provide a high-level overview of the project) ?
+for each code fragment you consider including, ask your self the question "does the reader really care ?"
+the introduction to software engineering unit covered various UML diagrams - are any of those relevant to the project ?
+make sure you explicitly revisit the full set of aims and objectives outlined in the introduction sections and (with reference to the data/insights from evaluation) discuss the extent to which you have achieved each
+There used to be an option for students to check there own reports using turnitin...
+But what often happened was students would keep submitting and tweaking work until it passed
+(which isn't really the aim of the process). Write up ideas in your own words, make sure you reference appropriately, avoid using AI tools (like ChatGPT) and you should be fine.
+
+Simon
+
+From: Zhiyuan Chen <rh22055@bristol.ac.uk>
+Sent: 21 August 2023 15:46
+To: Simon Lock <simon.lock@bristol.ac.uk>
+Cc: Dyla Qin <cu22067@bristol.ac.uk>; Cedric Chen <ud22762@bristol.ac.uk>; Yu Tian <fg22142@bristol.ac.uk>; Haoyan Wang <xd22023@bristol.ac.uk>
+Subject: Group Report for HEAT
+ 
+Dear Simon,
+ 
+I hope this email finds you well. I am writing to request your guidance and suggestions for our group report HEAT report. Our group has been working diligently on the report, and we are eager to incorporate any feedback or suggestions you may have to improve its content, structure, and overall presentation. We have attached a draft of our report to this email for your review. We will rebuild an Overleaf version after your suggestions.
+ 
+Besides, we tried to use Turnitin to check the similarity and probability of AI tool use in our group report, but it needs access to create an account. Do you know how to get the access to Turnitin or any other similar tools like this one?
+ 
+Last, do you have recommendations about our group project name? We use ‘Assessment Calendar Tool’ on the website.
+ 
+Thank you very much for considering our request. We look forward to your insights and suggestions.
+ 
+Sincerely,
+Zhiyuan Chen
