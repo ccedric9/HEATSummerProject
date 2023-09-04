@@ -1,0 +1,44 @@
+.container{
+    border-radius: 10px;
+    border : 1px solid black;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+label{
+    font-weight: 600;
+    margin: 10px;
+}
+
+form{
+    margin: 0 50px;
+}
+
+.row{
+    padding-top: 20px;
+}
+
+h3{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    background-color: #CDCDCD;
+}
+
+.summary{
+    min-height: 100px;
+}
+
+.red-asterisk{
+    color: red;
+}

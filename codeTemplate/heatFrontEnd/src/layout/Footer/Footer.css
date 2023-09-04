@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+*{
+  font-family: 'Open Sans';
+}
+
+.footer{
+    background-color: #171717;
+    height: 27vh;
+    width: 100vw;
+    border-radius: 5px;
+    flex-shrink: 0;
+    margin-top: auto;
+    position: relative;
+}
+@media screen and (max-width: 600px) {
+    .footer {
+        width: 300vw;
+    }
+}
+@media screen and (max-width:850px) and (min-width: 601px) {
+    .footer {
+        width: 150vw;
+    }
+    
+}
+@media screen and (orientation: landscape) and (max-height: 770px) and (min-height: 500px){
+    .footer{
+        width: 110vw;
+    }
+}
+@media screen and (orientation: landscape) and (max-height: 499px){
+    .footer{
+        height: 70vh;
+    }
+}
+
+.logo{
+    position: absolute;
+    height: 40px;
+    bottom: 100px;
+    left: 40px;
+
+}
+
+.top{
+    padding: 30px 200px;
+    display: flex;
+    gap: 300px;
+}
+
+
+.item{
+    margin-top: 5px;
+    margin-left: 5px;
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+}
+
+.footer h5{
+    color: #A0830E;
+    margin-bottom: 10px;
+}
+
+.calendar{
+    display: flex;
+    flex-direction: column;
+}
+
+.tools{
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom{
+    color: white;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    padding-left: 200px;
+}
+
+.bottom , .a{
+    color: white;
+    gap: 20px;
+}
+
+.footer-valid {
+    display: grid;
+}

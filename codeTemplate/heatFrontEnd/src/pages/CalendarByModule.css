@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+*{
+  font-family: 'Open Sans';
+}
+
+
+.timeline-title {
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); */
+    background-image: linear-gradient(to right, #B20000 , #a0332c);
+    color: white;
+    font-family: Arial, sans-serif;
+    border-radius: 3px;
+}
+
+.timeline-content {
+    width: 45%;
+    margin-left: 5%;
+}
+
+.text-subheader {
+    /*width: 500%;*/
+    text-align: center;
+    -ms-flex-align: start;
+}
+
+.bottom-part {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.line {
+    height: 2px;
+    background-color: white;
+    margin-top: 15px;
+    width: 1000%;
+}
+
+.timeline-title {
+    font-size: 20px;
+    font-family: "Arial Rounded MT Bold", serif;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.year-selector {
+    display: flex;
+
+}
+
+/* below is the event part */
+
+.module-parent {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 12fr 6fr;
+    align-items: start;
+}
+
+.module-parent-left {
+    /*margin: 10px 10px;*/
+
+}
+
+.unit-credit{
+    position: relative;
+    top:-120px;
+    left:10px;
+    font-weight: bolder;
+}
+
+.credit10 {
+    display: block;
+    border-style: dashed;
+    margin: 20px 50px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.credit20{
+    display: block;
+    border-style: dashed;
+    margin: 20px 50px;
+    border-radius: 10px;
+}
+
+.credit30plus{
+    display: block;
+    border-style: dashed;
+    margin: 20px 50px;
+    border-radius: 10px;
+}
+
+
+.unit-codes {
+    text-align: justify;
+    display: inherit;
+    /* position: absolute; */
+    font-weight: bold;
+}
+
+.unit-name{
+    text-align: center;
+    font-weight: bold;
+}
+
+.test-names {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    color: moccasin;
+    overflow-wrap: break-word;
+}
+
+.test-name {
+    position: relative;
+    text-align: center;
+    /*line-height: 100px;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    width: 80px; /* Adjust the width as needed */
+    height: 80px; /* Adjust the height as needed */
+    margin: 10px; /* Adjust the margin as needed */
+    /*overflow-wrap: break-word;*/
+    /*word-wrap: break-word;*/
+    font-size: small;
+    /*cursor: pointer;*/
+}
+
+.text-name-p {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/*.test-name::before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: -50%;*/
+/*    left: -50%;*/
+/*    background-color: inherit;*/
+/*    transform: rotate(-45deg);*/
+/*    z-index: -1; !* Ensure the pseudo-element is positioned behind the text *!*/
+/*}*/
+
+/*.test-name span {*/
+/*    display: block;*/
+/*    transform: rotate(45deg); !* Rotate the text within the container *!*/
+/*    color: black;*/
+/*}*/
+
+@media screen and (max-width: 600px) {
+    .timeline-container-module {
+        width: 300vw;
+    }
+}
+@media screen and (orientation: landscape) and (max-height: 770px){
+    .timeline-container-module {
+        
+    }
+}
+@media  screen and (max-width:850px) and (min-width:601px){
+    .timeline-container-module {
+      width: 150vw;
+    }
+}
