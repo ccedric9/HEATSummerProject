@@ -1,0 +1,141 @@
+Hiya all,
+ 
+The attached python script might help you decide on a name for your project:
+ 
+Update the “allKeywords” array to include any keywords you think correctly describe the project
+Set “desiredAcronymLength” to the length you want the final name to be (5 or 6 letters might be best ?)
+Run the python script and wait…
+It’s a random brute force approach, so will keep on running and spitting out names (until you kill it off)
+ 
+There is a dictionary that it uses to check the names (to make sure they are proper words)
+Some of the words in the dictionary are a big obscure (some I have never heard of)
+So be careful when choosing from the final name
+ 
+Simon
+ 
+From: Zhiyuan Chen <rh22055@bristol.ac.uk>
+Date: Sunday, 11 June 2023 at 21:02
+To: Simon Lock <simon.lock@bristol.ac.uk>
+Cc: Yu Tian <fg22142@bristol.ac.uk>, Cedric Chen <ud22762@bristol.ac.uk>, Haoyan Wang <xd22023@bristol.ac.uk>, Dyla Qin <cu22067@bristol.ac.uk>
+Subject: 答复: Summer Project - HE Assessment Tool - preparation update
+
+Dear Simon,
+ 
+Can we meet at 1pm next Tuesday?
+We decided to start by emailing with Joel and attaching our recent results after Tuesday's meeting. We will contact you later if we need to meet with Joel.
+ 
+Kind regards,
+Zhiyuan Chen
+发件人: Simon Lock <simon.lock@bristol.ac.uk>
+日期: 星期日, 2023年6月11日 20:21
+收件人: Zhiyuan Chen <rh22055@bristol.ac.uk>
+抄送: Cedric Chen <ud22762@bristol.ac.uk>, Dyla Qin <cu22067@bristol.ac.uk>, Haoyan Wang <xd22023@bristol.ac.uk>, Yu Tian <fg22142@bristol.ac.uk>
+主题: Re: Summer Project - HE Assessment Tool - preparation update
+
+I’m free from 11:30 onwards
+Do we want to try to meet with your client Joel at the same time ?
+Or would you prefer to meet with him separately ?
+ 
+Simon
+ 
+From: Zhiyuan Chen <rh22055@bristol.ac.uk>
+Date: Saturday, 10 June 2023 at 15:44
+To: Simon Lock <simon.lock@bristol.ac.uk>
+Cc: Cedric Chen <ud22762@bristol.ac.uk>, Dyla Qin <cu22067@bristol.ac.uk>, Haoyan Wang <xd22023@bristol.ac.uk>, Yu Tian <fg22142@bristol.ac.uk>
+Subject: 答复: Summer Project - HE Assessment Tool - preparation update
+
+Dear Simon,
+ 
+I hope this letter finds you well. Thanks for your advises and answers. Your expertise and willingness to share your knowledge were greatly appreciated.
+ 
+I would like to know what time you are available next Tuesday so we can book a meeting to discuss further questions.
+ 
+Kind regards,
+Zhiyuan Chen
+ 
+ 
+发件人: Simon Lock <simon.lock@bristol.ac.uk>
+日期: 星期六, 2023年6月10日 14:57
+收件人: Cedric Chen <ud22762@bristol.ac.uk>
+抄送: Yu Tian <fg22142@bristol.ac.uk>, Haoyan Wang <xd22023@bristol.ac.uk>, Dyla Qin <cu22067@bristol.ac.uk>, Zhiyuan Chen <rh22055@bristol.ac.uk>
+主题: Re: Summer Project - HE Assessment Tool - preparation update
+
+Hiya Team,
+ 
+Some useful and detailed planning
+A couple of thoughts an observations:
+It would be good to differentiate between different types of staff in the use case diagram e.g. Unit director, Professional Services (i.e. admin staff) etc
+Anticipate difficulties in recruiting evaluation participants (students are always hard to find at this time of year)
+It would be good to get the client to validate the use case goals as early as possible (i.e. before any significant development takes place)
+Chances are there won’t be enough time to implement all goals identified in the use case diagram – so it is essential to get the client to rank/prioritise them
+Be careful about getting potential users to speculate in the questionnaires – often users typically aren’t very good at thinking ahead (better to ask “what do you think of X” rather than “can you suggest new features”)
+Technology stack all seems fine – shouldn’t be any problems with UoB usage
+We’ll need to think carefully about long term hosting – we need to try to avoid on-going costs for the client
+We need to be careful about the university’s data security/privacy policies (avoiding the storage of student personal data offsite)
+ 
+In answer to your specific questions:
+You probably don’t need an initial requirements identification questionnaire for staff – since we have the direct involvement of Joel as the client
+You might need a final evaluation questionnaire for staff – in order to gain broader consensus of the final product (more than just Joel’s opinion)
+The kinds of question you are wanting to ask should fall under the standard blanket ethics approval – be sure to fill out the form and complete the ethics quiz !
+In order to use UoB Single Sign On, you will need the cooperation of IT services – probably best to start with your own simple authentication and approach IT services if the client feels that Single Sign On is an important feature
+ 
+I’m going to be away occasional days over the summer (dates to be decided), but not for long periods of time
+(so it should be easy enough to get in contact with me)
+How about another meeting thing coming week ? Maybe Tuesday ?
+ 
+Simon
+ 
+From: Cedric Chen <ud22762@bristol.ac.uk>
+Date: Friday, 9 June 2023 at 12:45
+To: Simon Lock <simon.lock@bristol.ac.uk>
+Cc: Yu Tian <fg22142@bristol.ac.uk>, Haoyan Wang <xd22023@bristol.ac.uk>, Dyla Qin <cu22067@bristol.ac.uk>, Zhiyuan Chen <rh22055@bristol.ac.uk>
+Subject: Summer Project - HE Assessment Tool - preparation update
+
+Hi Simon,
+ 
+Hope you are doing well.
+ 
+Just want to keep you and client an update about what our team have discussed and what we have done so far regarding the project – HEAT (HE assessment tool). Before sending to client, would like to hear from your invaluable comment and ensure we are not away from the main of project.
+ 
+Please kindly find attached as some draft work we have done in preparation stage :
+ 
+A proposal for project timetable :
+We aim to finish our project at the end of August – a week before the submission due
+We plan to develop the software through 3 sprints and now we are working on a prototype of user interface
+We will start our group report alongside programming the application – all the key points from you ,client and our meeting notes , we will keep updating them weekly and form formal report at final stage
+Project evaluation and project proposal
+A questionnaire for potential end users (students) to identity the requirements:
+Questionnaire
+Use case diagram base on these functionalities we can generate
+Programming Languages:
+Java  Spring Boot for back-end development
+React for front-end development
+JPA (Hibernate) for Database
+Mysql, redis, or mangoDB for underlying database
+Based on our research and please kindly note that Spring Boot, React, JPA , mysql are open source and should be fine for university use. (Please correct me if we are wrong)
+ 
+We have some questions during our discussion, could you please advise us any direction on below :
+Do we need another questionnaire for staff as they are the end users too ?
+Do we need to sign a ethic declaration since we might use the data collect from questionnaire?
+For software design, do we need an independent login system? or can we use our MyBristol (embed our application in MyBristol) to help us verify student’s password before they can use the assessment tools?
+ 
+Furthermore, may we know when will you possibly be unavailable over the summer project  (we will ask client as well, so we can include this in our project timetable) ?  can we schedule next meetings with you and client ?  if yes, can you please advise when do you available ?
+ 
+Our team look forward to hearing from you soon.
+Thank you for your kind guidance and support.
+ 
+ 
+In case you want to know how we collaborate in a team or monitor our progress, please kindly find below :
+ 
+GitHub:
+Github - HEAT Summer Project
+ 
+Kanban:
+Jira - Kanban
+ 
+ 
+ 
+Kind Regards,
+Cedric
+ 
+ 
