@@ -1,0 +1,41 @@
+Dear Team,
+
+The overall priority looks sensible, although it seems almost to be in complexity order, tricky things first simple things last (ish).  i.e. grids and word wrapping really should be both quick simple and visually useful.  I would get that done pretty quickly.  
+
+Re the interlinks, you can make that up as an example at the moment.  I am sure you can think of where some of your previous feedback might have been helpful in a future assignment, if not reflect on it (it is a valuable skill for future employment).  I would say that it is for both students and staff. It is useful for staff to understand the bigger picture of the programme and the students also.  Currently it does not exist, but for programme design (not software, degree programmes I mean here!) it would be really powerful.  So for the moment make it up (based on some logic).  
+
+In terms of the lecturer view / student views, I am thinking the same functionality is useful for both.  The main difference is that the lecturer would have the option to input and edit the data.
+
+Best wishes,
+
+Joel
+From: Haoyan Wang <xd22023@bristol.ac.uk>
+Sent: Tuesday, July 4, 2023 6:08:50 PM
+To: Simon Lock <simon.lock@bristol.ac.uk>; Joel Ross <Joel.Ross@bristol.ac.uk>
+Cc: Dyla Qin <cu22067@bristol.ac.uk>; Cedric Chen <ud22762@bristol.ac.uk>; Zhiyuan Chen <rh22055@bristol.ac.uk>; Yu Tian <fg22142@bristol.ac.uk>
+Subject: Prioritizing Work Tasks and Improving Website Features
+ 
+Hi Simon and Joel,
+ 
+Based on our meeting discussion, we would like to provide you with an update on our ongoing work and highlight the priorities we have identified. Below is a list of tasks that require attention in order of importance:
+Assessment Information:
+Ensure that the summary information, feedback (if available), and other useful assessment information is displayed correctly on the assessment page after clicking the assessment.
+Year Page:
+Change the curriculum height (left hand side) be the same, Assessment height varies based on weight.
+Module Page:
+Enhance readability by adding independent lines between each assessment listed on the module page and clearly indicate the connections between them.
+Grid:
+Implement cutting lines based on the month/week throughout all pages to improve visual organization and clarity.
+Word wrapping:
+Change word wrapping on the module page to ensure optimal display of text.
+Database:
+Replace existing data with real web information for accurate representation.
+ 
+In addition, we would also like to inquire about how we can determine the appropriate connections for each assessment,  we don't know how to access it, is this a 'lecturer only' section?
+If so, do we need to make up some fake data ourselves? Could you please provide guidance on this matter?
+ 
+Thank you for your attention.
+Kind Regards,
+Team
+      
+ 
