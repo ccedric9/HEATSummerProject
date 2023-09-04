@@ -1,0 +1,137 @@
+Thanks for the documents
+Could you add a short description to the “Summary of proposed experiment(s):” section
+ 
+Thanks
+ 
+Simon
+ 
+ 
+From: Dyla Qin <cu22067@bristol.ac.uk>
+Date: Saturday, 24 June 2023 at 14:14
+To: Simon Lock <simon.lock@bristol.ac.uk>
+Cc: Haoyan Wang <xd22023@bristol.ac.uk>, Yu Tian <fg22142@bristol.ac.uk>, Cedric Chen <ud22762@bristol.ac.uk>, Zhiyuan Chen <rh22055@bristol.ac.uk>
+Subject: Re: Scheduling a Meeting to Discuss Our Summer Project
+
+Hi Simon
+ 
+We have already signed up the Student Permission Form, hope we have uploaded all the documents needed for the ethic review.
+ 
+Thanks for your help and support.
+ 
+Best wishes
+Dyla
+ 
+From: Simon Lock <simon.lock@bristol.ac.uk>
+Date: Thursday, June 15, 2023 at 09:06
+To: Joel Ross <Joel.Ross@bristol.ac.uk>, Yu Tian <fg22142@bristol.ac.uk>
+Cc: Haoyan Wang <xd22023@bristol.ac.uk>, Cedric Chen <ud22762@bristol.ac.uk>, Dyla Qin <cu22067@bristol.ac.uk>
+Subject: Re: Scheduling a Meeting to Discuss Our Summer Project
+
+Hiya all,
+ 
+Just following up on the topic of ethics approval…
+The Computer Science department applies for “blanket” ethics approval for summer projects
+The rationale being that a lot of projects involve low-risk user evaluation of software
+(and the ethics approval panel want to avoid being inundated by a large number of similar individual cases)
+ 
+Could you please fill out the attached form and send it back to me with a PDF copy of the questions from the questionnaire
+and any information provided to the participants in advance of them completing it (e.g. email to recruit people, information to participants etc).
+ 
+The basic principle is that if you are able to answer “no” to all questions, your project is covered under the blanket ethics approval.
+It’s fine to fill out more than one form (i.e. one now to cover initial survey/questionnaire, then another one later on to cover final evaluation of the completed application)
+ 
+Hope that is all clear
+ 
+Simon
+ 
+From: Joel Ross <Joel.Ross@bristol.ac.uk>
+Date: Wednesday, 14 June 2023 at 10:57
+To: Yu Tian <fg22142@bristol.ac.uk>, Simon Lock <simon.lock@bristol.ac.uk>
+Cc: Haoyan Wang <xd22023@bristol.ac.uk>, Cedric Chen <ud22762@bristol.ac.uk>, Haoyan Wang <xd22023@bristol.ac.uk>, Dyla Qin <cu22067@bristol.ac.uk>
+Subject: RE: Scheduling a Meeting to Discuss Our Summer Project
+
+Dear all,
+ 
+A few things, a meeting might be a lot more efficient than back and forward emails. Some bits of advice: for ethics your survey will need to use University provided tools for data collection i.e. Microsoft not google, and be tied to a UoB account.  You will also need to ask for consent to use the data for a specific time bound purpose + have a participant information sheet.  Don’t worry about these things other than using a UoB account to start with as one would need to explain expectations in more detail (I am probably stepping over my line as customer and into academic of the UoB and deputy lead of the Engineering Education Research Group here).  In short, if I sat on faculty ethics, I would not sign that off for use.
+
+Regarding the questions, I would like to feed into these via a dialogue in a meeting.  I think aspects of what you are getting at in this questionnaire are focused on replication of what we have rather than something new.
+ 
+I cannot access whatever you have put on Jira.
+ 
+A tool that other academics have made in Prezzie (which would be a categoric nightmare to maintain) can be seen here:
+
+https://bilt.online/assessment-and-feedback-portfolio-afp/
+ 
+I would like a better name for sure! Please think of one.  HEAT should not really be used because it is in use for a different, HE context.
+https://heat.ac.uk/
+ 
+I just could not think of one when writing the project up!
+ 
+Questions 5 and 6 I could try and answer but that is again because I am an engineering academic, I am certainly not a technical expert in CompSci, I think you are asking the wrong person.
+ 
+8. I could have a look for you but you could also easily make it up.  The ideal way to do it would be to suck the data from evision but that is probably miles out of scope @Simon Lock?
+ 
+Hope those thoughts help, feel free to put in a meeting.
+ 
+Joel
+ 
+ 
+From: Yu Tian <fg22142@bristol.ac.uk> 
+Sent: Tuesday, June 13, 2023 11:07 PM
+To: Joel Ross <Joel.Ross@bristol.ac.uk>
+Cc: Haoyan Wang <xd22023@bristol.ac.uk>; Cedric Chen <ud22762@bristol.ac.uk>; Haoyan Wang <xd22023@bristol.ac.uk>; Dyla Qin <cu22067@bristol.ac.uk>; Simon Lock <simon.lock@bristol.ac.uk>
+Subject: Scheduling a Meeting to Discuss Our Summer Project
+ 
+Dear Joel,
+ 
+I hope this email finds you well. On behalf of our team, I’m writing to update what we have done so far for our summer project .
+ 
+Here are some key points that we are looking forward to hearing from your comments, your insights and guidance are invaluable to us.
+ 
+1. Questionnaire for students
+
+Here is the link to the questionnaire, please advise any comment if any thought. Please kindly note that we are currently apply for an ethic review for the questionnaire , we can only send out and have students filled out the questionnaire after the approval by research committee.
+Questionnaire for Assessment Tools
+
+ 
+2. Prioritise Use Cases
+
+We’ve discussed possible features and functionalities and have written them in a use case diagram for later software development. Since we have limited time to develop the program, we really appreciate that you give us some directions on priorities.
+If the diagram is not convenient to handle, we also provide a list of use cases in Jira. You can easily drag and rearrange them to prioritize as per your insights. Here is the link:
+Jira - Use Cases List
+
+ 
+3.Proposal for Project Timetable:
+
+We aim to finish our project at the end of August – a week before the submission due
+We plan to develop the software through 3 sprints with Program testing and user evaluation
+Kindly find attached as project timetable in details.
+ 
+4. Application Prototype:
+
+We have made preliminary progress on the front-end and back-end of our website.  Please kindly find attached as a screenshot of the application prototype . please note that it’s a very early and raw version of layout ,we will keep add into more functionalities we intend to build , more styles and keep consistency , it would be grateful for any feedback you might have.
+ 
+5. Login System:
+
+Users need to sign on the application to use the assessment tools. There are two ways to build the login system for students and staff .
+We are considering whether to create our own login system or use the school’s system. Utilizing the school’s system would involve applying for collaboration, securing the relevant API, and ensuring data security. We would value your opinion on this matter.
+ 
+6. Long – term Hosting:
+
+Note that our university currently is using AWS as our cloud services , we can consider using AWS to host our application. Do you have any thoughts regarding this?
+ 
+7. Project Name:
+
+Initially, the project was named ‘HEAT’. Do you have any alternative names in mind that you find appealing?
+ 
+8. Data:
+
+Is it possible to give us some real data or make up some mock data for our project later when we start building the application ? it would be great help to test the program and simulate the real scenario.
+ 
+ 
+Thank you very much for your time and consideration. Is it possible to arrange a meeting with you to discuss the project this week ?Please let us know your availability, and we will make the necessary arrangements(online if we have to).
+ 
+Warm regards,
+ 
+Yu Tian
+ 
